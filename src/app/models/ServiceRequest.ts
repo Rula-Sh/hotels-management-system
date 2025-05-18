@@ -1,10 +1,10 @@
-import { Service } from "./Service";
+import { Service } from './Service';
 
 export interface ServiceRequest extends Service {
   id: string;
   date: Date;
-  customerId: number;
-  employeeId: number;
+  customerId: string;
+  employeeId: string;
   requestType: 'Cleaning' | 'Maintenance' | 'Repair';
   requestStatus: 'Pending' | 'In Progress' | 'Completed' | 'Cancelled';
 }
