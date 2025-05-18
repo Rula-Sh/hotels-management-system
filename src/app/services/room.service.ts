@@ -1,0 +1,29 @@
+import { inject, Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Room } from '../models/Room';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class RoomRoom {
+  constructor() {}
+  api = inject(HttpClient);
+  url = 'http://localhost:3000/rooms';
+
+  getAllRooms(): Observable<Room[]> {
+    return this.api.get<Room[]>(this.url);
+  }
+
+  getRoomById(id: string): Observable<Room> {
+    return this.api.get<Room>(`${this.url}/${id}`);
+  }
+
+  CreateRoom(rooms: Omit<Room, 'id'>): Observable<Room> {
+    return this.api.post<Room>(this.url, rooms);
+  }
+
+  UpdateRoom(rooms: Room): Observable<Room> {
+    return this.api.put<Room>(`${this.url}/${rooms.id}`, rooms);
+  }
+}
