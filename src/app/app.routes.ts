@@ -7,11 +7,11 @@ import {
 } from '@angular/router';
 import { AuthService } from './services/auth.service';
 import { inject } from '@angular/core';
-import { HomeRedirectComponent } from './components/shared/home-redirect/home-redirect.component';
-import { LoginComponent } from './components/shared/login/login.component';
-import { SignUpComponent } from './components/shared/sign-up/sign-up.component';
-import { ProfileComponent } from './components/shared/profile/profile.component';
-import { NotAuthorizedComponent } from './components/shared/not-authorized/not-authorized.component';
+import { HomeRedirectComponent } from './components/shared/auth/home-redirect/home-redirect.component';
+import { LoginComponent } from './components/shared/auth/login/login.component';
+import { SignUpComponent } from './components/shared/auth/sign-up/sign-up.component';
+import { ProfileComponent } from './components/shared/auth/profile/profile.component';
+import { NotAuthorizedComponent } from './components/shared/auth/not-authorized/not-authorized.component';
 import { NotFoundComponent } from './components/shared/not-found/not-found.component';
 import { HomeComponent } from './components/customer/home/home.component';
 import { ReservationDetailsComponent } from './components/customer/reservation-details/reservation-details.component';
