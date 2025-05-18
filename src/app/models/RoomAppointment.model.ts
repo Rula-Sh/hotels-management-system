@@ -1,4 +1,4 @@
-import { Room } from './Room';
+import { Room } from './Room.model';
 
 export interface RoomAppointment extends Room {
   date: Date;
