@@ -1,15 +1,17 @@
-<header>
-  <app-header></app-header>
-</header>
-<div class="layout-wrapper d-flex justify-content-between">
-  <div class="side-image left"></div>
+<div class="page">
+  <header>
+    <app-header></app-header>
+  </header>
+  <div class="layout-wrapper d-flex justify-content-between">
+    <div class="side-image left"></div>
 
-  <div class="content">
-    <router-outlet></router-outlet>
-    <footer>
-      <app-footer></app-footer>
-    </footer>
+    <div class="d-flex flex-column justify-content-between">
+      <router-outlet></router-outlet>
+      <footer>
+        <app-footer></app-footer>
+      </footer>
+    </div>
+
+    <div class="side-image right"></div>
   </div>
-
-  <div class="side-image right"></div>
 </div>
