@@ -24,13 +24,10 @@ import { DashboardComponent } from './components/admin/dashboard/dashboard.compo
 import { AddEmployeeComponent } from './components/admin/add-employee/add-employee.component';
 import { ManageUsersComponent } from './components/admin/manage-users/manage-users.component';
 import { UserDetailsComponent } from './components/admin/user-details/user-details.component';
-import { AddRoomOrHallComponent } from './components/admin/add-room-or-hall/add-room-or-hall.component';
-import { ManageRoomsAndHallsComponent } from './components/admin/manage-rooms-and-halls/manage-rooms-and-halls.component';
 import { ReservationsComponent } from './components/admin/reservations/reservations.component';
-import { ServicesComponent } from './components/employee/services/services.component';
-import { AddServiceComponent } from './components/employee/add-service/add-service.component';
-import { ServiceDetailsComponent } from './components/employee/service-details/service-details.component';
-import { RoomsAndHallsComponent } from './components/admin/rooms-and-halls/rooms-and-halls.component';
+import { RoomsComponent } from './components/admin/rooms/rooms.component';
+import { AddRoomComponent } from './components/admin/add-room/add-room.component';
+import { RoomComponent } from './components/admin/room/room.component';
 
 export const authGuard: CanActivateFn = (
   route: ActivatedRouteSnapshot,
@@ -162,20 +159,20 @@ export const routes: Routes = [
     data: { roles: ['Admin'] },
   },
   {
-    path: 'rooms-and-halls',
-    component: RoomsAndHallsComponent,
+    path: 'rooms',
+    component: RoomsComponent,
     canActivate: [authGuard],
     data: { roles: ['Admin'] },
   },
   {
-    path: 'add-room-or-hall',
-    component: AddRoomOrHallComponent,
+    path: 'add-room',
+    component: AddRoomComponent,
     canActivate: [authGuard],
     data: { roles: ['Admin'] },
   },
   {
-    path: 'manage-rooms-and-halls',
-    component: ManageRoomsAndHallsComponent,
+    path: 'room/:id',
+    component: RoomComponent,
     canActivate: [authGuard],
     data: { roles: ['Admin'] },
   },
