@@ -44,33 +44,18 @@ export const authGuard: CanActivateFn = (
   }
 
   // redirect to /not-autherized if the user tries to access a page that is not specified to their role
-  const expectedRoles = route.data['roles'] as string[] | undefined;
+  // const expectedRoles = route.data['roles'] as string[] | undefined;
 
-  const userRole = authService.getUserRole() ?? '';
+  // const userRole = authService.getUserRole() ?? '';
 
-  if (expectedRoles && !expectedRoles.includes(userRole)) {
-    return router.createUrlTree(['/not-autherized']);
-  }
+  // if (expectedRoles && !expectedRoles.includes(userRole)) {
+  //   return router.createUrlTree(['/not-autherized']);
+  // }
 
   return true;
 };
 
 export const routes: Routes = [
-  // -------- All Users --------
-
-  { path: '', component: HomeRedirectComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'signup', component: SignUpComponent },
-  {
-    path: 'profile/:id',
-    component: ProfileComponent,
-    canActivate: [authGuard],
-    data: { roles: ['Admin', 'Employee', 'Customer'] },
-  },
-
-  { path: 'not-autherized', component: NotAuthorizedComponent },
-  { path: '**', component: NotFoundComponent },
-
   // ------------------------ Customer ------------------------
   {
     path: 'home',
@@ -182,4 +167,18 @@ export const routes: Routes = [
     canActivate: [authGuard],
     data: { roles: ['Admin'] },
   },
+  // -------- All Users --------
+
+  { path: '', component: HomeRedirectComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'signup', component: SignUpComponent },
+  {
+    path: 'profile/:id',
+    component: ProfileComponent,
+    canActivate: [authGuard],
+    data: { roles: ['Admin', 'Employee', 'Customer'] },
+  },
+
+  { path: 'not-autherized', component: NotAuthorizedComponent },
+  { path: '**', component: NotFoundComponent },
 ];
