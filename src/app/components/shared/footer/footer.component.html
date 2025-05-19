@@ -1,1 +1,21 @@
-<p>footer works!</p>
+<footer>
+  <a
+    (click)="changeLanguage('en')"
+    [class]="lang == 'en' ? 'text-bold h5 text-black' : 'text-black mb-2'"
+  >
+    <img src="/assets/images/uk-flag-icon.png" alt="uk flag icon" />
+    {{ "footer.english" | translate }}</a
+  >
+
+  <img class="ms-3 me-3" src="/assets/images/star-icon.png" alt="star icon" />
+  <a
+    (click)="changeLanguage('ar')"
+    [class]="lang == 'en' ? 'text-black mb-2' : 'text-bold h5 text-black'"
+  >
+    <img
+      src="/assets/images/saudi-arabia-flag-icon.webp"
+      alt="saudi arabia flag icon"
+    />
+    {{ "footer.arabic" | translate }}</a
+  >
+</footer>
