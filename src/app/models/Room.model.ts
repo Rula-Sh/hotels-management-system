@@ -3,7 +3,7 @@ export interface Room{
     title: string;
     roomType: "Room"| "Hall";
     floor: number;
-    building: string;
+    hotel: string;
     details: string;
     bookedStatus: string;
 }
