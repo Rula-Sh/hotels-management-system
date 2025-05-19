@@ -1,1 +1,58 @@
-<p>header works!</p>
+<header>
+  <div>
+    <a
+      class="ms-3"
+      [routerLink]=""
+      routerLinkActive="active-link"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      <img src="/assets/images/hotel-icon.png" alt="hotel icon" />
+      {{ "app.title" | translate }}
+    </a>
+    @if(role == 'Admin'){
+    <a [routerLink]="`/manage-users`" routerLinkActive="active-link">
+      <img src="/assets/images/reservation-icon.png" alt="reservation icon" />
+      {{ "header.admin.manage-users" | translate }}
+    </a>
+    <a [routerLink]="`/rooms`" routerLinkActive="active-link">
+      <img src="/assets/images/room-icon.png" alt="room icon" />
+      {{ "header.admin.rooms" | translate }}
+    </a>
+    <a [routerLink]="`/dashboard`" routerLinkActive="active-link">
+      <img src="/assets/images/dashboard-icon.png" alt="dashboard icon" />
+      {{ "header.admin.dashboard" | translate }}
+    </a>
+    } @if(role == 'Customer'){
+    <a [routerLink]="`/my-reservations`" routerLinkActive="active-link">
+      {{ "header.customer.my-reservations" | translate }}
+    </a>
+    <a [routerLink]="`/available-services`" routerLinkActive="active-link">
+      {{ "header.customer.available-services" | translate }}
+    </a>
+    }
+  </div>
+  <div>
+    <a
+      *ngIf="name"
+      [routerLink]="`/profile/${userId}`"
+      routerLinkActive="active-link"
+      (click)="goToProfile(userId!)"
+      >{{ "header.auth.welcome" | translate }}, {{ name }}
+    </a>
+    @if(name){
+    <a (click)="logout()"
+      >{{ "header.auth.logout" | translate }}
+      <img src="/assets/images/logout-icon.webp" alt="logout icon" />
+    </a>
+    } @else{
+    <a [routerLink]="'/login'" routerLinkActive="active-link"
+      >{{ "header.auth.login" | translate }}
+      <img src="/assets/images/login-icon.webp" alt="login icon" />
+    </a>
+    <a [routerLink]="'/signup'" routerLinkActive="active-link"
+      >{{ "header.auth.register" | translate }}
+      <img src="/assets/images/sign-up-icon.png" alt="sign up icon" />
+    </a>
+    }
+  </div>
+</header>

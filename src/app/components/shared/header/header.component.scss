@@ -1,0 +1,25 @@
+@import "../../../../../src/styles/variables.scss";
+
+header {
+  margin: 0;
+  padding: 10px;
+  // box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  display: flex;
+  background-color: $color-dark-brown;
+  color: $color-cream;
+  justify-content: space-between;
+  //   border-end-end-radius: 20px;
+  //   border-end-start-radius: 20px;
+}
+a {
+  text-decoration: none;
+  color: $color-cream;
+  font-size: 17px;
+  margin-left: 7px;
+  margin-right: 7px;
+}
+
+img {
+  width: 35px;
+  padding: 0px;
+}
