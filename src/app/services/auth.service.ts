@@ -19,7 +19,7 @@ export class AuthService {
     const mockToken = 'mock-token';
     localStorage.setItem('auth_token', mockToken);
     localStorage.setItem('id', user.id);
-    localStorage.setItem('username', user.username);
+    localStorage.setItem('name', user.name);
     localStorage.setItem('email', user.email);
     localStorage.setItem('user_role', user.role);
   }
@@ -28,7 +28,7 @@ export class AuthService {
     this.loggedIn = false;
     localStorage.removeItem('auth_token');
     localStorage.removeItem('id');
-    localStorage.removeItem('username');
+    localStorage.removeItem('name');
     localStorage.removeItem('email');
     localStorage.removeItem('user_role');
   }
@@ -39,11 +39,11 @@ export class AuthService {
 
   getCurrentUser(): User | null {
     const id = localStorage.getItem('id');
-    const username = localStorage.getItem('username');
+    const name = localStorage.getItem('name');
     const email = localStorage.getItem('email');
     const role = localStorage.getItem('user_role');
-    if (username && email && role) {
-      const user: User = { id, username, email, role } as User;
+    if (name && email && role) {
+      const user: User = { id, name, email, role } as User;
       return user;
     }
     return null;
