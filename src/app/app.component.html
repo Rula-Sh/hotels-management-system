@@ -1,7 +1,15 @@
 <header>
   <app-header></app-header>
 </header>
-<router-outlet></router-outlet>
-<footer>
-  <app-footer></app-footer>
-</footer>
+<div class="layout-wrapper d-flex justify-content-between">
+  <div class="side-image left"></div>
+
+  <div class="content">
+    <router-outlet></router-outlet>
+    <footer>
+      <app-footer></app-footer>
+    </footer>
+  </div>
+
+  <div class="side-image right"></div>
+</div>

@@ -1,0 +1,23 @@
+@import "../styles/variables.scss";
+
+.layout-wrapper {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  background-color: $color-cream;
+}
+
+.side-image {
+  width: 100px; /* adjust to your image width */
+  background-repeat: repeat-y;
+  background-size: contain;
+  background-color: $color-cream;
+}
+
+.side-image.left {
+  background-image: url("/assets/images/col-right2.png");
+}
+
+.side-image.right {
+  background-image: url("/assets/images/col-left2.png");
+}
