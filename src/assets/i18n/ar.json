@@ -1,0 +1,27 @@
+{
+  "app": {
+    "title": "هوتيلاتي"
+  },
+  "header": {
+    "auth": {
+      "welcome": "أهلا بك",
+      "login": "تسجيل الدخول",
+      "logout": "تسجيل الخروج",
+      "register": "تسجيل"
+    },
+    "admin": {
+      "manage-users": "إدارة المستخدمين",
+      "rooms": "الغرف",
+      "dashboard": "لوحة التحكم"
+    },
+    "employee": {},
+    "customer": {
+      "my-reservations": "حجوزاتي",
+      "available-services": "الخدمات المتاحة"
+    }
+  },
+  "footer": {
+    "english": "الإنجليزية",
+    "arabic": "العربية"
+  }
+}

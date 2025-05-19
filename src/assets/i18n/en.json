@@ -1,0 +1,27 @@
+{
+  "app": {
+    "title": "Hotels Hub"
+  },
+  "header": {
+    "auth": {
+      "welcome": "Welcome",
+      "login": "Login",
+      "logout": "Logout",
+      "register": "Register"
+    },
+    "admin": {
+      "manage-users": "Manage Users",
+      "rooms": "Rooms",
+      "dashboard": "Dashboard"
+    },
+    "employee": {},
+    "customer": {
+      "my-reservations": "My Reservations",
+      "available-services": "Available Services"
+    }
+  },
+  "footer": {
+    "english": "English",
+    "arabic": "Arabic"
+  }
+}
