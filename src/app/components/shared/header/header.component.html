@@ -6,7 +6,11 @@
       routerLinkActive="active-link"
       [routerLinkActiveOptions]="{ exact: true }"
     >
-      <img src="/assets/images/hotel-icon.png" alt="hotel icon" />
+      <img
+        class="linear-icon"
+        src="/assets/images/hotel-icon.png"
+        alt="hotel icon"
+      />
       {{ "app.title" | translate }}
     </a>
     @if(role == 'Admin'){
@@ -32,26 +36,36 @@
     }
   </div>
   <div>
+    @if(name){
     <a
-      *ngIf="name"
       [routerLink]="`/profile/${userId}`"
       routerLinkActive="active-link"
       (click)="goToProfile(userId!)"
       >{{ "header.auth.welcome" | translate }}, {{ name }}
+      <img
+        class="linear-icon"
+        src="/assets/images/waving-hand-icon.svg"
+        alt="waving hand icon"
+      />
     </a>
-    @if(name){
     <a (click)="logout()"
-      >{{ "header.auth.logout" | translate }}
-      <img src="/assets/images/logout-icon.webp" alt="logout icon" />
+      >{{ "header.auth.logout" | translate
+      }}<i class="fa-solid fa-arrow-right-from-bracket"></i>
+      <!-- <img src="/assets/images/logout-icon.webp" alt="logout icon" /> -->
     </a>
     } @else{
     <a [routerLink]="'/login'" routerLinkActive="active-link"
       >{{ "header.auth.login" | translate }}
-      <img src="/assets/images/login-icon.webp" alt="login icon" />
+      <i class="fill-icon fa-solid fa-arrow-right-to-bracket fa-lg"></i>
+      <!-- <img src="/assets/images/login-icon.webp" alt="login icon" /> -->
     </a>
     <a [routerLink]="'/signup'" routerLinkActive="active-link"
       >{{ "header.auth.register" | translate }}
-      <img src="/assets/images/sign-up-icon.png" alt="sign up icon" />
+      <img
+        class="fill-icon"
+        src="/assets/images/sign-up.png"
+        alt="sign up icon"
+      />
     </a>
     }
   </div>
