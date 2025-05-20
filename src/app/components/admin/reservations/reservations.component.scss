@@ -1,0 +1,31 @@
+@import "../../../../styles/variables.scss";
+
+.page {
+  max-width: 1300px;
+  width: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+tr {
+  text-align: center;
+}
+
+button {
+  border: none;
+  margin: 5px;
+  border-radius: 5px;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.details {
+  //   background-color: $color-caramel;
+  color: $color-caramel;
+}
+.approve {
+  color: #abf7b1;
+}
+.reject {
+  color: #faa0a0;
+}

@@ -34,8 +34,32 @@
     "password-match": "Passwords do not match",
     "submit": "Submit"
   },
+  "user": {
+    "name": "Name"
+  },
+  "room": {
+    "title": "Title",
+    "type": "Type",
+    "floor": "Floor",
+    "price": "Price"
+  },
+  "reservation": {
+    "pending-reservations": "Pending Reservations",
+    "active-reservations": "Active Reservations"
+  },
   "footer": {
     "english": "English",
     "arabic": "Arabic"
+  },
+  "shared": {
+    "entity": {
+      "id": "ID"
+    },
+    "action": {
+      "key-name": "Actions",
+      "details": "Details",
+      "approve": "Approve",
+      "reject": "Reject"
+    }
   }
 }

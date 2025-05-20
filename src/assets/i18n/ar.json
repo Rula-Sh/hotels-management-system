@@ -1,6 +1,6 @@
 {
   "app": {
-    "title": "هوتيلاتي"
+    "title": "هوتيل هب"
   },
   "header": {
     "auth": {
@@ -34,8 +34,32 @@
     "password-match": " كلمات المرور غير متطابقة",
     "submit": "تحديث"
   },
+  "user": {
+    "name": "الاسم"
+  },
+  "room": {
+    "title": "العنوان",
+    "type": "النوع",
+    "floor": "الطابق",
+    "price": "السعر"
+  },
+  "reservation": {
+    "pending-reservations": "الحجوزات المعلقة",
+    "active-reservations": "الحجوزات النشطة"
+  },
   "footer": {
     "english": "الإنجليزية",
     "arabic": "العربية"
+  },
+  "shared": {
+    "entity": {
+      "id": "الرقم التعريفي"
+    },
+    "action": {
+      "key-name": "الإجراءات",
+      "details": "التفاصيل",
+      "approve": "الموافقة",
+      "reject": "رفض"
+    }
   }
 }
