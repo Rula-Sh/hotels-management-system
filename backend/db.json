@@ -27,12 +27,15 @@
       "id": "u1",
       "name": "Alice Johnson",
       "email": "alice@example.com",
-      "phoneNumber": "1234567890"
+      "phone": "1234567890",
+      "role": "Customer"
     },
     {
       "id": "u2",
       "name": "Bob Smith",
-      "email": "bob@example.com"
+      "email": "bob@example.com",
+      "phone": "1234567890",
+      "role": "Customer"
     }
   ],
   "reservations": [
@@ -59,7 +62,8 @@
         "id": "u1",
         "name": "Alice Johnson",
         "email": "alice@example.com",
-        "phoneNumber": "1234567890"
+        "phone": "1234567890",
+        "role": "Customer"
       }
     },
     {
