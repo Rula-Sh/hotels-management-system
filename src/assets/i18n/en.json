@@ -21,6 +21,7 @@
     }
   },
   "profile": {
+    "title": "Profile",
     "name": "Name",
     "email": "Email",
     "phone": "Phone",
@@ -35,7 +36,21 @@
     "submit": "Submit"
   },
   "user": {
-    "name": "Name"
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone",
+    "password": "Password",
+    "role": "Role",
+    "roles": {
+      "users": "Users",
+      "employees": "Employees",
+      "customers": "Customers"
+    },
+    "user-role": {
+      "admin": "Admin",
+      "employee": "Employee",
+      "customer": "Customer"
+    }
   },
   "room": {
     "title": "Title",
