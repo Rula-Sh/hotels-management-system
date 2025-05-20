@@ -1,0 +1,116 @@
+{
+  "rooms": [
+    {
+      "id": "r1",
+      "title": "Deluxe Suite",
+      "roomType": "Room",
+      "floor": 2,
+      "hotel": "Sunrise Inn",
+      "details": "A deluxe room with sea view.",
+      "bookedStatus": "Available",
+      "price": 120,
+      "imageUrl": "https://example.com/image1.jpg"
+    },
+    {
+      "id": "r2",
+      "title": "Conference Hall A",
+      "roomType": "Hall",
+      "floor": 1,
+      "hotel": "Sunrise Inn",
+      "details": "Spacious hall for events.",
+      "bookedStatus": "Booked",
+      "price": 300
+    }
+  ],
+  "users": [
+    {
+      "id": "u1",
+      "name": "Alice Johnson",
+      "email": "alice@example.com",
+      "phoneNumber": "1234567890"
+    },
+    {
+      "id": "u2",
+      "name": "Bob Smith",
+      "email": "bob@example.com"
+    }
+  ],
+  "reservations": [
+    {
+      "id": "res1",
+      "roomId": "r1",
+      "customerId": "u1",
+      "date": "2025-06-15T14:00:00.000Z",
+      "approvalStatus": "Pending",
+      "paymentStatus": "Unpaid",
+      "paymentAmount": 120,
+      "room": {
+        "id": "r1",
+        "title": "Deluxe Suite",
+        "roomType": "Room",
+        "floor": 2,
+        "hotel": "Sunrise Inn",
+        "details": "A deluxe room with sea view.",
+        "bookedStatus": "Available",
+        "price": 120,
+        "imageUrl": "https://example.com/image1.jpg"
+      },
+      "customer": {
+        "id": "u1",
+        "name": "Alice Johnson",
+        "email": "alice@example.com",
+        "phoneNumber": "1234567890"
+      }
+    },
+    {
+      "id": "res1",
+      "roomId": "r1",
+      "customerId": "u1",
+      "date": "2025-06-15T14:00:00.000Z",
+      "approvalStatus": "Pending",
+      "paymentStatus": "Unpaid",
+      "paymentAmount": 120,
+      "room": {
+        "id": "r1",
+        "title": "Deluxe Suite",
+        "roomType": "Room",
+        "floor": 2,
+        "hotel": "Sunrise Inn",
+        "details": "A deluxe room with sea view.",
+        "bookedStatus": "Available",
+        "price": 120,
+        "imageUrl": "https://example.com/image1.jpg"
+      },
+      "customer": {
+        "id": "u1",
+        "name": "Alice Johnson",
+        "email": "alice@example.com",
+        "phoneNumber": "1234567890"
+      }
+    },
+    {
+      "id": "res2",
+      "roomId": "r2",
+      "customerId": "u2",
+      "date": "2025-06-20T10:00:00.000Z",
+      "approvalStatus": "Approved",
+      "paymentStatus": "Paid",
+      "paymentAmount": 300,
+      "room": {
+        "id": "r2",
+        "title": "Conference Hall A",
+        "roomType": "Hall",
+        "floor": 1,
+        "hotel": "Sunrise Inn",
+        "details": "Spacious hall for events.",
+        "bookedStatus": "Booked",
+        "price": 300
+      },
+      "customer": {
+        "id": "u2",
+        "name": "Bob Smith",
+        "email": "bob@example.com"
+      }
+    }
+  ]
+}
