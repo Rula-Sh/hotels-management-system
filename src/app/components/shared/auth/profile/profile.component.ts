@@ -14,6 +14,7 @@ import { I18nPipe } from '../../../../pipes/i18n.pipe';
 import { User } from '../../../../models/User.model';
 import { AuthService } from '../../../../services/auth.service';
 import { UserService } from '../../../../services/user.service';
+import { I18nService } from '../../../../services/i18n.service';
 
 @Component({
   selector: 'app-profile',
@@ -26,11 +27,16 @@ export class ProfileComponent {
   private userSub!: Subscription;
   profileForm!: FormGroup;
 
+  get lang(): 'en' | 'ar' {
+    return this.i18nService.getLanguage();
+  }
+
   constructor(
     private authService: AuthService,
     private userService: UserService,
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private i18nService: I18nService
   ) {}
 
   ngOnInit() {
@@ -87,7 +93,7 @@ export class ProfileComponent {
         role: this.user!.role,
       };
 
-      this.userService.UpdateProfile(updatedUser).subscribe({
+      this.userService.UpdateUserDetails(updatedUser).subscribe({
         next: () => {
           console.log('Form Submitted');
           this.authService.login(updatedUser);

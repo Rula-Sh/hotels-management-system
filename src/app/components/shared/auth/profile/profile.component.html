@@ -1,3 +1,4 @@
+<h1 class="m-4 mb-4">{{ "profile.title" | translate }}</h1>
 <div class="center-wrapper">
   <form
     class="container p-4"
@@ -7,7 +8,7 @@
     <div class="input-container">
       <label for="name"> {{ "profile.name" | translate }}:</label>
       <div class="input-error">
-        <div class="input-group">
+        <div class="input-group" [ngClass]="{ 'right-input': lang == 'ar' }">
           <div class="align-self-center">
             <span
               class="input-group-text align-self-center bg-white"
@@ -38,7 +39,7 @@
     <div class="input-container">
       <label for="email">{{ "profile.email" | translate }}:</label>
       <div class="input-error">
-        <div class="input-group">
+        <div class="input-group" [ngClass]="{ 'right-input': lang == 'ar' }">
           <div class="align-self-center">
             <span
               class="input-group-text align-self-center bg-white"
@@ -71,7 +72,7 @@
     <div class="input-container">
       <label for="phone">{{ "profile.phone" | translate }}:</label>
       <div class="input-error">
-        <div class="input-group">
+        <div class="input-group" [ngClass]="{ 'right-input': lang == 'ar' }">
           <div class="align-self-center">
             <span
               class="input-group-text align-self-center bg-white"
@@ -105,7 +106,7 @@
     <div class="input-container">
       <label for="newPassword">{{ "profile.new-password" | translate }}:</label>
       <div class="input-error">
-        <div class="input-group">
+        <div class="input-group" [ngClass]="{ 'right-input': lang == 'ar' }">
           <div class="align-self-center">
             <span
               class="input-group-text align-self-center bg-white"
@@ -145,7 +146,7 @@
         >{{ "profile.confirm-password" | translate }}:</label
       >
       <div class="input-error">
-        <div class="input-group">
+        <div class="input-group" [ngClass]="{ 'right-input': lang == 'ar' }">
           <div class="align-self-center">
             <span
               class="input-group-text align-self-center bg-white"
