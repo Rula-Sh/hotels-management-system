@@ -6,7 +6,7 @@ export interface Reservation {
   roomId: string;
   date: Date;
   customerId: string;
-  appovalStatus: 'Pending' | 'Approved' | 'Rejected';
+  approvalStatus: 'Pending' | 'Approved' | 'Rejected';
   paymentStatus: 'Paid' | 'Unpaid';
   paymentAmmount: number;
   room: Room;
