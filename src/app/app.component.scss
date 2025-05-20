@@ -8,10 +8,19 @@
 }
 
 .layout-wrapper {
-  flex: 1; /* take remaining height after header */
+  flex: 1;
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   align-items: stretch;
+  direction: ltr; // This fixes the layout to always behave LTR
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .side-image {
@@ -22,8 +31,6 @@
 
 .side-image.left {
   background-image: url("/assets/images/column-right.png");
-  width: 13%;
-  margin-left: -10px;
 }
 
 .side-image.right {

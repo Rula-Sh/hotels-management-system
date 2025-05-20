@@ -1,11 +1,8 @@
-<div class="page">
-  <header>
-    <app-header></app-header>
-  </header>
-  <div class="layout-wrapper d-flex justify-content-between">
+<div class="page" [class.rtl]="lang === 'ar'">
+  <header><app-header></app-header></header>
+  <div class="layout-wrapper">
     <div class="side-image left"></div>
-
-    <div class="d-flex flex-column justify-content-between w-100">
+    <div class="main-content" [attr.dir]="lang">
       <router-outlet></router-outlet>
       <footer>
         <app-footer></app-footer>
