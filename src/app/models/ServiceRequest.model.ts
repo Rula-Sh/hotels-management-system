@@ -7,4 +7,5 @@ export interface ServiceRequest extends Service {
   employeeId: string;
   requestType: 'Cleaning' | 'Maintenance' | 'Repair';
   requestStatus: 'Pending' | 'In Progress' | 'Completed' | 'Cancelled';
+  imageUrl?: string;
 }

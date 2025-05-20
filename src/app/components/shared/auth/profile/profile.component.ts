@@ -82,6 +82,7 @@ export class ProfileComponent {
         id: this.user!.id,
         name: this.profileForm.value.name,
         email: this.profileForm.value.email,
+        phone: this.profileForm.value.phone,
         password: password,
         role: this.user!.role,
       };
