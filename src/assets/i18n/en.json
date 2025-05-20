@@ -20,6 +20,20 @@
       "available-services": "Available Services"
     }
   },
+  "profile": {
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone",
+    "new-password": "New Password",
+    "confirm-password": "Confirm Password",
+    "name-required": "Name is required",
+    "email-required": "Email is required",
+    "phone-required": "Phone is required",
+    "password-required": "Password is required",
+    "password-min-length": "Password must be at least 6 characters long",
+    "password-match": "Passwords do not match",
+    "submit": "Submit"
+  },
   "footer": {
     "english": "English",
     "arabic": "Arabic"

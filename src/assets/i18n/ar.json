@@ -20,6 +20,20 @@
       "available-services": "الخدمات المتاحة"
     }
   },
+  "profile": {
+    "name": "الاسم",
+    "email": "البريد الإلكتروني",
+    "phone": "الهاتف",
+    "new-password": "كلمة المرور الجديدة",
+    "confirm-password": "تأكيد كلمة المرور",
+    "name-required": "الاسم مطلوب",
+    "email-required": "البريد الإلكتروني مطلوب",
+    "phone-required": "الهاتف مطلوب",
+    "password-required": "كلمة المرور مطلوبة",
+    "password-min-length": "يجب أن تكون كلمة المرور 6 أحرف على الأقل",
+    "password-match": " كلمات المرور غير متطابقة",
+    "submit": "تحديث"
+  },
   "footer": {
     "english": "الإنجليزية",
     "arabic": "العربية"
