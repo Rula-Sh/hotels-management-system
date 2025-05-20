@@ -8,25 +8,34 @@
     >
       <img
         class="linear-icon"
-        src="/assets/images/hotel-icon.png"
+        src="/assets/images/hotel-linear-icon.png"
         alt="hotel icon"
       />
       {{ "app.title" | translate }}
     </a>
     @if(role == 'Admin'){
     <a [routerLink]="`/manage-users`" routerLinkActive="active-link">
-      <img src="/assets/images/reservation-icon.png" alt="reservation icon" />
+      <img
+        class="fill-icon"
+        src="/assets/images/manage-users-filled-icon.png"
+        alt="manage-users"
+      />
       {{ "header.admin.manage-users" | translate }}
     </a>
     <a [routerLink]="`/rooms`" routerLinkActive="active-link">
-      <img src="/assets/images/room-icon.png" alt="room icon" />
+      <img class="fill-icon" src="/assets/images/bed-filled-icon.png" alt="room icon" />
       {{ "header.admin.rooms" | translate }}
     </a>
     <a [routerLink]="`/dashboard`" routerLinkActive="active-link">
-      <img src="/assets/images/dashboard-icon.png" alt="dashboard icon" />
+      <img
+        class="linear-icon"
+        src="/assets/images/dashboard-filled-icon.png"
+        alt="dashboard icon"
+      />
       {{ "header.admin.dashboard" | translate }}
     </a>
-    } @if(role == 'Customer'){
+    } 
+    @if(role == 'Customer'){
     <a [routerLink]="`/my-reservations`" routerLinkActive="active-link">
       {{ "header.customer.my-reservations" | translate }}
     </a>
@@ -44,26 +53,26 @@
       >{{ "header.auth.welcome" | translate }}, {{ name }}
       <img
         class="linear-icon"
-        src="/assets/images/waving-hand-icon.svg"
+        src="/assets/images/waving-hand-linear-icon.svg"
         alt="waving hand icon"
       />
     </a>
     <a (click)="logout()"
       >{{ "header.auth.logout" | translate
       }}<i class="fa-solid fa-arrow-right-from-bracket"></i>
-      <!-- <img src="/assets/images/logout-icon.webp" alt="logout icon" /> -->
+      <!-- <img src="/assets/images/logout-linear-icon.webp" alt="logout icon" /> -->
     </a>
     } @else{
     <a [routerLink]="'/login'" routerLinkActive="active-link"
       >{{ "header.auth.login" | translate }}
       <i class="fill-icon fa-solid fa-arrow-right-to-bracket fa-lg"></i>
-      <!-- <img src="/assets/images/login-icon.webp" alt="login icon" /> -->
+      <!-- <img src="/assets/images/login-linear-icon.webp" alt="login icon" /> -->
     </a>
     <a [routerLink]="'/signup'" routerLinkActive="active-link"
       >{{ "header.auth.register" | translate }}
       <img
         class="fill-icon"
-        src="/assets/images/sign-up.png"
+        src="/assets/images/sign-up-filled-icon.png"
         alt="sign up icon"
       />
     </a>
