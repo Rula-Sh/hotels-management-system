@@ -30,6 +30,7 @@ import { ReservationsComponent } from './components/admin/reservations/reservati
 import { ServicesComponent } from './components/employee/services/services.component';
 import { AddServiceComponent } from './components/employee/add-service/add-service.component';
 import { ServiceDetailsComponent } from './components/employee/service-details/service-details.component';
+import { RoomsAndHallsComponent } from './components/admin/rooms-and-halls/rooms-and-halls.component';
 
 export const authGuard: CanActivateFn = (
   route: ActivatedRouteSnapshot,
@@ -82,7 +83,7 @@ export const routes: Routes = [
     path: 'reservation-details/:id',
     component: ReservationDetailsComponent,
     canActivate: [authGuard],
-    data: { roles: ['Customer', 'Admin'] },
+    data: { roles: ['Customer'] },
   },
   {
     path: 'my-reservations',
@@ -104,24 +105,24 @@ export const routes: Routes = [
   },
 
   // ------------------------ Emplyoyee ------------------------
-  {
-    path: 'services',
-    component: ServicesComponent,
-    canActivate: [authGuard],
-    data: { roles: ['Employee'] },
-  },
-  {
-    path: 'add-service',
-    component: AddServiceComponent,
-    canActivate: [authGuard],
-    data: { roles: ['Employee'] },
-  },
-  {
-    path: 'service-details/:id',
-    component: ServiceDetailsComponent,
-    canActivate: [authGuard],
-    data: { roles: ['Employee'] },
-  },
+  // {
+  //   path: 'services',
+  //   component: ServicesComponent,
+  //   canActivate: [authGuard],
+  //   data: { roles: ['Employee'] },
+  // },
+  // {
+  //   path: 'add-service',
+  //   component: AddServiceComponent,
+  //   canActivate: [authGuard],
+  //   data: { roles: ['Employee'] },
+  // },
+  // {
+  //   path: 'service-details/:id',
+  //   component: ServiceDetailsComponent,
+  //   canActivate: [authGuard],
+  //   data: { roles: ['Employee'] },
+  // },
   {
     path: 'requests',
     component: RequestsComponent,
@@ -161,6 +162,12 @@ export const routes: Routes = [
     data: { roles: ['Admin'] },
   },
   {
+    path: 'rooms-and-halls',
+    component: RoomsAndHallsComponent,
+    canActivate: [authGuard],
+    data: { roles: ['Admin'] },
+  },
+  {
     path: 'add-room-or-hall',
     component: AddRoomOrHallComponent,
     canActivate: [authGuard],
@@ -178,5 +185,4 @@ export const routes: Routes = [
     canActivate: [authGuard],
     data: { roles: ['Admin'] },
   },
-  // reservation-details/:id route is shared with the customer
 ];

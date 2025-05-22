@@ -1,7 +1,6 @@
-import { Room } from './Room';
+import { Room } from './Room.model';
 
 export interface RoomAppointment extends Room {
-  id: string;
   date: Date;
   customerId: string;
   appovalStatus: 'Pending' | 'Approved' | 'Rejected';

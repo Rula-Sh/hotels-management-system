@@ -1,4 +1,4 @@
-import { Service } from './Service';
+import { Service } from './Service.model';
 
 export interface ServiceRequest extends Service {
   id: string;
