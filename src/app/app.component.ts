@@ -14,6 +14,7 @@ import { NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
 })
 export class AppComponent {
   title = 'hotels-management-system';
+  lang: 'en' | 'ar' = 'en';
   constructor(private titleService: Title, private i18nService: I18nService) {}
 
   async ngOnInit() {
@@ -23,8 +24,7 @@ export class AppComponent {
 
   test: any = false;
   async getLang() {
-    const lang = (localStorage.getItem('lang') as 'en' | 'ar') || 'en';
-    const result = await this.i18nService.loadTranslations(lang);
-    this.test = typeof result === 'boolean' ? result : false;
+    this.lang = (localStorage.getItem('lang') as 'en' | 'ar') || 'en';
+    await this.i18nService.loadTranslations(this.lang);
   }
 }

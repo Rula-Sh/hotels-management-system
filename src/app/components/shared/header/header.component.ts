@@ -7,7 +7,7 @@ import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-header',
-  imports: [RouterLink, RouterLinkActive, RouterModule, CommonModule],
+  imports: [RouterLink, RouterLinkActive, RouterModule, CommonModule, I18nPipe, CommonModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
   standalone: true
@@ -27,14 +27,27 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   logout() {
     this.authService.logout();
-    this.router.navigate(['/home']);
+    this.router.navigate(['/']);
   }
 
-  goToProfile() {
-    this.router.navigate(['/profile/:id']);
-  }
+  goToProfile(id: string) {
+    this.router.navigate([`profile/${id}`]);
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
-  }
-}
+    
+      userId: string | null = null;
+  name: string | null = null;
+  role: string | null = null;
+
+//   ngOnInit() {
+//     this.userId = localStorage.getItem('id');
+//     this.name = localStorage.getItem('name');
+//     this.role = localStorage.getItem('user_role');
+//   }
+
+//   ngDoCheck() {
+//     this.userId = localStorage.getItem('id');
+//     this.name = localStorage.getItem('username');
+//     this.role = localStorage.getItem('user_role');
+//   }

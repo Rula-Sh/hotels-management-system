@@ -1,0 +1,23 @@
+@import "../../../../../src/styles/variables.scss";
+
+footer {
+  width: 100%;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: $color-cream;
+  padding: 15px;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+img {
+  width: 25px;
+  padding: 0px;
+}

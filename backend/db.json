@@ -1,5 +1,60 @@
 {
+  "rooms": [
+    {
+      "id": "r1",
+      "title": "Deluxe Suite",
+      "roomType": "Room",
+      "floor": 2,
+      "hotel": "Sunrise Inn",
+      "details": "A deluxe room with sea view.",
+      "bookedStatus": "Available",
+      "price": 120,
+      "imageUrl": "https://example.com/image1.jpg"
+    },
+    {
+      "id": "r2",
+      "title": "Conference Hall A",
+      "roomType": "Hall",
+      "floor": 1,
+      "hotel": "Sunrise Inn",
+      "details": "Spacious hall for events.",
+      "bookedStatus": "Booked",
+      "price": 300
+    }
+  ],
   "users": [
+    {
+      "id": "u1",
+      "name": "Alice Johnson",
+      "email": "alice@example.com",
+      "phone": "1234567890",
+      "role": "Customer"
+    },
+    {
+      "id": "u2",
+      "name": "Bob Smith",
+      "email": "bob@example.com",
+      "phone": "1234567890",
+      "role": "Employee"
+    },
+    {
+      "id": "",
+      "name": "qwe",
+      "email": "qwe@qwe.qwe",
+      "phone": "079 666 6549",
+      "jobTitle": "qwe",
+      "password": "cXdlcXdl",
+      "role": "Employee"
+    },
+    {
+      "id": "88f8",
+      "name": "sdf",
+      "email": "sdf@sdf.sdf",
+      "phone": "079 343 2342",
+      "jobTitle": "asd",
+      "password": "YXNkYXNk",
+      "role": "Employee"
+    },
     {
       "id": "1",
       "username": "Admin User",
@@ -8,125 +63,84 @@
       "password": "QWRtaW4xMjM=",
       "role": "admin"
     },
+  ],
+  "reservations": [
     {
-      "id": "2",
-      "username": "Customer One",
-      "email": "customer@example.com",
-      "phone": "079 987 6543",
-      "password": "Q3VzdDEyMw==",
-      "role": "customer"
+      "id": "res1",
+      "roomId": "r1",
+      "customerId": "u1",
+      "date": "2025-06-15T14:00:00.000Z",
+      "approvalStatus": "Pending",
+      "paymentStatus": "Unpaid",
+      "paymentAmount": 120,
+      "room": {
+        "id": "r1",
+        "title": "Deluxe Suite",
+        "roomType": "Room",
+        "floor": 2,
+        "hotel": "Sunrise Inn",
+        "details": "A deluxe room with sea view.",
+        "bookedStatus": "Available",
+        "price": 120,
+        "imageUrl": "https://example.com/image1.jpg"
+      },
+      "customer": {
+        "id": "u1",
+        "name": "Alice Johnson",
+        "email": "alice@example.com",
+        "phone": "1234567890",
+        "role": "Customer"
+      }
     },
     {
-      "id": "",
-      "username": "aaaaaa",
-      "email": "aaaaaaaa@1",
-      "password": "MTExMTExQQ==",
-      "role": "customer"
+      "id": "res1",
+      "roomId": "r1",
+      "customerId": "u1",
+      "date": "2025-06-15T14:00:00.000Z",
+      "approvalStatus": "Pending",
+      "paymentStatus": "Unpaid",
+      "paymentAmount": 120,
+      "room": {
+        "id": "r1",
+        "title": "Deluxe Suite",
+        "roomType": "Room",
+        "floor": 2,
+        "hotel": "Sunrise Inn",
+        "details": "A deluxe room with sea view.",
+        "bookedStatus": "Available",
+        "price": 120,
+        "imageUrl": "https://example.com/image1.jpg"
+      },
+      "customer": {
+        "id": "u1",
+        "name": "Alice Johnson",
+        "email": "alice@example.com",
+        "phoneNumber": "1234567890"
+      }
     },
     {
-      "id": "",
-      "username": "aaaaaa",
-      "email": "aaaaaaaa@1",
-      "password": "MTExMTExQQ==",
-      "role": "customer"
-    },
-    {
-      "id": "",
-      "username": "aaaaaa1",
-      "email": "aaaaaaaa@12",
-      "password": "MTExMTExQQ==",
-      "role": "customer"
-    },
-    {
-      "id": "",
-      "username": "aaaaaa1",
-      "email": "aaaaaaaa@12",
-      "password": "MTExMTExQQ==",
-      "role": "customer"
-    },
-    {
-      "id": "",
-      "username": "aaaaaa1",
-      "email": "aaaaaaaa@123",
-      "password": "MTExMTExQUE=",
-      "role": "customer"
-    },
-    {
-      "id": "",
-      "username": "aaaaaa1",
-      "email": "aaaaaaaa@123",
-      "password": "111111",
-      "role": "customer"
-    },
-    {
-      "id": "",
-      "username": "AAAAAAAA",
-      "email": "AA@1",
-      "password": "MTIzNDU2QQ==",
-      "role": "customer"
-    },
-    {
-      "id": "",
-      "username": "AAAAAAAA",
-      "email": "AA@1",
-      "password": "MTIzNDU2QQ==",
-      "role": "customer"
-    },
-    {
-      "id": "",
-      "username": "AREE1",
-      "email": "1@1",
-      "password": "MTExMTExQVc=",
-      "role": "customer"
-    },
-    {
-      "id": "",
-      "username": "aaaaaa",
-      "email": "AA@13",
-      "password": "MTIzNDU2QQ==",
-      "role": "customer"
-    },
-    {
-      "id": "",
-      "username": "aaaaaaaaaaa",
-      "email": "AA@132",
-      "password": "MTIzNDU2QQ==",
-      "role": "customer"
-    },
-    {
-      "id": "",
-      "username": "hhh",
-      "email": "AA@1344",
-      "password": "MTIzNDU2QQ==",
-      "role": "customer"
-    },
-    {
-      "id": "",
-      "username": "11111111111",
-      "email": "AA@14",
-      "password": "MTIzNDU2QQ==",
-      "role": "customer"
-    },
-    {
-      "id": "",
-      "username": "2222222222",
-      "email": "AA@145",
-      "password": "MTIzNDU2QQ==",
-      "role": "customer"
-    },
-    {
-      "id": "",
-      "username": "uuu",
-      "email": "AA@138",
-      "password": "MTIzNDU2QQ==",
-      "role": "customer"
-    },
-    {
-      "id": "",
-      "username": "gyyyy",
-      "email": "AA@1389",
-      "password": "MTIzNDU2QQ==",
-      "role": "customer"
+      "id": "res2",
+      "roomId": "r2",
+      "customerId": "u2",
+      "date": "2025-06-20T10:00:00.000Z",
+      "approvalStatus": "Approved",
+      "paymentStatus": "Paid",
+      "paymentAmount": 300,
+      "room": {
+        "id": "r2",
+        "title": "Conference Hall A",
+        "roomType": "Hall",
+        "floor": 1,
+        "hotel": "Sunrise Inn",
+        "details": "Spacious hall for events.",
+        "bookedStatus": "Booked",
+        "price": 300
+      },
+      "customer": {
+        "id": "u2",
+        "name": "Bob Smith",
+        "email": "bob@example.com"
+      }
     }
   ]
 }

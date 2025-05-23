@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { User } from '../models/User.model';
 import { Room } from '../models/Room.model';
 import { Service } from '../models/Service.model';
+import { Employee } from '../models/Employee.model';
 
 @Injectable({
   providedIn: 'root',
@@ -27,7 +28,11 @@ export class UserService {
     return this.api.post<User>(this.url, user);
   }
 
-  UpdateProfile(user: User): Observable<User> {
+  AddEmployee(user: Omit<Employee, 'id'>): Observable<Employee> {
+    return this.api.post<Employee>(this.url, user);
+  }
+
+  UpdateUserDetails(user: User): Observable<User> {
     return this.api.put<User>(`${this.url}/${user.id}`, user);
   }
 

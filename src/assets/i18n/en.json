@@ -1,0 +1,93 @@
+{
+  "app": {
+    "title": "Hotels Hub"
+  },
+  "header": {
+    "auth": {
+      "welcome": "Welcome",
+      "login": "Login",
+      "logout": "Logout",
+      "register": "Register"
+    },
+    "admin": {
+      "reservations": "Reservations",
+      "manage-users": "Manage Users",
+      "rooms": "Rooms",
+      "dashboard": "Dashboard"
+    },
+    "employee": {},
+    "customer": {
+      "my-reservations": "My Reservations",
+      "available-services": "Available Services"
+    }
+  },
+  "profile": {
+    "title": "Profile",
+    "edit-profile": "Edit Profile",
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone",
+    "new-password": "New Password",
+    "confirm-password": "Confirm Password",
+    "name-required": "Name is required",
+    "email-required": "Email is required",
+    "phone-required": "Phone is required",
+    "password-required": "Password is required",
+    "password-min-length": "Password must be at least 6 characters long",
+    "password-match": "Passwords do not match",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "add-employee": "Add Employee",
+    "job-title": "Job Title",
+    "job-required": "Job Title is required"
+  },
+  "user": {
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone",
+    "password": "Password",
+    "role": "Role",
+    "roles": {
+      "users": "Users",
+      "employees": "Employees",
+      "customers": "Customers"
+    },
+    "user-role": {
+      "admin": "Admin",
+      "employee": "Employee",
+      "customer": "Customer"
+    },
+    "add-employee": "Add Employee"
+  },
+  "room": {
+    "rooms": "Rooms",
+    "add-room": "Add Room",
+    "title": "Title",
+    "type": "Type",
+    "floor": "Floor",
+    "hotel": "Hotel",
+    "details": "Details",
+    "booked-status": "Status",
+    "price": "Price"
+  },
+  "reservation": {
+    "pending-reservations": "Pending Reservations",
+    "active-reservations": "Active Reservations"
+  },
+  "footer": {
+    "english": "English",
+    "arabic": "Arabic"
+  },
+  "shared": {
+    "entity": {
+      "id": "ID"
+    },
+    "action": {
+      "key-name": "Actions",
+      "details": "Details",
+      "approve": "Approve",
+      "reject": "Reject",
+      "go-back": "Go Back"
+    }
+  }
+}

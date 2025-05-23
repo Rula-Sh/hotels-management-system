@@ -24,13 +24,10 @@ import { DashboardComponent } from './components/admin/dashboard/dashboard.compo
 import { AddEmployeeComponent } from './components/admin/add-employee/add-employee.component';
 import { ManageUsersComponent } from './components/admin/manage-users/manage-users.component';
 import { UserDetailsComponent } from './components/admin/user-details/user-details.component';
-import { AddRoomOrHallComponent } from './components/admin/add-room-or-hall/add-room-or-hall.component';
-import { ManageRoomsAndHallsComponent } from './components/admin/manage-rooms-and-halls/manage-rooms-and-halls.component';
 import { ReservationsComponent } from './components/admin/reservations/reservations.component';
-import { ServicesComponent } from './components/employee/services/services.component';
-import { AddServiceComponent } from './components/employee/add-service/add-service.component';
-import { ServiceDetailsComponent } from './components/employee/service-details/service-details.component';
-import { RoomsAndHallsComponent } from './components/admin/rooms-and-halls/rooms-and-halls.component';
+import { RoomsComponent } from './components/admin/rooms/rooms.component';
+import { AddRoomComponent } from './components/admin/add-room/add-room.component';
+import { RoomComponent } from './components/admin/room/room.component';
 
 export const authGuard: CanActivateFn = (
   route: ActivatedRouteSnapshot,
@@ -47,49 +44,38 @@ export const authGuard: CanActivateFn = (
   }
 
   // redirect to /not-autherized if the user tries to access a page that is not specified to their role
-  const expectedRoles = route.data['roles'] as string[] | undefined;
+  // const expectedRoles = route.data['roles'] as string[] | undefined;
 
-  const userRole = authService.getUserRole() ?? '';
+  // const userRole = authService.getUserRole() ?? '';
 
-  if (expectedRoles && !expectedRoles.includes(userRole)) {
-    return router.createUrlTree(['/not-autherized']);
-  }
+  // if (expectedRoles && !expectedRoles.includes(userRole)) {
+  //   return router.createUrlTree(['/not-autherized']);
+  // }
 
   return true;
 };
 
 export const routes: Routes = [
-  // -------- All Users --------
-
-  { path: '', component: HomeRedirectComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'signup', component: SignUpComponent },
-  {
-    path: 'profile/:id',
-    component: ProfileComponent,
-    canActivate: [authGuard],
-    data: { roles: ['Admin', 'Employee', 'Customer'] },
-  },
-
-  { path: 'not-autherized', component: NotAuthorizedComponent },
-  { path: '**', component: NotFoundComponent },
-
   // ------------------------ Customer ------------------------
   {
     path: 'home',
     component: HomeComponent,
   },
   {
-    path: 'reservation-details/:id',
-    component: ReservationDetailsComponent,
-    canActivate: [authGuard],
-    data: { roles: ['Customer'] },
+    path: 'room/:id',
+    component: RoomComponent,
   },
   {
     path: 'my-reservations',
     component: MyReservationsComponent,
     canActivate: [authGuard],
     data: { roles: ['Customer'] },
+  },
+  {
+    path: 'reservation-details/:id',
+    component: ReservationDetailsComponent,
+    canActivate: [authGuard],
+    data: { roles: ['Admin', 'Customer'] },
   },
   {
     path: 'available-services',
@@ -138,51 +124,61 @@ export const routes: Routes = [
 
   // ------------------------ Admin ------------------------
   {
-    path: 'dashboard',
+    path: 'admin/dashboard',
     component: DashboardComponent,
     canActivate: [authGuard],
     data: { roles: ['Admin'] },
   },
   {
-    path: 'add-employee',
+    path: 'admin/add-employee',
     component: AddEmployeeComponent,
     canActivate: [authGuard],
     data: { roles: ['Admin'] },
   },
   {
-    path: 'manage-users',
+    path: 'admin/manage-users',
     component: ManageUsersComponent,
     canActivate: [authGuard],
     data: { roles: ['Admin'] },
   },
   {
-    path: 'user-details/:id',
+    path: 'user/:id',
     component: UserDetailsComponent,
     canActivate: [authGuard],
     data: { roles: ['Admin'] },
   },
   {
-    path: 'rooms-and-halls',
-    component: RoomsAndHallsComponent,
+    path: 'admin/rooms',
+    component: RoomsComponent,
     canActivate: [authGuard],
     data: { roles: ['Admin'] },
   },
   {
-    path: 'add-room-or-hall',
-    component: AddRoomOrHallComponent,
+    path: 'admin/add-room',
+    component: AddRoomComponent,
     canActivate: [authGuard],
     data: { roles: ['Admin'] },
   },
   {
-    path: 'manage-rooms-and-halls',
-    component: ManageRoomsAndHallsComponent,
-    canActivate: [authGuard],
-    data: { roles: ['Admin'] },
-  },
-  {
-    path: 'reservations',
+    path: 'admin/reservations',
     component: ReservationsComponent,
     canActivate: [authGuard],
     data: { roles: ['Admin'] },
   },
+  // have a shared route with the customer 'reservation-details/:id'
+
+  // -------- All Users --------
+
+  { path: '', component: HomeRedirectComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'signup', component: SignUpComponent },
+  {
+    path: 'profile/:id',
+    component: ProfileComponent,
+    canActivate: [authGuard],
+    data: { roles: ['Admin', 'Employee', 'Customer'] },
+  },
+
+  { path: 'not-autherized', component: NotAuthorizedComponent },
+  { path: '**', component: NotFoundComponent },
 ];
