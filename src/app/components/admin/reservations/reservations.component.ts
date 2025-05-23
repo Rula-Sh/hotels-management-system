@@ -90,7 +90,7 @@ export class ReservationsComponent {
   }
 
   showReservationDetails(id: string) {
-    this.router.navigate([`reservations/${id}`]);
+    this.router.navigate([`reservation-details/${id}`]);
   }
 
   ApproveReservationRequest(id: string, reservation: Reservation) {
