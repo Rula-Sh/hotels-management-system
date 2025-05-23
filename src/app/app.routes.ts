@@ -62,16 +62,20 @@ export const routes: Routes = [
     component: HomeComponent,
   },
   {
-    path: 'reservation-details/:id',
-    component: ReservationDetailsComponent,
-    canActivate: [authGuard],
-    data: { roles: ['Customer'] },
+    path: 'room/:id',
+    component: RoomComponent,
   },
   {
     path: 'my-reservations',
     component: MyReservationsComponent,
     canActivate: [authGuard],
     data: { roles: ['Customer'] },
+  },
+  {
+    path: 'reservation-details/:id',
+    component: ReservationDetailsComponent,
+    canActivate: [authGuard],
+    data: { roles: ['Admin', 'Customer'] },
   },
   {
     path: 'available-services',
@@ -120,53 +124,49 @@ export const routes: Routes = [
 
   // ------------------------ Admin ------------------------
   {
-    path: 'dashboard',
+    path: 'admin/dashboard',
     component: DashboardComponent,
     canActivate: [authGuard],
     data: { roles: ['Admin'] },
   },
   {
-    path: 'add-employee',
+    path: 'admin/add-employee',
     component: AddEmployeeComponent,
     canActivate: [authGuard],
     data: { roles: ['Admin'] },
   },
   {
-    path: 'manage-users',
+    path: 'admin/manage-users',
     component: ManageUsersComponent,
     canActivate: [authGuard],
     data: { roles: ['Admin'] },
   },
   {
-    path: 'user-details/:id',
+    path: 'user/:id',
     component: UserDetailsComponent,
     canActivate: [authGuard],
     data: { roles: ['Admin'] },
   },
   {
-    path: 'rooms',
+    path: 'admin/rooms',
     component: RoomsComponent,
     canActivate: [authGuard],
     data: { roles: ['Admin'] },
   },
   {
-    path: 'add-room',
+    path: 'admin/add-room',
     component: AddRoomComponent,
     canActivate: [authGuard],
     data: { roles: ['Admin'] },
   },
   {
-    path: 'room/:id',
-    component: RoomComponent,
-    canActivate: [authGuard],
-    data: { roles: ['Admin'] },
-  },
-  {
-    path: 'reservations',
+    path: 'admin/reservations',
     component: ReservationsComponent,
     canActivate: [authGuard],
     data: { roles: ['Admin'] },
   },
+  // have a shared route with the customer 'reservation-details/:id'
+
   // -------- All Users --------
 
   { path: '', component: HomeRedirectComponent },
@@ -174,6 +174,12 @@ export const routes: Routes = [
   { path: 'signup', component: SignUpComponent },
   {
     path: 'profile/:id',
+    component: ProfileComponent,
+    canActivate: [authGuard],
+    data: { roles: ['Admin', 'Employee', 'Customer'] },
+  },
+  {
+    path: 'edit-profile/:id',
     component: ProfileComponent,
     canActivate: [authGuard],
     data: { roles: ['Admin', 'Employee', 'Customer'] },
