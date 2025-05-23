@@ -60,9 +60,14 @@
     "add-employee": "إضافة موظف"
   },
   "room": {
+    "rooms": "الغرف",
+    "add-room": "إضافة غرفة",
     "title": "العنوان",
     "type": "النوع",
     "floor": "الطابق",
+    "hotel": "الفندق",
+    "details": "النفاصيل",
+    "booked-status": "الحالة",
     "price": "السعر"
   },
   "reservation": {

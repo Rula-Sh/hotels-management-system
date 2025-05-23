@@ -60,9 +60,14 @@
     "add-employee": "Add Employee"
   },
   "room": {
+    "rooms": "Rooms",
+    "add-room": "Add Room",
     "title": "Title",
     "type": "Type",
     "floor": "Floor",
+    "hotel": "Hotel",
+    "details": "Details",
+    "booked-status": "Status",
     "price": "Price"
   },
   "reservation": {
