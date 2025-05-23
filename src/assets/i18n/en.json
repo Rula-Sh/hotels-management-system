@@ -10,6 +10,7 @@
       "register": "Register"
     },
     "admin": {
+      "reservations": "Reservations",
       "manage-users": "Manage Users",
       "rooms": "Rooms",
       "dashboard": "Dashboard"

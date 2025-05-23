@@ -10,6 +10,7 @@
       "register": "تسجيل"
     },
     "admin": {
+      "reservations": "الحجوزات",
       "manage-users": "إدارة المستخدمين",
       "rooms": "الغرف",
       "dashboard": "لوحة التحكم"
