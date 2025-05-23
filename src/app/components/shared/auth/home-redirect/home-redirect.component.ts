@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home-redirect',
-  imports: [],
+  imports: [HomeComponent],
   templateUrl: './home-redirect.component.html',
   styleUrl: './home-redirect.component.scss',
 })

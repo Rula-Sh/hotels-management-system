@@ -1,1 +1,58 @@
-<p>sign-up works!</p>
+
+<ngb-toast
+  *ngIf="showToast"
+  [class]="toastClass + ' position-fixed top-0 end-0 m-3'"
+  header="Info"
+  [autohide]="true"
+  [delay]="3000"
+  (hidden)="showToast = false"
+>
+  {{ toastMessage }}
+</ngb-toast>
+
+<form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+
+  <div>
+    <label>Name:</label>
+    <input formControlName="name" type="text">
+    <div *ngIf="submitted && f['name'].errors">
+      <small *ngIf="f['name'].errors['required']">Name is required.</small>
+      <small *ngIf="f['name'].errors['minlength']">Name must be at least 3 characters.</small>
+    </div>
+  </div>
+
+  <div>
+    <label>Email:</label>
+    <input formControlName="email" type="email">
+    <div *ngIf="submitted && f['email'].errors">
+      <small *ngIf="f['email'].errors['required']">Email is required.</small>
+      <small *ngIf="f['email'].errors['email']">Enter a valid email.</small>
+    </div>
+  </div>
+
+  <div>
+    <label>Password:</label>
+    <input formControlName="password" type="password">
+    <div *ngIf="submitted && f['password'].errors">
+      <small *ngIf="f['password'].errors['required']">Password is required.</small>
+      <small *ngIf="f['password'].errors['minlength']">Minimum 6 characters.</small>
+      <small *ngIf="f['password'].errors['pattern']">Must contain uppercase letter and number.</small>
+    </div>
+  </div>
+
+<div>
+  <label>Confirm Password:</label>
+  <input formControlName="confirmPassword" type="password">
+  <div *ngIf="submitted && (f['confirmPassword'].errors || signUpForm.errors?.['mismatch'])">
+  <small *ngIf="f['confirmPassword'].errors?.['required']">Confirmation is required.</small>
+  <small *ngIf="!f['confirmPassword'].errors && signUpForm.errors?.['mismatch']">Passwords do not match.</small>
+</div>
+
+</div>
+
+
+<button type="submit">Sign Up</button>
+
+
+</form>
+

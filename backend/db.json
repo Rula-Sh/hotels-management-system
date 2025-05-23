@@ -54,7 +54,15 @@
       "jobTitle": "asd",
       "password": "YXNkYXNk",
       "role": "Employee"
-    }
+    },
+    {
+      "id": "1",
+      "username": "Admin User",
+      "email": "admin@example.com",
+      "phone": "079 123 4567",
+      "password": "QWRtaW4xMjM=",
+      "role": "admin"
+    },
   ],
   "reservations": [
     {

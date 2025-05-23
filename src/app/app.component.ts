@@ -4,10 +4,11 @@ import { RouterOutlet } from '@angular/router';
 import { I18nService } from './services/i18n.service';
 import { HeaderComponent } from './components/shared/header/header.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
+import { NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, HeaderComponent, FooterComponent],
+  imports: [RouterOutlet, HeaderComponent, FooterComponent,NgbToastModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })

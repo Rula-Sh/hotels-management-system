@@ -1,40 +1,43 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { User } from '../models/User.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private loggedIn = false;
+  private loggedInSubject = new BehaviorSubject<boolean>(this.hasToken());
+  isLoggedIn$ = this.loggedInSubject.asObservable();
+
   private redirectUrl = '';
-  constructor() {
-    const savedUser = localStorage.getItem('user');
-    if (savedUser) {
-      this.loggedIn = true;
-    }
+
+  constructor() {}
+
+  private hasToken(): boolean {
+    return !!localStorage.getItem('auth_token');
   }
 
   login(user: User) {
-    this.loggedIn = true;
     const mockToken = 'mock-token';
     localStorage.setItem('auth_token', mockToken);
     localStorage.setItem('id', user.id);
     localStorage.setItem('name', user.name);
     localStorage.setItem('email', user.email);
     localStorage.setItem('user_role', user.role);
+    this.loggedInSubject.next(true);
   }
 
   logout() {
-    this.loggedIn = false;
     localStorage.removeItem('auth_token');
     localStorage.removeItem('id');
     localStorage.removeItem('name');
     localStorage.removeItem('email');
     localStorage.removeItem('user_role');
+    this.loggedInSubject.next(false);
   }
 
   isLoggedIn(): boolean {
-    return !!localStorage.getItem('auth_token');
+    return this.hasToken();
   }
 
   getCurrentUser(): User | null {

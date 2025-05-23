@@ -1,9 +1,10 @@
 export interface User {
   id: string;
-  name: string;
+  username: string;
   email: string;
   phone: string;
   password: string;
+  phone: number;
   role: string;
   pfp?: string;
 }
