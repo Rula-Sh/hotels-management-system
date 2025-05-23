@@ -1,3 +1,15 @@
+
+<ngb-toast
+  *ngIf="showToast"
+  [class]="toastClass + ' position-fixed top-0 end-0 m-3'"
+  header="Info"
+  [autohide]="true"
+  [delay]="3000"
+  (hidden)="showToast = false"
+>
+  {{ toastMessage }}
+</ngb-toast>
+
 <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
 
   <div>
@@ -32,13 +44,15 @@
   <label>Confirm Password:</label>
   <input formControlName="confirmPassword" type="password">
   <div *ngIf="submitted && (f['confirmPassword'].errors || signUpForm.errors?.['mismatch'])">
-    <small *ngIf="f['confirmPassword'].errors?.['required']">Confirmation is required.</small>
-    <small *ngIf="signUpForm.errors?.['mismatch']">Passwords do not match.</small>
-  </div>
+  <small *ngIf="f['confirmPassword'].errors?.['required']">Confirmation is required.</small>
+  <small *ngIf="!f['confirmPassword'].errors && signUpForm.errors?.['mismatch']">Passwords do not match.</small>
+</div>
+
 </div>
 
 
-  <button (click)="onSubmit()" type="submit">Sign Up</button>
+<button type="submit">Sign Up</button>
+
 
 </form>
 
