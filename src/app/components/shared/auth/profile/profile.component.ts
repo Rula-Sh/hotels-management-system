@@ -26,6 +26,8 @@ export class ProfileComponent {
   user: User | null = null;
   private userSub!: Subscription;
   profileForm!: FormGroup;
+  isEditing = false;
+  profileData: any;
 
   get lang(): 'en' | 'ar' {
     return this.i18nService.getLanguage();
@@ -60,13 +62,13 @@ export class ProfileComponent {
   }
 
   loadProfile() {
-    const profileData = {
+    this.profileData = {
       name: this.user?.name,
       email: this.user?.email,
-      password: this.user?.password,
+      phone: this.user?.phone,
     };
 
-    this.profileForm.patchValue(profileData);
+    this.profileForm.patchValue(this.profileData);
     this.profileForm.markAllAsTouched(); // used to validate the data once it is loaded
   }
 
@@ -105,5 +107,13 @@ export class ProfileComponent {
         },
       });
     });
+  }
+
+  edit() {
+    this.isEditing = true;
+  }
+
+  cancel() {
+    this.isEditing = false;
   }
 }

@@ -23,6 +23,7 @@
   },
   "profile": {
     "title": "Profile",
+    "edit-profile": "Edit Profile",
     "name": "Name",
     "email": "Email",
     "phone": "Phone",
@@ -35,6 +36,7 @@
     "password-min-length": "Password must be at least 6 characters long",
     "password-match": "Passwords do not match",
     "submit": "Submit",
+    "cancel": "Cancel",
     "add-employee": "Add Employee",
     "job-title": "Job Title",
     "job-required": "Job Title is required"

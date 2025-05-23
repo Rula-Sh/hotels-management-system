@@ -178,12 +178,6 @@ export const routes: Routes = [
     canActivate: [authGuard],
     data: { roles: ['Admin', 'Employee', 'Customer'] },
   },
-  {
-    path: 'edit-profile/:id',
-    component: ProfileComponent,
-    canActivate: [authGuard],
-    data: { roles: ['Admin', 'Employee', 'Customer'] },
-  },
 
   { path: 'not-autherized', component: NotAuthorizedComponent },
   { path: '**', component: NotFoundComponent },
