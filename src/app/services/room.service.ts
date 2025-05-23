@@ -6,7 +6,7 @@ import { Room } from '../models/Room.model';
 @Injectable({
   providedIn: 'root',
 })
-export class RoomRoom {
+export class RoomService {
   constructor() {}
   api = inject(HttpClient);
   url = 'http://localhost:3000/rooms';
@@ -25,5 +25,9 @@ export class RoomRoom {
 
   UpdateRoom(rooms: Room): Observable<Room> {
     return this.api.put<Room>(`${this.url}/${rooms.id}`, rooms);
+  }
+
+  RemoveRoom(id: string): Observable<void> {
+    return this.api.delete<void>(`${this.url}/${id}`);
   }
 }

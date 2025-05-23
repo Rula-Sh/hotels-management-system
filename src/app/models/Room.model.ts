@@ -7,5 +7,5 @@ export interface Room {
   details: string;
   bookedStatus: 'Available' | 'Booked';
   price: number;
-  imageUrl?: string;
+  imageUrl: string;
 }

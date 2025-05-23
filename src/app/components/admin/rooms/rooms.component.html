@@ -1,1 +1,76 @@
-<p>rooms works!</p>
+<div class="d-flex justify-content-between mt-2 ms-5 me-5">
+  <h1 class="text-center align-self-center">
+    {{ "room.rooms" | translate }}
+  </h1>
+  <button class="btn btn-primary" (click)="AddRoom()">
+    <i class="bi bi-house-add-fill h4 m-1 align-middle"></i>
+    <span class="m-1 align-middle">{{ "room.add-room" | translate }}</span>
+  </button>
+</div>
+
+<div class="room-grid">
+  @for(room of rooms; let i= $index; track i){
+  <div class="room-container">
+    <i
+      class="delete-icon bi bi-trash-fill h4"
+      (click)="deleteRoom(room.id)"
+    ></i>
+    <i
+      class="info-icon bi bi-info-circle-fill h5"
+      (click)="showRoomDetails(room.id)"
+    ></i>
+    <img [src]="room.imageUrl" />
+    <div class="room-content">
+      <div class="room-content-header">
+        <h4>{{ room.title }}</h4>
+        <p>{{ room.price }}$</p>
+      </div>
+      <div>
+        <strong class="me-2">{{ "room.type" | translate }}:</strong>
+        @if(room.roomType == 'Hall'){
+        <img
+          class="icon-img mb-1"
+          src="../../../../assets/images/hall-filled-icon.png"
+        />
+        } @else {
+        <i class="ri-hotel-bed-fill h5" style="color: #ad926b"></i>
+        } {{ room.roomType }}
+      </div>
+      <div>
+        <strong class="me-2">{{ "room.booked-status" | translate }}:</strong>
+        <span
+          [style.color]="room.bookedStatus === 'Available' ? 'green' : 'red'"
+        >
+          {{ room.bookedStatus }}</span
+        >
+      </div>
+      <div>
+        <strong class="me-2">{{ "room.price" | translate }}:</strong
+        >{{ room.price }}
+      </div>
+    </div>
+  </div>
+  }
+</div>
+<p-toast />
+<p-confirmdialog #cd>
+  <ng-template pTemplate="footer">
+    <button
+      type="button"
+      pButton
+      icon="pi pi-times"
+      label="Delete"
+      [ngStyle]="{ backgroundColor: '#e09fa6', border: 'red' }"
+      (click)="cd.onAccept()"
+    ></button>
+
+    <button
+      type="button"
+      pButton
+      icon="pi pi-check"
+      label="Cancel"
+      [ngStyle]="{ backgroundColor: '#90c67c', border: 'green' }"
+      (click)="cd.onReject()"
+    ></button>
+  </ng-template>
+</p-confirmdialog>
