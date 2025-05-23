@@ -8,7 +8,7 @@ import { NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, HeaderComponent, FooterComponent,NgbToastModule],
+  imports: [RouterOutlet, HeaderComponent, FooterComponent, NgbToastModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })

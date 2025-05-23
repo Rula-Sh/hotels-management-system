@@ -1,6 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  ValidationErrors,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from '../../../../models/User.model';
 import { AuthService } from '../../../../services/auth.service';
@@ -12,7 +20,7 @@ import { NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
   standalone: true,
   imports: [FormsModule, ReactiveFormsModule, CommonModule, NgbToastModule],
   templateUrl: './sign-up.component.html',
-  styleUrl: './sign-up.component.scss'
+  styleUrl: './sign-up.component.scss',
 })
 export class SignUpComponent {
   signUpForm!: FormGroup;
@@ -28,16 +36,22 @@ export class SignUpComponent {
     private authService: AuthService,
     private userService: UserService
   ) {
-    this.signUpForm = this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(3)]],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [
-        Validators.required,
-        Validators.minLength(6),
-        Validators.pattern(/^(?=.*[A-Z])(?=.*\d).+$/)
-      ]],
-      confirmPassword: ['', Validators.required]
-    }, { validators: this.passwordsMatchValidator });
+    this.signUpForm = this.fb.group(
+      {
+        name: ['', [Validators.required, Validators.minLength(3)]],
+        email: ['', [Validators.required, Validators.email]],
+        password: [
+          '',
+          [
+            Validators.required,
+            Validators.minLength(6),
+            Validators.pattern(/^(?=.*[A-Z])(?=.*\d).+$/),
+          ],
+        ],
+        confirmPassword: ['', Validators.required],
+      },
+      { validators: this.passwordsMatchValidator }
+    );
   }
 
   // Custom validator
@@ -51,8 +65,8 @@ export class SignUpComponent {
     this.submitted = true;
     if (this.signUpForm.invalid) return;
 
-    this.userService.getAllUsers().subscribe(users => {
-      const exists = users.find(u => u.email === this.signUpForm.value.email);
+    this.userService.getAllUsers().subscribe((users) => {
+      const exists = users.find((u) => u.email === this.signUpForm.value.email);
       if (exists) {
         this.toastMessage = 'This email is already registered.';
         this.toastClass = 'bg-danger text-white';
@@ -62,11 +76,11 @@ export class SignUpComponent {
 
       const user: User = {
         id: '',
-        username: this.signUpForm.value.name,
+        name: this.signUpForm.value.name,
         email: this.signUpForm.value.email,
         phone: this.signUpForm.value.phone,
         password: btoa(this.signUpForm.value.password),
-        role: 'customer'
+        role: 'customer',
       };
 
       this.userService.CreateUser(user).subscribe({
@@ -85,7 +99,7 @@ export class SignUpComponent {
           this.toastClass = 'bg-danger text-white';
           this.showToast = true;
           console.log('Error on Create', err);
-        }
+        },
       });
     });
   }

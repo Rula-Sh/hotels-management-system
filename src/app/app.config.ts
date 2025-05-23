@@ -13,12 +13,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
-    provideToastr( 
-       {positionClass: 'toast-top-center', // وسط أعلى الشاشة
+    provideToastr({
+      positionClass: 'toast-top-center', // وسط أعلى الشاشة
       timeOut: 3000,
       closeButton: true,
       progressBar: true,
-      preventDuplicates: true,}),
+      preventDuplicates: true,
+    }),
     provideRouter(routes),
     provideHttpClient(),
     provideAnimationsAsync(),

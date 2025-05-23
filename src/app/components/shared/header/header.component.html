@@ -38,8 +38,7 @@
       />
       {{ "header.admin.reservations" | translate }}
     </a>
-    } 
-    @if(role == 'Customer'){
+    } @if(role == 'Customer'){
     <a [routerLink]="`/my-reservations`" routerLinkActive="active-link">
       {{ "header.customer.my-reservations" | translate }}
     </a>
@@ -49,7 +48,7 @@
     }
   </div>
   <div>
-    @if(name){
+    @if(isLoggedIn){
     <a
       [routerLink]="`/profile/${userId}`"
       routerLinkActive="active-link"
