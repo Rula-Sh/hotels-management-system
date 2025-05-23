@@ -34,7 +34,10 @@
     "password-required": "كلمة المرور مطلوبة",
     "password-min-length": "يجب أن تكون كلمة المرور 6 أحرف على الأقل",
     "password-match": " كلمات المرور غير متطابقة",
-    "submit": "تحديث"
+    "submit": "تحديث",
+    "add-employee": "إضافة موظف",
+    "job-title": "المسمى الوظيفي",
+    "job-required": "المسمى الوظيفي مطلوب"
   },
   "user": {
     "name": "الاسم",
@@ -51,7 +54,8 @@
       "admin": "مدير",
       "employee": "موظف",
       "customer": "عميل"
-    }
+    },
+    "add-employee": "إضافة موظف"
   },
   "room": {
     "title": "العنوان",
@@ -75,7 +79,8 @@
       "key-name": "الإجراءات",
       "details": "التفاصيل",
       "approve": "الموافقة",
-      "reject": "رفض"
+      "reject": "رفض",
+      "go-back": "العودة"
     }
   }
 }

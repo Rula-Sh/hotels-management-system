@@ -47,6 +47,10 @@ export class ManageUsersComponent {
     this.role = localStorage.getItem('user_role');
   }
 
+  AddEmployee() {
+    this.router.navigate(['/admin/add-employee']);
+  }
+
   getUsers() {
     this.userService.getAllUsers().subscribe({
       next: (value) => {

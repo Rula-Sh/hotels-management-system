@@ -34,7 +34,10 @@
     "password-required": "Password is required",
     "password-min-length": "Password must be at least 6 characters long",
     "password-match": "Passwords do not match",
-    "submit": "Submit"
+    "submit": "Submit",
+    "add-employee": "Add Employee",
+    "job-title": "Job Title",
+    "job-required": "Job Title is required"
   },
   "user": {
     "name": "Name",
@@ -51,7 +54,8 @@
       "admin": "Admin",
       "employee": "Employee",
       "customer": "Customer"
-    }
+    },
+    "add-employee": "Add Employee"
   },
   "room": {
     "title": "Title",
@@ -75,7 +79,8 @@
       "key-name": "Actions",
       "details": "Details",
       "approve": "Approve",
-      "reject": "Reject"
+      "reject": "Reject",
+      "go-back": "Go Back"
     }
   }
 }

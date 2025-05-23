@@ -2,4 +2,41 @@
 
 /* Importing Bootstrap SCSS file. */
 @import "bootstrap/scss/bootstrap";
-@import "../node_modules/bootstrap-icons/font/bootstrap-icons.css";
+// @import "../node_modules/bootstrap-icons/font/bootstrap-icons.css";
+@import "../src/styles/variables.scss";
+
+.btn-primary {
+  background-color: $color-caramel !important;
+  border-color: transparent !important;
+  //   border-color: $color-brown !important;
+  &:hover {
+    background-color: $color-brown !important;
+    border-color: transparent !important;
+    transition: all 0.5s ease;
+  }
+}
+
+.btn-outline-primary {
+  background-color: transparent !important;
+  border-color: $color-brown !important;
+  color: $color-brown !important;
+  &:hover {
+    background-color: $color-brown !important;
+    color: white !important;
+    transition: all 0.5s ease;
+  }
+  &:focus {
+    box-shadow: none !important;
+    outline: none !important;
+  }
+}
+
+.btn-dark-primary {
+  background-color: $color-brown !important;
+  border-color: $color-dark-brown !important;
+  &:hover {
+    background-color: $color-dark-brown !important;
+    border-color: transparent !important;
+    transition: all 0.5s ease;
+  }
+}

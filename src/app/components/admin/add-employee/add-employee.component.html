@@ -1,1 +1,225 @@
-<p>add-employee works!</p>
+<h1 class="m-4 mb-4">{{ "profile.add-employee" | translate }}</h1>
+<div class="center-wrapper">
+  <form
+    class="container p-4"
+    [formGroup]="profileForm"
+    (ngSubmit)="addEmployee()"
+  >
+    <div class="input-container">
+      <label for="name"> {{ "profile.name" | translate }}:</label>
+      <div class="input-error">
+        <div class="input-group" [ngClass]="{ 'right-input': lang == 'ar' }">
+          <div class="align-self-center">
+            <span
+              class="input-group-text align-self-center bg-white"
+              id="basic-addon1"
+              ><i class="fa-solid fa-user" style="color: #725529"></i>
+            </span>
+          </div>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Name"
+            aria-label="Name"
+            [placeholder]="'profile.name' | translate"
+            formControlName="name"
+            required
+          />
+        </div>
+        <div
+          class="error"
+          *ngIf="
+            profileForm.get('name')?.invalid && profileForm.get('name')?.touched
+          "
+        >
+          {{ "profile.name-required" | translate }}
+        </div>
+      </div>
+    </div>
+    <div class="input-container">
+      <label for="email">{{ "profile.email" | translate }}:</label>
+      <div class="input-error">
+        <div class="input-group" [ngClass]="{ 'right-input': lang == 'ar' }">
+          <div class="align-self-center">
+            <span
+              class="input-group-text align-self-center bg-white"
+              id="basic-addon1"
+              ><i class="fa-solid fa-envelope" style="color: #725529"></i>
+            </span>
+          </div>
+          <input
+            type="email"
+            class="form-control"
+            placeholder="Email"
+            aria-label="Email"
+            placeholder="example@gmail.com"
+            formControlName="email"
+            required
+            email
+          />
+        </div>
+        <div
+          class="error"
+          *ngIf="
+            profileForm.get('email')?.invalid &&
+            profileForm.get('email')?.touched
+          "
+        >
+          {{ "profile.email-required" | translate }}
+        </div>
+      </div>
+    </div>
+    <div class="input-container">
+      <label for="phone">{{ "profile.phone" | translate }}:</label>
+      <div class="input-error">
+        <div class="input-group" [ngClass]="{ 'right-input': lang == 'ar' }">
+          <div class="align-self-center">
+            <span
+              class="input-group-text align-self-center bg-white"
+              id="basic-addon1"
+            >
+              <i class="fa-solid fa-phone" style="color: #725529"></i>
+            </span>
+          </div>
+          <input
+            appPhoneFormat
+            type="text"
+            class="form-control"
+            placeholder="e.g. 079-123 4567"
+            aria-label="Phone"
+            [placeholder]="'profile.phone' | translate"
+            formControlName="phone"
+            required
+          />
+        </div>
+        <div
+          class="error"
+          *ngIf="
+            profileForm.get('phone')?.invalid &&
+            profileForm.get('phone')?.touched
+          "
+        >
+          {{ "profile.phone-required" | translate }}
+        </div>
+      </div>
+    </div>
+    <div class="input-container">
+      <label for="jobTitle"> {{ "profile.job-title" | translate }}:</label>
+      <div class="input-error">
+        <div class="input-group" [ngClass]="{ 'right-input': lang == 'ar' }">
+          <div class="align-self-center">
+            <span
+              class="input-group-text align-self-center bg-white"
+              id="basic-addon1"
+              ><i class="bi bi-briefcase-fill" style="color: #725529"></i>
+            </span>
+          </div>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Job Title"
+            aria-label="Job Title"
+            [placeholder]="'profile.job-title' | translate"
+            formControlName="jobTitle"
+            required
+          />
+        </div>
+        <div
+          class="error"
+          *ngIf="
+            profileForm.get('jobTitle')?.invalid &&
+            profileForm.get('jobTitle')?.touched
+          "
+        >
+          {{ "profile.job-required" | translate }}
+        </div>
+      </div>
+    </div>
+    <div class="input-container">
+      <label for="newPassword">{{ "profile.new-password" | translate }}:</label>
+      <div class="input-error">
+        <div class="input-group" [ngClass]="{ 'right-input': lang == 'ar' }">
+          <div class="align-self-center">
+            <span
+              class="input-group-text align-self-center bg-white"
+              id="basic-addon1"
+            >
+              <i class="fa-solid fa-lock" style="color: #725529"></i>
+            </span>
+          </div>
+          <input
+            type="password"
+            class="form-control"
+            [placeholder]="'profile.new-password' | translate"
+            aria-label="Password"
+            formControlName="newPassword"
+            required
+            minlength="6"
+          />
+        </div>
+        <div
+          class="error"
+          *ngIf="
+            profileForm.get('newPassword')?.touched &&
+            profileForm.get('newPassword')?.errors as errors
+          "
+        >
+          <div *ngIf="errors['minlength']">
+            {{ "profile.password-min-length" | translate }}
+          </div>
+          <div *ngIf="errors['required']">
+            {{ "profile.password-required" | translate }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="input-container">
+      <label for="confirmPassword"
+        >{{ "profile.confirm-password" | translate }}:</label
+      >
+      <div class="input-error">
+        <div class="input-group" [ngClass]="{ 'right-input': lang == 'ar' }">
+          <div class="align-self-center">
+            <span
+              class="input-group-text align-self-center bg-white"
+              id="basic-addon1"
+            >
+              <i class="fa-solid fa-check-double" style="color: #725529"></i>
+            </span>
+          </div>
+          <input
+            type="password"
+            class="form-control"
+            aria-label="Password"
+            [placeholder]="'profile.confirm-password' | translate"
+            formControlName="confirmPassword"
+            required
+            minlength="6"
+          />
+        </div>
+        <div
+          class="error"
+          *ngIf="
+            profileForm.get('confirmPassword')?.valueChanges &&
+            profileForm.get('confirmPassword')?.value !=
+              profileForm.get('newPassword')?.value
+          "
+        >
+          {{ "profile.password-match" | translate }}
+        </div>
+      </div>
+    </div>
+    <button class="mt-4 btn-submit btn-dark-primary">
+      {{ "profile.submit" | translate }}
+    </button>
+  </form>
+</div>
+
+<button class="mt-4 btn-outline-primary rounded-2" (click)="goBack()">
+  @if(lang == 'ar') {
+  <i class="bi bi-arrow-right"></i>
+  } @else {
+  <i class="bi bi-arrow-left"></i>
+  }
+  {{ "shared.action.go-back" | translate }}
+</button>
