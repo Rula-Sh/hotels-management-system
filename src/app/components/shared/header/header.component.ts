@@ -1,11 +1,40 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../../../services/auth.service';
+import { CommonModule } from '@angular/common';
+import { RouterLink, RouterLinkActive, RouterModule } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-header',
-  imports: [],
+  imports: [RouterLink, RouterLinkActive, RouterModule, CommonModule],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.scss'
+  styleUrl: './header.component.scss',
+  standalone: true
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit, OnDestroy {
+  isLoggedIn = false;
+  private subscription!: Subscription;
 
+  constructor(private authService: AuthService, private router: Router, private cdr: ChangeDetectorRef) {}
+
+  ngOnInit() {
+    this.subscription = this.authService.isLoggedIn$.subscribe(status => {
+      this.isLoggedIn = status;
+      this.cdr.detectChanges();
+    });
+  }
+
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/home']);
+  }
+
+  goToProfile() {
+    this.router.navigate(['/profile/:id']);
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
 }
