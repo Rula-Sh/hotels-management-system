@@ -35,7 +35,25 @@
       "name": "Bob Smith",
       "email": "bob@example.com",
       "phone": "1234567890",
-      "role": "Customer"
+      "role": "Employee"
+    },
+    {
+      "id": "",
+      "name": "qwe",
+      "email": "qwe@qwe.qwe",
+      "phone": "079 666 6549",
+      "jobTitle": "qwe",
+      "password": "cXdlcXdl",
+      "role": "Employee"
+    },
+    {
+      "id": "88f8",
+      "name": "sdf",
+      "email": "sdf@sdf.sdf",
+      "phone": "079 343 2342",
+      "jobTitle": "asd",
+      "password": "YXNkYXNk",
+      "role": "Employee"
     }
   ],
   "reservations": [
