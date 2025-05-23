@@ -1,1 +1,39 @@
-<p>login works!</p>
+
+  
+
+<ngb-toast
+  *ngIf="showToast"
+  header="Info"
+  class="bg-info text-white position-fixed top-0 end-0 m-3"
+  [autohide]="true"
+  [delay]="3000"
+  (hidden)="showToast = false"
+>
+  {{ toastMessage }}
+</ngb-toast>
+
+<div class="login-container">
+  <h2>Login</h2>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label>Email</label>
+      <input formControlName="email" type="email" />
+      <small *ngIf="submitted && f['email'].errors?.['required']">Email is required.</small>
+      <small *ngIf="submitted && f['email'].errors?.['email']">Invalid email format.</small>
+    </div>
+
+    <div>
+      <label>Password</label>
+      <input formControlName="password" type="password" />
+      <small *ngIf="submitted && f['password'].errors?.['required']">Password is required.</small>
+    </div>
+
+    <button type="submit">Login</button>
+  </form>
+
+  <p style="text-align: center; margin-top: 1rem;">
+    Don't have an account?
+    <a routerLink="/signup" style="color: #2a5298; font-weight: bold;">Sign up here</a>
+  </p>
+</div>
+
