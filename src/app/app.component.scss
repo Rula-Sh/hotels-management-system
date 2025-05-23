@@ -1,0 +1,41 @@
+/* تحسين مظهر موقع التوست أعلى الشاشة بالوسط */
+::ng-deep .toast-top-center {
+  top: 1rem !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+}
+
+/* التنسيق العام لكل التوستات */
+::ng-deep .ngx-toastr {
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  padding: 1rem 1.5rem;
+  opacity: 0.95;
+}
+
+/* تنسيق الرسائل الناجحة */
+::ng-deep .toast-success {
+  background-color: #198754 !important; /* Bootstrap green */
+  color: #fff !important;
+}
+
+/* تنسيق الرسائل الخطأ */
+::ng-deep .toast-error {
+  background-color: #dc3545 !important; /* Bootstrap red */
+  color: #fff !important;
+}
+
+/* زر الإغلاق */
+::ng-deep .toast-close-button {
+  color: #fff !important;
+  font-size: 1.2rem;
+  opacity: 0.9;
+}
+
+/* شريط التقدم */
+::ng-deep .toast-progress {
+  background-color: rgba(255, 255, 255, 0.7) !important;
+  border-radius: 12px;
+}
