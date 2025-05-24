@@ -9,7 +9,7 @@
       "details": "A deluxe room with sea view.",
       "bookedStatus": "Available",
       "price": 120,
-      "imageUrl": "https://example.com/image1.jpg"
+      "imageUrl": "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748011951/SuiteNov2022_0008_1920_hhykez.jpg"
     },
     {
       "id": "r2",
@@ -19,7 +19,63 @@
       "hotel": "Sunrise Inn",
       "details": "Spacious hall for events.",
       "bookedStatus": "Booked",
-      "price": 300
+      "price": 300,
+      "imageUrl": "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748011951/Sofitel-Dubai-Wafi-Luxury-Room-Bedroom-Skyline-View-Image1_WEB_mal8fr.jpg"
+    },
+    {
+      "id": "r2",
+      "title": "Conference Hall A",
+      "roomType": "Hall",
+      "floor": 1,
+      "hotel": "Sunrise Inn",
+      "details": "Spacious hall for events.",
+      "bookedStatus": "Booked",
+      "price": 300,
+      "imageUrl": "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748011951/Sofitel-Dubai-Wafi-Luxury-Room-Bedroom-Skyline-View-Image1_WEB_mal8fr.jpg"
+    },
+    {
+      "id": "r2",
+      "title": "Conference Hall A",
+      "roomType": "Hall",
+      "floor": 1,
+      "hotel": "Sunrise Inn",
+      "details": "Spacious hall for events.",
+      "bookedStatus": "Booked",
+      "price": 300,
+      "imageUrl": "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748011951/Sofitel-Dubai-Wafi-Luxury-Room-Bedroom-Skyline-View-Image1_WEB_mal8fr.jpg"
+    },
+    {
+      "id": "r2",
+      "title": "Conference Hall A",
+      "roomType": "Hall",
+      "floor": 1,
+      "hotel": "Sunrise Inn",
+      "details": "Spacious hall for events.",
+      "bookedStatus": "Booked",
+      "price": 300,
+      "imageUrl": "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748011951/Sofitel-Dubai-Wafi-Luxury-Room-Bedroom-Skyline-View-Image1_WEB_mal8fr.jpg"
+    },
+    {
+      "id": "r2",
+      "title": "Conference Hall A",
+      "roomType": "Hall",
+      "floor": 1,
+      "hotel": "Sunrise Inn",
+      "details": "Spacious hall for events.",
+      "bookedStatus": "Booked",
+      "price": 300,
+      "imageUrl": "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748011951/Sofitel-Dubai-Wafi-Luxury-Room-Bedroom-Skyline-View-Image1_WEB_mal8fr.jpg"
+    },
+    {
+      "id": "r2",
+      "title": "Conference Hall A",
+      "roomType": "Hall",
+      "floor": 1,
+      "hotel": "Sunrise Inn",
+      "details": "Spacious hall for events.",
+      "bookedStatus": "Booked",
+      "price": 300,
+      "imageUrl": "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748011951/Sofitel-Dubai-Wafi-Luxury-Room-Bedroom-Skyline-View-Image1_WEB_mal8fr.jpg"
     }
   ],
   "users": [
@@ -89,7 +145,7 @@
         "details": "A deluxe room with sea view.",
         "bookedStatus": "Available",
         "price": 120,
-        "imageUrl": "https://example.com/image1.jpg"
+        "imageUrl": "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748011951/SuiteNov2022_0008_1920_hhykez.jpg"
       },
       "customer": {
         "id": "u1",
@@ -97,56 +153,6 @@
         "email": "alice@example.com",
         "phone": "1234567890",
         "role": "Customer"
-      }
-    },
-    {
-      "id": "res1",
-      "roomId": "r1",
-      "customerId": "u1",
-      "date": "2025-06-15T14:00:00.000Z",
-      "approvalStatus": "Pending",
-      "paymentStatus": "Unpaid",
-      "paymentAmount": 120,
-      "room": {
-        "id": "r1",
-        "title": "Deluxe Suite",
-        "roomType": "Room",
-        "floor": 2,
-        "hotel": "Sunrise Inn",
-        "details": "A deluxe room with sea view.",
-        "bookedStatus": "Available",
-        "price": 120,
-        "imageUrl": "https://example.com/image1.jpg"
-      },
-      "customer": {
-        "id": "u1",
-        "name": "Alice Johnson",
-        "email": "alice@example.com",
-        "phoneNumber": "1234567890"
-      }
-    },
-    {
-      "id": "res2",
-      "roomId": "r2",
-      "customerId": "u2",
-      "date": "2025-06-20T10:00:00.000Z",
-      "approvalStatus": "Approved",
-      "paymentStatus": "Paid",
-      "paymentAmount": 300,
-      "room": {
-        "id": "r2",
-        "title": "Conference Hall A",
-        "roomType": "Hall",
-        "floor": 1,
-        "hotel": "Sunrise Inn",
-        "details": "Spacious hall for events.",
-        "bookedStatus": "Booked",
-        "price": 300
-      },
-      "customer": {
-        "id": "u2",
-        "name": "Bob Smith",
-        "email": "bob@example.com"
       }
     }
   ]
