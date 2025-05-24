@@ -60,7 +60,6 @@ export const routes: Routes = [
   {
     path: 'rooms',
     component: RoomsComponent,
-  
   },
   {
     path: 'room/:id',
@@ -145,12 +144,6 @@ export const routes: Routes = [
   {
     path: 'user/:id',
     component: UserDetailsComponent,
-    canActivate: [authGuard],
-    data: { roles: ['Admin'] },
-  },
-  {
-    path: 'admin/rooms',
-    component: RoomsComponent,
     canActivate: [authGuard],
     data: { roles: ['Admin'] },
   },

@@ -74,8 +74,7 @@ export class SignUpComponent {
         return;
       }
 
-      const user: User = {
-        id: '',
+      const user: Omit<User, 'id'> = {
         name: this.signUpForm.value.name,
         email: this.signUpForm.value.email,
         phone: this.signUpForm.value.phone,
@@ -84,14 +83,14 @@ export class SignUpComponent {
       };
 
       this.userService.CreateUser(user).subscribe({
-        next: () => {
-          this.authService.login(user);
+        next: (value) => {
+          this.authService.login(value);
           this.toastMessage = 'Registered successfully!';
           this.toastClass = 'bg-success text-white';
           this.showToast = true;
 
           setTimeout(() => {
-            this.router.navigate(['/login']);
+            this.router.navigate(['/']);
           }, 700);
         },
         error: (err) => {

@@ -6,7 +6,7 @@
   align-items: center;
   height: 75%;
   background: linear-gradient(to right, #fbebd4);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 form {
@@ -18,7 +18,7 @@ form {
   max-width: 400px;
 }
 
-form h2 {
+h2 {
   text-align: center;
   margin-bottom: 1.5rem;
   color: $color-dark-brown;
@@ -32,7 +32,6 @@ label {
   display: block;
   font-weight: 600;
   margin-bottom: 0.5rem;
-  color: #333;
 }
 
 input {
@@ -43,7 +42,7 @@ input {
   transition: border-color 0.3s;
 
   &:focus {
-    border-color: #2a5298;
+    border-color: $color-dark-brown;
     outline: none;
   }
 }
@@ -52,16 +51,3 @@ small {
   color: red;
   font-size: 0.75rem;
 }
-
-.btn-submit {
-  width: auto;
-}
-
-
-/* Optional: Style toast container from ngx-toastr */
-.toast-container {
-  font-family: inherit;
-  z-index: 9999;
-}
-
-

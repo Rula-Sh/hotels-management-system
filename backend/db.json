@@ -10,7 +10,8 @@
       "bookedStatus": "Available",
       "price": 120,
       "imageUrl": "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748011951/SuiteNov2022_0008_1920_hhykez.jpg"
-    },{
+    },
+    {
       "id": "r1",
       "title": "Deluxe Suite",
       "roomType": "Room",
@@ -20,17 +21,8 @@
       "bookedStatus": "Available",
       "price": 120,
       "imageUrl": "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748011951/SuiteNov2022_0008_1920_hhykez.jpg"
-    },{
-      "id": "r1",
-      "title": "Deluxe Suite",
-      "roomType": "Room",
-      "floor": 2,
-      "hotel": "Sunrise Inn",
-      "details": "A deluxe room with sea view.",
-      "bookedStatus": "Available",
-      "price": 120,
-      "imageUrl": "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748011951/SuiteNov2022_0008_1920_hhykez.jpg"
-    },{
+    },
+    {
       "id": "r1",
       "title": "Deluxe Suite",
       "roomType": "Room",
