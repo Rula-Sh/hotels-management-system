@@ -24,7 +24,6 @@
     transform: translateY(-6px);
   }
 
-
   .room-img {
     width: 100%;
     height: 180px;
@@ -38,23 +37,6 @@
     text-align: center;
     margin: 0px 15px 15px 15px;
     color: $color-brown;
-    h3 {
-      margin-bottom: 0.5rem;
-      font-size: 1.4rem;
-      color: #1f2937;
-    }
-
-    p {
-      margin: 0.3rem 0;
-      font-size: 0.95rem;
-      color: #4b5563;
-
-      strong {
-        color: #1e40af;
-      }
-    }
-
-
   }
 }
 
@@ -63,11 +45,6 @@
   padding: 2rem;
   color: #6b7280;
   font-size: 1.1rem;
-}
-
-h2 {
-  margin: 0;
-  color: $color-dark-brown;
 }
 
 .room-content-header {
