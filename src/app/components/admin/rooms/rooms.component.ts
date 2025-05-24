@@ -24,19 +24,7 @@ import { AuthService } from '../../../services/auth.service';
   styleUrl: './rooms.component.scss',
 })
 export class RoomsComponent {
-  rooms: Room[] = [
-    // {
-    //   id: '',
-    //   title: '',
-    //   roomType: 'Room',
-    //   floor: 0,
-    //   hotel: '',
-    //   details: '',
-    //   bookedStatus: 'Available',
-    //   price: 0,
-    //   imageUrl: '',
-    // },
-  ];
+  rooms: Room[] = [];
 
   constructor(
     private roomService: RoomService,
