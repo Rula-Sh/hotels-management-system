@@ -8,9 +8,10 @@
   </button>
 </div>
 
-<div class="room-grid">
+<div class=" rooms-container" >
   @for(room of rooms; let i= $index; track i){
-  <div class="room-container">
+  <div class=" room-card">
+    @if(role == 'Admin'){
     <i
       class="delete-icon bi bi-trash-fill h4"
       (click)="deleteRoom(room.id)"
@@ -19,11 +20,11 @@
       class="info-icon bi bi-info-circle-fill h5"
       (click)="showRoomDetails(room.id)"
     ></i>
-    <img [src]="room.imageUrl" />
-    <div class="room-content">
+    }
+    <img class="room-img" [src]="room.imageUrl" />
+    <div class=" room-info">
       <div class="room-content-header">
         <h4>{{ room.title }}</h4>
-        <p>{{ room.price }}$</p>
       </div>
       <div>
         <strong class="me-2">{{ "room.type" | translate }}:</strong>
@@ -46,12 +47,21 @@
       </div>
       <div>
         <strong class="me-2">{{ "room.price" | translate }}:</strong
-        >{{ room.price }}
+        >{{ room.price | currency:'USD':'symbol':'1.0-0' }}
       </div>
+      @if(role != 'Admin'){
+       <button class="book-btn btn-primary">Book Now</button>
+      }
+
     </div>
   </div>
   }
 </div>
+
+<ng-template #noRooms>
+    <p>No available rooms at the moment.</p>
+  </ng-template>
+
 <p-toast />
 <p-confirmdialog #cd>
   <ng-template pTemplate="footer">

@@ -6,13 +6,26 @@
 @import "../src/styles/variables.scss";
 
 .btn-primary {
+  margin-top: 1rem;
+  padding: 0.7rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  background: linear-gradient(to right, $color-brown, $color-dark-brown);
+  color: white;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  text-decoration: none;
+
   background-color: $color-caramel !important;
   border-color: transparent !important;
   //   border-color: $color-brown !important;
   &:hover {
     background-color: $color-brown !important;
     border-color: transparent !important;
-    transition: all 0.5s ease;
+    background: $color-dark-brown;
+    transform: scale(1.05);
   }
 }
 

@@ -19,7 +19,7 @@ export class HomeRedirectComponent {
     } else if (this.role == 'Employee') {
       this.router.navigate([`/requests`]);
     } else {
-      this.router.navigate([`/home`]);
+      this.router.navigate([`/rooms`]);
     }
   }
 }

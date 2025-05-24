@@ -25,17 +25,17 @@ import { AuthService } from '../../../services/auth.service';
 })
 export class RoomsComponent {
   rooms: Room[] = [
-    {
-      id: '',
-      title: '',
-      roomType: 'Room',
-      floor: 0,
-      hotel: '',
-      details: '',
-      bookedStatus: 'Available',
-      price: 0,
-      imageUrl: '',
-    },
+    // {
+    //   id: '',
+    //   title: '',
+    //   roomType: 'Room',
+    //   floor: 0,
+    //   hotel: '',
+    //   details: '',
+    //   bookedStatus: 'Available',
+    //   price: 0,
+    //   imageUrl: '',
+    // },
   ];
 
   constructor(
@@ -43,7 +43,6 @@ export class RoomsComponent {
     private router: Router,
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
-    private authService: AuthService
   ) {}
 
   role: string | null = null;

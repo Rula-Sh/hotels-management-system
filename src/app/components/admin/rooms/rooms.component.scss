@@ -1,37 +1,67 @@
 @import "../../../../styles/variables.scss";
-.room-grid {
+
+.rooms-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
   justify-content: center;
-  padding: 30px;
   box-sizing: border-box;
 }
 
-.room-container {
-  position: relative;
-  display: inline-block;
-  //   width: 18%;
-  width: 300px;
-  height: 300px;
-  border-radius: 5px;
-  background-color: white;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  //   margin: 1%;
-  margin: 10px 50px;
+.room-card {
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &:hover {
+    transform: translateY(-6px);
+  }
+
+
+  .room-img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+  }
+
+  .room-info {
+    padding: 1.5rem;
+    text-align: center;
+    margin: 0px 15px 15px 15px;
+    color: $color-brown;
+    h3 {
+      margin-bottom: 0.5rem;
+      font-size: 1.4rem;
+      color: #1f2937;
+    }
+
+    p {
+      margin: 0.3rem 0;
+      font-size: 0.95rem;
+      color: #4b5563;
+
+      strong {
+        color: #1e40af;
+      }
+    }
+
+
+  }
 }
 
-img {
-  width: 100%;
-  height: 150px;
-  border-start-start-radius: 5px;
-  border-start-end-radius: 5px;
-  object-fit: cover;
-}
-
-.room-content {
-  margin: 0px 15px 15px 15px;
-  color: $color-brown;
+.no-rooms-msg {
+  text-align: center;
+  padding: 2rem;
+  color: #6b7280;
+  font-size: 1.1rem;
 }
 
 h2 {
@@ -49,16 +79,6 @@ h2 {
   display: flex;
   align-items: center;
   justify-content: space-around;
-}
-
-button {
-  text-decoration: none;
-  border: none;
-  font-size: medium;
-  border-radius: 7px;
-  padding: 7px;
-  cursor: pointer;
-  margin: 0px 5px 0px 5px;
 }
 
 .details {
@@ -92,3 +112,98 @@ button {
   width: 18px;
   height: 18px;
 }
+
+// @import "../../../../styles/variables.scss";
+// .room-grid {
+//   display: grid;
+//   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+//   gap: 30px;
+//   justify-content: center;
+//   padding: 30px;
+//   box-sizing: border-box;
+// }
+
+// .room-container {
+//   position: relative;
+//   display: inline-block;
+//   //   width: 18%;
+//   width: 300px;
+//   height: 300px;
+//   border-radius: 5px;
+//   background-color: white;
+//   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+//   //   margin: 1%;
+//   margin: 10px 50px;
+// }
+
+// img {
+//   width: 100%;
+//   height: 150px;
+//   border-start-start-radius: 5px;
+//   border-start-end-radius: 5px;
+//   object-fit: cover;
+// }
+
+// .room-content {
+//   margin: 0px 15px 15px 15px;
+//   color: $color-brown;
+// }
+
+// h2 {
+//   margin: 0;
+//   color: $color-dark-brown;
+// }
+
+// .room-content-header {
+//   display: flex;
+//   align-items: center;
+//   justify-content: space-between;
+// }
+
+// .room-actions {
+//   display: flex;
+//   align-items: center;
+//   justify-content: space-around;
+// }
+
+// button {
+//   text-decoration: none;
+//   border: none;
+//   font-size: medium;
+//   border-radius: 7px;
+//   padding: 7px;
+//   cursor: pointer;
+//   margin: 0px 5px 0px 5px;
+// }
+
+// .details {
+//   background-color: transparent;
+// }
+
+// .add-to-cart {
+//   color: white;
+//   margin-bottom: 5px;
+//   background-color: green;
+// }
+
+// .delete-icon {
+//   position: absolute;
+//   top: 5px;
+//   right: 5px;
+//   cursor: pointer;
+//   color: red;
+//   padding: 4px;
+// }
+// .info-icon {
+//   position: absolute;
+//   top: 5px;
+//   left: 5px;
+//   cursor: pointer;
+//   color: $color-cream;
+//   padding: 4px;
+// }
+
+// .icon-img {
+//   width: 18px;
+//   height: 18px;
+// }
