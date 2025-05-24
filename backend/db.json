@@ -10,50 +10,36 @@
       "bookedStatus": "Available",
       "price": 120,
       "imageUrl": "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748011951/SuiteNov2022_0008_1920_hhykez.jpg"
-    },
-    {
-      "id": "r2",
-      "title": "Conference Hall A",
-      "roomType": "Hall",
-      "floor": 1,
+    },{
+      "id": "r1",
+      "title": "Deluxe Suite",
+      "roomType": "Room",
+      "floor": 2,
       "hotel": "Sunrise Inn",
-      "details": "Spacious hall for events.",
-      "bookedStatus": "Booked",
-      "price": 300,
-      "imageUrl": "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748011951/Sofitel-Dubai-Wafi-Luxury-Room-Bedroom-Skyline-View-Image1_WEB_mal8fr.jpg"
-    },
-    {
-      "id": "r2",
-      "title": "Conference Hall A",
-      "roomType": "Hall",
-      "floor": 1,
+      "details": "A deluxe room with sea view.",
+      "bookedStatus": "Available",
+      "price": 120,
+      "imageUrl": "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748011951/SuiteNov2022_0008_1920_hhykez.jpg"
+    },{
+      "id": "r1",
+      "title": "Deluxe Suite",
+      "roomType": "Room",
+      "floor": 2,
       "hotel": "Sunrise Inn",
-      "details": "Spacious hall for events.",
-      "bookedStatus": "Booked",
-      "price": 300,
-      "imageUrl": "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748011951/Sofitel-Dubai-Wafi-Luxury-Room-Bedroom-Skyline-View-Image1_WEB_mal8fr.jpg"
-    },
-    {
-      "id": "r2",
-      "title": "Conference Hall A",
-      "roomType": "Hall",
-      "floor": 1,
+      "details": "A deluxe room with sea view.",
+      "bookedStatus": "Available",
+      "price": 120,
+      "imageUrl": "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748011951/SuiteNov2022_0008_1920_hhykez.jpg"
+    },{
+      "id": "r1",
+      "title": "Deluxe Suite",
+      "roomType": "Room",
+      "floor": 2,
       "hotel": "Sunrise Inn",
-      "details": "Spacious hall for events.",
-      "bookedStatus": "Booked",
-      "price": 300,
-      "imageUrl": "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748011951/Sofitel-Dubai-Wafi-Luxury-Room-Bedroom-Skyline-View-Image1_WEB_mal8fr.jpg"
-    },
-    {
-      "id": "r2",
-      "title": "Conference Hall A",
-      "roomType": "Hall",
-      "floor": 1,
-      "hotel": "Sunrise Inn",
-      "details": "Spacious hall for events.",
-      "bookedStatus": "Booked",
-      "price": 300,
-      "imageUrl": "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748011951/Sofitel-Dubai-Wafi-Luxury-Room-Bedroom-Skyline-View-Image1_WEB_mal8fr.jpg"
+      "details": "A deluxe room with sea view.",
+      "bookedStatus": "Available",
+      "price": 120,
+      "imageUrl": "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748011951/SuiteNov2022_0008_1920_hhykez.jpg"
     },
     {
       "id": "r2",
@@ -94,66 +80,11 @@
       "role": "Employee"
     },
     {
-      "id": "",
-      "name": "qwe",
-      "email": "qwe@qwe.qwe",
-      "phone": "079 666 6549",
-      "jobTitle": "qwe",
-      "password": "cXdlcXdl",
-      "role": "Employee"
-    },
-    {
-      "id": "88f8",
-      "name": "sdf",
-      "email": "sdf@sdf.sdf",
-      "phone": "079 343 2342",
-      "jobTitle": "asd",
-      "password": "YXNkYXNk",
-      "role": "Employee"
-    },
-    {
-      "id": "1",
-      "username": "Admin User",
-      "email": "admin@example.com",
-      "phone": "079 123 4567",
-      "password": "QWRtaW4xMjM=",
-      "role": "admin"
-    },
-    {
-      "id": "546",
-      "name": "qweqwe",
-      "email": "asdasd@asd.asd",
+      "id": "123",
+      "name": "admin",
+      "email": "admin@gmail.com",
       "password": "IVEyM3dld2U=",
       "role": "Admin"
-    }
-  ],
-  "reservations": [
-    {
-      "id": "res1",
-      "roomId": "r1",
-      "customerId": "u1",
-      "date": "2025-06-15T14:00:00.000Z",
-      "approvalStatus": "Pending",
-      "paymentStatus": "Unpaid",
-      "paymentAmount": 120,
-      "room": {
-        "id": "r1",
-        "title": "Deluxe Suite",
-        "roomType": "Room",
-        "floor": 2,
-        "hotel": "Sunrise Inn",
-        "details": "A deluxe room with sea view.",
-        "bookedStatus": "Available",
-        "price": 120,
-        "imageUrl": "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748011951/SuiteNov2022_0008_1920_hhykez.jpg"
-      },
-      "customer": {
-        "id": "u1",
-        "name": "Alice Johnson",
-        "email": "alice@example.com",
-        "phone": "1234567890",
-        "role": "Customer"
-      }
     }
   ]
 }

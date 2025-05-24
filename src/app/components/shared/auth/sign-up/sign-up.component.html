@@ -10,8 +10,9 @@
   {{ toastMessage }}
 </ngb-toast>
 
-<form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
 
+<form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+ <h2>Sign Up</h2>
   <div>
     <label>Name:</label>
     <input formControlName="name" type="text">
@@ -50,8 +51,9 @@
 
 </div>
 
-
-<button type="submit">Sign Up</button>
+ <div class="d-flex justify-content-center">
+<button class="btn-primary btn-submit" type="submit">Sign Up</button>
+  </div>
 
 
 </form>

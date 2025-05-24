@@ -58,8 +58,9 @@ export const authGuard: CanActivateFn = (
 export const routes: Routes = [
   // ------------------------ Customer ------------------------
   {
-    path: 'home',
-    component: HomeComponent,
+    path: 'rooms',
+    component: RoomsComponent,
+  
   },
   {
     path: 'room/:id',
