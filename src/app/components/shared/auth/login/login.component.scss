@@ -1,3 +1,5 @@
+@import "../../../../../../src/styles/variables.scss";
+
 .login-container {
   max-width: 400px;
   margin: 4rem auto;
@@ -9,7 +11,7 @@
   h2 {
     text-align: center;
     margin-bottom: 2rem;
-    color: #2a5298;
+    color: $color-dark-brown;
   }
 
   form {
@@ -32,9 +34,10 @@
         border-radius: 0.5rem;
         font-size: 1rem;
         transition: border-color 0.3s;
-
+        background-color:white;
+        
         &:focus {
-          border-color: #2a5298;
+          border-color: $color-dark-brown;
           outline: none;
         }
       }
@@ -45,21 +48,21 @@
       }
     }
 
-    button {
-      padding: 0.8rem;
-      background: linear-gradient(90deg, #1e3c72 0%, #2a5298 100%);
-      color: white;
-      font-size: 1rem;
-      font-weight: bold;
-      border: none;
-      border-radius: 0.5rem;
-      cursor: pointer;
-      transition: background 0.3s ease;
+    // button {
+    //   padding: 0.8rem;
+    //   background: linear-gradient(90deg, #1e3c72 0%, #2a5298 100%);
+    //   color: white;
+    //   font-size: 1rem;
+    //   font-weight: bold;
+    //   border: none;
+    //   border-radius: 0.5rem;
+    //   cursor: pointer;
+    //   transition: background 0.3s ease;
 
-      &:hover {
-        background: linear-gradient(90deg, #16335d 0%, #204678 100%);
-      }
-    }
+    //   &:hover {
+    //     background: linear-gradient(90deg, #16335d 0%, #204678 100%);
+    //   }
+    // }
   }
 
   p {
@@ -68,13 +71,13 @@
     font-size: 0.95rem;
 
     a {
-      color: #2a5298;
+      color: $color-dark-brown;
       text-decoration: none;
       font-weight: bold;
       transition: color 0.3s;
 
       &:hover {
-        color: #1e3c72;
+        color: $color-dark-brown;
         text-decoration: underline;
       }
     }
