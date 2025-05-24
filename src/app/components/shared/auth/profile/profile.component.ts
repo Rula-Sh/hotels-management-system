@@ -69,7 +69,7 @@ export class ProfileComponent {
     };
 
     this.profileForm.patchValue(this.profileData);
-    this.profileForm.markAllAsTouched(); // used to validate the data once it is loaded
+    // i can use mark all as touched to validate the data once it is loaded
   }
 
   UpdateProfile() {
