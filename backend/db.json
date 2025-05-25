@@ -76,7 +76,30 @@
       "name": "admin",
       "email": "admin@gmail.com",
       "password": "IVEyM3dld2U=",
-      "role": "Admin"
+      "role": "Admin",
+      "pfp": ""
+    },
+    {
+      "id": "emp1",
+      "name": "Alice Johnson",
+      "email": "alice.johnson@example.com",
+      "phone": "1234567890",
+      "password": "IVEyM3dld2U=",
+      "role": "Employee",
+      "pfp": "",
+      "jobTitle": "Hair Stylist",
+      "services": ["svc1", "svc2"]
+    },
+    {
+      "id": "emp2",
+      "name": "Bob Smith",
+      "email": "bob.smith@example.com",
+      "phone": "1234567890",
+      "password": "IVEyM3dld2U=",
+      "role": "Employee",
+      "pfp": "",
+      "jobTitle": "Massage Therapist",
+      "services": ["svc3"]
     }
   ],
   "reservations": [
@@ -108,33 +131,6 @@
       }
     },
     {
-      "id": "res2",
-      "roomId": "r2",
-      "date": "2025-06-03T16:30:00.000Z",
-      "customerId": "u1",
-      "approvalStatus": "Approved",
-      "paymentStatus": "Paid",
-      "paymentAmmount": 200
-    },
-    {
-      "id": "res3",
-      "roomId": "r1",
-      "date": "2025-06-05T10:00:00.000Z",
-      "customerId": "u2",
-      "approvalStatus": "Rejected",
-      "paymentStatus": "Unpaid",
-      "paymentAmmount": 150
-    },
-    {
-      "id": "res4",
-      "roomId": "r2",
-      "date": "2025-06-07T12:00:00.000Z",
-      "customerId": "u1",
-      "approvalStatus": "Approved",
-      "paymentStatus": "Paid",
-      "paymentAmmount": 180
-    },
-    {
       "id": "res5",
       "roomId": "r1",
       "date": "2025-06-10T09:00:00.000Z",
@@ -159,6 +155,47 @@
         "email": "bob@example.com",
         "phone": "1234567890",
         "role": "Employee"
+      }
+    }
+  ],
+  "services": [
+    {
+      "id": "svc1",
+      "employeeId": "emp1",
+      "title": "Haircut",
+      "details": "Basic haircut service with styling.",
+      "price": 25.0,
+      "employee": {
+        "id": "emp1",
+        "name": "Alice Johnson",
+        "email": "alice.johnson@example.com",
+        "jobTitle": "Hair Stylist"
+      }
+    },
+    {
+      "id": "svc2",
+      "employeeId": "emp1",
+      "title": "Hair Coloring",
+      "details": "Professional hair coloring service.",
+      "price": 60.0,
+      "employee": {
+        "id": "emp1",
+        "name": "Alice Johnson",
+        "email": "alice.johnson@example.com",
+        "jobTitle": "Hair Stylist"
+      }
+    },
+    {
+      "id": "svc3",
+      "employeeId": "emp2",
+      "title": "Swedish Massage",
+      "details": "Relaxing full-body Swedish massage.",
+      "price": 80.0,
+      "employee": {
+        "id": "emp2",
+        "name": "Bob Smith",
+        "email": "bob.smith@example.com",
+        "jobTitle": "Massage Therapist"
       }
     }
   ]
