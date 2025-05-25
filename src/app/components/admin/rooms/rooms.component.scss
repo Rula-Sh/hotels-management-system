@@ -5,12 +5,14 @@
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 2rem;
   padding: 2rem;
+  padding-bottom: 0;
   justify-content: center;
   box-sizing: border-box;
   max-width: 100%;
 }
 
 .room-card {
+  position: relative;
   background: #fff;
   border-radius: 16px;
   overflow: hidden;
@@ -33,9 +35,8 @@
   }
 
   .room-info {
-    padding: 1.5rem;
+    padding: 1rem;
     text-align: center;
-    margin: 0px 15px 15px 15px;
     color: $color-brown;
   }
 }
@@ -47,28 +48,6 @@
   font-size: 1.1rem;
 }
 
-.room-content-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.room-actions {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-}
-
-.details {
-  background-color: transparent;
-}
-
-.add-to-cart {
-  color: white;
-  margin-bottom: 5px;
-  background-color: green;
-}
-
 .delete-icon {
   position: absolute;
   top: 5px;
@@ -77,6 +56,7 @@
   color: red;
   padding: 4px;
 }
+
 .info-icon {
   position: absolute;
   top: 5px;

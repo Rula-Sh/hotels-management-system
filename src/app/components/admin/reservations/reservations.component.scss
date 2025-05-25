@@ -23,8 +23,13 @@ button {
   color: $color-caramel;
 }
 .approve {
-  color: #ADEBB3;
+  color: #adebb3;
 }
 .reject {
-  color: #F88379;
+  color: #f88379;
+}
+
+img {
+  width: 50px;
+  object-fit: contain;
 }

@@ -1,122 +1,112 @@
 @import "../../../../../src/styles/variables.scss";
 
 header {
-  margin: 0;
-  padding: 10px;
-  display: flex;
   background-color: $color-dark-brown;
   color: $color-cream;
-  justify-content: space-between;
+  padding: 10px 20px;
+
+  .header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    .logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: $color-cream;
+      font-size: 18px;
+    }
+
+    .burger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+
+      span {
+        width: 25px;
+        height: 3px;
+        background-color: $color-cream;
+        border-radius: 2px;
+        transition: all 0.3s ease;
+      }
+
+      @media (max-width: 768px) {
+        display: flex;
+      }
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-grow: 1;
+
+      .nav-left,
+      .nav-right {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .nav-right {
+        margin-left: auto;
+      }
+
+      @media (max-width: 768px) {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        gap: 10px;
+
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+
+        &.open {
+          max-height: 500px;
+        }
+
+        .nav-left,
+        .nav-right {
+          flex-direction: column;
+          align-items: flex-start;
+          width: 100%;
+        }
+
+        .nav-right {
+          margin-left: 0;
+        }
+      }
+    }
+  }
 }
+
 a {
   text-decoration: none;
   color: $color-cream;
   font-size: 17px;
-  margin-left: 7px;
-  margin-right: 7px;
+  margin: 5px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.logo{
+  width: 150px;
 }
 
-.linear-icon{
-  width: 35px;
-  padding: 0px;
+.linear-icon {
+  width: 30px;
 }
-.fill-icon{
+.fill-icon {
   width: 25px;
-  padding: 0px;
 }
 
-.header {
-    background: linear-gradient(90deg, #1e3c72 0%, #2a5298 100%);
-    color: #fff;
-    padding: 1.5rem 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    box-shadow: 0 4px 16px rgba(30, 60, 114, 0.1);
-
-    .logo {
-        font-size: 2rem;
-        font-weight: bold;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        color: #ffd700;
-        text-shadow: 1px 2px 8px rgba(0,0,0,0.15);
-    }
-
-    .nav {
-        display: flex;
-        gap: 2rem;
-
-        a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 1.1rem;
-            font-weight: 500;
-            position: relative;
-            transition: color 0.2s;
-
-            &:hover,
-            &.active {
-                color: #ffd700;
-            }
-
-            &::after {
-                content: '';
-                display: block;
-                width: 0;
-                height: 2px;
-                background: #ffd700;
-                transition: width 0.3s;
-                position: absolute;
-                bottom: -4px;
-                left: 0;
-            }
-
-            &:hover::after,
-            &.active::after {
-                width: 100%;
-            }
-        }
-    }
-
-    .user-actions {
-        display: flex;
-        gap: 1rem;
-
-        button {
-            background: #ffd700;
-            color: #1e3c72;
-            border: none;
-            border-radius: 4px;
-            padding: 0.5rem 1.2rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.2s;
-
-            &:hover {
-                background: #fff;
-                color: #2a5298;
-            }
-        }
-    }
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .header {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 1rem;
-
-        .nav {
-            margin-top: 1rem;
-            gap: 1rem;
-        }
-
-        .user-actions {
-            margin-top: 1rem;
-            width: 100%;
-            justify-content: flex-end;
-        }
-    }
+.pfp {
+  width: 30px;
+  height: 30px;
 }

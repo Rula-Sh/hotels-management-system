@@ -35,6 +35,7 @@
     "password-required": "كلمة المرور مطلوبة",
     "password-min-length": "يجب أن تكون كلمة المرور 6 أحرف على الأقل",
     "password-match": " كلمات المرور غير متطابقة",
+    "add-phone": "أضف رقم الهاتف",
     "submit": "تحديث",
     "cancel": "إلغاء",
     "add-employee": "إضافة موظف",
@@ -71,6 +72,9 @@
     "price": "السعر"
   },
   "reservation": {
+    "reservations": "الحجوزات",
+    "pending": "المعلقة",
+    "active": " النشطة",
     "pending-reservations": "الحجوزات المعلقة",
     "active-reservations": "الحجوزات النشطة"
   },

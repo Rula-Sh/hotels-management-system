@@ -1,6 +1,7 @@
 <div class="d-flex justify-content-between mt-2 ms-5 me-5">
   <h1 class="text-center align-self-center">
     {{ "room.rooms" | translate }}
+    <img src="/assets/images/bed-brown-filled-icon.png" />
   </h1>
   <button class="btn btn-primary" (click)="AddRoom()">
     <i class="bi bi-house-add-fill h4 m-1 align-middle"></i>
@@ -23,9 +24,7 @@
     }
     <img class="room-img" [src]="room.imageUrl" />
     <div class="room-info">
-      <div class="room-content-header">
-        <h4>{{ room.title }}</h4>
-      </div>
+      <h4>{{ room.title }}</h4>
       <div>
         <strong class="me-2">{{ "room.type" | translate }}:</strong>
         @if(room.roomType == 'Hall'){
@@ -34,7 +33,7 @@
           src="../../../../assets/images/hall-filled-icon.png"
         />
         } @else {
-        <i class="ri-hotel-bed-fill h5" style="color: #ad926b"></i>
+        <i class="fa-solid fa-bed" style="color: #ad926b"></i>
         } {{ room.roomType }}
       </div>
       <div>

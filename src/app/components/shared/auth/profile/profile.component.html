@@ -27,14 +27,14 @@
       </div>
       <div class="data-container">
         <p class="me-3 data-title">
-          <i class="fa-solid fa-user" style="color: #725529"></i>
+          <i class="fa-solid fa-user"></i>
           {{ "profile.name" | translate }}:
         </p>
         <p class="data">{{ profileData.name }}</p>
       </div>
       <div class="data-container">
         <p class="me-3 data-title">
-          <i class="fa-solid fa-envelope" style="color: #725529"></i>
+          <i class="fa-solid fa-envelope"></i>
           {{ "profile.email" | translate }}:
         </p>
         <p class="data">
@@ -43,10 +43,21 @@
       </div>
       <div class="data-container">
         <p class="me-3 data-title">
-          <i class="fa-solid fa-phone" style="color: #725529"></i>
+          <i class="fa-solid fa-phone"></i>
           {{ "profile.phone" | translate }}:
         </p>
-        <p class="data">{{ profileData.phone }}</p>
+        <p class="data">
+          <ng-container *ngIf="profileData.phone; else addPhone">
+            {{ profileData.phone }}
+          </ng-container>
+
+          <ng-template #addPhone>
+            <a (click)="edit()" style="cursor: pointer; color: gray; font-style: italic;">
+              <i class="fa-solid fa-plus"></i>
+              {{ "profile.add-phone" | translate }}
+            </a>
+          </ng-template>
+        </p>
       </div>
     </div>
   </div>
@@ -82,7 +93,7 @@
                 <span
                   class="input-group-text align-self-center bg-white"
                   id="basic-addon1"
-                  ><i class="fa-solid fa-user" style="color: #725529"></i>
+                  ><i class="fa-solid fa-user"></i>
                 </span>
               </div>
               <input
@@ -117,7 +128,7 @@
                 <span
                   class="input-group-text align-self-center bg-white"
                   id="basic-addon1"
-                  ><i class="fa-solid fa-envelope" style="color: #725529"></i>
+                  ><i class="fa-solid fa-envelope"></i>
                 </span>
               </div>
               <input
@@ -154,7 +165,7 @@
                   class="input-group-text align-self-center bg-white"
                   id="basic-addon1"
                 >
-                  <i class="fa-solid fa-phone" style="color: #725529"></i>
+                  <i class="fa-solid fa-phone"></i>
                 </span>
               </div>
               <input
@@ -193,7 +204,7 @@
                   class="input-group-text align-self-center bg-white"
                   id="basic-addon1"
                 >
-                  <i class="fa-solid fa-lock" style="color: #725529"></i>
+                  <i class="fa-solid fa-lock"></i>
                 </span>
               </div>
               <input
@@ -236,10 +247,7 @@
                   class="input-group-text align-self-center bg-white"
                   id="basic-addon1"
                 >
-                  <i
-                    class="fa-solid fa-check-double"
-                    style="color: #725529"
-                  ></i>
+                  <i class="fa-solid fa-check-double"></i>
                 </span>
               </div>
               <input
