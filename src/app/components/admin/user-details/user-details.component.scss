@@ -1,0 +1,96 @@
+@import "../../../../styles/variables.scss";
+
+.page {
+  max-width: 1300px;
+  width: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.container {
+  margin: auto;
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.details-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  background-color: none;
+  min-width: 650px;
+  max-height: 300px;
+  padding: 25px;
+  padding-left: 45px;
+  padding-right: 45px;
+  margin-top: 20px;
+}
+
+.pfp-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 30%;
+}
+
+.pfp {
+  border-radius: 100%;
+  width: 100%;
+  max-width: 200px;
+  align-self: center;
+}
+
+.data-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-left: 50px;
+  width: 60%;
+}
+
+.data-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  margin: 5px;
+  width: 100%;
+}
+
+.data-title {
+  width: 25%;
+  font-weight: bold;
+  font-size: 18px;
+  max-width: 100px;
+}
+
+.data {
+  width: 75%;
+  font-size: 18px;
+}
+
+i {
+  color: $color-dark-brown;
+}
+
+.go-back-button {
+  text-decoration: none;
+  width: auto;
+  margin: auto;
+  font-size: 15px;
+  border-radius: 7px;
+  padding: 7px 10px;
+}
+tr {
+  text-align: center;
+}
+.details {
+  border: none;
+  margin: 5px;
+  border-radius: 5px;
+  background-color: transparent;
+  cursor: pointer;
+  color: $color-caramel;
+}

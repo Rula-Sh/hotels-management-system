@@ -58,7 +58,11 @@
       "employee": "Employee",
       "customer": "Customer"
     },
-    "add-employee": "Add Employee"
+    "add-employee": "Add Employee",
+    "user-details": "User Details",
+    "personal-details": "Personal Details",
+    "activities": "Activities",
+    "not-provided": "Not Provided"
   },
   "room": {
     "rooms": "Rooms",
@@ -77,6 +81,12 @@
     "active": " Active",
     "pending-reservations": "Pending Reservations",
     "active-reservations": "Active Reservations"
+  },
+  "service": {
+    "services": "Services",
+    "title": "Title",
+    "details": "Details",
+    "price": "Price"
   },
   "footer": {
     "english": "English",

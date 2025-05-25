@@ -33,6 +33,12 @@ export class ReservationService {
     return this.api.get<Reservation>(`${this.url}/reservations/${id}`);
   }
 
+  getReservationsByCustomerId(customerId: string): Observable<Reservation[]> {
+    return this.api.get<Reservation[]>(
+      `${this.url}/reservations/?customerId=${customerId}`
+    );
+  }
+
   ApproveReservationRequest(
     id: string,
     reservation: Reservation
