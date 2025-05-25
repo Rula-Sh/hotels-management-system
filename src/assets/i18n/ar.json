@@ -58,7 +58,11 @@
       "employee": "موظف",
       "customer": "عميل"
     },
-    "add-employee": "إضافة موظف"
+    "add-employee": "إضافة موظف",
+    "user-details": "معلومات المستخدم",
+    "personal-details": "التفاصيل الشخصية",
+    "activities": "الأنشطة",
+    "not-provided": "لم يتم توفيرها"
   },
   "room": {
     "rooms": "الغرف",
@@ -77,6 +81,12 @@
     "active": " النشطة",
     "pending-reservations": "الحجوزات المعلقة",
     "active-reservations": "الحجوزات النشطة"
+  },
+  "service": {
+    "services": "الخدمات",
+    "title": "العنوان",
+    "details": "التفاصيل",
+    "price": "السعر"
   },
   "footer": {
     "english": "الإنجليزية",

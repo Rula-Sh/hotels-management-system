@@ -19,6 +19,10 @@ export class ServiceService {
     return this.api.get<Service>(`${this.url}/${id}`);
   }
 
+  getServicesByEmployeeId(employeeId: string): Observable<Service[]> {
+    return this.api.get<Service[]>(`${this.url}/?employeeId=${employeeId}`);
+  }
+
   CreateService(service: Omit<Service, 'id'>): Observable<Service> {
     return this.api.post<Service>(this.url, service);
   }

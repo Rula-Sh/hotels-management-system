@@ -1,1 +1,133 @@
-<p>user-details works!</p>
+<div class="page">
+  <h1 class="m-4 mb-4">{{ "user.personal-details" | translate }}</h1>
+  <div class="container details-container p-4 ps-5 pe-5 mt-4">
+    <div class="pfp-container">
+      <img
+        class="pfp"
+        [src]="
+          user?.pfp
+            ? user?.pfp
+            : '../../../../../assets/images/profile-default-image.png'
+        "
+      />
+      <p class="text-center w-100 h5 mt-1">{{ user?.name }}</p>
+    </div>
+    <div class="data-container">
+      <div class="data-section">
+        <p class="me-3 data-title">
+          <i class="fa-solid fa-user"></i>
+          {{ "user.role" | translate }}:
+        </p>
+        <p class="data">
+          {{ user?.role }}
+        </p>
+      </div>
+      <div class="data-section">
+        <p class="me-3 data-title">
+          <i class="fa-solid fa-envelope"></i>
+          {{ "user.email" | translate }}:
+        </p>
+        <p class="data">
+          {{ user?.email }}
+        </p>
+      </div>
+      <div class="data-section">
+        <p class="me-3 data-title">
+          <i class="fa-solid fa-phone"></i>
+          {{ "user.phone" | translate }}:
+        </p>
+        <p class="data">
+          @if(user?.phone){
+          {{ user?.phone }}
+          } @else {
+          <span style="color: gray; font-style: italic">{{
+            "user.not-provided" | translate
+          }}</span>
+          }
+        </p>
+      </div>
+    </div>
+  </div>
+  @if(user?.role == "Employee"){ @if(services.length>0){
+  <h1 class="m-4 mb-4">{{ "service.services" | translate }}</h1>
+
+  <div class="rounded-4 shadow border overflow-hidden">
+    <table class="table table-striped table-bordered mb-0">
+      <thead>
+        <tr>
+          <th>{{ "shared.entity.id" | translate }}</th>
+          <th>{{ "service.title" | translate }}</th>
+          <th>{{ "service.details" | translate }}</th>
+          <th>{{ "service.price" | translate }}</th>
+          <th>{{ "shared.action.key-name" | translate }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for(service of services; let i = $index; track i) {
+        <tr>
+          <td>{{ service.id }}</td>
+          <td>{{ service.title }}</td>
+          <td>{{ service.details }}</td>
+          <td>{{ service.price }}</td>
+          <td>
+            <button class="details" (click)="showServiceDetails(service.id)">
+              <i class="bi bi-info-circle-fill h5"></i>
+            </button>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+  } @else{
+  <h3 class="text-center mt-5">Does Not Have Any Service Yet</h3>
+  } } @else if(user?.role == "Customer"){ @if( reservations.length>0){
+  <h1 class="m-4 mb-4">{{ "reservation.reservations" | translate }}</h1>
+  <div class="rounded-4 shadow border overflow-hidden">
+    <table class="table table-striped table-bordered mb-0">
+      <thead>
+        <tr>
+          <th>{{ "shared.entity.id" | translate }}</th>
+          <th>{{ "room.title" | translate }}</th>
+          <th>{{ "room.type" | translate }}</th>
+          <th>{{ "room.floor" | translate }}</th>
+          <th>{{ "room.price" | translate }}</th>
+          <th>{{ "shared.action.key-name" | translate }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for(reservation of reservations; let i = $index; track i) {
+        <tr>
+          <td>{{ reservation.id }}</td>
+          <td>{{ reservation.room.title }}</td>
+          <td>{{ reservation.room.roomType }}</td>
+          <td>{{ reservation.room.floor }}</td>
+          <td>{{ reservation.room.price }}</td>
+          <td>
+            <button
+              class="details"
+              (click)="showReservationDetails(reservation.id)"
+            >
+              <i class="bi bi-info-circle-fill h5"></i>
+            </button>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+  } @else{
+  <h3 class="text-center mt-5">Does Not Have Any Reservation Yet</h3>
+  } }
+  <button
+    class="mt-5 go-back-button btn-outline-primary rounded-2"
+    (click)="goBack()"
+  >
+    @if(lang == 'ar') {
+    <i class="fa-solid fa-arrow-right"></i>
+    } @else {
+    <i class="fa-solid fa-arrow-left"></i>
+    }
+    {{ "shared.action.go-back" | translate }}
+  </button>
+</div>

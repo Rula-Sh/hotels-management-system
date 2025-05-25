@@ -4,6 +4,7 @@
 </div>
 
 <div class="page">
+  @if(pendingReservations.length >0){
   <h1 class="m-4 mb-4">{{ "reservation.pending" | translate }}</h1>
   <div class="rounded-4 shadow border overflow-hidden mb-5">
     <table class="table table-striped table-bordered mb-0">
@@ -59,7 +60,9 @@
       </tbody>
     </table>
   </div>
-
+  } @else {
+  <h3 class="text-center mt-5">No Pending Appointments</h3>
+  } @if(activeReservations.length > 0){
   <h1 class="m-4 mb-4">{{ "reservation.active" | translate }}</h1>
   <div class="rounded-4 shadow border overflow-hidden">
     <table class="table table-striped table-bordered mb-0">
@@ -99,8 +102,10 @@
       </tbody>
     </table>
   </div>
+  } @else {
+  <h3 class="text-center">No Active Appointments</h3>
+  }
 </div>
-
 <p-toast />
 <p-confirmdialog #cd>
   <ng-template pTemplate="footer">

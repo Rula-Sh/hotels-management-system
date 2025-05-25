@@ -32,7 +32,15 @@
           <td>{{ user.id }}</td>
           <td>{{ user.name }}</td>
           <td>{{ user.email }}</td>
-          <td>{{ user.phone }}</td>
+          <td>
+            @if(user?.phone){
+            {{ user?.phone }}
+            } @else {
+            <span style="color: gray; font-style: italic">{{
+              "user.not-provided" | translate
+            }}</span>
+            }
+          </td>
           <td>{{ user.role }}</td>
           <td>
             <button
