@@ -119,15 +119,15 @@
   } @else{
   <h3 class="text-center mt-5">Does Not Have Any Reservation Yet</h3>
   } }
+  <button
+    class="mt-5 go-back-button btn-outline-primary rounded-2"
+    (click)="goBack()"
+  >
+    @if(lang == 'ar') {
+    <i class="fa-solid fa-arrow-right"></i>
+    } @else {
+    <i class="fa-solid fa-arrow-left"></i>
+    }
+    {{ "shared.action.go-back" | translate }}
+  </button>
 </div>
-<button
-  class="mt-4 go-back-button btn-outline-primary rounded-2"
-  (click)="goBack()"
->
-  @if(lang == 'ar') {
-  <i class="fa-solid fa-arrow-right"></i>
-  } @else {
-  <i class="fa-solid fa-arrow-left"></i>
-  }
-  {{ "shared.action.go-back" | translate }}
-</button>
