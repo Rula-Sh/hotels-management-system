@@ -29,7 +29,7 @@
   font-size: 20px;
 }
 .data {
-  width: 25%;
+  width: 80%;
   font-size: 20px;
 }
 
@@ -154,4 +154,8 @@ button {
   border: none;
   background-color: $color-dark-brown;
   color: white;
+}
+
+i {
+  color: $color-dark-brown;
 }

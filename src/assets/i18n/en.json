@@ -35,6 +35,7 @@
     "password-required": "Password is required",
     "password-min-length": "Password must be at least 6 characters long",
     "password-match": "Passwords do not match",
+    "add-phone": "Add phone number",
     "submit": "Submit",
     "cancel": "Cancel",
     "add-employee": "Add Employee",
