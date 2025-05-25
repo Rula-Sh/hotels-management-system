@@ -72,6 +72,9 @@
     "price": "Price"
   },
   "reservation": {
+    "reservations": "Reservations",
+    "pending": "Pending",
+    "active": " Active",
     "pending-reservations": "Pending Reservations",
     "active-reservations": "Active Reservations"
   },

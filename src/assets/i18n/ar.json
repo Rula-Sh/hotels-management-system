@@ -72,6 +72,9 @@
     "price": "السعر"
   },
   "reservation": {
+    "reservations": "الحجوزات",
+    "pending": "المعلقة",
+    "active": " النشطة",
     "pending-reservations": "الحجوزات المعلقة",
     "active-reservations": "الحجوزات النشطة"
   },

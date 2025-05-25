@@ -1,6 +1,12 @@
 <div class="page">
   <div class="d-flex flex-row justify-content-between">
-    <h1 class="m-4 mb-4">{{ "user.roles.users" | translate }}</h1>
+    <h1 class="m-4 mb-4">
+      {{ "user.roles.users" | translate }}
+      <img
+        class="fill-icon"
+        src="/assets/images/manage-users-brown-filled-icon.png"
+      />
+    </h1>
     <button class="btn btn-primary m-4" (click)="AddEmployee()">
       <i class="bi bi-person-plus-fill h4 m-1 align-middle"></i>
       <span class="m-1 align-middle">{{
