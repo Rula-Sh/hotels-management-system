@@ -94,6 +94,7 @@ export class ReservationsComponent {
   }
 
   ApproveReservationRequest(id: string, reservation: Reservation) {
+    reservation.approvalStatus = 'Approved';
     this.ReservationService.ApproveReservationRequest(
       id,
       reservation
@@ -119,6 +120,7 @@ export class ReservationsComponent {
   }
 
   RejectReservationRequest(id: string, reservation: Reservation) {
+    reservation.approvalStatus = 'Rejected';
     this.confirmationService.confirm({
       message: 'Are you sure you want to reject this reservation?',
       header: 'Reject Reservation',
