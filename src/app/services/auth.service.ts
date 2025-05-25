@@ -24,6 +24,7 @@ export class AuthService {
     localStorage.setItem('name', user.name);
     localStorage.setItem('email', user.email);
     localStorage.setItem('user_role', user.role);
+    localStorage.setItem('pfp', user.pfp ?? '');
     this.loggedInSubject.next(true);
   }
 
@@ -33,6 +34,7 @@ export class AuthService {
     localStorage.removeItem('name');
     localStorage.removeItem('email');
     localStorage.removeItem('user_role');
+    localStorage.removeItem('pfp');
     this.loggedInSubject.next(false);
   }
 

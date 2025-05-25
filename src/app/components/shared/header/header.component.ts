@@ -26,6 +26,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   userId: string | null = null;
   name: string | null = null;
   role: string | null = null;
+  pfp: string | null = null;
+  isMenuOpen = false;
 
   constructor(
     private authService: AuthService,
@@ -41,12 +43,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.userId = localStorage.getItem('id');
     this.name = localStorage.getItem('name');
     this.role = localStorage.getItem('user_role');
+    this.pfp = localStorage.getItem('pfp');
   }
 
   ngDoCheck() {
     this.userId = localStorage.getItem('id');
-    this.name = localStorage.getItem('username');
+    this.name = localStorage.getItem('name');
     this.role = localStorage.getItem('user_role');
+    this.pfp = localStorage.getItem('pfp');
   }
 
   logout() {
