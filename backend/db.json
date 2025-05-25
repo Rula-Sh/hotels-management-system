@@ -72,11 +72,58 @@
       "role": "Employee"
     },
     {
-      "id": "123",
+      "id": "u3",
       "name": "admin",
       "email": "admin@gmail.com",
       "password": "IVEyM3dld2U=",
       "role": "Admin"
+    }
+  ],
+  "reservations": [
+    {
+      "id": "res1",
+      "roomId": "r1",
+      "date": "2025-06-01T14:00:00.000Z",
+      "customerId": "u1",
+      "approvalStatus": "Pending",
+      "paymentStatus": "Unpaid",
+      "paymentAmmount": 120
+    },
+    {
+      "id": "res2",
+      "roomId": "r2",
+      "date": "2025-06-03T16:30:00.000Z",
+      "customerId": "u1",
+      "approvalStatus": "Approved",
+      "paymentStatus": "Paid",
+      "paymentAmmount": 200
+    },
+    {
+      "id": "res3",
+      "roomId": "r1",
+      "date": "2025-06-05T10:00:00.000Z",
+      "customerId": "u2",
+      "approvalStatus": "Rejected",
+      "paymentStatus": "Unpaid",
+      "paymentAmmount": 150
+    },
+    {
+      "id": "res4",
+      "roomId": "r2",
+      "date": "2025-06-07T12:00:00.000Z",
+      "customerId": "u1",
+      "approvalStatus": "Approved",
+      "paymentStatus": "Paid",
+      "paymentAmmount": 180
+    },
+    {
+      "id": "res5",
+      "roomId": "r1",
+      "date": "2025-06-10T09:00:00.000Z",
+      "customerId": "u2",
+      "approvalStatus": "Pending",
+      "paymentStatus": "Unpaid",
+      "paymentAmmount": 100
     }
   ]
 }
