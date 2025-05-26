@@ -69,11 +69,22 @@
     "add-room": "Add Room",
     "title": "Title",
     "type": "Type",
+    "room": "Room",
+    "hall": "Hall",
     "floor": "Floor",
     "hotel": "Hotel",
     "details": "Details",
     "booked-status": "Status",
-    "price": "Price"
+    "price": "Price",
+    "image-url": "Image URL",
+    "title-required": "Title is required",
+    "type-required": "Room Type is required",
+    "floor-required": "Floor is required",
+    "hotel-required": "Hotel is required",
+    "details-required": "Details is required",
+    "price-required": "Price is required",
+    "image-url-required": "Image URL is required",
+    "submit": "Submit"
   },
   "reservation": {
     "reservations": "Reservations",
