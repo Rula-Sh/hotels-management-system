@@ -45,15 +45,15 @@
       "imageUrl": "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748011951/Sofitel-Dubai-Wafi-Luxury-Room-Bedroom-Skyline-View-Image1_WEB_mal8fr.jpg"
     },
     {
-      "id": "r2",
-      "title": "Conference Hall A",
-      "roomType": "Hall",
-      "floor": 1,
-      "hotel": "Sunrise Inn",
-      "details": "Spacious hall for events.",
-      "bookedStatus": "Booked",
-      "price": 300,
-      "imageUrl": "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748011951/Sofitel-Dubai-Wafi-Luxury-Room-Bedroom-Skyline-View-Image1_WEB_mal8fr.jpg"
+      "id": "84ca",
+      "title": "qwe",
+      "roomType": "Room",
+      "floor": 2321,
+      "hotel": "123",
+      "details": "123",
+      "bookedStatus": "Available",
+      "price": 123,
+      "imageUrl": "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748011951/140127103345-peninsula-shanghai-deluxe-mock-up_oatn0j.jpg"
     }
   ],
   "users": [

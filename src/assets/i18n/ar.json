@@ -69,11 +69,22 @@
     "add-room": "إضافة غرفة",
     "title": "العنوان",
     "type": "النوع",
+    "room": "غرفة",
+    "hall": "قاعة",
     "floor": "الطابق",
     "hotel": "الفندق",
     "details": "النفاصيل",
     "booked-status": "الحالة",
-    "price": "السعر"
+    "price": "السعر",
+    "image-url": "رابط الصورة",
+    "title-required": "العنوان مطلوب",
+    "type-required": "نوع الغرفة مطلوب",
+    "floor-required": "الطابق مطلوب",
+    "hotel-required": "الفندق مطلوب",
+    "details-required": "التفاصيل مطلوبة",
+    "price-required": "السعر مطلوب",
+    "image-url-required": "رابط الصورة مطلوب",
+    "submit": "إضافة"
   },
   "reservation": {
     "reservations": "الحجوزات",

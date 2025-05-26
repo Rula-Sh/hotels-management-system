@@ -1,1 +1,257 @@
-<p>add-room works!</p>
+<div class="page">
+  <h1 class="m-4 mb-4">{{ "room.add-room" | translate }}</h1>
+  <div class="center-wrapper">
+    <form class="container p-4" [formGroup]="roomForm" (ngSubmit)="addRoom()">
+      <div class="input-container">
+        <label for="title"> {{ "room.title" | translate }}:</label>
+        <div class="input-error">
+          <div class="input-group" [ngClass]="{ 'right-input': lang == 'ar' }">
+            <div class="align-self-center">
+              <span
+                class="input-group-text align-self-center bg-white"
+                id="basic-addon1"
+                ><i class="fa-solid fa-t"></i>
+              </span>
+            </div>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Title"
+              aria-label="Title"
+              [placeholder]="'room.title' | translate"
+              formControlName="title"
+              required
+            />
+          </div>
+          <div
+            class="error"
+            *ngIf="
+              roomForm.get('title')?.invalid && roomForm.get('title')?.touched
+            "
+          >
+            {{ "room.title-required" | translate }}
+          </div>
+        </div>
+      </div>
+      <div class="input-container">
+        <label for="roomType"> {{ "room.type" | translate }}:</label>
+        <div class="input-error">
+          <div class="input-group" [ngClass]="{ 'right-input': lang == 'ar' }">
+            <div class="align-self-center">
+              <span
+                class="input-group-text align-self-center bg-white"
+                id="basic-addon1"
+                ><i class="fa-solid fa-door-closed"></i>
+              </span>
+            </div>
+            <div
+              class="form-control radio-container d-flex justify-content-around"
+            >
+              <label class="radio-label">
+                <input
+                  class="radio-input"
+                  type="radio"
+                  value="Room"
+                  formControlName="roomType"
+                />
+                <span>{{ "room.room" | translate }}</span>
+              </label>
+              <label class="radio-label">
+                <input
+                  class="radio-input"
+                  type="radio"
+                  value="Hall"
+                  formControlName="roomType"
+                />
+                <span>{{ "room.hall" | translate }}</span>
+              </label>
+            </div>
+          </div>
+          <div
+            class="error"
+            *ngIf="
+              roomForm.get('roomType')?.invalid &&
+              roomForm.get('roomType')?.touched
+            "
+          >
+            {{ "room.type-required" | translate }}
+          </div>
+        </div>
+      </div>
+      <div class="input-container">
+        <label for="floor"> {{ "room.floor" | translate }}:</label>
+        <div class="input-error">
+          <div class="input-group" [ngClass]="{ 'right-input': lang == 'ar' }">
+            <div class="align-self-center">
+              <span
+                class="input-group-text align-self-center bg-white"
+                id="basic-addon1"
+                ><i class="fa-solid fa-layer-group"></i>
+              </span>
+            </div>
+            <input
+              type="number"
+              class="form-control"
+              placeholder="Floor"
+              aria-label="Floor"
+              [placeholder]="'room.floor' | translate"
+              formControlName="floor"
+              required
+              maxlength="2"
+            />
+          </div>
+          <div
+            class="error"
+            *ngIf="
+              roomForm.get('floor')?.invalid && roomForm.get('floor')?.touched
+            "
+          >
+            {{ "room.floor-required" | translate }}
+          </div>
+        </div>
+      </div>
+
+      <div class="input-container">
+        <label for="hotel"> {{ "room.hotel" | translate }}:</label>
+        <div class="input-error">
+          <div class="input-group" [ngClass]="{ 'right-input': lang == 'ar' }">
+            <div class="align-self-center">
+              <span
+                class="input-group-text align-self-center bg-white"
+                id="basic-addon1"
+                ><i class="fa-solid fa-hotel"></i>
+              </span>
+            </div>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Hotel"
+              aria-label="Hotel"
+              [placeholder]="'room.hotel' | translate"
+              formControlName="hotel"
+              required
+            />
+          </div>
+          <div
+            class="error"
+            *ngIf="
+              roomForm.get('hotel')?.invalid && roomForm.get('hotel')?.touched
+            "
+          >
+            {{ "room.hotel-required" | translate }}
+          </div>
+        </div>
+      </div>
+
+      <div class="input-container">
+        <label for="details"> {{ "room.details" | translate }}:</label>
+        <div class="input-error">
+          <div class="input-group" [ngClass]="{ 'right-input': lang == 'ar' }">
+            <div class="align-self-center">
+              <span
+                class="input-group-text align-self-center bg-white"
+                id="basic-addon1"
+                ><i class="fa-solid fa-circle-info"></i>
+              </span>
+            </div>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Details"
+              aria-label="Details"
+              [placeholder]="'room.details' | translate"
+              formControlName="details"
+              required
+            />
+          </div>
+          <div
+            class="error"
+            *ngIf="
+              roomForm.get('details')?.invalid &&
+              roomForm.get('details')?.touched
+            "
+          >
+            {{ "room.details-required" | translate }}
+          </div>
+        </div>
+      </div>
+
+      <div class="input-container">
+        <label for="price"> {{ "room.price" | translate }}:</label>
+        <div class="input-error">
+          <div class="input-group" [ngClass]="{ 'right-input': lang == 'ar' }">
+            <div class="align-self-center">
+              <span
+                class="input-group-text align-self-center bg-white"
+                id="basic-addon1"
+                ><i class="fa-solid fa-dollar-sign"></i>
+              </span>
+            </div>
+            <input
+              type="number"
+              class="form-control"
+              placeholder="Price"
+              aria-label="Price"
+              [placeholder]="'room.price' | translate"
+              formControlName="price"
+              required
+            />
+          </div>
+          <div
+            class="error"
+            *ngIf="
+              roomForm.get('price')?.invalid && roomForm.get('price')?.touched
+            "
+          >
+            {{ "room.price-required" | translate }}
+          </div>
+        </div>
+      </div>
+
+      <div class="input-container">
+        <label for="imageUrl"> {{ "room.image-url" | translate }}:</label>
+        <div class="input-error">
+          <div class="input-group" [ngClass]="{ 'right-input': lang == 'ar' }">
+            <div class="align-self-center">
+              <span
+                class="input-group-text align-self-center bg-white"
+                id="basic-addon1"
+                ><i class="fa-solid fa-image"></i>
+              </span>
+            </div>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Image URL"
+              aria-label="Image URL"
+              [placeholder]="'room.image-url' | translate"
+              formControlName="imageUrl"
+              required
+            />
+          </div>
+          <div
+            class="error"
+            *ngIf="
+              roomForm.get('imageUrl')?.invalid &&
+              roomForm.get('imageUrl')?.touched
+            "
+          >
+            {{ "room.image-url-required" | translate }}
+          </div>
+        </div>
+      </div>
+      <button class="mt-4 btn-submit">
+        {{ "room.submit" | translate }}
+      </button>
+    </form>
+  </div>
+
+  <button class="mt-4 ms-4 btn-outline-primary rounded-2" (click)="goBack()">
+    @if(lang == 'ar') {
+    <i class="fa-solid fa-arrow-right"></i>
+    } @else {
+    <i class="fa-solid fa-arrow-left"></i>
+    }
+    {{ "shared.action.go-back" | translate }}
+  </button>
+</div>
