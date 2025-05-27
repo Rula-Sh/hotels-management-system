@@ -214,13 +214,17 @@
           </div>
         </div>
       </div>
-      <button class="mt-4 btn-submit">
+      <button class="mt-4 btn-submit" [title]="'profile.submit' | translate">
         {{ "profile.submit" | translate }}
       </button>
     </form>
   </div>
 
-  <button class="mt-4 ms-4 btn-outline-primary rounded-2" (click)="goBack()">
+  <button
+    class="mt-4 ms-4 btn-outline-primary rounded-2"
+    (click)="goBack()"
+    [title]="'shared.action.go-back' | translate"
+  >
     @if(lang == 'ar') {
     <i class="fa-solid fa-arrow-right"></i>
     } @else {

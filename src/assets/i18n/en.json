@@ -4,6 +4,7 @@
   },
   "header": {
     "auth": {
+      "profile": "Profile",
       "welcome": "Welcome",
       "login": "Login",
       "logout": "Logout",
@@ -86,6 +87,9 @@
     "price-required": "Price is required",
     "location-required": "Loaction is required",
     "image-url-required": "Image URL is required",
+    "room-details": "Room Details",
+    "room-image": "Room Image",
+    "delete-room": "Delete Room",
     "submit": "Submit"
   },
   "reservation": {
@@ -93,13 +97,17 @@
     "pending": "Pending",
     "active": " Active",
     "pending-reservations": "Pending Reservations",
-    "active-reservations": "Active Reservations"
+    "active-reservations": "Active Reservations",
+    "reservation-details": "Reservation Details",
+    "approve-reservation": "Approve Reservation",
+    "reject-reservation": "Reject Reservation"
   },
   "service": {
     "services": "Services",
     "title": "Title",
     "details": "Details",
-    "price": "Price"
+    "price": "Price",
+    "service-details": "Service Details"
   },
   "footer": {
     "english": "English",
@@ -134,6 +142,7 @@
       "details": "Details",
       "approve": "Approve",
       "reject": "Reject",
+      "submit": "Submit",
       "go-back": "Go Back"
     }
   }

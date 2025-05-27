@@ -3,7 +3,11 @@
     {{ "room.rooms" | translate }}
     <img src="/assets/images/bed-brown-filled-icon.png" />
   </h1>
-  <button class="btn btn-primary" (click)="AddRoom()">
+  <button
+    class="btn btn-primary"
+    (click)="AddRoom()"
+    [title]="'room.add-room' | translate"
+  >
     <i class="bi bi-house-add-fill h4 m-1 align-middle"></i>
     <span class="m-1 align-middle">{{ "room.add-room" | translate }}</span>
   </button>
@@ -16,10 +20,12 @@
     <i
       class="delete-icon bi bi-trash-fill h4"
       (click)="deleteRoom(room.id)"
+      [title]="'room.delete-room' | translate"
     ></i>
     <i
       class="info-icon bi bi-info-circle-fill h5"
       (click)="showRoomDetails(room.id)"
+      [title]="'room.room-details' | translate"
     ></i>
     }
     <img

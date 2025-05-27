@@ -1,6 +1,5 @@
 <header>
   <div class="header-container">
-    
     <a
       class="logo"
       [routerLink]="''"
@@ -18,21 +17,41 @@
     <nav [class.open]="isMenuOpen">
       <div class="nav-left">
         @if(role == 'Admin'){
-        <a [routerLink]="'/admin/manage-users'" routerLinkActive="active-link">
+        <a
+          [routerLink]="'/admin/manage-users'"
+          routerLinkActive="active-link"
+          [title]="'header.admin.manage-users' | translate"
+        >
           {{ "header.admin.manage-users" | translate }}
         </a>
-        <a [routerLink]="'/rooms'" routerLinkActive="active-link">
+        <a
+          [routerLink]="'/rooms'"
+          routerLinkActive="active-link"
+          [title]="'header.admin.rooms' | translate"
+        >
           {{ "header.admin.rooms" | translate }}
         </a>
-        <a [routerLink]="'/admin/reservations'" routerLinkActive="active-link">
+        <a
+          [routerLink]="'/admin/reservations'"
+          routerLinkActive="active-link"
+          [title]="'header.admin.reservations' | translate"
+        >
           {{ "header.admin.reservations" | translate }}
         </a>
         } @if(role == 'Customer'){
-       
-        <a [routerLink]="'/available-services'" routerLinkActive="active-link">
+
+        <a
+          [routerLink]="'/available-services'"
+          routerLinkActive="active-link"
+          [title]="'header.customer.available-services' | translate"
+        >
           {{ "header.customer.available-services" | translate }}
-        </a> 
-        <a [routerLink]="'/my-reservations'" routerLinkActive="active-link">
+        </a>
+        <a
+          [routerLink]="'/my-reservations'"
+          routerLinkActive="active-link"
+          [title]="'header.customer.my-reservations' | translate"
+        >
           {{ "header.customer.my-reservations" | translate }}
         </a>
         }
@@ -40,7 +59,11 @@
 
       <div class="nav-right">
         @if(isLoggedIn){
-        <a [routerLink]="'/profile/' + userId" (click)="goToProfile(userId!)">
+        <a
+          [routerLink]="'/profile/' + userId"
+          (click)="goToProfile(userId!)"
+          [title]="'header.auth.profile' | translate"
+        >
           <img
             class="pfp"
             [src]="
@@ -51,18 +74,22 @@
           />
           {{ name }}
         </a>
-       
-        <a [routerLink]="'/login'" (click)="logout()">
+
+        <a
+          [routerLink]="'/login'"
+          (click)="logout()"
+          [title]="'header.auth.logout' | translate"
+        >
           {{ "header.auth.logout" | translate }}
           <i class="fa-solid fa-arrow-right-from-bracket"></i>
         </a>
         } @else{
-        <a [routerLink]="'/login'">
+        <a [routerLink]="'/login'" [title]="'header.auth.login' | translate">
           {{ "header.auth.login" | translate }}
           <i class="fill-icon fa-solid fa-arrow-right-to-bracket fa-lg"></i>
           <!-- <img src="/assets/images/login-linear-icon.webp" alt="login icon" /> -->
         </a>
-        <a [routerLink]="'/signup'">
+        <a [routerLink]="'/signup'" [title]="'header.auth.register' | translate">
           {{ "header.auth.register" | translate }}
           <img class="fill-icon" src="/assets/images/sign-up-filled-icon.png" />
           <!-- <img src="/assets/images/logout-linear-icon.webp" alt="logout icon" /> -->

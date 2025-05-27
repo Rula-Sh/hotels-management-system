@@ -7,7 +7,11 @@
         src="/assets/images/manage-users-brown-filled-icon.png"
       />
     </h1>
-    <button class="btn btn-primary m-4" (click)="AddEmployee()">
+    <button
+      class="btn btn-primary m-4"
+      (click)="AddEmployee()"
+      [title]="'user.add-employee' | translate"
+    >
       <i class="bi bi-person-plus-fill h4 m-1 align-middle"></i>
       <span class="m-1 align-middle">{{
         "user.add-employee" | translate
@@ -47,7 +51,10 @@
               class="details action-btn"
               (click)="ShowUserProfile(user.id)"
             >
-              <i class="bi bi-person-lines-fill h5"></i>
+              <i
+                class="bi bi-person-lines-fill h5"
+                [title]="'user.user-details' | translate"
+              ></i>
             </button>
           </td>
         </tr>

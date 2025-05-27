@@ -34,7 +34,10 @@
               (click)="showReservationDetails(reservation.id)"
             >
               <!-- <i class="bi bi-info-circle h5"></i> -->
-              <i class="bi bi-info-circle-fill h5"></i>
+              <i
+                class="bi bi-info-circle-fill h5"
+                [title]="'reservation.reservation-details' | translate"
+              ></i>
               <!-- {{ "shared.action.details" | translate }} -->
             </button>
             <button
@@ -42,7 +45,10 @@
               (click)="ApproveReservationRequest(reservation.id, reservation)"
             >
               <!-- <i class="bi bi-check-circle h5"></i> -->
-              <i class="bi bi-check-circle-fill h5"></i>
+              <i
+                class="bi bi-check-circle-fill h5"
+                [title]="'reservation.approve-reservation' | translate"
+              ></i>
               <!-- {{ "shared.action.approve" | translate }} -->
             </button>
             <button
@@ -50,7 +56,10 @@
               (click)="RejectReservationRequest(reservation.id, reservation)"
             >
               <!-- <i class="bi bi-x-circle-fill h5"></i> -->
-              <i class="bi bi-x-circle-fill h5"></i>
+              <i
+                class="bi bi-x-circle-fill h5"
+                [title]="'reservation.reject-reservation' | translate"
+              ></i>
               <!-- {{ "shared.action.reject" | translate }} -->
             </button>
           </td>
@@ -92,7 +101,10 @@
               (click)="showReservationDetails(reservation.id)"
             >
               <!-- <i class="bi bi-info-circle h5"></i> -->
-              <i class="bi bi-info-circle-fill h5"></i>
+              <i
+                class="bi bi-info-circle-fill h5"
+                [title]="'reservation.reservation-details' | translate"
+              ></i>
               <!-- {{ "shared.action.details" | translate }} -->
             </button>
           </td>
