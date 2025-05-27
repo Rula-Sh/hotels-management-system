@@ -1,5 +1,6 @@
 <header>
   <div class="header-container">
+    
     <a
       class="logo"
       [routerLink]="''"
@@ -27,11 +28,12 @@
           {{ "header.admin.reservations" | translate }}
         </a>
         } @if(role == 'Customer'){
-        <a [routerLink]="'/my-reservations'" routerLinkActive="active-link">
-          {{ "header.customer.my-reservations" | translate }}
-        </a>
+       
         <a [routerLink]="'/available-services'" routerLinkActive="active-link">
           {{ "header.customer.available-services" | translate }}
+        </a> 
+        <a [routerLink]="'/my-reservations'" routerLinkActive="active-link">
+          {{ "header.customer.my-reservations" | translate }}
         </a>
         }
       </div>
@@ -49,6 +51,7 @@
           />
           {{ name }}
         </a>
+       
         <a [routerLink]="'/login'" (click)="logout()">
           {{ "header.auth.logout" | translate }}
           <i class="fa-solid fa-arrow-right-from-bracket"></i>

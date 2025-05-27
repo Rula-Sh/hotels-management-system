@@ -62,4 +62,8 @@ export class ReservationService {
   cancelReservation(id: string): Observable<void> {
     return this.api.delete<void>(`${this.url}/reservations/${id}`);
   }
+  createReservation(reservation: Reservation): Observable<Reservation> {
+  return this.api.post<Reservation>(`${this.url}/reservations`, reservation);
+}
+
 }

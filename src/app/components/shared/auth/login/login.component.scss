@@ -2,11 +2,12 @@
 
 .login-container {
   max-width: 400px;
-  margin: 4rem auto;
-  padding: 2rem;
+  margin: 6rem auto; // لترك مساحة من الأعلى مثل sign up
+  padding: 2rem 2.5rem;
   border-radius: 1rem;
-  background: #ffffff;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 
   h2 {
     text-align: center;
@@ -26,13 +27,11 @@
 
     input {
       width: 100%;
-      padding: 0.7rem 1rem;
+      padding: 0.6rem;
       border: 1px solid #ccc;
-      border-radius: 0.5rem;
-      font-size: 1rem;
+      border-radius: 8px;
       transition: border-color 0.3s;
-      background-color: white;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1rem;
 
       &:focus {
         border-color: $color-dark-brown;
@@ -42,10 +41,19 @@
 
     small {
       color: red;
-      font-size: 0.8rem;
+      font-size: 0.75rem;
+    }
+
+    button {
+      margin-top: 1rem;
     }
   }
+
   a {
     color: $color-dark-brown;
+    text-align: center;
+    display: block;
+    margin-top: 1rem;
   }
 }
+

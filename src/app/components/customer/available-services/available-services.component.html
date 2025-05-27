@@ -1,1 +1,21 @@
-<p>available-services works!</p>
+
+<div class="services-container" *ngIf="services.length > 0; else noServices">
+  <div class="service-card" *ngFor="let service of services">
+    <h3>{{ service.title }}</h3>
+    <p><strong>Details:</strong> {{ service.details }}</p>
+    <p><strong>Price:</strong> ${{ service.price }}</p>
+
+    <div class="employee-info">
+      <h4>Provided by:</h4>
+      <p><strong>Name:</strong> {{ service.employee.name }}</p>
+      <p><strong>Email:</strong> {{ service.employee.email }}</p>
+      <p><strong>Phone:</strong> {{ service.employee.phone }}</p>
+    </div>
+
+    <button class="btn-primary ">Request Service</button>
+  </div>
+</div>
+
+<ng-template #noServices>
+  <p>No available services at the moment.</p>
+</ng-template>

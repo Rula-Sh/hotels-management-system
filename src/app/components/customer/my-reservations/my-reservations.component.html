@@ -1,1 +1,51 @@
-<p>my-reservations works!</p>
+
+<div class="container mt-4">
+  <h2 class="text-center mb-4">My Reservations</h2>
+
+  <div *ngIf="reservations.length > 0; else noReservations">
+    <div class="card mb-3" *ngFor="let reservation of reservations">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <img
+            [src]="reservation.room.imageUrl"
+            class="img-fluid rounded-start"
+            alt="Room Image"
+          />
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">{{ reservation.room.title }}</h5>
+            <p class="card-text">
+              <strong>Type:</strong> {{ reservation.room.roomType }}<br />
+              <strong>Hotel:</strong> {{ reservation.room.hotel }}<br />
+              <strong>Date:</strong> {{ reservation.date | date: 'mediumDate' }}<br />
+              <strong>Payment:</strong> {{ reservation.paymentAmount | currency:'USD' }} ({{ reservation.paymentStatus }})<br />
+              <strong>Status:</strong>
+              <span
+                [ngClass]="{
+                  'text-warning': reservation.approvalStatus === 'Pending',
+                  'text-success': reservation.approvalStatus === 'Approved',
+                  'text-danger': reservation.approvalStatus === 'Rejected'
+                }"
+              >
+                {{ reservation.approvalStatus }}
+              </span>
+            </p>
+            <!-- Optional Cancel Button -->
+            <button
+              class="btn btn-danger btn-sm"
+              (click)="cancelReservation(reservation.id)"
+              *ngIf="reservation.approvalStatus !== 'Approved'"
+            >
+              Cancel Reservation
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noReservations>
+    <div class="alert alert-info text-center">You have no reservations.</div>
+  </ng-template>
+</div>

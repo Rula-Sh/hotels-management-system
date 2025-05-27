@@ -1,0 +1,61 @@
+@import "../../../../styles/variables.scss";
+.services-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+.service-card {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: translateY(-6px);
+  }
+
+  h3 {
+    margin-bottom: 0.5rem;
+    color: $color-dark-brown;
+  }
+
+  .employee-info {
+    margin-top: 1rem;
+    background-color: #f5f7fa;
+    padding: 1rem;
+    border-radius: 10px;
+
+    h4 {
+      margin-bottom: 0.5rem;
+      font-size: 1rem;
+      color: #333;
+    }
+
+    p {
+      margin: 0.25rem 0;
+    }
+  }
+
+  .book-btn {
+    margin-top: 1.5rem;
+    align-self: center;
+    background-color: #2a5298;
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: #1f3b73;
+    }
+  }
+}

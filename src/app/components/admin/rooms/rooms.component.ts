@@ -9,7 +9,10 @@ import { Room } from '../../../models/Room.model';
 import { RoomService } from '../../../services/room.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
-
+import { ReservationService } from '../../../services/reservation.service';
+import { Reservation } from '../../../models/Reservation.model';
+import { User } from '../../../models/User.model';
+import { NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-rooms',
   imports: [
@@ -18,25 +21,40 @@ import { AuthService } from '../../../services/auth.service';
     ConfirmDialogModule,
     CommonModule,
     ButtonModule,
+    NgbToastModule,
   ],
   providers: [MessageService, ConfirmationService, PrimeIcons],
   templateUrl: './rooms.component.html',
   styleUrl: './rooms.component.scss',
 })
 export class RoomsComponent {
+  showToast = false;
+  toastMessage = '';
+  toastHeader = '';
+  toastClass = '';
   rooms: Room[] = [];
-
+  user: User | null = null;
   constructor(
     private roomService: RoomService,
     private router: Router,
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
+    private reservationService: ReservationService,
+    private authService: AuthService
   ) {}
 
   role: string | null = null;
   ngOnInit() {
     this.getRooms();
     this.role = localStorage.getItem('user_role');
+    // fetch current user
+    if (this.authService) {
+      try {
+        this.user = this.authService.getCurrentUser();
+      } catch {
+        this.user = null;
+      }
+    }
   }
 
   getRooms() {
@@ -81,4 +99,47 @@ export class RoomsComponent {
       reject: () => {},
     });
   }
-}
+
+ bookRoom(room: Room) {
+  this.showToast = false;
+  const user = this.authService.getCurrentUser();
+
+  if (!user) {
+    this.toastMessage = 'Please login first.';
+    this.toastClass = 'bg-warning text-dark';
+    this.showToast = true;
+    return;
+  }
+
+  const reservation: Reservation = {
+    id: '', // json-server will auto-generate it
+    customer: user,
+    customerId: user.id,
+    roomId: room.id,
+    room: room,
+    date: new Date(),
+    paymentAmount: room.price,
+    paymentStatus: 'Unpaid',
+    approvalStatus: 'Pending',
+  };
+
+  this.reservationService.createReservation(reservation).subscribe({
+    next: () => {
+      this.toastMessage = `Room "${room.title}" booked! Waiting for admin approval.`;
+      this.toastClass = 'bg-success text-light';
+      this.showToast = true;
+      
+      room.bookedStatus = 'Booked';
+
+      // Hide toast after few seconds
+      setTimeout(() => {
+        this.showToast = false;
+      }, 3000);
+    },
+    error: () => {
+      this.toastMessage = 'Booking failed. Please try again later.';
+      this.toastClass = 'bg-danger text-light';
+      this.showToast = true;
+    }
+  });
+}}

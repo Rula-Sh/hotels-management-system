@@ -3,11 +3,13 @@
 :host {
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 75%;
+  align-items: flex-start; 
+  padding-top: 6rem; 
+  min-height: 100vh;
   background: linear-gradient(to right, #fbebd4);
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
+
 
 form {
   background-color: #fff;
