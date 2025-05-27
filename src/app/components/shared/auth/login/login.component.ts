@@ -80,7 +80,7 @@ export class LoginComponent {
       this.toastClass = 'bg-success text-white';
       this.showToast = true;
       this.authService.login(user);
-      localStorage.setItem('user_id', user.id.toString());
+      localStorage.setItem('id', user.id.toString());
       setTimeout(() => {
         this.showToast = false;
         this.router.navigate(['/']);

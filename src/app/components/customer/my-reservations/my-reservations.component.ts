@@ -15,7 +15,7 @@ export class MyReservationsComponent implements OnInit {
   reservations: Reservation[] = [];
 
   ngOnInit(): void {
-    const userId = localStorage.getItem('user_id');
+    const userId = localStorage.getItem('id');
     if (userId) {
       this.reservationService.getReservationsByCustomerId(userId).subscribe({
         next: (res) => (this.reservations = res),
