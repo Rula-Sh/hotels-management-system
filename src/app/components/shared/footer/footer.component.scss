@@ -14,10 +14,12 @@ footer {
 
 a {
   text-decoration: none;
+  padding: 0px;
+  margin: 0px;
   cursor: pointer;
 }
 
-img {
-  width: 25px;
-  padding: 0px;
+i {
+  align-self: center;
+  color: $color-dark-brown;
 }

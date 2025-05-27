@@ -2,17 +2,20 @@
   <a
     (click)="changeLanguage('en')"
     [class]="
-      lang == 'en' ? 'text-bold h5 text-black text-decoration-underline' : 'text-black pb-2'
+      lang == 'en'
+        ? 'text-bold h5 text-black text-decoration-underline'
+        : 'text-black'
     "
   >
     {{ "footer.english" | translate }}</a
   >
-
-  <img class="ms-3 me-3" src="/assets/images/star-icon.png" alt="star icon" />
+  <i class="ms-3 me-3 fa-solid fa-star fa-xl"></i>
   <a
     (click)="changeLanguage('ar')"
     [class]="
-      lang == 'en' ? 'text-black pb-2' : 'text-bold h5 text-black text-decoration-underline'
+      lang == 'en'
+        ? 'text-black'
+        : 'text-bold h5 text-black text-decoration-underline'
     "
   >
     {{ "footer.arabic" | translate }}</a
