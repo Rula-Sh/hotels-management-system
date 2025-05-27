@@ -85,9 +85,7 @@
       "role": "Employee",
       "pfp": "",
       "jobTitle": "Massage Therapist",
-      "services": [
-        "svc3"
-      ]
+      "services": ["svc3"]
     },
     {
       "id": "1959",
@@ -180,7 +178,7 @@
       "employeeId": "emp1",
       "title": "Hair Coloring",
       "details": "Professional hair coloring service.",
-      "price": 60.0,
+      "price": 60,
       "employee": {
         "id": "emp1",
         "name": "Alice Johnson",
@@ -193,7 +191,7 @@
       "employeeId": "emp2",
       "title": "Swedish Massage",
       "details": "Relaxing full-body Swedish massage.",
-      "price": 80.0,
+      "price": 80,
       "employee": {
         "id": "emp2",
         "name": "Bob Smith",
