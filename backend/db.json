@@ -7,7 +7,7 @@
       "floor": 2,
       "hotel": "Sunrise Inn",
       "details": "A deluxe room with sea view.",
-      "bookedStatus": "Available",
+      "bookedStatus": "Pending",
       "price": 120,
       "imagesUrl": [
         "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748011951/SuiteNov2022_0008_1920_hhykez.jpg",
@@ -22,7 +22,7 @@
       "floor": 1,
       "hotel": "Sunrise Inn",
       "details": "Spacious hall for events.",
-      "bookedStatus": "Booked",
+      "bookedStatus": "Available",
       "price": 300,
       "imagesUrl": [
         "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748011951/Sofitel-Dubai-Wafi-Luxury-Room-Bedroom-Skyline-View-Image1_WEB_mal8fr.jpg"
@@ -35,7 +35,7 @@
       "floor": 2321,
       "hotel": "123",
       "details": "123",
-      "bookedStatus": "Available",
+      "bookedStatus": "Pending",
       "price": 123,
       "imagesUrl": [
         "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748011951/140127103345-peninsula-shanghai-deluxe-mock-up_oatn0j.jpg"
@@ -74,7 +74,10 @@
       "role": "Employee",
       "pfp": "",
       "jobTitle": "Hair Stylist",
-      "services": ["svc1", "svc2"]
+      "services": [
+        "svc1",
+        "svc2"
+      ]
     },
     {
       "id": "emp2",
@@ -85,7 +88,9 @@
       "role": "Employee",
       "pfp": "",
       "jobTitle": "Massage Therapist",
-      "services": ["svc3"]
+      "services": [
+        "svc3"
+      ]
     },
     {
       "id": "1959",
@@ -157,6 +162,36 @@
         "phone": "1234567890",
         "role": "Employee"
       }
+    },
+    {
+      "id": "0751",
+      "customer": {
+        "id": "1959",
+        "name": "a12",
+        "email": "AA@13",
+        "role": "Customer"
+      },
+      "customerId": "1959",
+      "roomId": "r1",
+      "room": {
+        "id": "r1",
+        "title": "Deluxe Suite",
+        "roomType": "Room",
+        "floor": 2,
+        "hotel": "Sunrise Inn",
+        "details": "A deluxe room with sea view.",
+        "bookedStatus": "Available",
+        "price": 120,
+        "imagesUrl": [
+          "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748011951/SuiteNov2022_0008_1920_hhykez.jpg",
+          "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748011951/140127103345-peninsula-shanghai-deluxe-mock-up_oatn0j.jpg",
+          "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748011951/Sofitel-Dubai-Wafi-Luxury-Room-Bedroom-Skyline-View-Image1_WEB_mal8fr.jpg"
+        ]
+      },
+      "date": "2025-05-27T18:32:51.662Z",
+      "paymentAmount": 120,
+      "paymentStatus": "Unpaid",
+      "approvalStatus": "Pending"
     }
   ],
   "services": [
@@ -165,7 +200,7 @@
       "employeeId": "emp1",
       "title": "Haircut",
       "details": "Basic haircut service with styling.",
-      "price": 25.0,
+      "price": 25,
       "employee": {
         "id": "emp1",
         "name": "Alice Johnson",
