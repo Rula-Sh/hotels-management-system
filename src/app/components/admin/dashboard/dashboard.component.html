@@ -1,1 +1,110 @@
-<p>dashboard works!</p>
+<div class="page">
+  <div class="container">
+    <div class="dashboard-container">
+      <div class="child-container">
+        <section class="stats-section">
+          <h2 class="mb-4">{{ "dashboard.system-overview" | translate }}</h2>
+          <div class="stats-grid">
+            <div>
+              <strong>{{ "dashboard.total-users" | translate }}:</strong>
+              {{ totalUsers }}
+            </div>
+            <div>
+              <strong>{{ "dashboard.total-rooms" | translate }}:</strong>
+              {{ totalRooms }}
+            </div>
+            <div>
+              <strong>{{ "dashboard.total-reservations" | translate }}:</strong>
+              {{ totalReservations }}
+            </div>
+            <div>
+              <strong>{{ "dashboard.total-services" | translate }}:</strong>
+              {{ totalServices }}
+            </div>
+          </div>
+        </section>
+        <hr />
+        <section class="stats-section">
+          <h2 class="mb-4">
+            {{ "dashboard.performance-metrics" | translate }}
+          </h2>
+          <div class="stats-grid">
+            <div>
+              <strong
+                >{{
+                  "dashboard.avg-services-per-employee" | translate
+                }}:</strong
+              >
+            </div>
+            <div>
+              <strong
+                >{{ "dashboard.avg-reservations-per-day" | translate }}:</strong
+              >
+            </div>
+            <div>
+              <strong
+                >{{ "dashboard.avg-services-per-day" | translate }}:</strong
+              >
+            </div>
+            <div>
+              <strong>{{ "dashboard.cancellation-rate" | translate }}:</strong>
+            </div>
+          </div>
+        </section>
+        <hr />
+        <section class="stats-section">
+          <h2 class="mb-4">{{ "dashboard.highlights" | translate }}</h2>
+          <div class="stats-grid">
+            <div>
+              <strong
+                >{{ "dashboard.employee-of-the-month" | translate }}:</strong
+              >
+            </div>
+            <div>
+              <strong
+                >{{ "dashboard.top-selling-service" | translate }}:</strong
+              >
+            </div>
+            <div>
+              <strong
+                >{{ "dashboard.most-booked-room-type" | translate }}:</strong
+              >
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <div class="child-container">
+      <h2>{{ "dashboard.reservations" | translate }}</h2>
+      <div class="d-flex justify-content-between">
+        <canvas class="w-50 h-25" id="dailyBookingChart"></canvas>
+        <canvas class="w-50 h-25" id="weeklyBookingChart"></canvas>
+      </div>
+    </div>
+    <div class="child-container">
+      <div class="d-flex justify-content-around">
+        <div
+          class="w-100 d-flex justify-content-center align-items-center flex-column"
+        >
+          <h2>{{ "dashboard.reservations-status" | translate }}</h2>
+          <canvas class="w-50 h-75" id="reservationStatusChart"></canvas>
+        </div>
+        <div
+          class="w-100 d-flex justify-content-center align-items-center flex-column"
+        >
+          <h2>{{ "dashboard.services-status" | translate }}</h2>
+          <canvas class="w-50 h-75" id="servicesStatusChart"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <div class="child-container">
+      <h2>{{ "dashboard.services" | translate }}</h2>
+      <div class="d-flex justify-content-between">
+        <canvas class="w-50 h-25" id="dailyServicesChart"></canvas>
+        <canvas class="w-50 h-25" id="weeklyServicesChart"></canvas>
+      </div>
+    </div>
+  </div>
+</div>

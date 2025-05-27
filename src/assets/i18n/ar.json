@@ -105,7 +105,27 @@
     "english": "الإنجليزية",
     "arabic": "العربية"
   },
-    "shared": {
+  "dashboard": {
+    "system-overview": "نظرة عامة على النظام",
+    "total-users": "إجمالي المستخدمين",
+    "total-rooms": "إجمالي الغرف",
+    "total-reservations": "إجمالي الحجوزات",
+    "total-services": "إجمالي الخدمات",
+    "performance-metrics": "مقاييس الأداء",
+    "avg-services-per-employee": "متوسط الخدمات لكل موظف",
+    "avg-reservations-per-day": "متوسط الحجوزات في اليوم",
+    "avg-services-per-day": "متوسط الخدمات في اليوم الواحد",
+    "cancellation-rate": "معدل الإلغاء",
+    "highlights": "أبرز الملامح",
+    "employee-of-the-month": "موظف الشهر",
+    "top-selling-service": "الخدمة الأكثر مبيعاً",
+    "most-booked-room-type": "نوع الغرفة الأكثر حجزاً",
+    "reservations": "الحجوزات",
+    "reservations-status": "حالة الحجوزات",
+    "services-status": "حالة الخدمات",
+    "services": "الخدمات"
+  },
+  "shared": {
     "entity": {
       "id": "الرقم التعريفي"
     },

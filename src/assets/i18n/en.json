@@ -105,7 +105,27 @@
     "english": "English",
     "arabic": "Arabic"
   },
-    "shared": {
+  "dashboard": {
+    "system-overview": "System Overview",
+    "total-users": "Total Users",
+    "total-rooms": "Total Rooms",
+    "total-reservations": "Total Reservations",
+    "total-services": "Total Services",
+    "performance-metrics": "Performance Metrics",
+    "avg-services-per-employee": "Avg Services Per Employee",
+    "avg-reservations-per-day": "Avg Reservations Per Day",
+    "avg-services-per-day": "Avg Services Per Day",
+    "cancellation-rate": "Cancellation Rate",
+    "highlights": "Highlights",
+    "employee-of-the-month": "Employee of the Month",
+    "top-selling-service": "Top-Selling Service",
+    "most-booked-room-type": "Most Booked Room Type",
+    "reservations": "Reservations",
+    "reservations-status": "Reservations Status",
+    "services-status": "Services Status",
+    "services": "Services"
+  },
+  "shared": {
     "entity": {
       "id": "ID"
     },
