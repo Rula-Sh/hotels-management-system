@@ -1,5 +1,11 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  ReactiveFormsModule,
+  FormsModule,
+} from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
@@ -9,9 +15,15 @@ import { AuthService } from '../../../../services/auth.service';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, FormsModule, NgbToastModule, RouterLink],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    FormsModule,
+    NgbToastModule,
+    RouterLink,
+  ],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
   loginForm!: FormGroup;
@@ -29,7 +41,7 @@ export class LoginComponent {
   ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required]
+      password: ['', Validators.required],
     });
   }
 
@@ -37,35 +49,42 @@ export class LoginComponent {
     return this.loginForm.controls;
   }
 
- onSubmit() {
-  this.submitted = true;
-  if (this.loginForm.invalid) return;
+  onSubmit() {
+    this.submitted = true;
+    this.showToast = false;
 
-  const email = this.loginForm.value.email;
-  const password = btoa(this.loginForm.value.password);
+    if (this.loginForm.invalid) return;
 
-  this.userService.getAllUsers().subscribe(users => {
-    const user = users.find(u => u.email === email && u.password === password);
+    const email = this.loginForm.value.email;
+    const password = btoa(this.loginForm.value.password);
 
-    if (!user) {
-      this.toastMessage = 'Invalid email or password.';
-      this.toastClass = 'bg-danger text-white';
+    this.userService.getAllUsers().subscribe((users) => {
+      const user = users.find(
+        (u) => u.email === email && u.password === password
+      );
+
+      if (!user) {
+        this.toastMessage = 'Invalid email or password.';
+        this.toastClass = 'bg-danger text-white';
+        this.showToast = true;
+
+        setTimeout(() => {
+          this.showToast = false;
+        }, 3000);
+
+        return;
+      }
+
+      this.authService.login(user);
+      this.toastMessage = 'Login successful!';
+      this.toastClass = 'bg-success text-white';
       this.showToast = true;
-      return;
-    }
-
-    this.authService.login(user);
-   this.toastMessage = 'Login successful!';
-this.toastClass = 'bg-success text-white';
-this.showToast = true;
-
-setTimeout(() => {
-  this.router.navigate(['/']);
-},700); // تأخير 100 مللي ثانية حتى يظهر التوست
-
-  });
-  
-}
-
-
+      this.authService.login(user);
+      localStorage.setItem('user_id', user.id.toString());
+      setTimeout(() => {
+        this.showToast = false;
+        this.router.navigate(['/']);
+      }, 1500);
+    });
+  }
 }
