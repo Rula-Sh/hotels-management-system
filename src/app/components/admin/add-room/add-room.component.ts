@@ -43,6 +43,7 @@ export class AddRoomComponent {
       hotel: ['', Validators.required, Validators.maxLength(30)],
       details: ['', Validators.required, Validators.maxLength(500)],
       price: ['', Validators.required, Validators.maxLength(4)],
+      location: ['', Validators.required],
       imageUrl: ['', Validators.required],
     });
   }
@@ -60,7 +61,8 @@ export class AddRoomComponent {
       details: this.roomForm.value.details,
       bookedStatus: 'Available',
       price: this.roomForm.value.price,
-      imageUrl: this.roomForm.value.imageUrl,
+      location: this.roomForm.value.location,
+      imagesUrl: this.roomForm.value.imageUrl,
     };
 
     this.roomService.CreateRoom(newRoom).subscribe({

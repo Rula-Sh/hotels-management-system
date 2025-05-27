@@ -50,7 +50,8 @@ export class ReservationsComponent {
         details: '',
         bookedStatus: 'Available',
         price: 0,
-        imageUrl: '',
+        location: '',
+        imagesUrl: [''],
       },
     },
   ];

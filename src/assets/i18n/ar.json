@@ -76,6 +76,7 @@
     "details": "النفاصيل",
     "booked-status": "الحالة",
     "price": "السعر",
+    "location": "الموقع",
     "image-url": "رابط الصورة",
     "title-required": "العنوان مطلوب",
     "type-required": "نوع الغرفة مطلوب",
@@ -83,6 +84,7 @@
     "hotel-required": "الفندق مطلوب",
     "details-required": "التفاصيل مطلوبة",
     "price-required": "السعر مطلوب",
+    "location-required": "الموقع مطلوب",
     "image-url-required": "رابط الصورة مطلوب",
     "submit": "إضافة"
   },
@@ -103,7 +105,7 @@
     "english": "الإنجليزية",
     "arabic": "العربية"
   },
-  "shared": {
+    "shared": {
     "entity": {
       "id": "الرقم التعريفي"
     },
