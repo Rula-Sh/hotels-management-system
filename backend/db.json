@@ -99,7 +99,16 @@
       "role": "Employee",
       "pfp": "",
       "jobTitle": "Massage Therapist",
-      "services": ["svc3"]
+      "services": [
+        "svc3"
+      ]
+    },
+    {
+      "id": "1959",
+      "name": "a12",
+      "email": "AA@13",
+      "password": "MTExMTExQQ==",
+      "role": "Customer"
     }
   ],
   "reservations": [
