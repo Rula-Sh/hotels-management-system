@@ -1,3 +1,4 @@
+
 <div class="d-flex justify-content-between mt-2 ms-5 me-5">
   <h1 class="text-center align-self-center">
     {{ "room.rooms" | translate }}
@@ -49,7 +50,8 @@
         >{{ room.price | currency : "USD" : "symbol" : "1.0-0" }}
       </div>
       @if(role != 'Admin'){
-      <button class="book-btn btn-primary">Book Now</button>
+   <button class="book-btn btn-primary" (click)="bookRoom(room)">Book Now</button>
+      
       }
     </div>
   </div>
@@ -82,3 +84,26 @@
     ></button>
   </ng-template>
 </p-confirmdialog>
+<!-- Toast for booking message -->
+<div
+  class="toast-container position-fixed top-0 end-0 p-3"
+  style="z-index: 1200"
+  *ngIf="showToast"
+>
+  <div
+    class="toast show align-items-center text-white {{ toastClass }} border-0"
+    role="alert"
+    aria-live="assertive"
+    aria-atomic="true"
+  >
+    <div class="d-flex">
+      <div class="toast-body">{{ toastMessage }}</div>
+      <button
+        type="button"
+        class="btn-close btn-close-white me-2 m-auto"
+        (click)="showToast = false"
+        aria-label="Close"
+      ></button>
+    </div>
+  </div>
+</div>
