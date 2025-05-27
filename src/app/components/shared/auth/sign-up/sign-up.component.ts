@@ -79,7 +79,7 @@ export class SignUpComponent {
         email: this.signUpForm.value.email,
         phone: this.signUpForm.value.phone,
         password: btoa(this.signUpForm.value.password),
-        role: 'customer',
+        role: 'Customer',
       };
 
       this.userService.CreateUser(user).subscribe({
