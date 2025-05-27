@@ -32,7 +32,7 @@ export class ReservationsComponent {
       date: new Date(),
       approvalStatus: 'Pending',
       paymentStatus: 'Unpaid',
-      paymentAmmount: 0,
+      paymentAmount: 0,
       customer: {
         id: '',
         name: '',

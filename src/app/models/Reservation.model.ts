@@ -8,7 +8,7 @@ export interface Reservation {
   customerId: string;
   approvalStatus: 'Pending' | 'Approved' | 'Rejected';
   paymentStatus: 'Paid' | 'Unpaid';
-  paymentAmmount: number;
+  paymentAmount: number;
   room: Room;
   customer: User;
 }
