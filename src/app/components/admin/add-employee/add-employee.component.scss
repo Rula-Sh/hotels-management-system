@@ -1,5 +1,12 @@
 @import "../../../../styles/variables.scss";
 
+.page {
+  max-width: 900px;
+  width: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .center-wrapper {
   display: flex;
   justify-content: center;
@@ -71,7 +78,7 @@ input {
 }
 
 .error {
-  color: #e74c4c;
+  color: $color-red;
   font-size: 14px;
   margin-bottom: 10px;
   margin-top: -6px;

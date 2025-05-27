@@ -76,6 +76,7 @@
     "details": "Details",
     "booked-status": "Status",
     "price": "Price",
+    "location": "Loaction",
     "image-url": "Image URL",
     "title-required": "Title is required",
     "type-required": "Room Type is required",
@@ -83,6 +84,7 @@
     "hotel-required": "Hotel is required",
     "details-required": "Details is required",
     "price-required": "Price is required",
+    "location-required": "Loaction is required",
     "image-url-required": "Image URL is required",
     "submit": "Submit"
   },
@@ -102,6 +104,26 @@
   "footer": {
     "english": "English",
     "arabic": "Arabic"
+  },
+  "dashboard": {
+    "system-overview": "System Overview",
+    "total-users": "Total Users",
+    "total-rooms": "Total Rooms",
+    "total-reservations": "Total Reservations",
+    "total-services": "Total Services",
+    "performance-metrics": "Performance Metrics",
+    "avg-services-per-employee": "Avg Services Per Employee",
+    "avg-reservations-per-day": "Avg Reservations Per Day",
+    "avg-services-per-day": "Avg Services Per Day",
+    "cancellation-rate": "Cancellation Rate",
+    "highlights": "Highlights",
+    "employee-of-the-month": "Employee of the Month",
+    "top-selling-service": "Top-Selling Service",
+    "most-booked-room-type": "Most Booked Room Type",
+    "reservations": "Reservations",
+    "reservations-status": "Reservations Status",
+    "services-status": "Services Status",
+    "services": "Services"
   },
   "shared": {
     "entity": {

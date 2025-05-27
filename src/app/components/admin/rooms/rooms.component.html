@@ -22,8 +22,12 @@
       (click)="showRoomDetails(room.id)"
     ></i>
     }
-    <img class="room-img" [src]="room.imageUrl" />
-    <div class="room-info">
+    <img
+      class="room-img"
+      [src]="room.imagesUrl[0]"
+      (click)="showRoomDetails(room.id)"
+    />
+    <div class="room-info" (click)="showRoomDetails(room.id)">
       <h4>{{ room.title }}</h4>
       <div>
         <strong class="me-2">{{ "room.type" | translate }}:</strong>

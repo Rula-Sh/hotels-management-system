@@ -1,1 +1,97 @@
-<p>room works!</p>
+<div class="page">
+  <div class="container p-4 ps-5 pe-5 mt-4 mb-4">
+    <div class="img-container">
+      <div class="slider" [style.transform]="slide()">
+        <img
+          *ngFor="let img of images"
+          class="img"
+          [src]="img"
+          alt="slider image"
+        />
+      </div>
+      <i
+        *ngIf="images.length"
+        class="slide-icon fa-solid fa-angle-left"
+        (click)="prevImage()"
+      ></i>
+      <i
+        *ngIf="images.length"
+        class="slide-icon fa-solid fa-angle-right"
+        (click)="nextImage()"
+      ></i>
+    </div>
+
+    <div class="d-flex justify-content-between w-100 mt-4">
+      <h1 class="m-4 mt-0 text-start">{{ room?.title }}</h1>
+      <p class="m-4 mt-0 text-end align-self-center h5">
+        <i class="fa-solid fa-dollar-sign"></i> {{ room?.price }}
+      </p>
+    </div>
+
+    <div class="room-grid">
+      <div class="data-section">
+        <p class="data-title">
+          <i class="fa-solid fa-hotel"></i>
+          {{ "room.hotel" | translate }}:
+        </p>
+        <p class="data">{{ room?.hotel }}</p>
+      </div>
+
+      <div class="data-section">
+        <p class="data-title">
+          <i class="fa-solid fa-location-dot"></i>
+          {{ "room.location" | translate }}:
+        </p>
+        <p class="data">{{ room?.location }}</p>
+      </div>
+
+      <div class="data-section">
+        <p class="data-title">
+          <i class="fa-solid fa-door-closed"></i>
+          {{ "room.type" | translate }}:
+        </p>
+        <p class="data">{{ room?.roomType }}</p>
+      </div>
+
+      <div class="data-section">
+        <p class="data-title">
+          <i class="fa-solid fa-layer-group"></i>
+          {{ "room.floor" | translate }}:
+        </p>
+        <p class="data">{{ room?.floor }}</p>
+      </div>
+
+      <div class="data-section">
+        <p class="data-title">
+          <i class="bi bi-toggles"></i>
+          {{ "room.booked-status" | translate }}:
+        </p>
+        <p class="data">
+          @if(room?.bookedStatus == "Available"){
+          <i class="fa-solid fa-circle green"></i> } @else {
+          <i class="fa-solid fa-circle red"></i> }
+          {{ room?.bookedStatus }}
+        </p>
+      </div>
+
+      <div class="data-section full-width">
+        <p class="data-title">
+          <i class="fa-solid fa-circle-info"></i>
+          {{ "room.details" | translate }}:
+        </p>
+        <p class="data">{{ room?.details }}</p>
+      </div>
+    </div>
+  </div>
+  <button
+    class="mt-4 ms-4 me-4 p-2 btn-outline-primary rounded-2"
+    (click)="goBack()"
+  >
+    @if(lang == 'ar') {
+    <i class="fa-solid fa-arrow-right"></i>
+    } @else {
+    <i class="fa-solid fa-arrow-left"></i>
+    }
+    {{ "shared.action.go-back" | translate }}
+  </button>
+</div>
