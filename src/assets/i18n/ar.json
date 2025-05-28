@@ -41,7 +41,9 @@
     "cancel": "إلغاء",
     "add-employee": "إضافة موظف",
     "job-title": "المسمى الوظيفي",
-    "job-required": "المسمى الوظيفي مطلوب"
+    "hotel": "الفندق",
+    "job-required": "المسمى الوظيفي مطلوب",
+    "hotel-required": "الفندق مطلوب"
   },
   "user": {
     "name": "الاسم",

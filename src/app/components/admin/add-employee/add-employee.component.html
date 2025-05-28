@@ -129,6 +129,36 @@
         </div>
       </div>
       <div class="input-container">
+        <label for="hotel"> {{ "profile.hotel" | translate }}:</label>
+        <div class="input-error">
+          <div class="input-group" [ngClass]="{ 'right-input': lang == 'ar' }">
+            <div class="align-self-center">
+              <span class="input-group-text align-self-center bg-white">
+                <i class="fa-solid fa-hotel"></i>
+              </span>
+            </div>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Hotel"
+              aria-label="Hotel"
+              [placeholder]="'profile.hotel' | translate"
+              formControlName="hotel"
+              required
+            />
+          </div>
+          <div
+            class="error"
+            *ngIf="
+              profileForm.get('hotel')?.invalid &&
+              profileForm.get('hotel')?.touched
+            "
+          >
+            {{ "profile.hotel-required" | translate }}
+          </div>
+        </div>
+      </div>
+      <div class="input-container">
         <label for="newPassword"
           >{{ "profile.new-password" | translate }}:</label
         >
