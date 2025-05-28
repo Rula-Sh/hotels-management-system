@@ -3,13 +3,12 @@
 :host {
   display: flex;
   justify-content: center;
-  align-items: flex-start; 
-  padding-top: 6rem; 
+  align-items: flex-start;
+  padding-top: 6rem;
   min-height: 100vh;
   background: linear-gradient(to right, #fbebd4);
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
-
 
 form {
   background-color: #fff;
@@ -52,4 +51,11 @@ input {
 small {
   color: red;
   font-size: 0.75rem;
+}
+
+a {
+  color: $color-dark-brown;
+  text-align: center;
+  display: block;
+  margin-top: 1rem;
 }
