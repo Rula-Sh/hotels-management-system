@@ -16,7 +16,9 @@
       "rooms": "Rooms",
       "dashboard": "Dashboard"
     },
-    "employee": {},
+    "employee": {
+      "services": "Services"
+    },
     "customer": {
       "my-reservations": "My Reservations",
       "available-services": "Available Services"
@@ -30,10 +32,10 @@
     "phone": "Phone",
     "new-password": "New Password",
     "confirm-password": "Confirm Password",
-    "name-required": "Name is required",
-    "email-required": "Email is required",
-    "phone-required": "Phone is required",
-    "password-required": "Password is required",
+    "name-required": "Name required",
+    "email-required": "Email required",
+    "phone-required": "Phone required",
+    "password-required": "Password required",
     "password-min-length": "Password must be at least 6 characters long",
     "password-match": "Passwords do not match",
     "add-phone": "Add phone number",
@@ -41,7 +43,9 @@
     "cancel": "Cancel",
     "add-employee": "Add Employee",
     "job-title": "Job Title",
-    "job-required": "Job Title is required"
+    "hotel": "Hotel",
+    "job-required": "Job Title required",
+    "hotel-required": "Hotel required"
   },
   "user": {
     "name": "Name",
@@ -79,14 +83,14 @@
     "price": "Price",
     "location": "Location",
     "image-url": "Image URL",
-    "title-required": "Title is required",
-    "type-required": "Room Type is required",
-    "floor-required": "Floor is required",
-    "hotel-required": "Hotel is required",
-    "details-required": "Details is required",
-    "price-required": "Price is required",
-    "location-required": "Location is required",
-    "image-url-required": "Image URL is required",
+    "title-required": "Title required",
+    "type-required": "Room Type required",
+    "floor-required": "Floor required",
+    "hotel-required": "Hotel required",
+    "details-required": "Details required",
+    "price-required": "Price required",
+    "location-required": "Location required",
+    "image-url-required": "Image URL required",
     "room-details": "Room Details",
     "room-image": "Room Image",
     "delete-room": "Delete Room",
@@ -111,7 +115,16 @@
     "details": "Details",
     "price": "Price",
     "service-details": "Service Details",
-    "no-available-services": "No available services at the moment."
+    "no-available-services": "No available services at the moment.",
+    "approve-request": "Approve Request",
+    "reject-request": "Reject Request",
+    "complete-request": "Complete Request",
+    "no-pending-requests": "There are No Pending Requests",
+    "no-active-requests": "There are No Active Requests",
+    "no-completed-requests": "There are No Completed Requests",
+    "pending-requests": "Pending Requests",
+    "active-requests": "Active Requests",
+    "completed-requests": "Completed Requests"
   },
   "footer": {
     "english": "English",

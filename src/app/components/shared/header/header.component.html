@@ -38,8 +38,15 @@
         >
           {{ "header.admin.reservations" | translate }}
         </a>
+        } @if(role == 'Employee'){
+        <a
+          [routerLink]="'/employee/services'"
+          routerLinkActive="active-link"
+          [title]="'header.employee.services' | translate"
+        >
+          {{ "header.employee.services" | translate }}
+        </a>
         } @if(role == 'Customer'){
-
         <a
           [routerLink]="'/available-services'"
           routerLinkActive="active-link"
@@ -89,7 +96,10 @@
           <i class="fill-icon fa-solid fa-arrow-right-to-bracket fa-lg"></i>
           <!-- <img src="/assets/images/login-linear-icon.webp" alt="login icon" /> -->
         </a>
-        <a [routerLink]="'/signup'" [title]="'header.auth.register' | translate">
+        <a
+          [routerLink]="'/signup'"
+          [title]="'header.auth.register' | translate"
+        >
           {{ "header.auth.register" | translate }}
           <img class="fill-icon" src="/assets/images/sign-up-filled-icon.png" />
           <!-- <img src="/assets/images/logout-linear-icon.webp" alt="logout icon" /> -->

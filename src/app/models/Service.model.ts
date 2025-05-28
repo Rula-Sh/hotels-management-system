@@ -6,5 +6,6 @@ export interface Service {
   title: string;
   details: string;
   price: number;
+  imageUrl: string;
   employee: Employee;
 }

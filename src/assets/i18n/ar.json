@@ -16,7 +16,9 @@
       "rooms": "الغرف",
       "dashboard": "لوحة التحكم"
     },
-    "employee": {},
+    "employee": {
+      "services": "الخدمات"
+    },
     "customer": {
       "my-reservations": "حجوزاتي",
       "available-services": "الخدمات المتاحة"
@@ -41,7 +43,9 @@
     "cancel": "إلغاء",
     "add-employee": "إضافة موظف",
     "job-title": "المسمى الوظيفي",
-    "job-required": "المسمى الوظيفي مطلوب"
+    "hotel": "الفندق",
+    "job-required": "المسمى الوظيفي مطلوب",
+    "hotel-required": "الفندق مطلوب"
   },
   "user": {
     "name": "الاسم",
@@ -111,7 +115,16 @@
     "details": "التفاصيل",
     "price": "السعر",
     "service-details": "تفاصيل الخدمة",
-    "no-available-services": "لا يوجد خدمات متاحة حاليا"
+    "no-available-services": "لا يوجد خدمات متاحة حاليا",
+    "approve-request": "الموافقة على الطلب",
+    "reject-request": "رفض الطلب",
+    "complete-request": "إكمال الطلب",
+    "no-pending-requests": "لا توجد طلبات قيد الانتظار",
+    "no-active-requests": "لا توجد طلبات نشطة",
+    "no-completed-requests": "لا توجد طلبات مكتملة",
+    "pending-requests": "طلبات منتظرة",
+    "active-requests": "طلبات نشطة",
+    "completed-requests": "طلبات المكتملة"
   },
   "footer": {
     "english": "الإنجليزية",

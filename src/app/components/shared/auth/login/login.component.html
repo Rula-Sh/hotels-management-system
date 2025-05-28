@@ -1,6 +1,5 @@
 <ngb-toast
   *ngIf="showToast"
-
   class="bg-success text-white position-fixed top-0 end-0 m-3"
   [autohide]="true"
   [delay]="3000"
@@ -41,6 +40,8 @@
 
   <p style="text-align: center; margin-top: 1rem">
     Don't have an account?
-    <a routerLink="/signup" style="font-weight: bold">Sign up here</a>
+    <a routerLink="/signup" style="font-weight: bold; display: inline-block"
+      >Sign up here</a
+    >
   </p>
 </div>

@@ -25,6 +25,8 @@ import { ReservationsComponent } from './components/admin/reservations/reservati
 import { RoomsComponent } from './components/shared/rooms/rooms.component';
 import { AddRoomComponent } from './components/admin/add-room/add-room.component';
 import { RoomDetailsComponent } from './components/shared/room-details/room-details.component';
+import { ServicesComponent } from './components/employee/services/services.component';
+import { AddServiceComponent } from './components/employee/add-service/add-service.component';
 
 export const authGuard: CanActivateFn = (
   route: ActivatedRouteSnapshot,
@@ -76,36 +78,36 @@ export const routes: Routes = [
   },
 
   // ------------------------ Emplyoyee ------------------------
-  // {
-  //   path: 'services',
-  //   component: ServicesComponent,
-  //   canActivate: [authGuard],
-  //   data: { roles: ['Employee'] },
-  // },
-  // {
-  //   path: 'add-service',
-  //   component: AddServiceComponent,
-  //   canActivate: [authGuard],
-  //   data: { roles: ['Employee'] },
-  // },
-  // {
-  //   path: 'service-details/:id',
-  //   component: ServiceDetailsComponent,
-  //   canActivate: [authGuard],
-  //   data: { roles: ['Employee'] },
-  // },
   {
     path: 'requests',
     component: RequestsComponent,
     canActivate: [authGuard],
     data: { roles: ['Employee'] },
   },
+  // {
+  //   path: 'request-details/:id',
+  //   component: RequestDetailsComponent,
+  //   canActivate: [authGuard],
+  //   data: { roles: ['Employee'] },
+  // },
   {
-    path: 'request-details/:id',
-    component: RequestDetailsComponent,
+    path: 'services',
+    component: ServicesComponent,
     canActivate: [authGuard],
     data: { roles: ['Employee'] },
   },
+  {
+    path: 'add-service',
+    component: AddServiceComponent,
+    canActivate: [authGuard],
+    data: { roles: ['Employee'] },
+  },
+  // {
+  //   path: 'service-details/:id',
+  //   component: ServiceDetailsComponent,
+  //   canActivate: [authGuard],
+  //   data: { roles: ['Employee'] },
+  // },
 
   // ------------------------ Admin ------------------------
   {

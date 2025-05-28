@@ -32,7 +32,6 @@ export class AddEmployeeComponent {
   }
 
   constructor(
-    private authService: AuthService,
     private userService: UserService,
     private router: Router,
     private fb: FormBuilder,
@@ -52,7 +51,7 @@ export class AddEmployeeComponent {
         ],
       ],
       jobTitle: ['', Validators.required],
-      password: ['', Validators.required],
+      hotel: ['', Validators.required],
       newPassword: ['', Validators.minLength(6)],
       confirmPassword: ['', Validators.minLength(6)],
     });
@@ -60,6 +59,8 @@ export class AddEmployeeComponent {
 
   addEmployee() {
     if (this.profileForm.invalid) {
+      console.log(this.profileForm.invalid);
+
       return this.profileForm.markAllAsTouched();
     }
 
@@ -77,10 +78,13 @@ export class AddEmployeeComponent {
       name: this.profileForm.value.name,
       email: this.profileForm.value.email,
       phone: this.profileForm.value.phone,
+      hotel: this.profileForm.value.hotel,
       jobTitle: this.profileForm.value.jobTitle,
       password: this.profileForm.value.newPassword,
       role: 'Employee',
     };
+
+    console.log(newEmployee);
 
     this.userService.AddEmployee(newEmployee).subscribe({
       next: () => {

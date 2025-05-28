@@ -1,0 +1,36 @@
+@import "../../../../styles/variables.scss";
+
+.page {
+  max-width: 1300px;
+  width: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+tr {
+  text-align: center;
+}
+
+button {
+  border: none;
+  margin: 5px;
+  border-radius: 5px;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.approve {
+  color: $color-light-green;
+}
+
+.reject {
+  color: $color-light-red;
+}
+
+h3 {
+  margin-top: 100px;
+}
+
+.title-icon {
+  color: $color-dark-brown;
+}
