@@ -4,6 +4,7 @@
   },
   "header": {
     "auth": {
+      "profile": "Profile",
       "welcome": "Welcome",
       "login": "Login",
       "logout": "Logout",
@@ -76,7 +77,7 @@
     "details": "Details",
     "booked-status": "Status",
     "price": "Price",
-    "location": "Loaction",
+    "location": "Location",
     "image-url": "Image URL",
     "title-required": "Title is required",
     "type-required": "Room Type is required",
@@ -84,22 +85,33 @@
     "hotel-required": "Hotel is required",
     "details-required": "Details is required",
     "price-required": "Price is required",
-    "location-required": "Loaction is required",
+    "location-required": "Location is required",
     "image-url-required": "Image URL is required",
-    "submit": "Submit"
+    "room-details": "Room Details",
+    "room-image": "Room Image",
+    "delete-room": "Delete Room",
+    "submit": "Submit",
+    "no-available-rooms": "No available rooms at the moment."
   },
   "reservation": {
     "reservations": "Reservations",
     "pending": "Pending",
     "active": " Active",
     "pending-reservations": "Pending Reservations",
-    "active-reservations": "Active Reservations"
+    "active-reservations": "Active Reservations",
+    "reservation-details": "Reservation Details",
+    "approve-reservation": "Approve Reservation",
+    "reject-reservation": "Reject Reservation",
+    "no-pending-reservations": "No Pending Reservations",
+    "no-active-reservations": "No Active Reservations"
   },
   "service": {
     "services": "Services",
     "title": "Title",
     "details": "Details",
-    "price": "Price"
+    "price": "Price",
+    "service-details": "Service Details",
+    "no-available-services": "No available services at the moment."
   },
   "footer": {
     "english": "English",
@@ -134,6 +146,7 @@
       "details": "Details",
       "approve": "Approve",
       "reject": "Reject",
+      "submit": "Submit",
       "go-back": "Go Back"
     }
   }

@@ -1,11 +1,14 @@
 <div class="d-flex">
-  <h1 class="m-4 mb-4">{{ "reservation.reservations" | translate }}</h1>
-  <img src="/assets/images/reservations-brown-filled-icon.png" />
+  <h1 class="m-4">{{ "reservation.reservations" | translate }}</h1>
+  <img
+    class="fill-icon p-0"
+    src="/assets/images/reservations-brown-filled-icon.png"
+  />
 </div>
 
 <div class="page">
   @if(pendingReservations.length >0){
-  <h1 class="m-4 mb-4">{{ "reservation.pending" | translate }}</h1>
+  <h1 class="m-4">{{ "reservation.pending" | translate }}</h1>
   <div class="rounded-4 shadow border overflow-hidden mb-5">
     <table class="table table-striped table-bordered mb-0">
       <thead>
@@ -34,7 +37,10 @@
               (click)="showReservationDetails(reservation.id)"
             >
               <!-- <i class="bi bi-info-circle h5"></i> -->
-              <i class="bi bi-info-circle-fill h5"></i>
+              <i
+                class="bi bi-info-circle-fill h5"
+                [title]="'reservation.reservation-details' | translate"
+              ></i>
               <!-- {{ "shared.action.details" | translate }} -->
             </button>
             <button
@@ -42,7 +48,10 @@
               (click)="ApproveReservationRequest(reservation.id, reservation)"
             >
               <!-- <i class="bi bi-check-circle h5"></i> -->
-              <i class="bi bi-check-circle-fill h5"></i>
+              <i
+                class="bi bi-check-circle-fill h5"
+                [title]="'reservation.approve-reservation' | translate"
+              ></i>
               <!-- {{ "shared.action.approve" | translate }} -->
             </button>
             <button
@@ -50,7 +59,10 @@
               (click)="RejectReservationRequest(reservation.id, reservation)"
             >
               <!-- <i class="bi bi-x-circle-fill h5"></i> -->
-              <i class="bi bi-x-circle-fill h5"></i>
+              <i
+                class="bi bi-x-circle-fill h5"
+                [title]="'reservation.reject-reservation' | translate"
+              ></i>
               <!-- {{ "shared.action.reject" | translate }} -->
             </button>
           </td>
@@ -61,7 +73,9 @@
     </table>
   </div>
   } @else {
-  <h3 class="text-center mt-5">No Pending Appointments</h3>
+  <h3 class="text-center mt-5">
+    {{ "reservation.no-pending-reservations" | translate }}
+  </h3>
   } @if(activeReservations.length > 0){
   <h1 class="m-4 mb-4">{{ "reservation.active" | translate }}</h1>
   <div class="rounded-4 shadow border overflow-hidden">
@@ -92,7 +106,10 @@
               (click)="showReservationDetails(reservation.id)"
             >
               <!-- <i class="bi bi-info-circle h5"></i> -->
-              <i class="bi bi-info-circle-fill h5"></i>
+              <i
+                class="bi bi-info-circle-fill h5"
+                [title]="'reservation.reservation-details' | translate"
+              ></i>
               <!-- {{ "shared.action.details" | translate }} -->
             </button>
           </td>
@@ -103,7 +120,9 @@
     </table>
   </div>
   } @else {
-  <h3 class="text-center">No Active Appointments</h3>
+  <h3 class="text-center">
+    {{ "reservation.no-active-reservations" | translate }}
+  </h3>
   }
 </div>
 <p-toast />

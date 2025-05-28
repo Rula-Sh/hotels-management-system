@@ -70,7 +70,11 @@
           <td>{{ service.details }}</td>
           <td>{{ service.price }}</td>
           <td>
-            <button class="details" (click)="showServiceDetails(service.id)">
+            <button
+              class="details"
+              (click)="showServiceDetails(service.id)"
+              [title]="'service.service-details' | translate"
+            >
               <i class="bi bi-info-circle-fill h5"></i>
             </button>
           </td>
@@ -107,6 +111,7 @@
             <button
               class="details"
               (click)="showReservationDetails(reservation.id)"
+              [title]="'reservation.reservation-details' | translate"
             >
               <i class="bi bi-info-circle-fill h5"></i>
             </button>
@@ -122,6 +127,7 @@
   <button
     class="mt-5 go-back-button btn-outline-primary rounded-2"
     (click)="goBack()"
+    [title]="'shared.action.go-back' | translate"
   >
     @if(lang == 'ar') {
     <i class="fa-solid fa-arrow-right"></i>

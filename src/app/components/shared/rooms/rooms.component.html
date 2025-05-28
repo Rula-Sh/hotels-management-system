@@ -1,12 +1,20 @@
 <div class="d-flex justify-content-between mt-2 ms-5 me-5">
-  <h1 class="text-center align-self-center">
-    {{ "room.rooms" | translate }}
-    <img src="/assets/images/bed-brown-filled-icon.png" />
-  </h1>
-  <button class="btn btn-primary" (click)="AddRoom()">
+  <div class="d-flex">
+    <h1 class="m-4">
+      {{ "room.rooms" | translate }}
+    </h1>
+    <img class="fill-icon" src="/assets/images/bed-brown-filled-icon.png" />
+  </div>
+  @if(user?.role == "Admin"){
+  <button
+    class="btn btn-primary"
+    (click)="AddRoom()"
+    [title]="'room.add-room' | translate"
+  >
     <i class="bi bi-house-add-fill h4 m-1 align-middle"></i>
     <span class="m-1 align-middle">{{ "room.add-room" | translate }}</span>
   </button>
+  }
 </div>
 
 <div class="rooms-container">
@@ -16,10 +24,12 @@
     <i
       class="delete-icon bi bi-trash-fill h4"
       (click)="deleteRoom(room.id)"
+      [title]="'room.delete-room' | translate"
     ></i>
     <i
       class="info-icon bi bi-info-circle-fill h5"
       (click)="showRoomDetails(room.id)"
+      [title]="'room.room-details' | translate"
     ></i>
     }
     <img
@@ -58,7 +68,6 @@
       <button class="book-btn btn-primary" (click)="bookRoom(room)">
         Book Now
       </button>
-
       }
     </div>
   </div>
@@ -66,7 +75,7 @@
 </div>
 
 <ng-template #noRooms>
-  <p class="no-rooms-msg">No available rooms at the moment.</p>
+  <p class="no-rooms-msg">{{ "room.no-available-rooms" | translate }}</p>
 </ng-template>
 
 <p-toast />

@@ -52,7 +52,10 @@
           </ng-container>
 
           <ng-template #addPhone>
-            <a (click)="edit()" style="cursor: pointer; color: gray; font-style: italic;">
+            <a
+              (click)="edit()"
+              style="cursor: pointer; color: gray; font-style: italic"
+            >
               <i class="fa-solid fa-plus"></i>
               {{ "profile.add-phone" | translate }}
             </a>
@@ -90,9 +93,7 @@
               [ngClass]="{ 'right-input': lang == 'ar' }"
             >
               <div class="align-self-center">
-                <span
-                  class="input-group-text align-self-center bg-white"
-                  id="basic-addon1"
+                <span class="input-group-text align-self-center bg-white"
                   ><i class="fa-solid fa-user"></i>
                 </span>
               </div>
@@ -125,9 +126,7 @@
               [ngClass]="{ 'right-input': lang == 'ar' }"
             >
               <div class="align-self-center">
-                <span
-                  class="input-group-text align-self-center bg-white"
-                  id="basic-addon1"
+                <span class="input-group-text align-self-center bg-white"
                   ><i class="fa-solid fa-envelope"></i>
                 </span>
               </div>
@@ -161,10 +160,7 @@
               [ngClass]="{ 'right-input': lang == 'ar' }"
             >
               <div class="align-self-center">
-                <span
-                  class="input-group-text align-self-center bg-white"
-                  id="basic-addon1"
-                >
+                <span class="input-group-text align-self-center bg-white">
                   <i class="fa-solid fa-phone"></i>
                 </span>
               </div>
@@ -200,10 +196,7 @@
               [ngClass]="{ 'right-input': lang == 'ar' }"
             >
               <div class="align-self-center">
-                <span
-                  class="input-group-text align-self-center bg-white"
-                  id="basic-addon1"
-                >
+                <span class="input-group-text align-self-center bg-white">
                   <i class="fa-solid fa-lock"></i>
                 </span>
               </div>
@@ -243,10 +236,7 @@
               [ngClass]="{ 'right-input': lang == 'ar' }"
             >
               <div class="align-self-center">
-                <span
-                  class="input-group-text align-self-center bg-white"
-                  id="basic-addon1"
-                >
+                <span class="input-group-text align-self-center bg-white">
                   <i class="fa-solid fa-check-double"></i>
                 </span>
               </div>

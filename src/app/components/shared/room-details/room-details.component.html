@@ -1,6 +1,6 @@
 <div class="page">
   <div class="container p-4 ps-5 pe-5 mt-4 mb-4">
-    <div class="img-container">
+    <div class="img-container" [title]="'room.room-image' | translate">
       <div class="slider" [style.transform]="slide()">
         <img
           *ngFor="let img of images"
@@ -10,12 +10,12 @@
         />
       </div>
       <i
-        *ngIf="images.length"
+        *ngIf="images.length > 1"
         class="slide-icon fa-solid fa-angle-left"
         (click)="prevImage()"
       ></i>
       <i
-        *ngIf="images.length"
+        *ngIf="images.length > 1"
         class="slide-icon fa-solid fa-angle-right"
         (click)="nextImage()"
       ></i>
@@ -86,6 +86,7 @@
   <button
     class="mt-4 ms-4 me-4 p-2 btn-outline-primary rounded-2"
     (click)="goBack()"
+    [title]="'shared.action.go-back' | translate"
   >
     @if(lang == 'ar') {
     <i class="fa-solid fa-arrow-right"></i>

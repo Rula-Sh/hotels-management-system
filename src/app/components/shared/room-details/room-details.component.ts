@@ -9,10 +9,10 @@ import { Room } from '../../../models/Room.model';
 @Component({
   selector: 'app-room',
   imports: [CommonModule, I18nPipe],
-  templateUrl: './room.component.html',
-  styleUrl: './room.component.scss',
+  templateUrl: './room-details.component.html',
+  styleUrl: './room-details.component.scss',
 })
-export class RoomComponent {
+export class RoomDetailsComponent {
   room: Room | undefined;
   images: string[] = []; // Should be populated appropriately
   currentIndex: number = 0;

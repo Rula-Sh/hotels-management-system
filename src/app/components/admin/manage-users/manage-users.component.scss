@@ -29,7 +29,7 @@ tr {
   color: $color-light-red;
 }
 
-img {
-  width: 45px;
-  padding-bottom: 7px;
+.fill-icon {
+  width: 35px;
+  object-fit: contain;
 }

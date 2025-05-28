@@ -91,7 +91,7 @@ export class ReservationsComponent {
   }
 
   showReservationDetails(id: string) {
-    this.router.navigate([`reservation-details/${id}`]);
+    this.router.navigate([`room-details/${id}`]);
   }
 
   ApproveReservationRequest(id: string, reservation: Reservation) {

@@ -1,12 +1,13 @@
-import { Component ,OnInit,inject} from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { Service } from '../../../models/Service.model';
 import { ServiceService } from '../../../services/service.service';
 import { CommonModule } from '@angular/common';
+import { I18nPipe } from '../../../pipes/i18n.pipe';
 @Component({
   selector: 'app-available-services',
-  imports: [CommonModule],
+  imports: [CommonModule, I18nPipe],
   templateUrl: './available-services.component.html',
-  styleUrl: './available-services.component.scss'
+  styleUrl: './available-services.component.scss',
 })
 export class AvailableServicesComponent implements OnInit {
   services: Service[] = [];
@@ -23,8 +24,7 @@ export class AvailableServicesComponent implements OnInit {
       },
       error: (error) => {
         console.error('Error loading available services:', error);
-      }
+      },
     });
   }
-
 }

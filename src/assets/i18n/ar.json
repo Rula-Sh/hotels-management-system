@@ -4,6 +4,7 @@
   },
   "header": {
     "auth": {
+      "profile": "الملف الشخصي",
       "welcome": "أهلا بك",
       "login": "تسجيل الدخول",
       "logout": "تسجيل الخروج",
@@ -86,20 +87,31 @@
     "price-required": "السعر مطلوب",
     "location-required": "الموقع مطلوب",
     "image-url-required": "رابط الصورة مطلوب",
-    "submit": "إضافة"
+    "room-details": "تفاصيل الغرفة",
+    "room-image": "صورة الغرفة",
+    "delete-room": "حذف الغرفة",
+    "submit": "إضافة",
+    "no-available-rooms": "لا يوجد غرف متاحة حاليا."
   },
   "reservation": {
     "reservations": "الحجوزات",
-    "pending": "المعلقة",
+    "pending": "المنتظرة",
     "active": " النشطة",
-    "pending-reservations": "الحجوزات المعلقة",
-    "active-reservations": "الحجوزات النشطة"
+    "pending-reservations": "الحجوزات في حالة الانتظار",
+    "active-reservations": "الحجوزات النشطة",
+    "reservation-details": "معلومات الحجز",
+    "approve-reservation": "الموافقة على الحجز",
+    "reject-reservation": "رفض الحجز",
+    "no-pending-reservations": "لا يوجد حجوزات منتظرة",
+    "no-active-reservations": "لا يوجد حجوزات نشطة"
   },
   "service": {
     "services": "الخدمات",
     "title": "العنوان",
     "details": "التفاصيل",
-    "price": "السعر"
+    "price": "السعر",
+    "service-details": "تفاصيل الخدمة",
+    "no-available-services": "لا يوجد خدمات متاحة حاليا"
   },
   "footer": {
     "english": "الإنجليزية",

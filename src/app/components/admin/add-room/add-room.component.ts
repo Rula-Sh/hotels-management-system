@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import {
+  FormArray,
   FormBuilder,
   FormGroup,
   FormsModule,
@@ -13,10 +14,19 @@ import { Router } from '@angular/router';
 import { I18nService } from '../../../services/i18n.service';
 import { Room } from '../../../models/Room.model';
 import { RoomService } from '../../../services/room.service';
+import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
 
 @Component({
   selector: 'app-add-room',
-  imports: [FormsModule, ReactiveFormsModule, CommonModule, I18nPipe],
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    CommonModule,
+    I18nPipe,
+    ToastModule,
+  ],
+  providers: [MessageService],
   templateUrl: './add-room.component.html',
   styleUrl: './add-room.component.scss',
 })
@@ -32,7 +42,8 @@ export class AddRoomComponent {
     private router: Router,
     private fb: FormBuilder,
     private i18nService: I18nService,
-    private roomService: RoomService
+    private roomService: RoomService,
+    private messageService: MessageService
   ) {}
 
   ngOnInit() {
@@ -44,8 +55,36 @@ export class AddRoomComponent {
       details: ['', Validators.required, Validators.maxLength(500)],
       price: ['', Validators.required, Validators.maxLength(4)],
       location: ['', Validators.required],
-      imageUrl: ['', Validators.required],
+      imagesUrl: this.fb.array([this.fb.control('', Validators.required)]),
     });
+  }
+
+  get imagesUrl(): FormArray {
+    return this.roomForm.get('imagesUrl') as FormArray;
+  }
+
+  addImageUrl() {
+    if (this.imagesUrl.length < 6) {
+      this.imagesUrl.push(this.fb.control('', Validators.required));
+    } else {
+      this.messageService.add({
+        severity: 'warn',
+        summary: 'Warning',
+        detail: 'You Can Add Only 5 Images Per Room',
+      });
+    }
+  }
+
+  removeImageUrl(index: number) {
+    if (this.imagesUrl.length > 1) {
+      this.imagesUrl.removeAt(index);
+    } else {
+      this.messageService.add({
+        severity: 'warn',
+        summary: 'Warning',
+        detail: 'At Least One Image URL is Required',
+      });
+    }
   }
 
   addRoom() {
@@ -62,7 +101,7 @@ export class AddRoomComponent {
       bookedStatus: 'Available',
       price: this.roomForm.value.price,
       location: this.roomForm.value.location,
-      imagesUrl: this.roomForm.value.imageUrl,
+      imagesUrl: this.roomForm.value.imagesUrl,
     };
 
     this.roomService.CreateRoom(newRoom).subscribe({

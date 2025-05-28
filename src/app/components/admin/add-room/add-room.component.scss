@@ -33,17 +33,21 @@
 
 .input-error {
   width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 label {
   width: 25%;
 }
 
-.input-group-text {
+.input-group-icon {
+  width: 100%;
   margin: 10px 5px;
   padding: 11px;
   font-size: 16px;
-  width: 100%;
   border: 2px $color-dark-brown solid;
   border-right: none;
 }
@@ -75,7 +79,7 @@ input {
   width: 20%;
 }
 
-.right-input .input-group-text {
+.right-input .input-group-icon {
   border: 2px $color-dark-brown solid;
   border-left: none;
   border-radius: 0 5px 5px 0;
@@ -108,6 +112,14 @@ input {
   font-weight: bold;
 }
 
+.images-urls-inputs {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 button {
   text-decoration: none;
   width: auto;
@@ -126,4 +138,39 @@ button {
 
 i {
   color: $color-dark-brown;
+}
+
+.icon-container {
+  cursor: pointer;
+  font-size: 24px;
+  position: absolute;
+  top: 18%;
+  right: 25px;
+}
+
+.image-url-input {
+  border-right: none;
+  margin-right: 0px;
+}
+
+.input-group-action-icons {
+  width: 100%;
+  font-size: 16px;
+  border: 2px $color-dark-brown solid;
+  border-left: none;
+  border-radius: 0 5px 5px 0;
+  margin-right: 5px;
+  padding: 8px 12px 9px 12px;
+}
+
+.right-input .input-group-action-icons {
+  border: 2px $color-dark-brown solid;
+  border-left: none;
+  border-radius: 5px 0 0 5px;
+}
+
+.delete-icon {
+  color: #dc3545;
+  margin: 0;
+  padding: 0;
 }
