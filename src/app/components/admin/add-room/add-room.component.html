@@ -240,9 +240,15 @@
           </div>
         </div>
       </div>
-      <button class="mt-4 btn-submit" [title]="'shared.submit' | translate">
-        {{ "room.submit" | translate }}
-      </button>
+
+      <div class="input-container">
+        <label></label>
+        <div class="input-error">
+          <button class="mt-4 btn-submit" [title]="'shared.submit' | translate">
+            {{ "room.submit" | translate }}
+          </button>
+        </div>
+      </div>
     </form>
   </div>
 
