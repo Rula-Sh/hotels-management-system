@@ -16,7 +16,9 @@
       "rooms": "Rooms",
       "dashboard": "Dashboard"
     },
-    "employee": {},
+    "employee": {
+      "services": "Services"
+    },
     "customer": {
       "my-reservations": "My Reservations",
       "available-services": "Available Services"
@@ -113,7 +115,16 @@
     "details": "Details",
     "price": "Price",
     "service-details": "Service Details",
-    "no-available-services": "No available services at the moment."
+    "no-available-services": "No available services at the moment.",
+    "approve-request": "Approve Request",
+    "reject-request": "Reject Request",
+    "complete-request": "Complete Request",
+    "no-pending-requests": "There are No Pending Requests",
+    "no-active-requests": "There are No Active Requests",
+    "no-completed-requests": "There are No Completed Requests",
+    "pending-requests": "Pending Requests",
+    "active-requests": "Active Requests",
+    "completed-requests": "Completed Requests"
   },
   "footer": {
     "english": "English",
