@@ -90,7 +90,8 @@
     "room-details": "Room Details",
     "room-image": "Room Image",
     "delete-room": "Delete Room",
-    "submit": "Submit"
+    "submit": "Submit",
+    "no-available-rooms": "No available rooms at the moment."
   },
   "reservation": {
     "reservations": "Reservations",
@@ -100,14 +101,17 @@
     "active-reservations": "Active Reservations",
     "reservation-details": "Reservation Details",
     "approve-reservation": "Approve Reservation",
-    "reject-reservation": "Reject Reservation"
+    "reject-reservation": "Reject Reservation",
+    "no-pending-reservations": "No Pending Reservations",
+    "no-active-reservations": "No Active Reservations"
   },
   "service": {
     "services": "Services",
     "title": "Title",
     "details": "Details",
     "price": "Price",
-    "service-details": "Service Details"
+    "service-details": "Service Details",
+    "no-available-services": "No available services at the moment."
   },
   "footer": {
     "english": "English",
