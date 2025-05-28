@@ -1,8 +1,10 @@
 <div class="d-flex justify-content-between mt-2 ms-5 me-5">
-  <h1 class="text-center align-self-center">
-    {{ "room.rooms" | translate }}
-    <img src="/assets/images/bed-brown-filled-icon.png" />
-  </h1>
+  <div class="d-flex">
+    <h1 class="m-4">
+      {{ "room.rooms" | translate }}
+    </h1>
+    <img class="fill-icon" src="/assets/images/bed-brown-filled-icon.png" />
+  </div>
   <button
     class="btn btn-primary"
     (click)="AddRoom()"
