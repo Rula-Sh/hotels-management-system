@@ -1,3 +1,14 @@
+
+<ngb-toast
+  *ngIf="showToast"
+  [class]="toastClass + ' position-fixed top-0 end-0 m-3'"
+  [autohide]="true"
+  [delay]="3000"
+  (hidden)="showToast = false"
+>
+  {{ toastMessage }}
+</ngb-toast>
+
 <div class="container mt-4">
   <h2 class="text-center mb-4">My Reservations</h2>
 
@@ -49,6 +60,9 @@
   </div>
 
   <ng-template #noReservations>
-    <div class="alert alert-info text-center">You have no reservations.</div>
+    <div *ngIf="reservations.length === 0" class="alert alert-info mt-3">
+  You have no reservations yet.
+</div>
   </ng-template>
 </div>
+
