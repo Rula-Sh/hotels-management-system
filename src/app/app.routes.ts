@@ -13,11 +13,8 @@ import { SignUpComponent } from './components/shared/auth/sign-up/sign-up.compon
 import { ProfileComponent } from './components/shared/auth/profile/profile.component';
 import { NotAuthorizedComponent } from './components/shared/auth/not-authorized/not-authorized.component';
 import { NotFoundComponent } from './components/shared/not-found/not-found.component';
-import { HomeComponent } from './components/customer/home/home.component';
-import { ReservationDetailsComponent } from './components/customer/reservation-details/reservation-details.component';
 import { MyReservationsComponent } from './components/customer/my-reservations/my-reservations.component';
 import { AvailableServicesComponent } from './components/customer/available-services/available-services.component';
-import { ServicesRequestsComponent } from './components/customer/services-requests/services-requests.component';
 import { RequestsComponent } from './components/employee/requests/requests.component';
 import { RequestDetailsComponent } from './components/employee/request-details/request-details.component';
 import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
@@ -25,9 +22,9 @@ import { AddEmployeeComponent } from './components/admin/add-employee/add-employ
 import { ManageUsersComponent } from './components/admin/manage-users/manage-users.component';
 import { UserDetailsComponent } from './components/admin/user-details/user-details.component';
 import { ReservationsComponent } from './components/admin/reservations/reservations.component';
-import { RoomsComponent } from './components/admin/rooms/rooms.component';
+import { RoomsComponent } from './components/shared/rooms/rooms.component';
 import { AddRoomComponent } from './components/admin/add-room/add-room.component';
-import { RoomComponent } from './components/admin/room/room.component';
+import { RoomDetailsComponent } from './components/shared/room-details/room-details.component';
 
 export const authGuard: CanActivateFn = (
   route: ActivatedRouteSnapshot,
@@ -63,7 +60,7 @@ export const routes: Routes = [
   },
   {
     path: 'room/:id',
-    component: RoomComponent,
+    component: RoomDetailsComponent,
   },
   {
     path: 'my-reservations',
@@ -72,20 +69,8 @@ export const routes: Routes = [
     data: { roles: ['Customer'] },
   },
   {
-    path: 'reservation-details/:id',
-    component: ReservationDetailsComponent,
-    canActivate: [authGuard],
-    data: { roles: ['Admin', 'Customer'] },
-  },
-  {
     path: 'available-services',
     component: AvailableServicesComponent,
-    canActivate: [authGuard],
-    data: { roles: ['Customer'] },
-  },
-  {
-    path: 'service-requests',
-    component: ServicesRequestsComponent,
     canActivate: [authGuard],
     data: { roles: ['Customer'] },
   },
@@ -159,7 +144,7 @@ export const routes: Routes = [
     canActivate: [authGuard],
     data: { roles: ['Admin'] },
   },
-  // have a shared route with the customer 'reservation-details/:id'
+  // have a shared route with the customer 'room-details/:id'
 
   // -------- All Users --------
 

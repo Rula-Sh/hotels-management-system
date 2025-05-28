@@ -83,7 +83,7 @@ export class UserDetailsComponent {
   }
 
   showReservationDetails(id: string) {
-    this.router.navigate([`reservation-details/${id}`]);
+    this.router.navigate([`room-details/${id}`]);
   }
 
   showServiceDetails(id: string) {
