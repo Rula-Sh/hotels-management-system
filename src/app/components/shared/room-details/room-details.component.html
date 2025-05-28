@@ -10,12 +10,12 @@
         />
       </div>
       <i
-        *ngIf="images.length"
+        *ngIf="images.length > 1"
         class="slide-icon fa-solid fa-angle-left"
         (click)="prevImage()"
       ></i>
       <i
-        *ngIf="images.length"
+        *ngIf="images.length > 1"
         class="slide-icon fa-solid fa-angle-right"
         (click)="nextImage()"
       ></i>
