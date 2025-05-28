@@ -8,8 +8,7 @@
           <div class="input-group" [ngClass]="{ 'right-input': lang == 'ar' }">
             <div class="align-self-center">
               <span
-                class="input-group-text align-self-center bg-white"
-                id="basic-addon1"
+                class="input-group-text input-group-icon align-self-center bg-white"
                 ><i class="fa-solid fa-t"></i>
               </span>
             </div>
@@ -39,8 +38,7 @@
           <div class="input-group" [ngClass]="{ 'right-input': lang == 'ar' }">
             <div class="align-self-center">
               <span
-                class="input-group-text align-self-center bg-white"
-                id="basic-addon1"
+                class="input-group-text input-group-icon align-self-center bg-white"
                 ><i class="fa-solid fa-door-closed"></i>
               </span>
             </div>
@@ -84,8 +82,7 @@
           <div class="input-group" [ngClass]="{ 'right-input': lang == 'ar' }">
             <div class="align-self-center">
               <span
-                class="input-group-text align-self-center bg-white"
-                id="basic-addon1"
+                class="input-group-text input-group-icon align-self-center bg-white"
                 ><i class="fa-solid fa-layer-group"></i>
               </span>
             </div>
@@ -117,8 +114,7 @@
           <div class="input-group" [ngClass]="{ 'right-input': lang == 'ar' }">
             <div class="align-self-center">
               <span
-                class="input-group-text align-self-center bg-white"
-                id="basic-addon1"
+                class="input-group-text input-group-icon align-self-center bg-white"
                 ><i class="fa-solid fa-hotel"></i>
               </span>
             </div>
@@ -142,6 +138,36 @@
           </div>
         </div>
       </div>
+      <div class="input-container">
+        <label for="location"> {{ "room.location" | translate }}:</label>
+        <div class="input-error">
+          <div class="input-group" [ngClass]="{ 'right-input': lang == 'ar' }">
+            <div class="align-self-center">
+              <span
+                class="input-group-text input-group-icon align-self-center bg-white"
+                ><i class="fa-solid fa-location-dot"></i>
+              </span>
+            </div>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Location"
+              aria-label="Location"
+              [placeholder]="'room.location' | translate"
+              formControlName="location"
+              required
+            />
+          </div>
+          <div
+            class="error"
+            *ngIf="
+              roomForm.get('hotel')?.invalid && roomForm.get('hotel')?.touched
+            "
+          >
+            {{ "room.hotel-required" | translate }}
+          </div>
+        </div>
+      </div>
 
       <div class="input-container">
         <label for="details"> {{ "room.details" | translate }}:</label>
@@ -149,8 +175,7 @@
           <div class="input-group" [ngClass]="{ 'right-input': lang == 'ar' }">
             <div class="align-self-center">
               <span
-                class="input-group-text align-self-center bg-white"
-                id="basic-addon1"
+                class="input-group-text input-group-icon align-self-center bg-white"
                 ><i class="fa-solid fa-circle-info"></i>
               </span>
             </div>
@@ -182,8 +207,7 @@
           <div class="input-group" [ngClass]="{ 'right-input': lang == 'ar' }">
             <div class="align-self-center">
               <span
-                class="input-group-text align-self-center bg-white"
-                id="basic-addon1"
+                class="input-group-text input-group-icon align-self-center bg-white"
                 ><i class="fa-solid fa-dollar-sign"></i>
               </span>
             </div>
@@ -208,36 +232,57 @@
         </div>
       </div>
 
-      <div class="input-container">
-        <label for="imageUrl"> {{ "room.image-url" | translate }}:</label>
-        <div class="input-error">
+      <div class="input-container" formArrayName="imagesUrl">
+        <label for="imagesUrl"> {{ "room.image-url" | translate }}:</label>
+
+        <div class="images-urls-inputs">
+          @for(imageUrl of imagesUrl.controls; let i= $index; track i){
           <div class="input-group" [ngClass]="{ 'right-input': lang == 'ar' }">
             <div class="align-self-center">
               <span
-                class="input-group-text align-self-center bg-white"
-                id="basic-addon1"
+                class="input-group-text input-group-icon align-self-center bg-white"
                 ><i class="fa-solid fa-image"></i>
               </span>
             </div>
             <input
               type="text"
-              class="form-control"
+              class="form-control image-url-input"
               placeholder="Image URL"
               aria-label="Image URL"
               [placeholder]="'room.image-url' | translate"
-              formControlName="imageUrl"
+              [formControlName]="i"
               required
             />
+
+            <div class="input-group-append align-self-center">
+              <span class="input-group-action-icons align-self-center bg-white"
+                ><i
+                  *ngIf="$index != 0"
+                  class="delete-icon fa-solid fa-trash-can fa-lg"
+                  clickable
+                  (click)="removeImageUrl(i)"
+                  title="Remove ImageUrl"
+                ></i>
+                <i
+                  *ngIf="$index == 0"
+                  class="fa-solid fa-circle-plus align-self-center fa-lg mt-3 mb-3"
+                  clickable
+                  (click)="addImageUrl()"
+                  title="Add ImageUrl"
+                ></i>
+              </span>
+            </div>
           </div>
           <div
             class="error"
             *ngIf="
-              roomForm.get('imageUrl')?.invalid &&
-              roomForm.get('imageUrl')?.touched
+              roomForm.get('imagesUrl')?.invalid &&
+              roomForm.get('imagesUrl')?.touched
             "
           >
             {{ "room.image-url-required" | translate }}
           </div>
+          }
         </div>
       </div>
 
@@ -265,3 +310,5 @@
     {{ "shared.action.go-back" | translate }}
   </button>
 </div>
+
+<p-toast></p-toast>
