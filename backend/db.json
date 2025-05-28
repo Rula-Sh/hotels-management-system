@@ -74,7 +74,10 @@
       "role": "Employee",
       "pfp": "",
       "jobTitle": "Hair Stylist",
-      "services": ["svc1", "svc2"]
+      "services": [
+        "svc1",
+        "svc2"
+      ]
     },
     {
       "id": "emp2",
@@ -85,7 +88,9 @@
       "role": "Employee",
       "pfp": "",
       "jobTitle": "Massage Therapist",
-      "services": ["svc3"]
+      "services": [
+        "svc3"
+      ]
     },
     {
       "id": "1959",
@@ -165,7 +170,7 @@
       "employeeId": "emp1",
       "title": "Haircut",
       "details": "Basic haircut service with styling.",
-      "price": 25.0,
+      "price": 25,
       "employee": {
         "id": "emp1",
         "name": "Alice Johnson",
