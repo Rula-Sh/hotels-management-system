@@ -23,8 +23,8 @@ export class RoomService {
     return this.api.post<Room>(this.url, rooms);
   }
 
-  UpdateRoom(rooms: Room): Observable<Room> {
-    return this.api.put<Room>(`${this.url}/${rooms.id}`, rooms);
+  updateRoom(id: string, room: Room): Observable<Room> {
+    return this.api.put<Room>(`${this.url}/${id}`, room);
   }
 
   RemoveRoom(id: string): Observable<void> {
