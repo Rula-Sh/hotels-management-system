@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { I18nPipe } from '../../../pipes/i18n.pipe';
 import { User } from '../../../models/User.model';
 import { UserService } from '../../../services/user.service';
@@ -12,7 +12,7 @@ import { I18nService } from '../../../services/i18n.service';
 
 @Component({
   selector: 'app-user-details',
-  imports: [CommonModule, I18nPipe],
+  imports: [CommonModule, I18nPipe, RouterLink],
   templateUrl: './user-details.component.html',
   styleUrl: './user-details.component.scss',
 })
@@ -80,13 +80,5 @@ export class UserDetailsComponent {
         },
       });
     }
-  }
-
-  showReservationDetails(id: string) {
-    this.router.navigate([`room-details/${id}`]);
-  }
-
-  goBack() {
-    this.router.navigate(['/admin/manage-users']);
   }
 }

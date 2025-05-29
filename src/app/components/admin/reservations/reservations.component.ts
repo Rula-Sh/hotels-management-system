@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Reservation as Reservation } from '../../../models/Reservation.model';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { ConfirmationService, MessageService, PrimeIcons } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
@@ -18,6 +18,7 @@ import { ReservationService } from '../../../services/reservation.service';
     ConfirmDialogModule,
     CommonModule,
     ButtonModule,
+    RouterLink,
   ],
   providers: [MessageService, ConfirmationService, PrimeIcons],
   templateUrl: './reservations.component.html',
@@ -88,10 +89,6 @@ export class ReservationsComponent {
         console.log(`Failed to Load reservations: ${err}`);
       },
     });
-  }
-
-  showReservationDetails(id: string) {
-    this.router.navigate([`room-details/${id}`]);
   }
 
   ApproveReservationRequest(id: string, reservation: Reservation) {

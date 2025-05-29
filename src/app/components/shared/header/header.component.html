@@ -68,7 +68,6 @@
         @if(isLoggedIn){
         <a
           [routerLink]="'/profile/' + userId"
-          (click)="goToProfile(userId!)"
           [title]="'header.auth.profile' | translate"
         >
           <img

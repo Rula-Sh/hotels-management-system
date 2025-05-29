@@ -11,7 +11,8 @@
     </div>
     <button
       class="btn btn-primary m-4"
-      (click)="AddEmployee()"
+      [routerLink]="['/admin/add-employee']"
+      routerLinkActive="router-link-active"
       [title]="'user.add-employee' | translate"
     >
       <i class="bi bi-person-plus-fill h4 m-1 align-middle"></i>
@@ -51,7 +52,8 @@
           <td>
             <button
               class="details action-btn"
-              (click)="ShowUserProfile(user.id)"
+              [routerLink]="['/user/', user.id]"
+              routerLinkActive="router-link-active"
             >
               <i
                 class="bi bi-person-lines-fill h5"

@@ -9,8 +9,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { I18nPipe } from '../../../pipes/i18n.pipe';
-import { Subscription } from 'rxjs';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { I18nService } from '../../../services/i18n.service';
 import { Room } from '../../../models/Room.model';
 import { RoomService } from '../../../services/room.service';
@@ -25,13 +24,13 @@ import { ToastModule } from 'primeng/toast';
     CommonModule,
     I18nPipe,
     ToastModule,
+    RouterLink,
   ],
   providers: [MessageService],
   templateUrl: './add-room.component.html',
   styleUrl: './add-room.component.scss',
 })
 export class AddRoomComponent {
-  private userSub!: Subscription;
   roomForm!: FormGroup;
 
   get lang(): 'en' | 'ar' {
@@ -114,9 +113,5 @@ export class AddRoomComponent {
         console.log('Error on Adding a Room', err);
       },
     });
-  }
-
-  goBack() {
-    this.router.navigate(['/rooms']);
   }
 }

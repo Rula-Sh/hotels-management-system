@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Subscription } from 'rxjs';
 import {
   FormBuilder,
   FormControl,
@@ -24,7 +23,6 @@ import { I18nService } from '../../../../services/i18n.service';
 })
 export class ProfileComponent {
   user: User | null = null;
-  private userSub!: Subscription;
   profileForm!: FormGroup;
   isEditing = false;
   profileData: any;

@@ -9,8 +9,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { I18nPipe } from '../../../pipes/i18n.pipe';
-import { Subscription } from 'rxjs';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { I18nService } from '../../../services/i18n.service';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
@@ -28,6 +27,7 @@ import { Employee } from '../../../models/Employee.model';
     CommonModule,
     I18nPipe,
     ToastModule,
+    RouterLink,
   ],
   providers: [MessageService],
   templateUrl: './add-service.component.html',
@@ -93,9 +93,5 @@ export class AddServiceComponent {
         console.log('Error on Adding a Service', err);
       },
     });
-  }
-
-  goBack() {
-    this.router.navigate(['/employee/services']);
   }
 }

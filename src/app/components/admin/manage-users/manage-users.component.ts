@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { ConfirmationService, MessageService, PrimeIcons } from 'primeng/api';
 import { User } from '../../../models/User.model';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { UserService } from '../../../services/user.service';
 
 @Component({
@@ -17,6 +17,7 @@ import { UserService } from '../../../services/user.service';
     ConfirmDialogModule,
     CommonModule,
     ButtonModule,
+    RouterLink,
   ],
   providers: [MessageService, ConfirmationService, PrimeIcons],
   templateUrl: './manage-users.component.html',
@@ -47,10 +48,6 @@ export class ManageUsersComponent {
     this.role = localStorage.getItem('user_role');
   }
 
-  AddEmployee() {
-    this.router.navigate(['/admin/add-employee']);
-  }
-
   getUsers() {
     this.userService.getAllUsers().subscribe({
       next: (value) => {
@@ -61,9 +58,6 @@ export class ManageUsersComponent {
         console.log(`Failed to Load users: ${err}`);
       },
     });
-  }
-  ShowUserProfile(id: string) {
-    this.router.navigate([`user/${id}`]);
   }
 
   HireUser(id: string, user: User) {

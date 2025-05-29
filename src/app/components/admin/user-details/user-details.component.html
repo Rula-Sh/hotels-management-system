@@ -100,7 +100,8 @@
           <td>
             <button
               class="details"
-              (click)="showReservationDetails(reservation.id)"
+              [routerLink]="['/room-details/', reservation.room.id]"
+              routerLinkActive="router-link-active"
               [title]="'reservation.reservation-details' | translate"
             >
               <i class="bi bi-info-circle-fill h5"></i>
@@ -116,7 +117,8 @@
   } }
   <button
     class="mt-5 go-back-button btn-outline-primary rounded-2"
-    (click)="goBack()"
+    [routerLink]="['/admin/manage-users']"
+    routerLinkActive="router-link-active"
     [title]="'shared.action.go-back' | translate"
   >
     @if(lang == 'ar') {

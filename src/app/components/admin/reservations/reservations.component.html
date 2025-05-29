@@ -34,7 +34,8 @@
           <td>
             <button
               class="details"
-              (click)="showReservationDetails(reservation.id)"
+              [routerLink]="['/room-details/', reservation.room.id]"
+              routerLinkActive="router-link-active"
             >
               <!-- <i class="bi bi-info-circle h5"></i> -->
               <i
@@ -103,7 +104,8 @@
           <td>
             <button
               class="details"
-              (click)="showReservationDetails(reservation.id)"
+              [routerLink]="['/room-details/', reservation.room.id]"
+              routerLinkActive="router-link-active"
             >
               <!-- <i class="bi bi-info-circle h5"></i> -->
               <i

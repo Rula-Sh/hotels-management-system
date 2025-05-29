@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { I18nPipe } from '../../../pipes/i18n.pipe';
 import { RoomService } from '../../../services/room.service';
 import { I18nService } from '../../../services/i18n.service';
@@ -8,7 +8,7 @@ import { Room } from '../../../models/Room.model';
 
 @Component({
   selector: 'app-room',
-  imports: [CommonModule, I18nPipe],
+  imports: [CommonModule, I18nPipe, RouterLink],
   templateUrl: './room-details.component.html',
   styleUrl: './room-details.component.scss',
 })
@@ -80,9 +80,5 @@ export class RoomDetailsComponent {
 
   slide(): string {
     return `translateX(-${this.currentIndex * 100}%)`;
-  }
-
-  goBack() {
-    this.router.navigate(['/rooms']);
   }
 }

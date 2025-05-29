@@ -85,7 +85,8 @@
   </div>
   <button
     class="mt-4 ms-4 me-4 p-2 btn-outline-primary rounded-2"
-    (click)="goBack()"
+    [routerLink]="['/rooms/']"
+    routerLinkActive="router-link-active"
     [title]="'shared.action.go-back' | translate"
   >
     @if(lang == 'ar') {

@@ -5,7 +5,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { ConfirmationService, MessageService, PrimeIcons } from 'primeng/api';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { User } from '../../../models/User.model';
 import { NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
@@ -21,6 +21,7 @@ import { Service } from '../../../models/Service.model';
     CommonModule,
     ButtonModule,
     NgbToastModule,
+    RouterLink,
   ],
   providers: [MessageService, ConfirmationService, PrimeIcons],
   templateUrl: './services.component.html',
@@ -65,15 +66,7 @@ export class ServicesComponent {
       },
     });
   }
-
-  AddService() {
-    this.router.navigate([`employee/add-service`]);
-  }
-
-  editService(id: string) {
-    this.router.navigate([`employee/edit-service/${id}`]);
-  }
-
+  
   deleteService(id: string) {
     this.confirmationService.confirm({
       message: 'Are you sure you want to remove this service?',
