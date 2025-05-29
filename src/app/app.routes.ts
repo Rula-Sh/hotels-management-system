@@ -79,7 +79,7 @@ export const routes: Routes = [
 
   // ------------------------ Emplyoyee ------------------------
   {
-    path: 'requests',
+    path: 'employee/requests',
     component: RequestsComponent,
     canActivate: [authGuard],
     data: { roles: ['Employee'] },
@@ -91,13 +91,13 @@ export const routes: Routes = [
   //   data: { roles: ['Employee'] },
   // },
   {
-    path: 'services',
+    path: 'employee/services',
     component: ServicesComponent,
     canActivate: [authGuard],
     data: { roles: ['Employee'] },
   },
   {
-    path: 'add-service',
+    path: 'employee/add-service',
     component: AddServiceComponent,
     canActivate: [authGuard],
     data: { roles: ['Employee'] },
