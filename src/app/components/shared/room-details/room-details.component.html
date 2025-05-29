@@ -115,25 +115,25 @@
           No approved or active services for this room.
         </p>
       </ng-template>
-
     </div>
-   
+
     @if(role != 'Admin'){
     <button class="book-btn btn-primary" (click)="bookRoom(room!)">
       Book Now
     </button>
     }
   </div>
-   <button
-      class="mt-4 ms-4 me-4 p-2 btn-outline-primary rounded-2"
-      (click)="goBack()"
-      [title]="'shared.action.go-back' | translate"
-    >
-      @if(lang == 'ar') {
-      <i class="fa-solid fa-arrow-right"></i>
-      } @else {
-      <i class="fa-solid fa-arrow-left"></i>
-      }
-      {{ "shared.action.go-back" | translate }}
-    </button>
+  <button
+    class="mt-4 ms-4 me-4 p-2 btn-outline-primary rounded-2"
+    [routerLink]="['/rooms/']"
+    routerLinkActive="router-link-active"
+    [title]="'shared.action.go-back' | translate"
+  >
+    @if(lang == 'ar') {
+    <i class="fa-solid fa-arrow-right"></i>
+    } @else {
+    <i class="fa-solid fa-arrow-left"></i>
+    }
+    {{ "shared.action.go-back" | translate }}
+  </button>
 </div>
