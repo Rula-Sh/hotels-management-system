@@ -245,7 +245,8 @@
 
   <button
     class="mt-4 ms-4 btn-outline-primary rounded-2"
-    (click)="goBack()"
+    [routerLink]="'/admin/manage-users'"
+    routerLinkActive="router-link-active"
     [title]="'shared.action.go-back' | translate"
   >
     @if(lang == 'ar') {

@@ -7,7 +7,7 @@ import { ButtonModule } from 'primeng/button';
 import { ConfirmationService, MessageService, PrimeIcons } from 'primeng/api';
 import { Room } from '../../../models/Room.model';
 import { RoomService } from '../../../services/room.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { ReservationService } from '../../../services/reservation.service';
 import { Reservation } from '../../../models/Reservation.model';
@@ -22,6 +22,7 @@ import { NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
     CommonModule,
     ButtonModule,
     NgbToastModule,
+    RouterLink,
   ],
   providers: [MessageService, ConfirmationService, PrimeIcons],
   templateUrl: './rooms.component.html',
@@ -69,14 +70,6 @@ export class RoomsComponent {
     });
   }
 
-  showRoomDetails(id: string) {
-    this.router.navigate([`room/${id}`]);
-  }
-
-  AddRoom() {
-    this.router.navigate([`admin/add-room`]);
-  }
-
   deleteRoom(id: string) {
     this.confirmationService.confirm({
       message: 'Are you sure you want to remove this room?',
@@ -99,81 +92,80 @@ export class RoomsComponent {
       reject: () => {},
     });
   }
-bookRoom(room: Room) {
-  this.showToast = false;
-  const user = this.authService.getCurrentUser();
+  bookRoom(room: Room) {
+    this.showToast = false;
+    const user = this.authService.getCurrentUser();
 
-  if (!user) {
-    this.toastMessage = 'Please login first.';
-    this.toastClass = 'bg-warning text-dark';
-    this.showToast = true;
-    return;
-  }
-
-  // 👇 التحقق من وجود حجز سابق
-  this.reservationService.getReservationsByCustomerId(user.id).subscribe({
-    next: (reservations) => {
-      const alreadyBooked = reservations.some(res => res.roomId === room.id);
-
-      if (alreadyBooked) {
-        this.toastMessage = `You already sent a booking request for "${room.title}".`;
-        this.toastClass = 'bg-info text-white';
-        this.showToast = true;
-
-        setTimeout(() => {
-          this.showToast = false;
-        }, 3000);
-        return;
-      }
-
-      // 🟢 إذا لم يكن هناك حجز مسبق، إنشاء الحجز
-      const reservation: Omit<Reservation,'id'> = {
-
-        customer: user,
-        customerId: user.id,
-        roomId: room.id,
-        room: room,
-        date: new Date(),
-        paymentAmount: room.price,
-        paymentStatus: 'Unpaid',
-        approvalStatus: 'Pending',
-      };
-
-      this.reservationService.createReservation(reservation).subscribe({
-        next: () => {
-          const updatedRoom: Room = { ...room, bookedStatus: 'Pending' };
-          this.roomService.updateRoom(room.id, updatedRoom).subscribe({
-            next: () => {
-              this.toastMessage = `Room "${room.title}" booked! Waiting for admin approval.`;
-              this.toastClass = 'bg-success text-light';
-              this.showToast = true;
-              room.bookedStatus = 'Pending';
-
-              setTimeout(() => {
-                this.showToast = false;
-              }, 3000);
-            },
-            error: () => {
-              this.toastMessage = 'Room booked but failed to update status.';
-              this.toastClass = 'bg-warning text-dark';
-              this.showToast = true;
-            }
-          });
-        },
-        error: () => {
-          this.toastMessage = 'Booking failed. Please try again later.';
-          this.toastClass = 'bg-danger text-light';
-          this.showToast = true;
-        }
-      });
-    },
-    error: () => {
-      this.toastMessage = 'Error checking previous reservations.';
-      this.toastClass = 'bg-danger text-light';
+    if (!user) {
+      this.toastMessage = 'Please login first.';
+      this.toastClass = 'bg-warning text-dark';
       this.showToast = true;
+      return;
     }
-  });
-}
 
+    // 👇 التحقق من وجود حجز سابق
+    this.reservationService.getReservationsByCustomerId(user.id).subscribe({
+      next: (reservations) => {
+        const alreadyBooked = reservations.some(
+          (res) => res.roomId === room.id
+        );
 
+        if (alreadyBooked) {
+          this.toastMessage = `You already sent a booking request for "${room.title}".`;
+          this.toastClass = 'bg-info text-white';
+          this.showToast = true;
+
+          setTimeout(() => {
+            this.showToast = false;
+          }, 3000);
+          return;
+        }
+
+        // 🟢 إذا لم يكن هناك حجز مسبق، إنشاء الحجز
+        const reservation: Omit<Reservation, 'id'> = {
+          customer: user,
+          customerId: user.id,
+          roomId: room.id,
+          room: room,
+          date: new Date(),
+          paymentAmount: room.price,
+          paymentStatus: 'Unpaid',
+          approvalStatus: 'Pending',
+        };
+
+        this.reservationService.createReservation(reservation).subscribe({
+          next: () => {
+            const updatedRoom: Room = { ...room, bookedStatus: 'Pending' };
+            this.roomService.updateRoom(room.id, updatedRoom).subscribe({
+              next: () => {
+                this.toastMessage = `Room "${room.title}" booked! Waiting for admin approval.`;
+                this.toastClass = 'bg-success text-light';
+                this.showToast = true;
+                room.bookedStatus = 'Pending';
+
+                setTimeout(() => {
+                  this.showToast = false;
+                }, 3000);
+              },
+              error: () => {
+                this.toastMessage = 'Room booked but failed to update status.';
+                this.toastClass = 'bg-warning text-dark';
+                this.showToast = true;
+              },
+            });
+          },
+          error: () => {
+            this.toastMessage = 'Booking failed. Please try again later.';
+            this.toastClass = 'bg-danger text-light';
+            this.showToast = true;
+          },
+        });
+      },
+      error: () => {
+        this.toastMessage = 'Error checking previous reservations.';
+        this.toastClass = 'bg-danger text-light';
+        this.showToast = true;
+      },
+    });
+  }
 }

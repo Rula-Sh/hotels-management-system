@@ -9,7 +9,8 @@
   </div>
   <button
     class="btn btn-primary"
-    (click)="AddService()"
+    [routerLink]="['/employee/add-service']"
+    routerLinkActive="router-link-active"
     [title]="'service.add-service' | translate"
   >
     <i class="fa-solid fa-circle-plus m-1 align-middle"></i>
@@ -29,7 +30,8 @@
     ></i>
     <i
       class="edit-icon bi bi-pencil-square h5"
-      (click)="editService(service.id)"
+      [routerLink]="['/employee/edit-service/', service.id]"
+      routerLinkActive="router-link-active"
       [title]="'service.edit-service' | translate"
     ></i>
     <img class="service-img" [src]="service.imageUrl" />

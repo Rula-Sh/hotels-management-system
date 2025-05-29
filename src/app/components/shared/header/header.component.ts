@@ -58,9 +58,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.router.navigate(['/']);
   }
 
-  goToProfile(id: string) {
-    this.router.navigate([`profile/${id}`]);
-  }
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }

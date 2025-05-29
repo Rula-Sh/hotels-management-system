@@ -8,7 +8,8 @@
   @if(user?.role == "Admin"){
   <button
     class="btn btn-primary"
-    (click)="AddRoom()"
+    [routerLink]="['/admin/add-room']"
+    routerLinkActive="router-link-active"
     [title]="'room.add-room' | translate"
   >
     <i class="bi bi-house-add-fill h4 m-1 align-middle"></i>
@@ -26,19 +27,25 @@
       (click)="deleteRoom(room.id)"
       [title]="'room.delete-room' | translate"
     ></i>
+    }
     <i
       class="info-icon bi bi-info-circle-fill h5"
-      (click)="showRoomDetails(room.id)"
+      [routerLink]="['/room-details/', room.id]"
+      routerLinkActive="router-link-active"
       [title]="'room.room-details' | translate"
     ></i>
-    }
     <img
       class="room-img"
       [src]="room.imagesUrl[0]"
-      (click)="showRoomDetails(room.id)"
+      [routerLink]="['/room-details/', room.id]"
+      routerLinkActive="router-link-active"
     />
     <div class="room-info">
-      <div class="room-content" (click)="showRoomDetails(room.id)">
+      <div
+        class="room-content"
+        [routerLink]="['/room-details/', room.id]"
+        routerLinkActive="router-link-active"
+      >
         <h4>{{ room.title }}</h4>
         <div>
           <strong class="me-2">{{ "room.type" | translate }}:</strong>
