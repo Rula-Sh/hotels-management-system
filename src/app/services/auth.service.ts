@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { User } from '../models/User.model';
+import { Employee } from '../models/Employee.model';
 
 @Injectable({
   providedIn: 'root',
@@ -25,6 +26,12 @@ export class AuthService {
     localStorage.setItem('email', user.email);
     localStorage.setItem('user_role', user.role);
     localStorage.setItem('pfp', user.pfp ?? '');
+
+    if (user.role === 'Employee') {
+      const employee = user as Employee;
+      localStorage.setItem('hotel', employee.hotel);
+      localStorage.setItem('jobTitle', employee.jobTitle);
+    }
     this.loggedInSubject.next(true);
   }
 
@@ -51,6 +58,22 @@ export class AuthService {
       const user: User = { id, name, email, role } as User;
       return user;
     }
+    return null;
+  }
+
+  getCurrentEmployee(): Employee | null {
+    const user = this.getCurrentUser();
+    const hotel = localStorage.getItem('hotel');
+    const jobTitle = localStorage.getItem('jobTitle');
+
+    if (user && hotel && jobTitle) {
+      return {
+        ...user,
+        hotel,
+        jobTitle,
+      } as Employee;
+    }
+
     return null;
   }
 
