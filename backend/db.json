@@ -199,12 +199,12 @@
   "services": [
     {
       "id": "svc1",
-      "employeeId": "emp1",
-      "title": "Haircut",
+      "title": "Fix Furniture",
       "serviceType": "Maintenance",
-      "details": "Basic haircut service with styling.",
-      "price": 25,
+      "details": "Basic maintenance service",
+      "price": 20,
       "imageUrl": "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748501068/678a64ea8faa75e20768a51b_64b64e9c25f6ad976e8ea6b7_Outsource_20maintenance_kpwafy.jpg",
+      "employeeId": "emp1",
       "employee": {
         "id": "emp1",
         "name": "Alice Johnson",

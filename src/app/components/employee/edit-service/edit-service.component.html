@@ -1,1 +1,212 @@
-<p>edit-service works!</p>
+<div class="page">
+  <h1 class="m-4 mb-4">{{ "service.edit-service" | translate }}</h1>
+  <div class="center-wrapper">
+    <form
+      class="container p-4"
+      [formGroup]="serviceForm"
+      (ngSubmit)="editService()"
+    >
+      <div class="input-container">
+        <label for="title"> {{ "shared.form.title" | translate }}:</label>
+        <div class="input-error">
+          <div class="input-group" [ngClass]="{ 'right-input': lang == 'ar' }">
+            <div class="align-self-center">
+              <span
+                class="input-group-text input-group-icon align-self-center bg-white"
+                ><i class="fa-solid fa-t"></i>
+              </span>
+            </div>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Title"
+              aria-label="Title"
+              [placeholder]="'shared.form.title' | translate"
+              formControlName="title"
+              required
+            />
+          </div>
+          <div
+            class="error"
+            *ngIf="
+              serviceForm.get('title')?.invalid &&
+              serviceForm.get('title')?.touched
+            "
+          >
+            {{ "shared.form.title-required" | translate }}
+          </div>
+        </div>
+      </div>
+      <div class="input-container">
+        <label for="serviceType"> {{ "service.type" | translate }}:</label>
+        <div class="input-error">
+          <div class="input-group" [ngClass]="{ 'right-input': lang == 'ar' }">
+            <div class="align-self-center">
+              <span
+                class="input-group-text input-group-icon align-self-center bg-white"
+              >
+                <i class="fa-solid fa-screwdriver-wrench"></i>
+              </span>
+            </div>
+            <select
+              class="form-control type-input"
+              aria-label="Service Type"
+              formControlName="serviceType"
+              required
+            >
+              <option value="" disabled selected hidden>
+                {{ "service.type" | translate }}
+              </option>
+              @for(servicesType of servicesTypes; let i= $index; track i){
+
+              <option [value]="servicesType">{{ servicesType }}</option>
+              }
+            </select>
+
+            <div class="input-group-append align-self-center">
+              <span class="input-group-right-icons align-self-center bg-white">
+                <i
+                  class="fa-solid fa-chevron-down fa-sm mt-3 mb-3"
+                  title="Select Service Type"
+                ></i>
+              </span>
+            </div>
+          </div>
+          <div
+            class="error"
+            *ngIf="
+              serviceForm.get('serviceType')?.invalid &&
+              serviceForm.get('serviceType')?.touched
+            "
+          >
+            {{ "service.service-type-required" | translate }}
+          </div>
+        </div>
+      </div>
+      <div class="input-container">
+        <label for="details"> {{ "shared.form.details" | translate }}:</label>
+        <div class="input-error">
+          <div class="input-group" [ngClass]="{ 'right-input': lang == 'ar' }">
+            <div class="align-self-center">
+              <span
+                class="input-group-text input-group-icon align-self-center bg-white"
+                ><i class="fa-solid fa-circle-info"></i>
+              </span>
+            </div>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Details"
+              aria-label="Details"
+              [placeholder]="'shared.form.details' | translate"
+              formControlName="details"
+              required
+            />
+          </div>
+          <div
+            class="error"
+            *ngIf="
+              serviceForm.get('details')?.invalid &&
+              serviceForm.get('details')?.touched
+            "
+          >
+            {{ "shared.form.details-required" | translate }}
+          </div>
+        </div>
+      </div>
+
+      <div class="input-container">
+        <label for="price"> {{ "shared.form.price" | translate }}:</label>
+        <div class="input-error">
+          <div class="input-group" [ngClass]="{ 'right-input': lang == 'ar' }">
+            <div class="align-self-center">
+              <span
+                class="input-group-text input-group-icon align-self-center bg-white"
+                ><i class="fa-solid fa-dollar-sign"></i>
+              </span>
+            </div>
+            <input
+              type="number"
+              class="form-control"
+              placeholder="Price"
+              aria-label="Price"
+              [placeholder]="'shared.form.price' | translate"
+              formControlName="price"
+              required
+            />
+          </div>
+          <div
+            class="error"
+            *ngIf="
+              serviceForm.get('price')?.invalid &&
+              serviceForm.get('price')?.touched
+            "
+          >
+            {{ "shared.form.price-required" | translate }}
+          </div>
+        </div>
+      </div>
+
+      <div class="input-container">
+        <label for="imageUrl">
+          {{ "shared.form.image-url" | translate }}:</label
+        >
+        <div class="input-error">
+          <div class="input-group" [ngClass]="{ 'right-input': lang == 'ar' }">
+            <div class="align-self-center">
+              <span
+                class="input-group-text input-group-icon align-self-center bg-white"
+                ><i class="fa-solid fa-image"></i>
+              </span>
+            </div>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Image URL"
+              aria-label="Image URL"
+              [placeholder]="'shared.form.image-url' | translate"
+              formControlName="imageUrl"
+              required
+            />
+          </div>
+        </div>
+        <div
+          class="error"
+          *ngIf="
+            serviceForm.get('imagesUrl')?.invalid &&
+            serviceForm.get('imagesUrl')?.touched
+          "
+        >
+          {{ "shared.form.image-url-required" | translate }}
+        </div>
+      </div>
+
+      <div class="input-container">
+        <label></label>
+        <div class="input-error">
+          <button
+            class="mt-4 btn-submit"
+            [title]="'shared.action.update' | translate"
+          >
+            {{ "shared.action.update" | translate }}
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <button
+    class="mt-4 ms-4 btn-outline-primary rounded-2"
+    (click)="goBack()"
+    [title]="'shared.action.go-back' | translate"
+  >
+    @if(lang == 'ar') {
+    <i class="fa-solid fa-arrow-right"></i>
+    } @else {
+    <i class="fa-solid fa-arrow-left"></i>
+    }
+    {{ "shared.action.go-back" | translate }}
+  </button>
+</div>
+
+<p-toast></p-toast>

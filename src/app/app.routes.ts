@@ -26,6 +26,7 @@ import { AddRoomComponent } from './components/admin/add-room/add-room.component
 import { RoomDetailsComponent } from './components/shared/room-details/room-details.component';
 import { ServicesComponent } from './components/employee/services/services.component';
 import { AddServiceComponent } from './components/employee/add-service/add-service.component';
+import { EditServiceComponent } from './components/employee/edit-service/edit-service.component';
 
 export const authGuard: CanActivateFn = (
   route: ActivatedRouteSnapshot,
@@ -92,6 +93,12 @@ export const routes: Routes = [
   {
     path: 'employee/add-service',
     component: AddServiceComponent,
+    canActivate: [authGuard],
+    data: { roles: ['Employee'] },
+  },
+  {
+    path: 'employee/edit-service/:id',
+    component: EditServiceComponent,
     canActivate: [authGuard],
     data: { roles: ['Employee'] },
   },
