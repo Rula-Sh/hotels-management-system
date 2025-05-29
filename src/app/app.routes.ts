@@ -61,7 +61,7 @@ export const routes: Routes = [
     component: RoomsComponent,
   },
   {
-    path: 'room/:id',
+    path: 'room-details/:id',
     component: RoomDetailsComponent,
   },
   {
