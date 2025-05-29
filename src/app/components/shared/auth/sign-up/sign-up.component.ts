@@ -91,6 +91,9 @@ export class SignUpComponent {
       this.userService.CreateUser(user).subscribe({
         next: (value) => {
           this.authService.login(value);
+          localStorage.setItem('user_id', value.id);
+          
+         
           this.toastMessage = 'Registered successfully!';
           this.toastClass = 'bg-success text-white';
           this.showToast = true;

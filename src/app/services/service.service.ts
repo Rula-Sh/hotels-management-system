@@ -65,4 +65,36 @@ export class ServiceService {
       request
     );
   }
+  createServiceRequest(request: Omit<ServiceRequest, 'id'>): Observable<ServiceRequest> {
+  return this.api.post<ServiceRequest>(this.servicesRequestsUrl, request);
 }
+ // جلب كل طلبات الخدمة
+  getAllRequests(): Observable<ServiceRequest[]> {
+    return this.api.get<ServiceRequest[]>(this.servicesRequestsUrl);
+  }
+
+  // جلب طلب خدمة حسب معرفه
+  getRequestById(id: string): Observable<ServiceRequest> {
+    return this.api.get<ServiceRequest>(`${this.servicesRequestsUrl}/${id}`);
+  }
+
+
+
+  // تحديث حالة الطلب (موافقة أو رفض)
+  updateRequestStatus(id: string, status: ServiceRequest['requestStatus']): Observable<ServiceRequest> {
+    return this.api.patch<ServiceRequest>(`${this.servicesRequestsUrl}/${id}`, { requestStatus: status });
+  }
+
+  // تحديث كامل الطلب (مثلاً لتعديل ملاحظات أو غيرها)
+  updateRequest(request: ServiceRequest): Observable<ServiceRequest> {
+    return this.api.put<ServiceRequest>(`${this.servicesRequestsUrl}/${request.id}`, request);
+  }
+  getServicesByRoomId(roomId: string): Observable<ServiceRequest[]> {
+  return this.api.get<ServiceRequest[]>(`${this.servicesRequestsUrl}/?roomId=${roomId}`);
+}
+getServicesByCustomerId(customerId: string): Observable<ServiceRequest[]> {
+  return this.api.get<ServiceRequest[]>(`${this.servicesRequestsUrl}/?customerId=${customerId}`);
+}
+
+}
+

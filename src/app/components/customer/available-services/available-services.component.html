@@ -1,6 +1,19 @@
+<ngb-toast
+  *ngIf="showToast"
+  class="bg-success text-white position-fixed top-0 end-0 m-3"
+  [autohide]="true"
+  [delay]="3000"
+  (hidden)="showToast = false"
+>
+  {{ toastMessage }}
+</ngb-toast>
 
-<div class="services-container" *ngIf="services.length > 0; else noServices">
-  <div class="service-card" *ngFor="let service of services">
+
+<div
+  class="services-container"
+  *ngIf="filteredServices.length > 0; else noServices"
+>
+  <div class="service-card" *ngFor="let service of filteredServices">
     <h3>{{ service.title }}</h3>
     <p><strong>Details:</strong> {{ service.details }}</p>
     <p><strong>Price:</strong> ${{ service.price }}</p>
@@ -12,10 +25,19 @@
       <p><strong>Phone:</strong> {{ service.employee.phone }}</p>
     </div>
 
-    <button class="btn-primary ">Request Service</button>
+<button class="btn-primary"
+  [disabled]="requestedServicesStatus[service.title] === 'Pending' || requestedServicesStatus[service.title] === 'In Progress' || requestedServicesStatus[service.title] === 'Completed'"
+  (click)="requestService(service)">
+  {{ 
+    requestedServicesStatus[service.title] === 'Completed' || requestedServicesStatus[service.title] === 'In Progress' 
+    ? 'Approved' 
+    : (requestedServicesStatus[service.title] === 'Pending' ? 'Requested' : 'Request Service') 
+  }}
+</button>
+
   </div>
 </div>
 
 <ng-template #noServices>
-  <p> {{ 'service.no-available-services' | translate }} </p>
+  <p>{{ "service.no-available-services" | translate }}</p>
 </ng-template>

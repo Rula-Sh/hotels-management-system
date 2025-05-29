@@ -3,7 +3,7 @@ import { Room } from './Room.model';
 import { Service } from './Service.model';
 import { User } from './User.model';
 
-export interface ServiceRequest extends Service {
+export interface ServiceRequest  {
   id: string;
   date: Date;
   customerId: string;
@@ -12,4 +12,13 @@ export interface ServiceRequest extends Service {
   notes:string,
   customer: User;
   room: Room;
+  employeeId: string;
+  employee: User;
+   // خصائص الخدمة:
+  title: string;
+  serviceType: string;
+  details: string;
+  price: number;
+  imageUrl: string;
+
 }
