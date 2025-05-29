@@ -34,7 +34,6 @@ import { Employee } from '../../../models/Employee.model';
   styleUrl: './add-service.component.scss',
 })
 export class AddServiceComponent {
-  private userSub!: Subscription;
   serviceForm!: FormGroup;
   user: Employee | null = null;
   servicesTypes = ['Cleaning', 'Dining', 'Maintenance', 'Health', 'Beauty'];
@@ -63,34 +62,6 @@ export class AddServiceComponent {
       price: ['', [Validators.required, Validators.maxLength(4)]],
       imageUrl: ['', Validators.required],
     });
-  }
-
-  get imagesUrl(): FormArray {
-    return this.serviceForm.get('imagesUrl') as FormArray;
-  }
-
-  addImageUrl() {
-    if (this.imagesUrl.length < 6) {
-      this.imagesUrl.push(this.fb.control('', Validators.required));
-    } else {
-      this.messageService.add({
-        severity: 'warn',
-        summary: 'Warning',
-        detail: 'You Can Add Only 5 Images Per Room',
-      });
-    }
-  }
-
-  removeImageUrl(index: number) {
-    if (this.imagesUrl.length > 1) {
-      this.imagesUrl.removeAt(index);
-    } else {
-      this.messageService.add({
-        severity: 'warn',
-        summary: 'Warning',
-        detail: 'At Least One Image URL is Required',
-      });
-    }
   }
 
   addService() {

@@ -29,16 +29,12 @@
     ></i>
     <i
       class="edit-icon bi bi-pencil-square h5"
-      (click)="edtiService(service.id)"
+      (click)="editService(service.id)"
       [title]="'service.edit-service' | translate"
     ></i>
-    <img
-      class="service-img"
-      [src]="service.imageUrl"
-      (click)="edtiService(service.id)"
-    />
+    <img class="service-img" [src]="service.imageUrl" />
     <div class="service-info">
-      <div class="service-content" (click)="edtiService(service.id)">
+      <div class="service-content">
         <h4>{{ service.title }}</h4>
         <div>
           <strong class="me-2">{{ "service.type" | translate }}:</strong>
