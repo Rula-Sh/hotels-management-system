@@ -8,7 +8,6 @@ export interface ServiceRequest extends Service {
   date: Date;
   customerId: string;
   roomId: string;
-  requestType: 'Cleaning' | 'Maintenance' | 'Repair';
   requestStatus: 'Pending' | 'In Progress' | 'Completed' | 'Rejected';
   notes:string,
   customer: User;
