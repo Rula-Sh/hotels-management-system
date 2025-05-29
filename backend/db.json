@@ -201,8 +201,10 @@
       "id": "svc1",
       "employeeId": "emp1",
       "title": "Haircut",
+      "serviceType": "Maintenance",
       "details": "Basic haircut service with styling.",
       "price": 25,
+      "imageUrl": "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748501068/678a64ea8faa75e20768a51b_64b64e9c25f6ad976e8ea6b7_Outsource_20maintenance_kpwafy.jpg",
       "employee": {
         "id": "emp1",
         "name": "Alice Johnson",
@@ -213,9 +215,11 @@
     {
       "id": "svc2",
       "employeeId": "emp1",
-      "title": "Hair Coloring",
+      "title": "Breakfast",
+      "serviceType": "Dining",
       "details": "Professional hair coloring service.",
       "price": 60,
+      "imageUrl": "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748501151/download_divobj.jpg",
       "employee": {
         "id": "emp1",
         "name": "Alice Johnson",
@@ -226,139 +230,157 @@
     {
       "id": "svc3",
       "employeeId": "emp2",
+      "serviceType": "Cleaning",
       "title": "Swedish Massage",
       "details": "Relaxing full-body Swedish massage.",
       "price": 80,
+      "imageUrl": "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748501366/shutterstock_1628546512_o4ismw.jpg",
       "employee": {
         "id": "emp2",
         "name": "Bob Smith",
         "email": "bob.smith@example.com",
         "jobTitle": "Massage Therapist"
       }
+    },
+    {
+      "id": "7a98",
+      "title": "Cleaning",
+      "serviceType": "Cleaning",
+      "details": "Vacuuming",
+      "price": 20,
+      "imageUrl": "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748501366/shutterstock_1628546512_o4ismw.jpg",
+      "employeeId": "emp1",
+      "employee": {
+        "id": "emp1",
+        "name": "Alice Johnson",
+        "email": "alice.johnson@example.com",
+        "role": "Employee",
+        "hotel": "undefined",
+        "jobTitle": "Hair Stylist"
+      }
     }
   ],
   "serviceRequests": [
-  {
-    "id": "sr1",
-    "employeeId": "emp1",
-    "title": "Haircut",
-    "details": "Basic haircut service with styling.",
-    "price": 25,
-    "imageUrl": "https://example.com/haircut.jpg",
-    "date": "2025-06-01T10:00:00.000Z",
-    "customerId": "u1",
-    "roomId": "r1",
-    "requestStatus": "Pending",
-    "notes": "Customer prefers a quick trim.",
-    "customer": {
-      "id": "u1",
-      "name": "Alice Johnson",
-      "email": "alice@example.com",
-      "phone": "1234567890",
-      "role": "Customer"
+    {
+      "id": "sr1",
+      "employeeId": "emp1",
+      "title": "Haircut",
+      "details": "Basic haircut service with styling.",
+      "price": 25,
+      "imageUrl": "https://example.com/haircut.jpg",
+      "date": "2025-06-01T10:00:00.000Z",
+      "customerId": "u1",
+      "roomId": "r1",
+      "requestStatus": "Pending",
+      "notes": "Customer prefers a quick trim.",
+      "customer": {
+        "id": "u1",
+        "name": "Alice Johnson",
+        "email": "alice@example.com",
+        "phone": "1234567890",
+        "role": "Customer"
+      },
+      "room": {
+        "id": "r1",
+        "title": "Deluxe Suite",
+        "roomType": "Room",
+        "floor": 2,
+        "hotel": "Sunrise Inn",
+        "details": "A deluxe room with sea view.",
+        "bookedStatus": "Pending",
+        "price": 120,
+        "imagesUrl": [
+          "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748011951/SuiteNov2022_0008_1920_hhykez.jpg",
+          "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748011951/140127103345-peninsula-shanghai-deluxe-mock-up_oatn0j.jpg",
+          "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748011951/Sofitel-Dubai-Wafi-Luxury-Room-Bedroom-Skyline-View-Image1_WEB_mal8fr.jpg"
+        ]
+      },
+      "employee": {
+        "id": "emp1",
+        "name": "Alice Johnson",
+        "email": "alice.johnson@example.com",
+        "jobTitle": "Hair Stylist"
+      }
     },
-    "room": {
-      "id": "r1",
-      "title": "Deluxe Suite",
-      "roomType": "Room",
-      "floor": 2,
-      "hotel": "Sunrise Inn",
-      "details": "A deluxe room with sea view.",
-      "bookedStatus": "Pending",
-      "price": 120,
-      "imagesUrl": [
-        "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748011951/SuiteNov2022_0008_1920_hhykez.jpg",
-        "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748011951/140127103345-peninsula-shanghai-deluxe-mock-up_oatn0j.jpg",
-        "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748011951/Sofitel-Dubai-Wafi-Luxury-Room-Bedroom-Skyline-View-Image1_WEB_mal8fr.jpg"
-      ]
+    {
+      "id": "sr2",
+      "employeeId": "emp2",
+      "title": "Swedish Massage",
+      "details": "Relaxing full-body Swedish massage.",
+      "price": 80,
+      "imageUrl": "https://example.com/massage.jpg",
+      "date": "2025-06-02T14:30:00.000Z",
+      "customerId": "u1",
+      "roomId": "r2",
+      "requestStatus": "In Progress",
+      "notes": "Customer requested extra pressure on back.",
+      "customer": {
+        "id": "u1",
+        "name": "Alice Johnson",
+        "email": "alice@example.com",
+        "phone": "1234567890",
+        "role": "Customer"
+      },
+      "room": {
+        "id": "r2",
+        "title": "Conference Hall A",
+        "roomType": "Hall",
+        "floor": 1,
+        "hotel": "Sunrise Inn",
+        "details": "Spacious hall for events.",
+        "bookedStatus": "Available",
+        "price": 300,
+        "imagesUrl": [
+          "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748011951/Sofitel-Dubai-Wafi-Luxury-Room-Bedroom-Skyline-View-Image1_WEB_mal8fr.jpg"
+        ]
+      },
+      "employee": {
+        "id": "emp2",
+        "name": "Bob Smith",
+        "email": "bob.smith@example.com",
+        "jobTitle": "Massage Therapist"
+      }
     },
-    "employee": {
-      "id": "emp1",
-      "name": "Alice Johnson",
-      "email": "alice.johnson@example.com",
-      "jobTitle": "Hair Stylist"
+    {
+      "id": "sr3",
+      "employeeId": "emp1",
+      "title": "Hair Coloring",
+      "details": "Professional hair coloring service.",
+      "price": 60,
+      "imageUrl": "https://example.com/haircolor.jpg",
+      "date": "2025-06-05T16:00:00.000Z",
+      "customerId": "u2",
+      "roomId": "r1",
+      "requestStatus": "Completed",
+      "notes": "Customer wants a vibrant red color.",
+      "customer": {
+        "id": "u2",
+        "name": "Bob Smith",
+        "email": "bob@example.com",
+        "phone": "1234567890",
+        "role": "Employee"
+      },
+      "room": {
+        "id": "r1",
+        "title": "Deluxe Suite",
+        "roomType": "Room",
+        "floor": 2,
+        "hotel": "Sunrise Inn",
+        "details": "A deluxe room with sea view.",
+        "bookedStatus": "Pending",
+        "price": 120,
+        "imagesUrl": [
+          "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748011951/SuiteNov2022_0008_1920_hhykez.jpg",
+          "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748011951/140127103345-peninsula-shanghai-deluxe-mock-up_oatn0j.jpg",
+          "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748011951/Sofitel-Dubai-Wafi-Luxury-Room-Bedroom-Skyline-View-Image1_WEB_mal8fr.jpg"
+        ]
+      },
+      "employee": {
+        "id": "emp1",
+        "name": "Alice Johnson",
+        "email": "alice.johnson@example.com",
+        "jobTitle": "Hair Stylist"
+      }
     }
-  },
-  {
-    "id": "sr2",
-    "employeeId": "emp2",
-    "title": "Swedish Massage",
-    "details": "Relaxing full-body Swedish massage.",
-    "price": 80,
-    "imageUrl": "https://example.com/massage.jpg",
-    "date": "2025-06-02T14:30:00.000Z",
-    "customerId": "u1",
-    "roomId": "r2",
-    "requestStatus": "In Progress",
-    "notes": "Customer requested extra pressure on back.",
-    "customer": {
-      "id": "u1",
-      "name": "Alice Johnson",
-      "email": "alice@example.com",
-      "phone": "1234567890",
-      "role": "Customer"
-    },
-    "room": {
-      "id": "r2",
-      "title": "Conference Hall A",
-      "roomType": "Hall",
-      "floor": 1,
-      "hotel": "Sunrise Inn",
-      "details": "Spacious hall for events.",
-      "bookedStatus": "Available",
-      "price": 300,
-      "imagesUrl": [
-        "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748011951/Sofitel-Dubai-Wafi-Luxury-Room-Bedroom-Skyline-View-Image1_WEB_mal8fr.jpg"
-      ]
-    },
-    "employee": {
-      "id": "emp2",
-      "name": "Bob Smith",
-      "email": "bob.smith@example.com",
-      "jobTitle": "Massage Therapist"
-    }
-  },
-  {
-    "id": "sr3",
-    "employeeId": "emp1",
-    "title": "Hair Coloring",
-    "details": "Professional hair coloring service.",
-    "price": 60,
-    "imageUrl": "https://example.com/haircolor.jpg",
-    "date": "2025-06-05T16:00:00.000Z",
-    "customerId": "u2",
-    "roomId": "r1",
-    "requestStatus": "Completed",
-    "notes": "Customer wants a vibrant red color.",
-    "customer": {
-      "id": "u2",
-      "name": "Bob Smith",
-      "email": "bob@example.com",
-      "phone": "1234567890",
-      "role": "Employee"
-    },
-    "room": {
-      "id": "r1",
-      "title": "Deluxe Suite",
-      "roomType": "Room",
-      "floor": 2,
-      "hotel": "Sunrise Inn",
-      "details": "A deluxe room with sea view.",
-      "bookedStatus": "Pending",
-      "price": 120,
-      "imagesUrl": [
-        "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748011951/SuiteNov2022_0008_1920_hhykez.jpg",
-        "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748011951/140127103345-peninsula-shanghai-deluxe-mock-up_oatn0j.jpg",
-        "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748011951/Sofitel-Dubai-Wafi-Luxury-Room-Bedroom-Skyline-View-Image1_WEB_mal8fr.jpg"
-      ]
-    },
-    "employee": {
-      "id": "emp1",
-      "name": "Alice Johnson",
-      "email": "alice.johnson@example.com",
-      "jobTitle": "Hair Stylist"
-    }
-  }
-]
-
+  ]
 }
