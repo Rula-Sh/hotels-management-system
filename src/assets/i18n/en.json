@@ -72,25 +72,17 @@
   "room": {
     "rooms": "Rooms",
     "add-room": "Add Room",
-    "title": "Title",
     "type": "Type",
     "room": "Room",
     "hall": "Hall",
     "floor": "Floor",
     "hotel": "Hotel",
-    "details": "Details",
     "booked-status": "Status",
-    "price": "Price",
     "location": "Location",
-    "image-url": "Image URL",
-    "title-required": "Title required",
     "type-required": "Room Type required",
     "floor-required": "Floor required",
     "hotel-required": "Hotel required",
-    "details-required": "Details required",
-    "price-required": "Price required",
     "location-required": "Location required",
-    "image-url-required": "Image URL required",
     "room-details": "Room Details",
     "room-image": "Room Image",
     "delete-room": "Delete Room",
@@ -111,10 +103,7 @@
   },
   "service": {
     "services": "Services",
-    "title": "Title",
     "type": "Type",
-    "details": "Details",
-    "price": "Price",
     "service-details": "Service Details",
     "delete-service": "Delete Service",
     "no-available-services": "No available services at the moment.",
@@ -167,6 +156,16 @@
       "add": "Add",
       "submit": "Submit",
       "go-back": "Go Back"
+    },
+    "form": {
+      "title": "Title",
+      "title-required": "Title required",
+      "details": "Details",
+      "details-required": "Details required",
+      "price": "Price",
+      "price-required": "Price required",
+      "image-url": "Image Url",
+      "image-url-required": "Image URL required"
     }
   }
 }
