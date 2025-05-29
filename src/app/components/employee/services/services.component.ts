@@ -66,12 +66,12 @@ export class ServicesComponent {
     });
   }
 
-  showServiceDetails(id: string) {
-    this.router.navigate([`service/${id}`]);
-  }
-
   AddService() {
     this.router.navigate([`employee/add-service`]);
+  }
+
+  editService(id: string) {
+    this.router.navigate([`employee/edit-service/${id}`]);
   }
 
   deleteService(id: string) {

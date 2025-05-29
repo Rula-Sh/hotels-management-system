@@ -28,17 +28,13 @@
       [title]="'service.delete-service' | translate"
     ></i>
     <i
-      class="info-icon bi bi-info-circle-fill h5"
-      (click)="showServiceDetails(service.id)"
-      [title]="'service.service-details' | translate"
+      class="edit-icon bi bi-pencil-square h5"
+      (click)="editService(service.id)"
+      [title]="'service.edit-service' | translate"
     ></i>
-    <img
-      class="service-img"
-      [src]="service.imageUrl"
-      (click)="showServiceDetails(service.id)"
-    />
+    <img class="service-img" [src]="service.imageUrl" />
     <div class="service-info">
-      <div class="service-content" (click)="showServiceDetails(service.id)">
+      <div class="service-content">
         <h4>{{ service.title }}</h4>
         <div>
           <strong class="me-2">{{ "service.type" | translate }}:</strong>
@@ -53,11 +49,11 @@
           {{ service.serviceType }}
         </div>
         <div>
-          <strong class="me-2">{{ "service.details" | translate }}:</strong>
+          <strong class="me-2">{{ "shared.form.details" | translate }}:</strong>
           {{ service.details }}
         </div>
         <div>
-          <strong class="me-2">{{ "service.price" | translate }}:</strong
+          <strong class="me-2">{{ "shared.form.price" | translate }}:</strong
           >{{ service.price | currency : "USD" : "symbol" : "1.0-0" }}
         </div>
       </div>

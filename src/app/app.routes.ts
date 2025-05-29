@@ -16,7 +16,6 @@ import { NotFoundComponent } from './components/shared/not-found/not-found.compo
 import { MyReservationsComponent } from './components/customer/my-reservations/my-reservations.component';
 import { AvailableServicesComponent } from './components/customer/available-services/available-services.component';
 import { RequestsComponent } from './components/employee/requests/requests.component';
-import { RequestDetailsComponent } from './components/employee/request-details/request-details.component';
 import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
 import { AddEmployeeComponent } from './components/admin/add-employee/add-employee.component';
 import { ManageUsersComponent } from './components/admin/manage-users/manage-users.component';
@@ -27,6 +26,7 @@ import { AddRoomComponent } from './components/admin/add-room/add-room.component
 import { RoomDetailsComponent } from './components/shared/room-details/room-details.component';
 import { ServicesComponent } from './components/employee/services/services.component';
 import { AddServiceComponent } from './components/employee/add-service/add-service.component';
+import { EditServiceComponent } from './components/employee/edit-service/edit-service.component';
 
 export const authGuard: CanActivateFn = (
   route: ActivatedRouteSnapshot,
@@ -84,12 +84,6 @@ export const routes: Routes = [
     canActivate: [authGuard],
     data: { roles: ['Employee'] },
   },
-  // {
-  //   path: 'request-details/:id',
-  //   component: RequestDetailsComponent,
-  //   canActivate: [authGuard],
-  //   data: { roles: ['Employee'] },
-  // },
   {
     path: 'employee/services',
     component: ServicesComponent,
@@ -102,12 +96,12 @@ export const routes: Routes = [
     canActivate: [authGuard],
     data: { roles: ['Employee'] },
   },
-  // {
-  //   path: 'service-details/:id',
-  //   component: ServiceDetailsComponent,
-  //   canActivate: [authGuard],
-  //   data: { roles: ['Employee'] },
-  // },
+  {
+    path: 'employee/edit-service/:id',
+    component: EditServiceComponent,
+    canActivate: [authGuard],
+    data: { roles: ['Employee'] },
+  },
 
   // ------------------------ Admin ------------------------
   {

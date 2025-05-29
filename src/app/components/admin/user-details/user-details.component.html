@@ -59,7 +59,6 @@
           <th>{{ "service.title" | translate }}</th>
           <th>{{ "service.details" | translate }}</th>
           <th>{{ "service.price" | translate }}</th>
-          <th>{{ "shared.action.key-name" | translate }}</th>
         </tr>
       </thead>
       <tbody>
@@ -69,15 +68,6 @@
           <td>{{ service.title }}</td>
           <td>{{ service.details }}</td>
           <td>{{ service.price }}</td>
-          <td>
-            <button
-              class="details"
-              (click)="showServiceDetails(service.id)"
-              [title]="'service.service-details' | translate"
-            >
-              <i class="bi bi-info-circle-fill h5"></i>
-            </button>
-          </td>
         </tr>
         }
       </tbody>

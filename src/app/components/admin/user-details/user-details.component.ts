@@ -86,10 +86,6 @@ export class UserDetailsComponent {
     this.router.navigate([`room-details/${id}`]);
   }
 
-  showServiceDetails(id: string) {
-    this.router.navigate([`service-details/${id}`]);
-  }
-
   goBack() {
     this.router.navigate(['/admin/manage-users']);
   }

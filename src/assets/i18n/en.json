@@ -104,7 +104,7 @@
   "service": {
     "services": "Services",
     "type": "Type",
-    "service-details": "Service Details",
+    "edit-service": "Edit Service",
     "delete-service": "Delete Service",
     "no-available-services": "No available services at the moment.",
     "approve-request": "Approve Request",
@@ -154,6 +154,7 @@
       "approve": "Approve",
       "reject": "Reject",
       "add": "Add",
+      "update": "Update",
       "submit": "Submit",
       "go-back": "Go Back"
     },
