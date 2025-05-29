@@ -3,7 +3,7 @@
   <div class="center-wrapper">
     <form class="container p-4" [formGroup]="roomForm" (ngSubmit)="addRoom()">
       <div class="input-container">
-        <label for="title"> {{ "room.title" | translate }}:</label>
+        <label for="title"> {{ "shared.form.title" | translate }}:</label>
         <div class="input-error">
           <div class="input-group" [ngClass]="{ 'right-input': lang == 'ar' }">
             <div class="align-self-center">
@@ -17,7 +17,7 @@
               class="form-control"
               placeholder="Title"
               aria-label="Title"
-              [placeholder]="'room.title' | translate"
+              [placeholder]="'shared.form.title' | translate"
               formControlName="title"
               required
             />
@@ -28,7 +28,7 @@
               roomForm.get('title')?.invalid && roomForm.get('title')?.touched
             "
           >
-            {{ "room.title-required" | translate }}
+            {{ "shared.form.title-required" | translate }}
           </div>
         </div>
       </div>
@@ -170,7 +170,7 @@
       </div>
 
       <div class="input-container">
-        <label for="details"> {{ "room.details" | translate }}:</label>
+        <label for="details"> {{ "shared.form.details" | translate }}:</label>
         <div class="input-error">
           <div class="input-group" [ngClass]="{ 'right-input': lang == 'ar' }">
             <div class="align-self-center">
@@ -184,7 +184,7 @@
               class="form-control"
               placeholder="Details"
               aria-label="Details"
-              [placeholder]="'room.details' | translate"
+              [placeholder]="'shared.form.details' | translate"
               formControlName="details"
               required
             />
@@ -196,13 +196,13 @@
               roomForm.get('details')?.touched
             "
           >
-            {{ "room.details-required" | translate }}
+            {{ "shared.form.details-required" | translate }}
           </div>
         </div>
       </div>
 
       <div class="input-container">
-        <label for="price"> {{ "room.price" | translate }}:</label>
+        <label for="price"> {{ "shared.form.price" | translate }}:</label>
         <div class="input-error">
           <div class="input-group" [ngClass]="{ 'right-input': lang == 'ar' }">
             <div class="align-self-center">
@@ -216,7 +216,7 @@
               class="form-control"
               placeholder="Price"
               aria-label="Price"
-              [placeholder]="'room.price' | translate"
+              [placeholder]="'shared.form.price' | translate"
               formControlName="price"
               required
             />
@@ -227,13 +227,13 @@
               roomForm.get('price')?.invalid && roomForm.get('price')?.touched
             "
           >
-            {{ "room.price-required" | translate }}
+            {{ "shared.form.price-required" | translate }}
           </div>
         </div>
       </div>
 
       <div class="input-container" formArrayName="imagesUrl">
-        <label for="imagesUrl"> {{ "room.image-url" | translate }}:</label>
+        <label for="imagesUrl"> {{ "shared.form.image-url" | translate }}:</label>
 
         <div class="images-urls-inputs">
           @for(imageUrl of imagesUrl.controls; let i= $index; track i){
@@ -249,7 +249,7 @@
               class="form-control image-url-input"
               placeholder="Image URL"
               aria-label="Image URL"
-              [placeholder]="'room.image-url' | translate"
+              [placeholder]="'shared.form.image-url' | translate"
               [formControlName]="i"
               required
             />
@@ -280,7 +280,7 @@
               roomForm.get('imagesUrl')?.touched
             "
           >
-            {{ "room.image-url-required" | translate }}
+            {{ "shared.form.image-url-required" | translate }}
           </div>
           }
         </div>

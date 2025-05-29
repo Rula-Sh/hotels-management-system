@@ -1,1 +1,119 @@
-<p>services works!</p>
+<div class="d-flex justify-content-between mt-2 ms-5 me-5">
+  <div class="d-flex">
+    <h1 class="m-4">
+      {{ "service.services" | translate }}
+    </h1>
+    <i
+      class="title-icon fa-solid fa-screwdriver-wrench fa-xl align-self-center"
+    ></i>
+  </div>
+  <button
+    class="btn btn-primary"
+    (click)="AddService()"
+    [title]="'service.add-service' | translate"
+  >
+    <i class="fa-solid fa-circle-plus m-1 align-middle"></i>
+    <span class="m-1 align-middle">{{
+      "service.add-service" | translate
+    }}</span>
+  </button>
+</div>
+
+<div class="services-container">
+  @for(service of services; let i= $index; track i){
+  <div class="service-card">
+    <i
+      class="delete-icon bi bi-trash-fill h4"
+      (click)="deleteService(service.id)"
+      [title]="'service.delete-service' | translate"
+    ></i>
+    <i
+      class="info-icon bi bi-info-circle-fill h5"
+      (click)="showServiceDetails(service.id)"
+      [title]="'service.service-details' | translate"
+    ></i>
+    <img
+      class="service-img"
+      [src]="service.imageUrl"
+      (click)="showServiceDetails(service.id)"
+    />
+    <div class="service-info">
+      <div class="service-content" (click)="showServiceDetails(service.id)">
+        <h4>{{ service.title }}</h4>
+        <div>
+          <strong class="me-2">{{ "service.type" | translate }}:</strong>
+
+          @if(service.serviceType == "Cleaning"){
+          <i class="fa-solid fa-broom" style="color: #ad926b"></i>
+          } @else if (service.serviceType == "Dining") {
+          <i class="fa-solid fa-utensils" style="color: #ad926b"></i>
+          }@else if (service.serviceType == "Maintenance") {
+          <i class="fa-solid fa-toolbox" style="color: #ad926b"></i>
+          }
+          {{ service.serviceType }}
+        </div>
+        <div>
+          <strong class="me-2">{{ "service.details" | translate }}:</strong>
+          {{ service.details }}
+        </div>
+        <div>
+          <strong class="me-2">{{ "service.price" | translate }}:</strong
+          >{{ service.price | currency : "USD" : "symbol" : "1.0-0" }}
+        </div>
+      </div>
+    </div>
+  </div>
+  }
+</div>
+
+<ng-template #noservices>
+  <p class="no-services-msg">
+    {{ "service.you-dont-have-services-to-provide" | translate }}
+  </p>
+</ng-template>
+
+<p-toast />
+<p-confirmdialog #cd>
+  <ng-template pTemplate="footer">
+    <button
+      type="button"
+      pButton
+      icon="pi pi-times"
+      label="Delete"
+      [ngStyle]="{ backgroundColor: '#e09fa6', border: 'red' }"
+      (click)="cd.onAccept()"
+    ></button>
+
+    <button
+      type="button"
+      pButton
+      icon="pi pi-check"
+      label="Cancel"
+      [ngStyle]="{ backgroundColor: '#90c67c', border: 'green' }"
+      (click)="cd.onReject()"
+    ></button>
+  </ng-template>
+</p-confirmdialog>
+<!-- Toast for booking message -->
+<div
+  class="toast-container position-fixed top-0 end-0 p-3"
+  style="z-index: 1200"
+  *ngIf="showToast"
+>
+  <div
+    class="toast show align-items-center text-white {{ toastClass }} border-0"
+    role="alert"
+    aria-live="assertive"
+    aria-atomic="true"
+  >
+    <div class="d-flex">
+      <div class="toast-body">{{ toastMessage }}</div>
+      <button
+        type="button"
+        class="btn-close btn-close-white me-2 m-auto"
+        (click)="showToast = false"
+        aria-label="Close"
+      ></button>
+    </div>
+  </div>
+</div>

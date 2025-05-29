@@ -17,7 +17,7 @@ export class HomeRedirectComponent {
     if (this.role == 'Admin') {
     this.router.navigate([`/admin/dashboard`]);
     } else if (this.role == 'Employee') {
-      this.router.navigate([`/requests`]);
+      this.router.navigate([`/employee/requests`]);
     } else {
       this.router.navigate([`/rooms`]);
     }

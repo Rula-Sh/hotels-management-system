@@ -14,6 +14,7 @@ export class ReservationService {
   url = 'http://localhost:3000';
 
   getAllReservations(): Observable<Reservation[]> {
+    // return this.api.get<Reservation[]>(`${this.url}/reservations?_expand=room&_expand=customer`)
     return forkJoin({
       reservations: this.api.get<any[]>(`${this.url}/reservations`),
       rooms: this.api.get<Room[]>(`${this.url}/rooms`),
@@ -28,6 +29,7 @@ export class ReservationService {
       )
     );
   }
+  
 
   getReservationById(id: string): Observable<Reservation> {
     return this.api.get<Reservation>(`${this.url}/reservations/${id}`);

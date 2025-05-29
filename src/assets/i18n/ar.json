@@ -72,25 +72,17 @@
   "room": {
     "rooms": "الغرف",
     "add-room": "إضافة غرفة",
-    "title": "العنوان",
     "type": "النوع",
     "room": "غرفة",
     "hall": "قاعة",
     "floor": "الطابق",
     "hotel": "الفندق",
-    "details": "النفاصيل",
     "booked-status": "الحالة",
-    "price": "السعر",
     "location": "الموقع",
-    "image-url": "رابط الصورة",
-    "title-required": "العنوان مطلوب",
     "type-required": "نوع الغرفة مطلوب",
     "floor-required": "الطابق مطلوب",
     "hotel-required": "الفندق مطلوب",
-    "details-required": "التفاصيل مطلوبة",
-    "price-required": "السعر مطلوب",
     "location-required": "الموقع مطلوب",
-    "image-url-required": "رابط الصورة مطلوب",
     "room-details": "تفاصيل الغرفة",
     "room-image": "صورة الغرفة",
     "delete-room": "حذف الغرفة",
@@ -111,10 +103,9 @@
   },
   "service": {
     "services": "الخدمات",
-    "title": "العنوان",
-    "details": "التفاصيل",
-    "price": "السعر",
+    "type": "نوع الخدمة",
     "service-details": "تفاصيل الخدمة",
+    "delete-service": "حذف الخدمة",
     "no-available-services": "لا يوجد خدمات متاحة حاليا",
     "approve-request": "الموافقة على الطلب",
     "reject-request": "رفض الطلب",
@@ -124,7 +115,10 @@
     "no-completed-requests": "لا توجد طلبات مكتملة",
     "pending-requests": "طلبات منتظرة",
     "active-requests": "طلبات نشطة",
-    "completed-requests": "طلبات المكتملة"
+    "completed-requests": "طلبات المكتملة",
+    "add-service": "إضافة خدمة",
+    "you-dont-have-services-to-provide": "لا يوجد لديك خدمات لتقدمها",
+    "service-type-required": "نوع الخدمة مطلوب"
   },
   "footer": {
     "english": "الإنجليزية",
@@ -159,7 +153,19 @@
       "details": "التفاصيل",
       "approve": "الموافقة",
       "reject": "رفض",
+      "add": "إضافة",
+      "submit": "إرسال",
       "go-back": "العودة"
+    },
+    "form": {
+      "title": "العنوان",
+      "title-required": "العنوان مطلوب",
+      "details": "التفاصيل",
+      "details-required": "التفاصيل مطلوبة",
+      "price": "السعر",
+      "price-required": "السعر مطلوب",
+      "image-url": "رابط الصورة",
+      "image-url-required": "رابط الصورة مطلوب"
     }
   }
 }

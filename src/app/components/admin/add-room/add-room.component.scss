@@ -106,9 +106,10 @@ input {
 
 .error {
   color: $color-red;
+  text-align: start;
+  width: 100%;
   font-size: 14px;
-  margin-bottom: 10px;
-  margin-top: -6px;
+  margin: -6px 10px 10px 50px;
   font-weight: bold;
 }
 
@@ -173,4 +174,10 @@ i {
   color: #dc3545;
   margin: 0;
   padding: 0;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }

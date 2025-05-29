@@ -1,0 +1,90 @@
+@import "../../../../styles/variables.scss";
+
+.services-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+  padding-bottom: 0;
+  justify-content: center;
+  box-sizing: border-box;
+  max-width: 100%;
+  cursor: pointer;
+}
+
+.btn {
+  align-self: center;
+  margin: 0;
+}
+
+.service-card {
+  position: relative;
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &:hover {
+    transform: translateY(-6px);
+  }
+
+  .service-img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+  }
+
+  .service-info {
+    width: 100%;
+    padding: 1rem;
+    text-align: start;
+    color: $color-brown;
+  }
+}
+
+.no-services-msg {
+  text-align: center;
+  padding: 2rem;
+  color: #6b7280;
+  font-size: 1.1rem;
+}
+
+.delete-icon {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  cursor: pointer;
+  color: red;
+  padding: 4px;
+  text-shadow: 2px 2px 20px black;
+}
+
+.info-icon {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  cursor: pointer;
+  color: $color-cream;
+  padding: 4px;
+  text-shadow: 2px 2px 20px black;
+}
+
+.icon-img {
+  width: 18px;
+  height: 18px;
+}
+
+.fill-icon {
+  width: 35px;
+  object-fit: contain;
+}
+
+.title-icon {
+  color: $color-dark-brown;
+}

@@ -34,6 +34,10 @@ export class ServiceService {
     return this.api.put<Service>(`${this.servicesUrl}/${service.id}`, service);
   }
 
+  DeleteService(id: string): Observable<void> {
+    return this.api.delete<void>(`${this.servicesUrl}/${id}`);
+  }
+
   getServicesRequestsByEmployeeId(
     employeeId: string
   ): Observable<ServiceRequest[]> {
