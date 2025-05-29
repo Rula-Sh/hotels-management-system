@@ -66,8 +66,8 @@ export class ServicesComponent {
     });
   }
 
-  showServiceDetails(id: string) {
-    this.router.navigate([`service/${id}`]);
+  edtiService(id: string) {
+    this.router.navigate([`edit-service/${id}`]);
   }
 
   AddService() {

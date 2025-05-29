@@ -104,7 +104,7 @@
   "service": {
     "services": "الخدمات",
     "type": "نوع الخدمة",
-    "service-details": "تفاصيل الخدمة",
+    "edit-service": "تعديل الخدمة",
     "delete-service": "حذف الخدمة",
     "no-available-services": "لا يوجد خدمات متاحة حاليا",
     "approve-request": "الموافقة على الطلب",
