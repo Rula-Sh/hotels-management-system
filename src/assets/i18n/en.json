@@ -112,9 +112,11 @@
   "service": {
     "services": "Services",
     "title": "Title",
+    "type": "Type",
     "details": "Details",
     "price": "Price",
     "service-details": "Service Details",
+    "delete-service": "Delete Service",
     "no-available-services": "No available services at the moment.",
     "approve-request": "Approve Request",
     "reject-request": "Reject Request",
@@ -124,7 +126,10 @@
     "no-completed-requests": "There are No Completed Requests",
     "pending-requests": "Pending Requests",
     "active-requests": "Active Requests",
-    "completed-requests": "Completed Requests"
+    "completed-requests": "Completed Requests",
+    "add-service": "Add Service",
+    "you-dont-have-services-to-provide": "You Dont Have Services To Provide",
+    "service-type-required": "Service Type Required"
   },
   "footer": {
     "english": "English",
@@ -159,6 +164,7 @@
       "details": "Details",
       "approve": "Approve",
       "reject": "Reject",
+      "add": "Add",
       "submit": "Submit",
       "go-back": "Go Back"
     }

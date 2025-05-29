@@ -112,9 +112,11 @@
   "service": {
     "services": "الخدمات",
     "title": "العنوان",
+    "type": "نوع الخدمة",
     "details": "التفاصيل",
     "price": "السعر",
     "service-details": "تفاصيل الخدمة",
+    "delete-service": "حذف الخدمة",
     "no-available-services": "لا يوجد خدمات متاحة حاليا",
     "approve-request": "الموافقة على الطلب",
     "reject-request": "رفض الطلب",
@@ -124,7 +126,9 @@
     "no-completed-requests": "لا توجد طلبات مكتملة",
     "pending-requests": "طلبات منتظرة",
     "active-requests": "طلبات نشطة",
-    "completed-requests": "طلبات المكتملة"
+    "completed-requests": "طلبات المكتملة",
+    "add-service": "إضافة خدمة",
+    "you-dont-have-services-to-provide": "لا يوجد لديك خدمات لتقدمها"
   },
   "footer": {
     "english": "الإنجليزية",
@@ -159,6 +163,8 @@
       "details": "التفاصيل",
       "approve": "الموافقة",
       "reject": "رفض",
+      "add": "إضافة",
+      "submit": "إرسال",
       "go-back": "العودة"
     }
   }
