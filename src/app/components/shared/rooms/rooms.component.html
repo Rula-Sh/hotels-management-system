@@ -27,13 +27,13 @@
       (click)="deleteRoom(room.id)"
       [title]="'room.delete-room' | translate"
     ></i>
+    }
     <i
       class="info-icon bi bi-info-circle-fill h5"
       [routerLink]="['/room-details/', room.id]"
       routerLinkActive="router-link-active"
       [title]="'room.room-details' | translate"
     ></i>
-    }
     <img
       class="room-img"
       [src]="room.imagesUrl[0]"
