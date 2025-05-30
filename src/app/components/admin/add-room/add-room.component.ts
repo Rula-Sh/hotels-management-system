@@ -9,7 +9,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { I18nPipe } from '../../../pipes/i18n.pipe';
-import { Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { I18nService } from '../../../services/i18n.service';
 import { Room } from '../../../models/Room.model';
 import { RoomService } from '../../../services/room.service';
@@ -32,6 +32,8 @@ import { ToastModule } from 'primeng/toast';
 })
 export class AddRoomComponent {
   roomForm!: FormGroup;
+  isAddingARoom = true;
+  room!: any;
 
   get lang(): 'en' | 'ar' {
     return this.i18nService.getLanguage();
@@ -42,20 +44,54 @@ export class AddRoomComponent {
     private fb: FormBuilder,
     private i18nService: I18nService,
     private roomService: RoomService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit() {
+    if (this.router.url.includes('edit-room')) {
+      this.isAddingARoom = false;
+
+      var roomId = this.activatedRoute.snapshot.paramMap.get('id');
+      if (roomId) {
+        this.roomService.getRoomById(roomId).subscribe({
+          next: (value) => {
+            this.room = value;
+            console.log('Recieved Room Details');
+            this.loadRoom();
+          },
+          error: (err) => {
+            console.log('Error Loading Room Details:', err);
+          },
+        });
+      }
+    }
+
     this.roomForm = this.fb.group({
-      title: ['', Validators.required, Validators.maxLength(30)],
+      title: ['', [Validators.required, Validators.maxLength(30)]],
       roomType: ['', Validators.required],
-      floor: ['', Validators.required, Validators.maxLength(2)],
-      hotel: ['', Validators.required, Validators.maxLength(30)],
-      details: ['', Validators.required, Validators.maxLength(500)],
-      price: ['', Validators.required, Validators.maxLength(4)],
+      floor: ['', [Validators.required, Validators.maxLength(2)]],
+      hotel: ['', [Validators.required, Validators.maxLength(30)]],
+      details: ['', [Validators.required, Validators.maxLength(500)]],
+      price: ['', [Validators.required, Validators.maxLength(4)]],
       location: ['', Validators.required],
       imagesUrl: this.fb.array([this.fb.control('', Validators.required)]),
     });
+  }
+
+  loadRoom() {
+    const roomData = {
+      title: this.room.title,
+      roomType: this.room.roomType,
+      floor: this.room.floor,
+      hotel: this.room.hotel,
+      details: this.room.details,
+      price: this.room.price,
+      location: this.room.location,
+      imagesUrl: this.room.imagesUrl,
+    };
+
+    this.roomForm.patchValue(roomData);
   }
 
   get imagesUrl(): FormArray {
@@ -91,27 +127,51 @@ export class AddRoomComponent {
       return this.roomForm.markAllAsTouched();
     }
 
-    const newRoom: Omit<Room, 'id'> = {
-      title: this.roomForm.value.title,
-      roomType: this.roomForm.value.roomType,
-      floor: this.roomForm.value.floor,
-      hotel: this.roomForm.value.hotel,
-      details: this.roomForm.value.details,
-      bookedStatus: 'Available',
-      price: this.roomForm.value.price,
-      location: this.roomForm.value.location,
-      imagesUrl: this.roomForm.value.imagesUrl,
-    };
-
-    this.roomService.CreateRoom(newRoom).subscribe({
-      next: () => {
-        console.log('Room added successfully');
-        this.router.navigate(['/rooms']);
-        this.roomForm.reset();
-      },
-      error: (err) => {
-        console.log('Error on Adding a Room', err);
-      },
-    });
+    if (this.isAddingARoom) {
+      const newRoom: Omit<Room, 'id'> = {
+        title: this.roomForm.value.title,
+        roomType: this.roomForm.value.roomType,
+        floor: this.roomForm.value.floor,
+        hotel: this.roomForm.value.hotel,
+        details: this.roomForm.value.details,
+        bookedStatus: 'Available',
+        price: this.roomForm.value.price,
+        location: this.roomForm.value.location,
+        imagesUrl: this.roomForm.value.imagesUrl,
+      };
+      this.roomService.CreateRoom(newRoom).subscribe({
+        next: () => {
+          console.log('Room added successfully');
+          this.router.navigate(['/rooms']);
+          this.roomForm.reset();
+        },
+        error: (err) => {
+          console.log('Error on Adding a Room', err);
+        },
+      });
+    } else {
+      const updatedRoom: Room = {
+        id: this.room.id,
+        title: this.roomForm.value.title,
+        roomType: this.roomForm.value.roomType,
+        floor: this.roomForm.value.floor,
+        hotel: this.roomForm.value.hotel,
+        details: this.roomForm.value.details,
+        bookedStatus: 'Available',
+        price: this.roomForm.value.price,
+        location: this.roomForm.value.location,
+        imagesUrl: this.roomForm.value.imagesUrl,
+      };
+      this.roomService.updateRoom(this.room.id, updatedRoom).subscribe({
+        next: () => {
+          console.log('Room updated successfully');
+          this.router.navigate(['/rooms']);
+          this.roomForm.reset();
+        },
+        error: (err) => {
+          console.log('Error on Updating Room', err);
+        },
+      });
+    }
   }
 }
