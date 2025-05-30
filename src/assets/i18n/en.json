@@ -71,7 +71,6 @@
   },
   "room": {
     "rooms": "Rooms",
-    "add-room": "Add Room",
     "type": "Type",
     "room": "Room",
     "hall": "Hall",
@@ -79,13 +78,15 @@
     "hotel": "Hotel",
     "booked-status": "Status",
     "location": "Location",
+    "add-room": "Add Room",
+    "edit-room": "Edit Room",
+    "delete-room": "Delete Room",
     "type-required": "Room Type required",
     "floor-required": "Floor required",
     "hotel-required": "Hotel required",
     "location-required": "Location required",
     "room-details": "Room Details",
     "room-image": "Room Image",
-    "delete-room": "Delete Room",
     "submit": "Submit",
     "no-available-rooms": "No available rooms at the moment."
   },
@@ -108,11 +109,9 @@
     "delete-service": "Delete Service",
     "no-available-services": "No available services at the moment.",
     "approve-request": "Approve Request",
-    "reject-request": "Reject Request",
     "complete-request": "Complete Request",
-    "no-pending-requests": "There are No Pending Requests",
-    "no-active-requests": "There are No Active Requests",
-    "no-completed-requests": "There are No Completed Requests",
+    "there-are-no-requests": "There Are No Requests At The Moment.",
+    "there-are-no-services": "There Are No Services At The Moment.",
     "pending-requests": "Pending Requests",
     "active-requests": "Active Requests",
     "completed-requests": "Completed Requests",
@@ -167,6 +166,7 @@
       "price-required": "Price required",
       "image-url": "Image Url",
       "image-url-required": "Image URL required"
-    }
+    },
+    "go-back-to-home-page": "Go Back To Home Page"
   }
 }

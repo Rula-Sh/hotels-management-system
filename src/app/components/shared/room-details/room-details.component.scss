@@ -125,3 +125,23 @@
 i {
   color: $color-dark-brown;
 }
+
+.delete-icon {
+  position: absolute;
+  top: 35px;
+  right: 15px;
+  cursor: pointer;
+  color: red;
+  padding: 4px;
+  text-shadow: 2px 2px 20px black;
+}
+
+.edit-icon {
+  position: absolute;
+  top: 35px;
+  left: 12px;
+  cursor: pointer;
+  color: $color-cream;
+  padding: 4px;
+  text-shadow: 2px 2px 20px black;
+}

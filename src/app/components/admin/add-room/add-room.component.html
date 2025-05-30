@@ -1,5 +1,9 @@
 <div class="page">
+  @if(isAddingARoom){
   <h1 class="m-4 mb-4">{{ "room.add-room" | translate }}</h1>
+  } @else {
+  <h1 class="m-4 mb-4">{{ "room.edit-room" | translate }}</h1>
+  }
   <div class="center-wrapper">
     <form class="container p-4" [formGroup]="roomForm" (ngSubmit)="addRoom()">
       <div class="input-container">
@@ -233,7 +237,9 @@
       </div>
 
       <div class="input-container" formArrayName="imagesUrl">
-        <label for="imagesUrl"> {{ "shared.form.image-url" | translate }}:</label>
+        <label for="imagesUrl">
+          {{ "shared.form.image-url" | translate }}:</label
+        >
 
         <div class="images-urls-inputs">
           @for(imageUrl of imagesUrl.controls; let i= $index; track i){
@@ -289,9 +295,14 @@
       <div class="input-container">
         <label></label>
         <div class="input-error">
-          <button class="mt-4 btn-submit" [title]="'shared.submit' | translate">
-            {{ "room.submit" | translate }}
+          @if(isAddingARoom){
+          <button class="mt-4 btn-submit" [title]="'shared.action.submit' | translate">
+            {{ "shared.action.submit" | translate }}
           </button>
+          } @else {
+          <button class="mt-4 btn-submit" [title]="'shared.action.update' | translate">
+            {{ "shared.action.update" | translate }}</button
+          >}
         </div>
       </div>
     </form>
@@ -299,7 +310,8 @@
 
   <button
     class="mt-4 ms-4 btn-outline-primary rounded-2"
-    [routerLink]="['/rooms']" routerLinkActive="router-link-active" 
+    [routerLink]="['/rooms']"
+    routerLinkActive="router-link-active"
     [title]="'shared.action.go-back' | translate"
   >
     @if(lang == 'ar') {

@@ -105,36 +105,6 @@ export class RequestsComponent {
     });
   }
 
-  RejectServiceRequest(id: string, request: ServiceRequest) {
-    request.requestStatus = 'Rejected';
-    this.confirmationService.confirm({
-      message: 'Are you sure you want to reject this reservation?',
-      header: 'Reject Reservation',
-      accept: () => {
-        this.serviceService.RejectServicesRequest(id, request).subscribe({
-          next: (value) => {
-            console.log('Request rejected');
-            this.getServices();
-            this.messageService.add({
-              severity: 'warn',
-              summary: 'Rejected',
-              detail: 'Reservation has been rejected',
-            });
-          },
-          error: (err) => {
-            console.log('Error rejecting reservation: ' + err);
-            this.messageService.add({
-              severity: 'error',
-              summary: 'Error',
-              detail: 'Failed to reject reservation',
-            });
-          },
-        });
-      },
-      reject: () => {},
-    });
-  }
-
   CompleteServiceRequest(id: string, request: ServiceRequest) {
     request.requestStatus = 'Completed';
     this.serviceService.ApproveServicesRequest(id, request).subscribe({

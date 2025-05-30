@@ -135,6 +135,12 @@ export const routes: Routes = [
     data: { roles: ['Admin'] },
   },
   {
+    path: 'admin/edit-room/:id',
+    component: AddRoomComponent,
+    canActivate: [authGuard],
+    data: { roles: ['Admin'] },
+  },
+  {
     path: 'admin/reservations',
     component: ReservationsComponent,
     canActivate: [authGuard],

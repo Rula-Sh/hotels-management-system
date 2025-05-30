@@ -19,6 +19,20 @@
         class="slide-icon fa-solid fa-angle-right"
         (click)="nextImage()"
       ></i>
+
+      @if(role == 'Admin'){
+      <i
+        class="edit-icon bi bi-pencil-square h4"
+        [routerLink]="['/admin/edit-room/', room?.id]"
+        routerLinkActive="router-link-active"
+        [title]="'service.edit-room' | translate"
+      ></i>
+      <i
+        class="delete-icon bi bi-trash-fill h4"
+        (click)="deleteRoom(room?.id)"
+        [title]="'room.delete-room' | translate"
+      ></i>
+      }
     </div>
 
     <div class="d-flex justify-content-between w-100 mt-4">
@@ -137,3 +151,26 @@
     {{ "shared.action.go-back" | translate }}
   </button>
 </div>
+
+<p-toast />
+<p-confirmdialog #cd>
+  <ng-template pTemplate="footer">
+    <button
+      type="button"
+      pButton
+      icon="pi pi-times"
+      label="Delete"
+      [ngStyle]="{ backgroundColor: '#e09fa6', border: 'red' }"
+      (click)="cd.onAccept()"
+    ></button>
+
+    <button
+      type="button"
+      pButton
+      icon="pi pi-check"
+      label="Cancel"
+      [ngStyle]="{ backgroundColor: '#90c67c', border: 'green' }"
+      (click)="cd.onReject()"
+    ></button>
+  </ng-template>
+</p-confirmdialog>

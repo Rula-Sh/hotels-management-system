@@ -71,7 +71,6 @@
   },
   "room": {
     "rooms": "الغرف",
-    "add-room": "إضافة غرفة",
     "type": "النوع",
     "room": "غرفة",
     "hall": "قاعة",
@@ -79,13 +78,15 @@
     "hotel": "الفندق",
     "booked-status": "الحالة",
     "location": "الموقع",
+    "add-room": "إضافة غرفة",
+    "edit-room": "تعديل الغرفة",
+    "delete-room": "حذف الغرفة",
     "type-required": "نوع الغرفة مطلوب",
     "floor-required": "الطابق مطلوب",
     "hotel-required": "الفندق مطلوب",
     "location-required": "الموقع مطلوب",
     "room-details": "تفاصيل الغرفة",
     "room-image": "صورة الغرفة",
-    "delete-room": "حذف الغرفة",
     "submit": "إضافة",
     "no-available-rooms": "لا يوجد غرف متاحة حاليا."
   },
@@ -108,11 +109,9 @@
     "delete-service": "حذف الخدمة",
     "no-available-services": "لا يوجد خدمات متاحة حاليا",
     "approve-request": "الموافقة على الطلب",
-    "reject-request": "رفض الطلب",
     "complete-request": "إكمال الطلب",
-    "no-pending-requests": "لا توجد طلبات قيد الانتظار",
-    "no-active-requests": "لا توجد طلبات نشطة",
-    "no-completed-requests": "لا توجد طلبات مكتملة",
+    "there-are-no-requests": "لا توجد طلبات حاليا.",
+    "there-are-no-services": "لا توجد خدمات حاليا.",
     "pending-requests": "طلبات منتظرة",
     "active-requests": "طلبات نشطة",
     "completed-requests": "طلبات المكتملة",
@@ -167,6 +166,7 @@
       "price-required": "السعر مطلوب",
       "image-url": "رابط الصورة",
       "image-url-required": "رابط الصورة مطلوب"
-    }
+    },
+    "go-back-to-home-page": "الرجوع الى الصفخة الرئيسية"
   }
 }
