@@ -63,20 +63,6 @@
                 [title]="'service.approve-request' | translate"
               ></i>
             </button>
-            <button
-              class="reject"
-              (click)="
-                RejectServiceRequest(
-                  pendingServiceRequest.id,
-                  pendingServiceRequest
-                )
-              "
-            >
-              <i
-                class="bi bi-x-circle-fill h5"
-                [title]="'service.reject-request' | translate"
-              ></i>
-            </button>
           </td>
         </tr>
 
@@ -173,17 +159,9 @@
   </div>
   }
 </div>
-@if(!requests.pending){
+@if(!requests.pending && !requests.active && !requests.completed){
 <h3 class="text-center mt-5">
-  {{ "service.no-pending-requests" | translate }}
-</h3>
-} @if(!requests.active){
-<h3 class="text-center mt-5">
-  {{ "service.no-active-requests" | translate }}
-</h3>
-} @if(!requests.completed){
-<h3 class="text-center mt-5">
-  {{ "service.no-completed-requests" | translate }}
+  {{ "service.there-are-no-requests" | translate }}
 </h3>
 }
 <p-toast />
