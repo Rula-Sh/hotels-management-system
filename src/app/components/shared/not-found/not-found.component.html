@@ -1,1 +1,13 @@
-<p>not-found works!</p>
+<div class="d-flex justify-content-center flex-column">
+  <img
+    class="not-found-image align-self-center"
+    src="/assets/images/not-found-image.png"
+  />
+  <button
+    class="btn-primary align-self-center"
+    [routerLink]="['/']"
+    routerLinkActive="router-link-active"
+  >
+    {{ "shared.go-back-to-home-page" | translate }}
+  </button>
+</div>

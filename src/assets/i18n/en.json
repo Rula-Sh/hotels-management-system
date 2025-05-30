@@ -165,6 +165,7 @@
       "price-required": "Price required",
       "image-url": "Image Url",
       "image-url-required": "Image URL required"
-    }
+    },
+    "go-back-to-home-page": "Go Back To Home Page"
   }
 }
