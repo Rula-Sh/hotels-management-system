@@ -7,14 +7,24 @@ import { I18nService } from '../../../services/i18n.service';
 import { Room } from '../../../models/Room.model';
 import { Reservation } from '../../../models/Reservation.model';
 import { ReservationService } from '../../../services/reservation.service';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { AuthService } from '../../../services/auth.service';
 import { ServiceRequest } from '../../../models/ServiceRequest.model';
-import { ServiceService } from '../../../services/service.service';
+import { ToastModule } from 'primeng/toast';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-room',
-  imports: [CommonModule, I18nPipe, RouterLink],
+  imports: [
+    CommonModule,
+    I18nPipe,
+    RouterLink,
+    ToastModule,
+    ConfirmDialogModule,
+    ButtonModule,
+  ],
+  providers: [MessageService, ConfirmationService, MessageService],
   templateUrl: './room-details.component.html',
   styleUrl: './room-details.component.scss',
 })
@@ -28,9 +38,9 @@ export class RoomDetailsComponent {
   currentIndex: number = 0;
   fadeOut = false;
   approvedServices: ServiceRequest[] = [];
-  customerId: string | null = null;
+  userId: string | null = null;
   roomId: string | null = null;
-   requestedServicesStatus: { [serviceTitle: string]: string } = {};
+  requestedServicesStatus: { [serviceTitle: string]: string } = {};
   get lang(): 'en' | 'ar' {
     return this.i18nService.getLanguage();
   }
@@ -43,37 +53,36 @@ export class RoomDetailsComponent {
     private reservationService: ReservationService,
     private authService: AuthService,
     private route: ActivatedRoute,
-    private serviceService: ServiceService
+    private confirmationService: ConfirmationService,
+    private messageService: MessageService
   ) {}
   role: string | null = null;
-ngOnInit() {
-  this.customerId = localStorage.getItem('id');
-  this.roomId = this.route.snapshot.paramMap.get('id'); // تحصل الـ roomId من الـ URL
+  ngOnInit() {
+    this.userId = localStorage.getItem('id');
+    this.role = localStorage.getItem('user_role');
+    this.roomId = this.route.snapshot.paramMap.get('id'); // تحصل الـ roomId من الـ URL
 
-  this.getRoom(); // إذا كانت دالة جلب الغرفة async تأكد من تنفيذ loadApprovedServices بعدها
-
-}
+    this.getRoom(); // إذا كانت دالة جلب الغرفة async تأكد من تنفيذ loadApprovedServices بعدها
+  }
 
   getRoom() {
-  const roomId = this.activatedRoute.snapshot.paramMap.get('id');
+    const roomId = this.activatedRoute.snapshot.paramMap.get('id');
 
-  if (roomId) {
-    this.roomService.getRoomById(roomId).subscribe({
-      next: (value) => {
-        this.room = value;
-        this.images = this.room?.imagesUrl || [];
-        console.log('Room Loaded');
-
-      },
-      error: (err) => {
-        console.log('Error Retrieving the Room: ' + err);
-      },
-    });
-  } else {
-    console.log('Room ID is null');
+    if (roomId) {
+      this.roomService.getRoomById(roomId).subscribe({
+        next: (value) => {
+          this.room = value;
+          this.images = this.room?.imagesUrl || [];
+          console.log('Room Loaded');
+        },
+        error: (err) => {
+          console.log('Error Retrieving the Room: ' + err);
+        },
+      });
+    } else {
+      console.log('Room ID is null');
+    }
   }
-}
-
 
   get currentImageUrl(): string {
     return (
@@ -103,6 +112,29 @@ ngOnInit() {
 
   slide(): string {
     return `translateX(-${this.currentIndex * 100}%)`;
+  }
+
+  deleteRoom(id: string | undefined) {
+    this.confirmationService.confirm({
+      message: 'Are you sure you want to remove this room?',
+      header: 'Remove Room',
+      accept: () => {
+        this.roomService.RemoveRoom(id!).subscribe({
+          next: (value) => {
+            console.log('Room deleted');
+            this.router.navigate(['/rooms']);
+          },
+          error(err) {
+            console.log('Error deleting room: ' + err);
+          },
+        });
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Room Removed',
+        });
+      },
+      reject: () => {},
+    });
   }
 
   bookRoom(room: Room) {
