@@ -110,6 +110,7 @@
     "approve-request": "الموافقة على الطلب",
     "complete-request": "إكمال الطلب",
     "there-are-no-requests": "لا توجد طلبات حاليا.",
+    "there-are-no-services": "لا توجد خدمات حاليا.",
     "pending-requests": "طلبات منتظرة",
     "active-requests": "طلبات نشطة",
     "completed-requests": "طلبات المكتملة",
