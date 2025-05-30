@@ -14,10 +14,19 @@ import { User } from '../../../../models/User.model';
 import { AuthService } from '../../../../services/auth.service';
 import { UserService } from '../../../../services/user.service';
 import { I18nService } from '../../../../services/i18n.service';
+import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
 
 @Component({
   selector: 'app-profile',
-  imports: [FormsModule, ReactiveFormsModule, CommonModule, I18nPipe],
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    CommonModule,
+    I18nPipe,
+    ToastModule,
+  ],
+  providers: [MessageService],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss',
 })
@@ -36,7 +45,8 @@ export class ProfileComponent {
     private userService: UserService,
     private router: Router,
     private fb: FormBuilder,
-    private i18nService: I18nService
+    private i18nService: I18nService,
+    private messageService: MessageService
   ) {}
 
   ngOnInit() {
@@ -97,11 +107,21 @@ export class ProfileComponent {
         next: () => {
           console.log('Form Submitted');
           this.authService.login(updatedUser);
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: 'Profile updated successfully',
+          });
           this.router.navigate(['/']);
           this.profileForm.reset();
         },
         error: (err) => {
           console.log('Error on Update', err);
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: 'Failed update profile',
+          });
         },
       });
     });
