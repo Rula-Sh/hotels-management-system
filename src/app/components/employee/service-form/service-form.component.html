@@ -1,11 +1,11 @@
 <div class="page">
+  @if(isAddingAService){
   <h1 class="m-4 mb-4">{{ "service.add-service" | translate }}</h1>
+  } @else {
+  <h1 class="m-4 mb-4">{{ "service.edit-service" | translate }}</h1>
+  }
   <div class="center-wrapper">
-    <form
-      class="container p-4"
-      [formGroup]="serviceForm"
-      (ngSubmit)="addService()"
-    >
+    <form class="container p-4" [formGroup]="serviceForm" (ngSubmit)="submit()">
       <div class="input-container">
         <label for="title"> {{ "shared.form.title" | translate }}:</label>
         <div class="input-error">
@@ -184,12 +184,20 @@
       <div class="input-container">
         <label></label>
         <div class="input-error">
+          @if(isAddingAService){
           <button
             class="mt-4 btn-submit"
             [title]="'shared.action.add' | translate"
           >
-            {{ "shared.action.add" | translate }}
+            {{ "shared.action.add" | translate }}</button
+          >} @else {
+          <button
+            class="mt-4 btn-submit"
+            [title]="'shared.action.update' | translate"
+          >
+            {{ "shared.action.update" | translate }}
           </button>
+          }
         </div>
       </div>
     </form>
@@ -197,7 +205,7 @@
 
   <button
     class="mt-4 ms-4 btn-outline-primary rounded-2"
-    [routerLink]="['/employee/services/']"
+    [routerLink]="['/employee/services']"
     routerLinkActive="router-link-active"
     [title]="'shared.action.go-back' | translate"
   >
