@@ -5,7 +5,7 @@
   <h1 class="m-4 mb-4">{{ "room.edit-room" | translate }}</h1>
   }
   <div class="center-wrapper">
-    <form class="container p-4" [formGroup]="roomForm" (ngSubmit)="addRoom()">
+    <form class="container p-4" [formGroup]="roomForm" (ngSubmit)="submit()">
       <div class="input-container">
         <label for="title"> {{ "shared.form.title" | translate }}:</label>
         <div class="input-error">
@@ -243,6 +243,7 @@
 
         <div class="images-urls-inputs">
           @for(imageUrl of imagesUrl.controls; let i= $index; track i){
+          <!-- @for(imageUrl of imagesUrl.controls) is looping through each input field in the imagesUrl FormArray. -->
           <div class="input-group" [ngClass]="{ 'right-input': lang == 'ar' }">
             <div class="align-self-center">
               <span
@@ -296,11 +297,17 @@
         <label></label>
         <div class="input-error">
           @if(isAddingARoom){
-          <button class="mt-4 btn-submit" [title]="'shared.action.submit' | translate">
+          <button
+            class="mt-4 btn-submit"
+            [title]="'shared.action.submit' | translate"
+          >
             {{ "shared.action.submit" | translate }}
           </button>
           } @else {
-          <button class="mt-4 btn-submit" [title]="'shared.action.update' | translate">
+          <button
+            class="mt-4 btn-submit"
+            [title]="'shared.action.update' | translate"
+          >
             {{ "shared.action.update" | translate }}</button
           >}
         </div>

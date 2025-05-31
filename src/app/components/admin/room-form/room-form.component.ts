@@ -75,7 +75,9 @@ export class RoomFormComponent {
       details: ['', [Validators.required, Validators.maxLength(500)]],
       price: ['', [Validators.required, Validators.maxLength(4)]],
       location: ['', Validators.required],
-      imagesUrl: this.fb.array([this.fb.control('', Validators.required)]),
+      imagesUrl: this.fb.array(
+        this.isAddingARoom ? [this.fb.control('', Validators.required)] : []
+      ),
     });
   }
 
@@ -88,13 +90,19 @@ export class RoomFormComponent {
       details: this.room.details,
       price: this.room.price,
       location: this.room.location,
-      imagesUrl: this.room.imagesUrl,
     };
 
     this.roomForm.patchValue(roomData);
+
+    const imagesArray = this.roomForm.get('imagesUrl') as FormArray;
+
+    this.room.imagesUrl.forEach((url: string) => {
+      imagesArray.push(this.fb.control(url, Validators.required));
+    });
   }
 
   get imagesUrl(): FormArray {
+    // used to get the imagesUrl form control as a strongly typed FormArray, so i don’t have to repeatedly write: this.roomForm.get('imagesUrl') as FormArray
     return this.roomForm.get('imagesUrl') as FormArray;
   }
 
@@ -122,7 +130,7 @@ export class RoomFormComponent {
     }
   }
 
-  addRoom() {
+  submit() {
     if (this.roomForm.invalid) {
       return this.roomForm.markAllAsTouched();
     }
@@ -142,8 +150,10 @@ export class RoomFormComponent {
       this.roomService.CreateRoom(newRoom).subscribe({
         next: () => {
           console.log('Room added successfully');
-          this.router.navigate(['/rooms']);
-          this.roomForm.reset();
+          setTimeout(() => {
+            this.router.navigate(['/rooms']);
+            this.roomForm.reset();
+          }, 1500);
         },
         error: (err) => {
           console.log('Error on Adding a Room', err);
@@ -157,7 +167,7 @@ export class RoomFormComponent {
         floor: this.roomForm.value.floor,
         hotel: this.roomForm.value.hotel,
         details: this.roomForm.value.details,
-        bookedStatus: 'Available',
+        bookedStatus: this.room.bookedStatus,
         price: this.roomForm.value.price,
         location: this.roomForm.value.location,
         imagesUrl: this.roomForm.value.imagesUrl,
@@ -165,11 +175,23 @@ export class RoomFormComponent {
       this.roomService.updateRoom(this.room.id, updatedRoom).subscribe({
         next: () => {
           console.log('Room updated successfully');
-          this.router.navigate(['/rooms']);
-          this.roomForm.reset();
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: 'Room updated successfully',
+          });
+          setTimeout(() => {
+            this.router.navigate(['/rooms']);
+            this.roomForm.reset();
+          }, 1500);
         },
         error: (err) => {
           console.log('Error on Updating Room', err);
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: 'Failed to update room',
+          });
         },
       });
     }
