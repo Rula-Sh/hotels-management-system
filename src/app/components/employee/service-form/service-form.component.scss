@@ -1,7 +1,7 @@
 @import "../../../../styles/variables.scss";
 
 .page {
-  max-width: 900px;
+  max-width: 800px;
   width: auto;
   margin-left: auto;
   margin-right: auto;
@@ -22,25 +22,13 @@
   justify-content: center;
   width: 100%;
   border-radius: 10px;
-  max-width: 900px;
+  max-width: 800px;
 }
 
-.input-container {
-  display: flex;
-  justify-content: center;
+.input-group {
+  width: 60%;
   align-items: center;
-}
-
-.input-error {
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-label {
-  width: 25%;
+  align-self: center;
 }
 
 .input-group-icon {
@@ -98,6 +86,11 @@ select:focus {
   border-radius: 5px 0 0 5px;
 }
 
+.right-input select {
+  border: 2px $color-dark-brown solid;
+  border-right: none;
+  background-position: calc(8% - 0.75rem) center !important;
+}
 .right-input .radio-container {
   border: 2px $color-dark-brown solid;
   border-right: none;
@@ -116,7 +109,8 @@ select:focus {
   text-align: start;
   width: 100%;
   font-size: 14px;
-  margin: -6px 10px 10px 50px;
+  margin: -6px 20px 8px;
+  padding-left: 15px;
   font-weight: bold;
 }
 
@@ -127,13 +121,6 @@ button {
   font-size: 15px;
   border-radius: 7px;
   padding: 7px 10px;
-}
-
-.btn-submit {
-  border: none;
-  font-size: 18px;
-  background-color: $color-dark-brown;
-  color: white;
 }
 
 i {
