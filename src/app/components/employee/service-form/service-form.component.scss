@@ -1,7 +1,7 @@
 @import "../../../../styles/variables.scss";
 
 .page {
-  max-width: 900px;
+  max-width: 800px;
   width: auto;
   margin-left: auto;
   margin-right: auto;
@@ -22,25 +22,13 @@
   justify-content: center;
   width: 100%;
   border-radius: 10px;
-  max-width: 900px;
+  max-width: 800px;
 }
 
-.input-container {
-  display: flex;
-  justify-content: center;
+.input-group {
+  width: 60%;
   align-items: center;
-}
-
-.input-error {
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-label {
-  width: 25%;
+  align-self: center;
 }
 
 .input-group-icon {
@@ -50,6 +38,7 @@ label {
   font-size: 16px;
   border: 2px $color-dark-brown solid;
   border-right: none;
+  border-radius: 5px 0px 0px 5px;
 }
 
 input,
@@ -64,8 +53,25 @@ select {
 }
 
 .type-input {
-  border-right: none;
-  margin-right: 0px;
+  position: relative;
+  flex: 1 1 auto;
+  width: 1%;
+  min-width: 0;
+}
+
+select {
+  background: url("data:image/svg+xml,<svg height='10px' width='10px' viewBox='0 0 16 16' fill='%23000000' xmlns='http://www.w3.org/2000/svg'><path d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/></svg>")
+    no-repeat;
+  background-position: calc(100% - 0.75rem) center !important;
+  -moz-appearance: none !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+}
+
+select:focus {
+  border: 2px $color-dark-brown solid;
+  outline: none;
+  border-left: none;
 }
 
 .right-input .input-group-icon {
@@ -80,6 +86,11 @@ select {
   border-radius: 5px 0 0 5px;
 }
 
+.right-input select {
+  border: 2px $color-dark-brown solid;
+  border-right: none;
+  background-position: calc(8% - 0.75rem) center !important;
+}
 .right-input .radio-container {
   border: 2px $color-dark-brown solid;
   border-right: none;
@@ -93,16 +104,13 @@ select {
   border-left: none;
 }
 
-.type-input:focus {
-  border-right: none;
-}
-
 .error {
   color: $color-red;
   text-align: start;
   width: 100%;
   font-size: 14px;
-  margin: -6px 10px 10px 50px;
+  margin: -6px 20px 8px;
+  padding-left: 15px;
   font-weight: bold;
 }
 
@@ -113,13 +121,6 @@ button {
   font-size: 15px;
   border-radius: 7px;
   padding: 7px 10px;
-}
-
-.btn-submit {
-  border: none;
-  font-size: 18px;
-  background-color: $color-dark-brown;
-  color: white;
 }
 
 i {
@@ -146,4 +147,43 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+.img-container {
+  width: 50%;
+  max-height: 200px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  overflow: hidden;
+}
+
+.img {
+  width: 100%;
+  min-width: 100%;
+  height: 200px;
+  align-self: center;
+  border-radius: 10px;
+  display: block;
+  object-fit: cover;
+  user-select: none;
+  pointer-events: none;
+}
+
+.slider {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  width: 100%;
+}
+
+.delete-icon {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  cursor: pointer;
+  color: red;
+  padding: 4px;
+  text-shadow: 2px 2px 20px black;
 }

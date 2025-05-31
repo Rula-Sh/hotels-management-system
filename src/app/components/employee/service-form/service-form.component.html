@@ -1,0 +1,196 @@
+<div class="page">
+  @if(isAddingAService){
+  <h1 class="m-4 mb-4 text-center">{{ "service.add-service" | translate }}</h1>
+  } @else {
+  <h1 class="m-4 mb-4">{{ "service.edit-service" | translate }}</h1>
+  }
+  <div class="center-wrapper">
+    <form class="container p-4" [formGroup]="serviceForm" (ngSubmit)="submit()">
+      <div class="input-group" [ngClass]="{ 'right-input': lang == 'ar' }">
+        <div class="align-self-center">
+          <span
+            class="input-group-text input-group-icon align-self-center bg-white"
+            ><i class="fa-solid fa-t"></i>
+          </span>
+        </div>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Title"
+          aria-label="Title"
+          [placeholder]="'shared.form.title' | translate"
+          formControlName="title"
+          required
+        />
+        <div
+          class="error"
+          *ngIf="
+            serviceForm.get('title')?.invalid &&
+            serviceForm.get('title')?.touched
+          "
+        >
+          {{ "shared.form.title-required" | translate }}
+        </div>
+      </div>
+      <div class="input-group" [ngClass]="{ 'right-input': lang == 'ar' }">
+        <div class="align-self-center">
+          <span
+            class="input-group-text input-group-icon align-self-center bg-white"
+          >
+            <i class="fa-solid fa-screwdriver-wrench"></i>
+          </span>
+        </div>
+        <select
+          class="type-input"
+          aria-label="Service Type"
+          formControlName="serviceType"
+          required
+          [ngStyle]="{
+            color: serviceForm.get('serviceType')?.value ? 'black' : '#495057'
+          }"
+        >
+          <option value="" disabled selected hidden>
+            {{ "service.type" | translate }}
+          </option>
+
+          @for(servicesType of servicesTypes; let i= $index; track i){
+
+          <option [value]="servicesType">{{ servicesType }}</option>
+          }
+        </select>
+        <div
+          class="error"
+          *ngIf="
+            serviceForm.get('serviceType')?.invalid &&
+            serviceForm.get('serviceType')?.touched
+          "
+        >
+          {{ "service.service-type-required" | translate }}
+        </div>
+      </div>
+      <div class="input-group" [ngClass]="{ 'right-input': lang == 'ar' }">
+        <div class="align-self-center">
+          <span
+            class="input-group-text input-group-icon align-self-center bg-white"
+            ><i class="fa-solid fa-circle-info"></i>
+          </span>
+        </div>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Details"
+          aria-label="Details"
+          [placeholder]="'shared.form.details' | translate"
+          formControlName="details"
+          required
+        />
+        <div
+          class="error"
+          *ngIf="
+            serviceForm.get('details')?.invalid &&
+            serviceForm.get('details')?.touched
+          "
+        >
+          {{ "shared.form.details-required" | translate }}
+        </div>
+      </div>
+      <div class="input-group" [ngClass]="{ 'right-input': lang == 'ar' }">
+        <div class="align-self-center">
+          <span
+            class="input-group-text input-group-icon align-self-center bg-white"
+            ><i class="fa-solid fa-dollar-sign"></i>
+          </span>
+        </div>
+        <input
+          type="number"
+          class="form-control"
+          placeholder="Price"
+          aria-label="Price"
+          [placeholder]="'shared.form.price' | translate"
+          formControlName="price"
+          required
+        />
+        <div
+          class="error"
+          *ngIf="
+            serviceForm.get('price')?.invalid &&
+            serviceForm.get('price')?.touched
+          "
+        >
+          {{ "shared.form.price-required" | translate }}
+        </div>
+      </div>
+      <div class="input-group" [ngClass]="{ 'right-input': lang == 'ar' }">
+        <div class="align-self-center">
+          <span
+            class="input-group-text input-group-icon align-self-center bg-white"
+            ><i class="fa-solid fa-image"></i>
+          </span>
+        </div>
+        <input
+          type="file"
+          class="form-control"
+          placeholder="Image URL"
+          aria-label="Image URL"
+          [placeholder]="'shared.form.image-url' | translate"
+          required
+          (change)="onFileSelected($event)"
+        />
+        <div
+          class="error"
+          *ngIf="
+            serviceForm.get('imageUrl')?.invalid &&
+            serviceForm.get('imageUrl')?.touched
+          "
+        >
+          {{ "shared.form.image-url-required" | translate }}
+        </div>
+      </div>
+
+      <div *ngIf="serviceForm.get('imageUrl')?.value" class="img-container">
+        <div class="slider">
+          <img
+            class="img"
+            [src]="serviceForm.get('imageUrl')?.value"
+            alt="Uploaded image"
+          />
+        </div>
+        <i
+          class="delete-icon bi bi-trash-fill h4"
+          (click)="removeImage()"
+          title="Delete image"
+        ></i>
+      </div>
+      @if(isAddingAService){
+      <button
+        class="mt-4 btn-primary ps-4 pe-4"
+        [title]="'shared.action.add' | translate"
+      >
+        {{ "shared.action.add" | translate }}</button
+      >} @else {
+      <button
+        class="mt-4 btn-primary"
+        [title]="'shared.action.update' | translate"
+      >
+        {{ "shared.action.update" | translate }}
+      </button>
+      }
+    </form>
+  </div>
+
+  <button
+    class="mt-4 ms-4 btn-outline-primary rounded-2"
+    [routerLink]="['/employee/services']"
+    routerLinkActive="router-link-active"
+    [title]="'shared.action.go-back' | translate"
+  >
+    @if(lang == 'ar') {
+    <i class="fa-solid fa-arrow-right"></i>
+    } @else {
+    <i class="fa-solid fa-arrow-left"></i>
+    }
+    {{ "shared.action.go-back" | translate }}
+  </button>
+</div>
+
+<p-toast></p-toast>

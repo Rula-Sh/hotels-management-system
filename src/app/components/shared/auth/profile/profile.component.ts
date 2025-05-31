@@ -112,8 +112,11 @@ export class ProfileComponent {
             summary: 'Success',
             detail: 'Profile updated successfully',
           });
-          this.router.navigate(['/']);
-          this.profileForm.reset();
+
+          setTimeout(() => {
+            this.router.navigate(['/']);
+            this.profileForm.reset();
+          }, 1500);
         },
         error: (err) => {
           console.log('Error on Update', err);
