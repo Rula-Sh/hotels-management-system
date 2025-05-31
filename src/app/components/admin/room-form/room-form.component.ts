@@ -27,10 +27,10 @@ import { ToastModule } from 'primeng/toast';
     RouterLink,
   ],
   providers: [MessageService],
-  templateUrl: './add-room.component.html',
-  styleUrl: './add-room.component.scss',
+  templateUrl: './room-form.component.html',
+  styleUrl: './room-form.component.scss',
 })
-export class AddRoomComponent {
+export class RoomFormComponent {
   roomForm!: FormGroup;
   isAddingARoom = true;
   room!: any;

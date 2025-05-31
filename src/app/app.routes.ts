@@ -22,7 +22,7 @@ import { ManageUsersComponent } from './components/admin/manage-users/manage-use
 import { UserDetailsComponent } from './components/admin/user-details/user-details.component';
 import { ReservationsComponent } from './components/admin/reservations/reservations.component';
 import { RoomsComponent } from './components/shared/rooms/rooms.component';
-import { AddRoomComponent } from './components/admin/add-room/add-room.component';
+import { RoomFormComponent } from './components/admin/room-form/room-form.component';
 import { RoomDetailsComponent } from './components/shared/room-details/room-details.component';
 import { ServicesComponent } from './components/employee/services/services.component';
 import { AddServiceComponent } from './components/employee/add-service/add-service.component';
@@ -130,13 +130,13 @@ export const routes: Routes = [
   },
   {
     path: 'admin/add-room',
-    component: AddRoomComponent,
+    component: RoomFormComponent,
     canActivate: [authGuard],
     data: { roles: ['Admin'] },
   },
   {
     path: 'admin/edit-room/:id',
-    component: AddRoomComponent,
+    component: RoomFormComponent,
     canActivate: [authGuard],
     data: { roles: ['Admin'] },
   },
