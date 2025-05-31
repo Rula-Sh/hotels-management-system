@@ -93,7 +93,6 @@ input {
   border-left: none;
 }
 
-
 .error {
   color: $color-red;
   text-align: start;
@@ -103,7 +102,6 @@ input {
   padding-left: 15px;
   font-weight: bold;
 }
-
 
 .images-urls-inputs {
   width: 50%;
@@ -172,4 +170,67 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+.img-container {
+  width: 50%;
+  max-height: 200px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  overflow: hidden;
+}
+
+.img {
+  width: 100%;
+  min-width: 100%;
+  height: 200px;
+  align-self: center;
+  border-radius: 10px;
+  display: block;
+  object-fit: cover;
+  user-select: none;
+  pointer-events: none;
+}
+
+.slider {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  width: 100%;
+}
+
+.slide-icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #fff;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 50%;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  line-height: 15px;
+  text-align: center;
+}
+
+.slide-icon.fa-angle-left {
+  left: 10px;
+}
+
+.slide-icon.fa-angle-right {
+  right: 10px;
+}
+
+.delete-icon {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  cursor: pointer;
+  color: red;
+  padding: 4px;
+  text-shadow: 2px 2px 20px black;
 }

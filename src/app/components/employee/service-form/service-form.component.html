@@ -133,7 +133,6 @@
           placeholder="Image URL"
           aria-label="Image URL"
           [placeholder]="'shared.form.image-url' | translate"
-          formControlName="imageUrl"
           required
           (change)="onFileSelected($event)"
         />
@@ -146,6 +145,21 @@
         >
           {{ "shared.form.image-url-required" | translate }}
         </div>
+      </div>
+
+      <div *ngIf="serviceForm.get('imageUrl')?.value" class="img-container">
+        <div class="slider">
+          <img
+            class="img"
+            [src]="serviceForm.get('imageUrl')?.value"
+            alt="Uploaded image"
+          />
+        </div>
+        <i
+          class="delete-icon bi bi-trash-fill h4"
+          (click)="removeImage()"
+          title="Delete image"
+        ></i>
       </div>
       @if(isAddingAService){
       <button

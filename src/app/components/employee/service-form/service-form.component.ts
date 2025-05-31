@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import {
-  FormArray,
   FormBuilder,
   FormGroup,
   FormsModule,
@@ -102,35 +101,50 @@ export class ServiceFormComponent {
   }
 
   onFileSelected(event: any) {
-    this.selectedFile = event.target.files[0];
+    const file = event.target.files[0];
+    if (!file) return;
+
+    this.selectedFile = file;
+
+    // show service image
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.serviceForm.get('imageUrl')?.setValue(reader.result); // preview only
+    };
+    reader.readAsDataURL(file);
   }
 
+  removeImage() {
+    this.serviceForm.get('imageUrl')?.reset();
+    this.selectedFile = null;
+  }
   submit() {
     if (this.serviceForm.invalid) {
-      return this.serviceForm.markAllAsTouched();
-    }
-    if (!this.user) {
-      console.error('User is not logged in');
+      this.serviceForm.markAllAsTouched();
       return;
     }
+
     if (!this.selectedFile) {
       console.error('Upload an image first');
       return;
     }
 
-    // Upload image to Cloudinary
     this.uploadService
       .uploadImage(this.selectedFile, this.uploadPreset)
       .subscribe({
-        next: (response) => {
-          this.imageUrl = response.url;
-          console.log('Image uploaded successfully:', this.imageUrl);
+        next: (res: any) => {
+          this.imageUrl = res.url;
+          this.serviceForm.get('imageUrl')?.setValue(this.imageUrl);
 
-          // After image is uploaded, add or update service
           this.saveService();
         },
-        error: (error) => {
-          console.error('Error uploading image:', error);
+        error: (err) => {
+          console.error('Error uploading image:', err);
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Upload Error',
+            detail: 'Failed to upload image.',
+          });
         },
       });
   }
@@ -141,7 +155,7 @@ export class ServiceFormComponent {
       this.router.navigate(['/login']);
       return;
     }
-    if (!this.selectedFile || !this.imageUrl) {
+    if (!this.imageUrl) {
       console.error('Upload an image first');
       return;
     }

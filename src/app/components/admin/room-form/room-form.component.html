@@ -195,57 +195,62 @@
           {{ "shared.form.price-required" | translate }}
         </div>
       </div>
-
-      <div class="d-flex flex-column" formArrayName="imagesUrl">
-        @for(imageUrl of imagesUrl.controls; let i= $index; track i){
-        <!-- @for(imageUrl of imagesUrl.controls) is looping through each input field in the imagesUrl FormArray. -->
-        <div class="input-group" [ngClass]="{ 'right-input': lang == 'ar' }">
-          <div class="align-self-center">
-            <span
-              class="input-group-text input-group-icon align-self-center bg-white"
-              ><i class="fa-solid fa-image"></i>
-            </span>
-          </div>
-          <input
-            type="file"
-            class="form-control image-url-input"
-            placeholder="Image URL"
-            aria-label="Image URL"
-            [placeholder]="'shared.form.image-url' | translate"
-            required
-            (change)="onFileSelected($event, i)"
-          />
-
-          <div class="input-group-append align-self-center">
-            <span class="input-group-action-icons align-self-center bg-white"
-              ><i
-                *ngIf="$index != 0"
-                class="delete-icon fa-solid fa-trash-can fa-lg"
-                clickable
-                (click)="removeImageUrl(i)"
-                title="Remove ImageUrl"
-              ></i>
-              <i
-                *ngIf="$index == 0"
-                class="fa-solid fa-circle-plus align-self-center fa-lg mt-3 mb-3"
-                clickable
-                (click)="addImageUrl()"
-                title="Add ImageUrl"
-              ></i>
-            </span>
-          </div>
-          <div
-            class="error"
-            *ngIf="
-              roomForm.get('imagesUrl')?.invalid &&
-              roomForm.get('imagesUrl')?.touched
-            "
-          >
-            {{ "shared.form.image-url-required" | translate }}
-          </div>
+      <div class="input-group" [ngClass]="{ 'right-input': lang == 'ar' }">
+        <div class="align-self-center">
+          <span
+            class="input-group-text input-group-icon align-self-center bg-white"
+            ><i class="fa-solid fa-image"></i>
+          </span>
         </div>
-        }
+        <input
+          type="file"
+          class="form-control"
+          placeholder="Image URL"
+          aria-label="Image URL"
+          [placeholder]="'shared.form.image-url' | translate"
+          (change)="onFileSelected($event)"
+          formControlName="imagesUrl"
+          required
+        />
+        <div
+          class="error"
+          *ngIf="
+            roomForm.get('imagesUrl')?.invalid &&
+            roomForm.get('imagesUrl')?.touched
+          "
+        >
+          {{ "shared.form.image-url-required" | translate }}
+        </div>
       </div>
+
+      <div *ngIf="images.length > 0" class="img-container">
+        <div class="slider" [style.transform]="slide()">
+          <img
+            *ngFor="let img of images"
+            class="img"
+            [src]="img"
+            alt="slider image"
+          />
+        </div>
+
+        <i
+          *ngIf="images.length > 1"
+          class="slide-icon fa-solid fa-angle-left"
+          (click)="prevImage()"
+        ></i>
+        <i
+          *ngIf="images.length > 1"
+          class="slide-icon fa-solid fa-angle-right"
+          (click)="nextImage()"
+        ></i>
+
+        <i
+          class="delete-icon bi bi-trash-fill h4"
+          (click)="removeImage(currentIndex)"
+          title="Delete image"
+        ></i>
+      </div>
+
       @if(isAddingARoom){
       <button
         class="mt-4 btn-primary"
