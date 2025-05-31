@@ -128,13 +128,14 @@
           </span>
         </div>
         <input
-          type="text"
+          type="file"
           class="form-control"
           placeholder="Image URL"
           aria-label="Image URL"
           [placeholder]="'shared.form.image-url' | translate"
           formControlName="imageUrl"
           required
+          (change)="onFileSelected($event)"
         />
         <div
           class="error"

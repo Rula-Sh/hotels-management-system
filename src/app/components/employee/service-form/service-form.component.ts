@@ -17,6 +17,7 @@ import { ServiceService } from '../../../services/service.service';
 import { Service } from '../../../models/Service.model';
 import { AuthService } from '../../../services/auth.service';
 import { Employee } from '../../../models/Employee.model';
+import { UploadService } from '../../../services/upload.service';
 
 @Component({
   selector: 'app-add-service',
@@ -39,6 +40,10 @@ export class ServiceFormComponent {
   isAddingAService = true;
   service!: any;
 
+  selectedFile: File | null = null;
+  imageUrl: string | null = null;
+  uploadPreset = 'HMS - IIH Project';
+
   get lang(): 'en' | 'ar' {
     return this.i18nService.getLanguage();
   }
@@ -50,7 +55,8 @@ export class ServiceFormComponent {
     private i18nService: I18nService,
     private serviceService: ServiceService,
     private activatedRoute: ActivatedRoute,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private uploadService: UploadService
   ) {}
 
   ngOnInit() {
@@ -95,12 +101,48 @@ export class ServiceFormComponent {
     this.serviceForm.patchValue(serviceData);
   }
 
+  onFileSelected(event: any) {
+    this.selectedFile = event.target.files[0];
+  }
+
   submit() {
     if (this.serviceForm.invalid) {
       return this.serviceForm.markAllAsTouched();
     }
     if (!this.user) {
       console.error('User is not logged in');
+      return;
+    }
+    if (!this.selectedFile) {
+      console.error('Upload an image first');
+      return;
+    }
+
+    // Upload image to Cloudinary
+    this.uploadService
+      .uploadImage(this.selectedFile, this.uploadPreset)
+      .subscribe({
+        next: (response) => {
+          this.imageUrl = response.url;
+          console.log('Image uploaded successfully:', this.imageUrl);
+
+          // After image is uploaded, add or update service
+          this.saveService();
+        },
+        error: (error) => {
+          console.error('Error uploading image:', error);
+        },
+      });
+  }
+
+  saveService() {
+    if (!this.user) {
+      console.error('User is not logged in');
+      this.router.navigate(['/login']);
+      return;
+    }
+    if (!this.selectedFile || !this.imageUrl) {
+      console.error('Upload an image first');
       return;
     }
 
@@ -110,7 +152,7 @@ export class ServiceFormComponent {
         serviceType: this.serviceForm.value.serviceType,
         details: this.serviceForm.value.details,
         price: this.serviceForm.value.price,
-        imageUrl: this.serviceForm.value.imageUrl,
+        imageUrl: this.imageUrl,
         employeeId: this.user?.id!,
         employee: this.user,
       };

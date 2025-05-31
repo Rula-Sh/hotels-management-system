@@ -15,6 +15,8 @@ import { Room } from '../../../models/Room.model';
 import { RoomService } from '../../../services/room.service';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
+import { UploadService } from '../../../services/upload.service';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-add-room',
@@ -35,6 +37,9 @@ export class RoomFormComponent {
   isAddingARoom = true;
   room!: any;
 
+  selectedFiles: File[] = [];
+  uploadPreset = 'HMS - IIH Project';
+
   get lang(): 'en' | 'ar' {
     return this.i18nService.getLanguage();
   }
@@ -45,7 +50,8 @@ export class RoomFormComponent {
     private i18nService: I18nService,
     private roomService: RoomService,
     private messageService: MessageService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private uploadService: UploadService
   ) {}
 
   ngOnInit() {
@@ -94,6 +100,7 @@ export class RoomFormComponent {
 
     this.roomForm.patchValue(roomData);
 
+    // to show the room images on edit room
     const imagesArray = this.roomForm.get('imagesUrl') as FormArray;
 
     this.room.imagesUrl.forEach((url: string) => {
@@ -130,11 +137,58 @@ export class RoomFormComponent {
     }
   }
 
+  onFileSelected(event: any, index: number) {
+    const file = event.target.files[0];
+    if (file) {
+      this.selectedFiles[index] = file;
+    }
+  }
+
   submit() {
-    if (this.roomForm.invalid) {
-      return this.roomForm.markAllAsTouched();
+    const controls = this.roomForm.controls;
+    let isInvalidExcludingImages = false;
+
+    for (let key in controls) {
+      if (key !== 'imagesUrl' && controls[key].invalid) {
+        controls[key].markAsTouched();
+        isInvalidExcludingImages = true;
+      }
     }
 
+    if (isInvalidExcludingImages) {
+      return;
+    }
+
+    if (!this.selectedFiles.length) {
+      this.roomForm.markAllAsTouched();
+      return;
+    }
+
+    // Upload the images first
+    const uploadObservables = this.selectedFiles.map((file) =>
+      this.uploadService.uploadImage(file, this.uploadPreset)
+    );
+
+    forkJoin(uploadObservables).subscribe({
+      next: (responses) => {
+        const uploadedUrls = responses.map((res: any) => res.url);
+        const imagesFormArray = this.roomForm.get('imagesUrl') as FormArray;
+
+        // Clear and repopulate FormArray
+        imagesFormArray.clear();
+        uploadedUrls.forEach((url) =>
+          imagesFormArray.push(this.fb.control(url, Validators.required))
+        );
+
+        this.createRoom();
+      },
+      error: (err) => {
+        console.error('Error uploading images', err);
+      },
+    });
+  }
+
+  createRoom() {
     if (this.isAddingARoom) {
       const newRoom: Omit<Room, 'id'> = {
         title: this.roomForm.value.title,

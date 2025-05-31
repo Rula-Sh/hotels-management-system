@@ -138,7 +138,8 @@
         <div
           class="error"
           *ngIf="
-            roomForm.get('location')?.invalid && roomForm.get('location')?.touched
+            roomForm.get('location')?.invalid &&
+            roomForm.get('location')?.touched
           "
         >
           {{ "room.hotel-required" | translate }}
@@ -206,13 +207,13 @@
             </span>
           </div>
           <input
-            type="text"
+            type="file"
             class="form-control image-url-input"
             placeholder="Image URL"
             aria-label="Image URL"
             [placeholder]="'shared.form.image-url' | translate"
-            [formControlName]="i"
             required
+            (change)="onFileSelected($event, i)"
           />
 
           <div class="input-group-append align-self-center">
