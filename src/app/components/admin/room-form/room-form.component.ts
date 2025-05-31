@@ -150,6 +150,11 @@ export class RoomFormComponent {
       this.roomService.CreateRoom(newRoom).subscribe({
         next: () => {
           console.log('Room added successfully');
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: 'Room Added successfully',
+          });
           setTimeout(() => {
             this.router.navigate(['/rooms']);
             this.roomForm.reset();
@@ -157,6 +162,11 @@ export class RoomFormComponent {
         },
         error: (err) => {
           console.log('Error on Adding a Room', err);
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: 'Failed to add room',
+          });
         },
       });
     } else {
