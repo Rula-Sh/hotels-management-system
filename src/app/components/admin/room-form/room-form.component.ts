@@ -55,13 +55,43 @@ export class RoomFormComponent {
 
   ngOnInit() {
     this.roomForm = this.fb.group({
-      title: ['', [Validators.required, Validators.maxLength(30)]],
+      title: [
+        '',
+        [
+          Validators.required,
+          Validators.maxLength(30),
+          Validators.pattern(/^[a-zA-Z0-9'\-$!& ]+$/),
+        ],
+      ],
       roomType: ['', Validators.required],
-      floor: ['', [Validators.required, Validators.maxLength(2)]],
-      hotel: ['', [Validators.required, Validators.maxLength(30)]],
-      details: ['', [Validators.required, Validators.maxLength(500)]],
-      price: ['', [Validators.required, Validators.maxLength(4)]],
+      floor: ['', [Validators.required, Validators.min(2), Validators.max(99)]],
+      hotel: [
+        '',
+        [
+          Validators.required,
+          Validators.maxLength(30),
+          Validators.pattern(/^[a-zA-Z0-9'\-$!& ]+$/),
+        ],
+      ],
+      details: [
+        '',
+        [
+          Validators.required,
+          Validators.maxLength(70),
+          Validators.pattern(/^[a-zA-Z0-9.,!?'"()\-:;$!& ]*$/),
+        ],
+      ],
+      price: [
+        '',
+        [
+          Validators.required,
+          Validators.min(1),
+          Validators.max(9999),
+          Validators.pattern(/^\d{1,4}(\.\d{1,2})?$/),
+        ],
+      ],
       location: ['', Validators.required],
+      imagesUrl: ['', Validators.required],
     });
 
     if (this.router.url.includes('edit-room')) {
@@ -81,9 +111,32 @@ export class RoomFormComponent {
 
   onFileSelected(event: any) {
     const file = event.target.files[0];
-    if (!file) return;
-    this.selectedFile = file;
+    const control = this.roomForm.get('imagesUrl');
 
+    if (!file) {
+      control?.setErrors({ required: true });
+      control?.markAsTouched();
+      return;
+    }
+
+    const allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+    const maxSizeInBytes = 2 * 1024 * 1024; // 2MB
+
+    if (!allowedTypes.includes(file.type)) {
+      control?.setErrors({ invalidType: true });
+      control?.markAsTouched();
+      return;
+    }
+
+    if (file.size > maxSizeInBytes) {
+      control?.setErrors({ maxSizeExceeded: true });
+      control?.markAsTouched();
+      return;
+    }
+
+    // Clear all errors and update value safely
+    control?.setErrors(null);
+    control?.markAsTouched();
     this.uploadService.uploadImage(file, 'HMS - IIH Project').subscribe({
       next: (res: any) => {
         this.images.push(res.url);
