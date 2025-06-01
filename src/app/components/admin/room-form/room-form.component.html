@@ -20,7 +20,6 @@
           [placeholder]="'shared.form.title' | translate"
           formControlName="title"
           pattern="^[a-zA-Z0-9'\-$!& ]+$"
-          maxlength="30"
           required
         />
         <div
@@ -30,8 +29,11 @@
           <div *ngIf="roomForm.get('title')?.errors?.['required']">
             {{ "shared.form.title-required" | translate }}
           </div>
+          <div *ngIf="roomForm.get('title')?.errors?.['minlength']">
+            {{ "shared.form.title-minlength" | translate }}
+          </div>
           <div *ngIf="roomForm.get('title')?.errors?.['maxlength']">
-            {{ "shared.form.title-too-long" | translate }}
+            {{ "shared.form.title-maxlength" | translate }}
           </div>
           <div *ngIf="roomForm.get('title')?.errors?.['pattern']">
             {{ "shared.form.title-invalid" | translate }}
@@ -72,7 +74,7 @@
             roomForm.get('roomType')?.touched
           "
         >
-          {{ "room.type-required" | translate }}
+          {{ "room.room-type-required" | translate }}
         </div>
       </div>
       <div class="input-group" [ngClass]="{ 'right-input': lang == 'ar' }">
@@ -120,10 +122,9 @@
           type="text"
           class="form-control"
           aria-label="Hotel"
-          [placeholder]="'room.hotel' | translate"
+          [placeholder]="'shared.form.hotel' | translate"
           formControlName="hotel"
           pattern="^[a-zA-Z0-9'\-$!& ]+$"
-          maxlength="30"
           required
         />
 
@@ -134,11 +135,14 @@
           <div *ngIf="roomForm.get('hotel')?.errors?.['required']">
             {{ "shared.form.hotel-required" | translate }}
           </div>
+          <div *ngIf="roomForm.get('hotel')?.errors?.['minlength']">
+            {{ "shared.form.hotel-minlength" | translate }}
+          </div>
           <div *ngIf="roomForm.get('hotel')?.errors?.['maxlength']">
-            {{ "shared.form.hotel-too-long" | translate }}
+            {{ "shared.form.hotel-maxlength" | translate }}
           </div>
           <div *ngIf="roomForm.get('hotel')?.errors?.['pattern']">
-            {{ "shared.form.hotel-invalid" | translate }}
+            {{ "shared.form.input-invalid" | translate }}
           </div>
         </div>
       </div>
@@ -192,11 +196,14 @@
           <div *ngIf="roomForm.get('details')?.errors?.['required']">
             {{ "shared.form.details-required" | translate }}
           </div>
+          <div *ngIf="roomForm.get('details')?.errors?.['minlength']">
+            {{ "shared.form.details-minlength" | translate }}
+          </div>
           <div *ngIf="roomForm.get('details')?.errors?.['maxlength']">
-            {{ "shared.form.details-too-long" | translate }}
+            {{ "shared.form.details-maxlength" | translate }}
           </div>
           <div *ngIf="roomForm.get('details')?.errors?.['pattern']">
-            {{ "shared.form.details-invalid" | translate }}
+            {{ "shared.form.ipnut-invalid" | translate }}
           </div>
         </div>
       </div>
@@ -224,16 +231,13 @@
           <div *ngIf="roomForm.get('price')?.errors?.['required']">
             {{ "shared.form.price-required" | translate }}
           </div>
-          <div *ngIf="roomForm.get('price')?.errors?.['min']">
-            {{ "shared.form.price-min" | translate }}
-          </div>
           <div *ngIf="roomForm.get('price')?.errors?.['max']">
             {{ "shared.form.price-max" | translate }}
           </div>
           <div
             *ngIf="roomForm.get('price')?.errors?.['pattern'] && (!roomForm.get('price')?.errors?.['max'] && !roomForm.get('price')?.errors?.['min'])"
           >
-            {{ "shared.form.price-invalid-format" | translate }}
+            {{ "shared.form.price-invalid" | translate }}
           </div>
         </div>
       </div>
@@ -248,9 +252,9 @@
           type="file"
           class="form-control"
           aria-label="Image URL"
-          [placeholder]="'shared.form.image-url' | translate"
+          [placeholder]="'shared.form.image' | translate"
           (change)="onFileSelected($event)"
-          accept="image/png, image/jpeg, image/gif"
+          accept="image/png, image/jpg, image/jpeg, image/gif"
           required
         />
         <div
@@ -261,13 +265,13 @@
           "
         >
           <div *ngIf="roomForm.get('imagesUrl')?.errors?.['required']">
-            {{ "shared.form.image-url-required" | translate }}
+            {{ "shared.form.image-required" | translate }}
           </div>
           <div *ngIf="roomForm.get('imagesUrl')?.errors?.['invalidType']">
-            {{ "shared.form.image-url-invalid-type" | translate }}
+            {{ "shared.form.image-invalid" | translate }}
           </div>
           <div *ngIf="roomForm.get('imagesUrl')?.errors?.['maxSizeExceeded']">
-            {{ "shared.form.image-url-max-size" | translate }}
+            {{ "shared.form.image-max" | translate }}
           </div>
         </div>
       </div>
@@ -303,16 +307,16 @@
       @if(isAddingARoom){
       <button
         class="mt-4 btn-primary"
-        [title]="'shared.action.submit' | translate"
+        [title]="'shared.button.submit' | translate"
       >
-        {{ "shared.action.submit" | translate }}
+        {{ "shared.button.submit" | translate }}
       </button>
       } @else {
       <button
         class="mt-4 btn-primary"
-        [title]="'shared.action.update' | translate"
+        [title]="'shared.button.update' | translate"
       >
-        {{ "shared.action.update" | translate }}</button
+        {{ "shared.button.update" | translate }}</button
       >}
     </form>
   </div>
@@ -321,14 +325,14 @@
     class="mt-4 ms-4 btn-outline-primary rounded-2"
     [routerLink]="['/rooms']"
     routerLinkActive="router-link-active"
-    [title]="'shared.action.go-back' | translate"
+    [title]="'shared.button.go-back' | translate"
   >
     @if(lang == 'ar') {
     <i class="fa-solid fa-arrow-right"></i>
     } @else {
     <i class="fa-solid fa-arrow-left"></i>
     }
-    {{ "shared.action.go-back" | translate }}
+    {{ "shared.button.go-back" | translate }}
   </button>
 </div>
 

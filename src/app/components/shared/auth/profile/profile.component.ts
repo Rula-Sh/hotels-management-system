@@ -67,7 +67,15 @@ export class ProfileComponent {
     this.user = this.authService.getCurrentUser();
     this.imageUrl = localStorage.getItem('pfp');
     this.profileForm = this.fb.group({
-      name: ['', Validators.required],
+      name: [
+        '',
+        [
+          Validators.required,
+          Validators.maxLength(20),
+          Validators.minLength(3),
+          Validators.pattern(/^[\u0600-\u06FFa-zA-Z'\s]+$"/),
+        ],
+      ],
       email: [
         '',
         [
@@ -81,7 +89,14 @@ export class ProfileComponent {
       phone: [undefined, Validators.required],
       password: ['', Validators.required],
       imageUrl: [''],
-      newPassword: ['', Validators.minLength(6)],
+      newPassword: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(6),
+          Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).+$/), // at least one lowercase, uppercase, digit, special char
+        ],
+      ],
       confirmPassword: ['', Validators.minLength(6)],
     });
     this.loadProfile();
@@ -112,7 +127,7 @@ export class ProfileComponent {
       return;
     }
 
-    const allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+    const allowedTypes = ['image/png', 'image/jpg', 'image/jpeg', 'image/gif'];
     const maxSizeInBytes = 2 * 1024 * 1024; // 2MB
 
     if (!allowedTypes.includes(file.type)) {

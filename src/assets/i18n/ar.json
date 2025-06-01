@@ -2,6 +2,16 @@
   "app": {
     "title": "هوتيل هب"
   },
+  "title": {
+    "signup": "الاشترك",
+    "login": "تسجيل الدخول"
+  },
+  "signup": {
+    "already-have-an-account": "هل لديك حساب؟"
+  },
+  "login": {
+    "dont-have-an-account": "ليس لديك حساب؟"
+  },
   "header": {
     "auth": {
       "profile": "الملف الشخصي",
@@ -42,10 +52,10 @@
     "submit": "تحديث",
     "cancel": "إلغاء",
     "add-employee": "إضافة موظف",
+    "job-category": "الفئة الوظيفية",
+    "job-category-required": "الفئة الوظيفية المطلوبة",
     "job-title": "المسمى الوظيفي",
-    "hotel": "الفندق",
-    "job-required": "المسمى الوظيفي مطلوب",
-    "hotel-required": "الفندق مطلوب"
+    "job-title-required": "المسمى الوظيفي مطلوب"
   },
   "user": {
     "name": "الاسم",
@@ -81,8 +91,10 @@
     "add-room": "إضافة غرفة",
     "edit-room": "تعديل الغرفة",
     "delete-room": "حذف الغرفة",
-    "type-required": "نوع الغرفة مطلوب",
+    "room-type-required": "نوع الغرفة مطلوب",
     "floor-required": "الطابق مطلوب",
+    "floor-min": "يجب أن يبدأ رقم الطابق ب 2",
+    "floor-max": "يجب ألا يتجاوز رقم الطابق 99",
     "hotel-required": "الفندق مطلوب",
     "location-required": "الموقع مطلوب",
     "room-details": "تفاصيل الغرفة",
@@ -147,26 +159,61 @@
     "entity": {
       "id": "الرقم التعريفي"
     },
-    "action": {
-      "key-name": "الإجراءات",
+    "button": {
+      "signup": "الاشترك",
+      "login": "تسجيل الدخول",
+      "go-back-to-home-page": "الرجوع الى الصفخة الرئيسية",
       "details": "التفاصيل",
       "approve": "الموافقة",
       "reject": "رفض",
       "add": "إضافة",
       "update": "تحديث",
       "submit": "إرسال",
+      "cancel": "إلغاء",
       "go-back": "العودة"
     },
     "form": {
+      "input-invalid": "المعطى غير صالح",
+      "name": "الاسم",
+      "name-required": "الاسم مطلوب",
+      "name-minlength": "يجب أن يحتوي الاسم على 3 أحرف على الأقل",
+      "name-maxlength": "يجب ألا يزيد الاسم عن 20 حرفاً",
+      "name-invalid": "اسم غير صالح",
+      "email": "البريد الإلكتروني",
+      "email-required": "البريد الإلكتروني مطلوب",
+      "email-invalid": "عنوان بريد إلكتروني غير صالح",
+      "email-not-found": "البريد الإلكتروني غير موجود",
+      "phone": "الهاتف",
+      "phone-required": "الهاتف مطلوب",
+      "new-password": "كلمة المرور الجديدة",
+      "password-required": "كلمة المرور مطلوبة",
+      "password-pattern": "يجب أن تحتوي كلمة المرور على 6 أحرف على الأقل، حرف كبير وحرف صغير وحرف رقمي وحرف خاص",
+      "password-invalid": "كلمة مرور غير صالحة",
+      "confirm-password": "تأكيد كلمة المرور",
+      "confimation-required": "مطلوب تأكيد كلمة المرور",
+      "password-match": "يجب أن تتطابق كلمات المرور",
       "title": "العنوان",
       "title-required": "العنوان مطلوب",
+      "title-minlength": "يجب أن يحتوي العنوان على 4 أحرف على الأقل",
+      "title-maxlength": "يجب ألا يتجاوز العنوان 30 حرفاً",
+      "title-invalid": "عنوان غير صالح",
       "details": "التفاصيل",
       "details-required": "التفاصيل مطلوبة",
+      "details-minlength": "يجب أن تحتوي التفاصيل على 4 أحرف على الأقل",
+      "details-maxlength": "يجب ألا تزيد التفاصيل عن 30 حرفاً",
       "price": "السعر",
       "price-required": "السعر مطلوب",
-      "image-url": "رابط الصورة",
-      "image-url-required": "رابط الصورة مطلوب"
+      "price-max": "يجب ألا يزيد السعر عن 9999.99",
+      "price-invalid": "السعر غير صالح",
+      "image": "الصورة",
+      "image-required": "الصورة مطلوبة",
+      "image-invalid": "نوع الصورة غير صالح، يمكنك رفع ملف .png أو .jpg أو .jpeg أو .gif",
+      "image-max": "يجب ألا يتجاوز حجم الصورة 2 ميغابايت",
+      "hotel": "الفندق",
+      "hotel-required": "اسم الفندق مطلوب",
+      "hotel-minlength": "يجب أن يحتوي اسم الفندق على حرفين على الأقل",
+      "hotel-maxlength": "يجب ألا يزيد اسم الفندق عن 30 حرفاً"
     },
-    "go-back-to-home-page": "الرجوع الى الصفخة الرئيسية"
+    "key-name": "الإجراءات"
   }
 }

@@ -20,7 +20,6 @@
           [placeholder]="'shared.form.title' | translate"
           formControlName="title"
           pattern="^[a-zA-Z0-9'\-$!& ]+$"
-          maxlength="30"
           required
         />
 
@@ -33,8 +32,11 @@
           <div *ngIf="serviceForm.get('title')?.errors?.['required']">
             {{ "shared.form.title-required" | translate }}
           </div>
+          <div *ngIf="serviceForm.get('title')?.errors?.['minlength']">
+            {{ "shared.form.title-minlength" | translate }}
+          </div>
           <div *ngIf="serviceForm.get('title')?.errors?.['maxlength']">
-            {{ "shared.form.title-too-long" | translate }}
+            {{ "shared.form.title-maxlength" | translate }}
           </div>
           <div *ngIf="serviceForm.get('title')?.errors?.['pattern']">
             {{ "shared.form.title-invalid" | translate }}
@@ -103,11 +105,14 @@
           <div *ngIf="serviceForm.get('details')?.errors?.['required']">
             {{ "shared.form.details-required" | translate }}
           </div>
+          <div *ngIf="serviceForm.get('details')?.errors?.['minlength']">
+            {{ "shared.form.details-minlength" | translate }}
+          </div>
           <div *ngIf="serviceForm.get('details')?.errors?.['maxlength']">
-            {{ "shared.form.details-too-long" | translate }}
+            {{ "shared.form.details-maxlength" | translate }}
           </div>
           <div *ngIf="serviceForm.get('details')?.errors?.['pattern']">
-            {{ "shared.form.details-invalid" | translate }}
+            {{ "shared.form.ipnut-invalid" | translate }}
           </div>
         </div>
       </div>
@@ -137,16 +142,13 @@
           <div *ngIf="serviceForm.get('price')?.errors?.['required']">
             {{ "shared.form.price-required" | translate }}
           </div>
-          <div *ngIf="serviceForm.get('price')?.errors?.['min']">
-            {{ "shared.form.price-min" | translate }}
-          </div>
           <div *ngIf="serviceForm.get('price')?.errors?.['max']">
             {{ "shared.form.price-max" | translate }}
           </div>
           <div
             *ngIf="serviceForm.get('price')?.errors?.['pattern'] && (!serviceForm.get('price')?.errors?.['max'] && !serviceForm.get('price')?.errors?.['min'])"
           >
-            {{ "shared.form.price-invalid-format" | translate }}
+            {{ "shared.form.price-invalid" | translate }}
           </div>
         </div>
       </div>
@@ -161,20 +163,20 @@
           type="file"
           class="form-control"
           aria-label="Image URL"
-          [placeholder]="'shared.form.image-url' | translate"
+          [placeholder]="'shared.form.image' | translate"
           required
           (change)="onFileSelected($event)"
-          accept="image/png, image/jpeg, image/gif"
+          accept="image/png, image/jpg, image/jpeg, image/gif"
         />
         <div class="error" *ngIf="serviceForm.get('imageUrl')?.errors">
           <div *ngIf="serviceForm.get('imageUrl')?.errors?.['required']">
-            {{ "shared.form.image-url-required" | translate }}
+            {{ "shared.form.image-required" | translate }}
           </div>
           <div *ngIf="serviceForm.get('imageUrl')?.errors?.['invalidType']">
-            {{ "shared.form.image-url-invalid-type" | translate }}
+            {{ "shared.form.image-invalid" | translate }}
           </div>
           <div *ngIf="serviceForm.get('imageUrl')?.errors?.['maxSizeExceeded']">
-            {{ "shared.form.image-url-max-size" | translate }}
+            {{ "shared.form.image-max" | translate }}
           </div>
         </div>
       </div>
@@ -196,15 +198,15 @@
       @if(isAddingAService){
       <button
         class="mt-4 btn-primary ps-4 pe-4"
-        [title]="'shared.action.add' | translate"
+        [title]="'shared.button.add' | translate"
       >
-        {{ "shared.action.add" | translate }}</button
+        {{ "shared.button.add" | translate }}</button
       >} @else {
       <button
         class="mt-4 btn-primary"
-        [title]="'shared.action.update' | translate"
+        [title]="'shared.button.update' | translate"
       >
-        {{ "shared.action.update" | translate }}
+        {{ "shared.button.update" | translate }}
       </button>
       }
     </form>
@@ -214,14 +216,14 @@
     class="mt-4 ms-4 btn-outline-primary rounded-2"
     [routerLink]="['/employee/services']"
     routerLinkActive="router-link-active"
-    [title]="'shared.action.go-back' | translate"
+    [title]="'shared.button.go-back' | translate"
   >
     @if(lang == 'ar') {
     <i class="fa-solid fa-arrow-right"></i>
     } @else {
     <i class="fa-solid fa-arrow-left"></i>
     }
-    {{ "shared.action.go-back" | translate }}
+    {{ "shared.button.go-back" | translate }}
   </button>
 </div>
 
