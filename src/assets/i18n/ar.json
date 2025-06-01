@@ -190,7 +190,7 @@
       "password-pattern": "يجب أن تحتوي كلمة المرور على 6 أحرف على الأقل، حرف كبير وحرف صغير وحرف رقمي وحرف خاص",
       "password-invalid": "كلمة مرور غير صالحة",
       "confirm-password": "تأكيد كلمة المرور",
-      "confimation-required": "مطلوب تأكيد كلمة المرور",
+      "confirmation-required": "مطلوب تأكيد كلمة المرور",
       "password-match": "يجب أن تتطابق كلمات المرور",
       "title": "العنوان",
       "title-required": "العنوان مطلوب",
