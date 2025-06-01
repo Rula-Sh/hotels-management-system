@@ -85,6 +85,7 @@ export class ServiceFormComponent {
         [
           Validators.required,
           Validators.maxLength(30),
+          Validators.maxLength(4),
           Validators.pattern(/^[a-zA-Z0-9'\-$!& ]+$/),
         ],
       ],
@@ -94,6 +95,7 @@ export class ServiceFormComponent {
         [
           Validators.required,
           Validators.maxLength(70),
+          Validators.maxLength(10),
           Validators.pattern(/^[a-zA-Z0-9.,!?'"()\-:;$!& ]*$/),
         ],
       ],
@@ -131,7 +133,7 @@ export class ServiceFormComponent {
       return;
     }
 
-    const allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+    const allowedTypes = ['image/png', 'image/jpg', 'image/jpeg', 'image/gif'];
     const maxSizeInBytes = 2 * 1024 * 1024; // 2MB
 
     if (!allowedTypes.includes(file.type)) {

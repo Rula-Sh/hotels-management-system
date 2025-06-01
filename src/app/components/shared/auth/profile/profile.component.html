@@ -37,14 +37,14 @@
       <div class="data-container">
         <p class="me-3 data-title">
           <i class="fa-solid fa-user"></i>
-          {{ "profile.name" | translate }}:
+          {{ "shared.form.name" | translate }}:
         </p>
         <p class="data">{{ profileData.name }}</p>
       </div>
       <div class="data-container">
         <p class="me-3 data-title">
           <i class="fa-solid fa-envelope"></i>
-          {{ "profile.email" | translate }}:
+          {{ "shared.form.email" | translate }}:
         </p>
         <p class="data">
           {{ profileData.email }}
@@ -53,7 +53,7 @@
       <div class="data-container">
         <p class="me-3 data-title">
           <i class="fa-solid fa-phone"></i>
-          {{ "profile.phone" | translate }}:
+          {{ "shared.form.phone" | translate }}:
         </p>
         <p class="data">
           <ng-container *ngIf="profileData.phone; else addPhone">
@@ -105,7 +105,7 @@
       </div>
       <form [formGroup]="profileForm" (ngSubmit)="UpdateProfile()">
         <div class="input-container">
-          <label for="name"> {{ "profile.name" | translate }}:</label>
+          <label for="name"> {{ "shared.form.name" | translate }}:</label>
           <div class="input-error">
             <div
               class="input-group"
@@ -120,11 +120,9 @@
                 type="text"
                 class="form-control"
                 aria-label="Name"
-                [placeholder]="'profile.name' | translate"
+                [placeholder]="'shared.form.name' | translate"
                 formControlName="name"
                 pattern="^[\u0600-\u06FFa-zA-Z'\s]+$"
-                maxlength="20"
-                minlength="3"
                 required
               />
             </div>
@@ -136,19 +134,22 @@
               "
             >
               <div *ngIf="profileForm.get('name')?.errors?.['required']">
-                {{ "shared.form.title-required" | translate }}
+                {{ "shared.form.name-required" | translate }}
               </div>
               <div *ngIf="profileForm.get('name')?.errors?.['maxlength']">
-                {{ "shared.form.title-too-long" | translate }}
+                {{ "shared.form.name-maxlength" | translate }}
+              </div>
+              <div *ngIf="profileForm.get('name')?.errors?.['minlength']">
+                {{ "shared.form.name-minlength" | translate }}
               </div>
               <div *ngIf="profileForm.get('name')?.errors?.['pattern']">
-                {{ "shared.form.title-invalid" | translate }}
+                {{ "shared.form.name-invalid" | translate }}
               </div>
             </div>
           </div>
         </div>
         <div class="input-container">
-          <label for="email">{{ "profile.email" | translate }}:</label>
+          <label for="email">{{ "shared.form.email" | translate }}:</label>
           <div class="input-error">
             <div
               class="input-group"
@@ -163,17 +164,17 @@
                 type="email"
                 class="form-control"
                 aria-label="Email"
-                [placeholder]="'profile.email' | translate"
+                [placeholder]="'shared.form.email' | translate"
                 formControlName="email"
                 required
               />
             </div>
             <div class="error" *ngIf="profileForm.get('email')?.touched">
               <div *ngIf="profileForm.get('email')?.errors?.['required']">
-                {{ "profile.email-required" | translate }}
+                {{ "shared.form.email-required" | translate }}
               </div>
               <div *ngIf="profileForm.get('email')?.errors?.['pattern']">
-                {{ "profile.email-invalid-pattern" | translate }}
+                {{ "shared.form.email-invalid" | translate }}
               </div>
             </div>
           </div>
@@ -217,13 +218,13 @@
                 profileForm.get('phone')?.touched
               "
             >
-              {{ "profile.phone-required" | translate }}
+              {{ "shared.form.phone-required" | translate }}
             </div>
           </div>
         </div>
         <div class="input-container">
           <label for="newPassword"
-            >{{ "profile.new-password" | translate }}:</label
+            >{{ "shared.form.new-password" | translate }}:</label
           >
           <div class="input-error">
             <div
@@ -238,11 +239,10 @@
               <input
                 type="password"
                 class="form-control"
-                [placeholder]="'profile.new-password' | translate"
+                [placeholder]="'shared.form.new-password' | translate"
                 aria-label="Password"
                 formControlName="newPassword"
                 required
-                minlength="6"
               />
             </div>
             <div
@@ -252,18 +252,18 @@
                 profileForm.get('newPassword')?.errors as errors
               "
             >
-              <div *ngIf="errors['minlength']">
-                {{ "profile.password-min-length" | translate }}
+              <div *ngIf="errors['pattern']">
+                {{ "shared.form.password-pattern" | translate }}
               </div>
               <div *ngIf="errors['required']">
-                {{ "profile.password-required" | translate }}
+                {{ "shared.form.password-required" | translate }}
               </div>
             </div>
           </div>
         </div>
         <div class="input-container">
           <label for="confirmPassword"
-            >{{ "profile.confirm-password" | translate }}:</label
+            >{{ "shared.form.confirm-password" | translate }}:</label
           >
           <div class="input-error">
             <div
@@ -279,30 +279,36 @@
                 type="password"
                 class="form-control"
                 aria-label="Password"
-                [placeholder]="'profile.confirm-password' | translate"
+                [placeholder]="'shared.form.confirm-password' | translate"
                 formControlName="confirmPassword"
                 required
                 minlength="6"
               />
             </div>
-            <div
-              class="error"
-              *ngIf="
-                profileForm.get('confirmPassword')?.valueChanges &&
-                profileForm.get('confirmPassword')?.value !=
-                  profileForm.get('newPassword')?.value
-              "
-            >
-              {{ "profile.password-match" | translate }}
+            <div class="error">
+              <div
+                *ngIf="profileForm.get('confirmPassword')?.errors?.['required']"
+              >
+                {{ "shared.form.confirmation-required" | translate }}.
+              </div>
+              <div
+                *ngIf="
+                  profileForm.get('confirmPassword')?.valueChanges &&
+                  profileForm.get('confirmPassword')?.value !=
+                    profileForm.get('newPassword')?.value
+                "
+              >
+                {{ "shared.form.password-match" | translate }}
+              </div>
             </div>
           </div>
         </div>
         <div class="mt-4 d-flex align-items-center justify-content-center">
           <button class="m-1 btn-submit">
-            {{ "profile.submit" | translate }}
+            {{ "shared.button.submit" | translate }}
           </button>
           <button class="m-1 btn-outline-primary rounded-2" (click)="cancel()">
-            {{ "profile.cancel" | translate }}
+            {{ "shared.button.cancel" | translate }}
           </button>
         </div>
       </form>

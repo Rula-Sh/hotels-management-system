@@ -60,6 +60,7 @@ export class RoomFormComponent {
         [
           Validators.required,
           Validators.maxLength(30),
+          Validators.minLength(4),
           Validators.pattern(/^[a-zA-Z0-9'\-$!& ]+$/),
         ],
       ],
@@ -119,7 +120,7 @@ export class RoomFormComponent {
       return;
     }
 
-    const allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+    const allowedTypes = ['image/png', 'image/jpg', 'image/jpeg', 'image/gif'];
     const maxSizeInBytes = 2 * 1024 * 1024; // 2MB
 
     if (!allowedTypes.includes(file.type)) {

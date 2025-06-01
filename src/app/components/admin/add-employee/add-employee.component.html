@@ -16,24 +16,20 @@
           type="text"
           class="form-control"
           aria-label="Name"
-          [placeholder]="'profile.name' | translate"
+          [placeholder]="'shared.form.name' | translate"
           formControlName="name"
           pattern="^[\u0600-\u06FFa-zA-Z'\s]+$"
-          maxlength="20"
-          minlength="3"
           required
         />
-        <div
-          class="error"
-          *ngIf="
-            profileForm.get('name')?.touched || profileForm.get('name')?.dirty
-          "
-        >
+        <div class="error" *ngIf="profileForm.get('name')?.touched">
           <div *ngIf="profileForm.get('name')?.errors?.['required']">
             {{ "shared.form.name-required" | translate }}
           </div>
+          <div *ngIf="profileForm.get('name')?.errors?.['minlength']">
+            {{ "shared.form.name-minlength" | translate }}
+          </div>
           <div *ngIf="profileForm.get('name')?.errors?.['maxlength']">
-            {{ "shared.form.name-too-long" | translate }}
+            {{ "shared.form.name-maxlength" | translate }}
           </div>
           <div *ngIf="profileForm.get('name')?.errors?.['pattern']">
             {{ "shared.form.name-invalid" | translate }}
@@ -50,16 +46,16 @@
           type="email"
           class="form-control"
           aria-label="Email"
-          [placeholder]="'profile.email' | translate"
+          [placeholder]="'shared.form.email' | translate"
           formControlName="email"
           required
         />
         <div class="error" *ngIf="profileForm.get('email')?.touched">
           <div *ngIf="profileForm.get('email')?.errors?.['required']">
-            {{ "profile.email-required" | translate }}
+            {{ "shared.form.email-required" | translate }}
           </div>
           <div *ngIf="profileForm.get('email')?.errors?.['pattern']">
-            {{ "profile.email-invalid-pattern" | translate }}
+            {{ "shared.form.email-invalid" | translate }}
           </div>
         </div>
       </div>
@@ -96,7 +92,7 @@
             profileForm.get('phone')?.touched
           "
         >
-          {{ "profile.phone-required" | translate }}
+          {{ "shared.form.phone-required" | translate }}
         </div>
       </div>
       <div class="input-group" [ngClass]="{ 'right-input': lang == 'ar' }">
@@ -116,7 +112,7 @@
           }"
         >
           <option value="" disabled selected hidden>
-            {{ "service.job-category" | translate }}
+            {{ "profile.job-category" | translate }}
           </option>
 
           @for(jobCategory of jobCategories; let i= $index; track i){
@@ -131,7 +127,7 @@
             profileForm.get('jobCategory')?.touched
           "
         >
-          {{ "service.job-category-required" | translate }}
+          {{ "profile.job-category-required" | translate }}
         </div>
       </div>
       <div class="input-group" [ngClass]="{ 'right-input': lang == 'ar' }">
@@ -152,7 +148,7 @@
           }"
         >
           <option value="" disabled selected hidden>
-            {{ "service.job-title" | translate }}
+            {{ "profile.job-title" | translate }}
           </option>
 
           @for(jobTitle of jobTitles; let i= $index; track i){
@@ -182,10 +178,9 @@
           type="text"
           class="form-control"
           aria-label="Hotel"
-          [placeholder]="'profile.hotel' | translate"
+          [placeholder]="'shared.form.hotel' | translate"
           formControlName="hotel"
           pattern="^[a-zA-Z0-9'\-$!& ]+$"
-          maxlength="30"
           required
         />
         <div
@@ -197,11 +192,14 @@
           <div *ngIf="profileForm.get('hotel')?.errors?.['required']">
             {{ "shared.form.hotel-required" | translate }}
           </div>
+          <div *ngIf="profileForm.get('hotel')?.errors?.['minlength']">
+            {{ "shared.form.hotel-minlength" | translate }}
+          </div>
           <div *ngIf="profileForm.get('hotel')?.errors?.['maxlength']">
-            {{ "shared.form.hotel-too-long" | translate }}
+            {{ "shared.form.hotel-maxlength" | translate }}
           </div>
           <div *ngIf="profileForm.get('hotel')?.errors?.['pattern']">
-            {{ "shared.form.hotel-invalid" | translate }}
+            {{ "shared.form.input-invalid" | translate }}
           </div>
         </div>
       </div>
@@ -214,7 +212,7 @@
         <input
           type="password"
           class="form-control"
-          [placeholder]="'profile.new-password' | translate"
+          [placeholder]="'shared.form.new-password' | translate"
           aria-label="Password"
           formControlName="newPassword"
           required
@@ -228,13 +226,10 @@
           "
         >
           <div *ngIf="errors['required']">
-            {{ "profile.password-required" | translate }}
-          </div>
-          <div *ngIf="errors['minlength']">
-            {{ "profile.password-min-length" | translate }}
+            {{ "shared.form.password-required" | translate }}
           </div>
           <div *ngIf="errors['pattern']">
-            {{ "profile.password-pattern" | translate }}
+            {{ "shared.form.password-pattern" | translate }}
           </div>
         </div>
       </div>
@@ -248,7 +243,7 @@
           type="password"
           class="form-control"
           aria-label="Password"
-          [placeholder]="'profile.confirm-password' | translate"
+          [placeholder]="'shared.form.confirm-password' | translate"
           formControlName="confirmPassword"
           required
           minlength="6"
@@ -263,14 +258,14 @@
               profileForm.get('newPassword')?.value
           "
         >
-          {{ "profile.password-match" | translate }}
+          {{ "shared.form.password-match" | translate }}
         </div>
       </div>
       <button
         class="mt-4 btn-primary ps-4 pe-4"
         [title]="'profile.submit' | translate"
       >
-        {{ "profile.submit" | translate }}
+        {{ "shared.button.submit" | translate }}
       </button>
     </form>
   </div>
@@ -279,13 +274,13 @@
     class="mt-4 ms-4 btn-outline-primary rounded-2"
     [routerLink]="'/admin/manage-users'"
     routerLinkActive="router-link-active"
-    [title]="'shared.action.go-back' | translate"
+    [title]="'shared.button.go-back' | translate"
   >
     @if(lang == 'ar') {
     <i class="fa-solid fa-arrow-right"></i>
     } @else {
     <i class="fa-solid fa-arrow-left"></i>
     }
-    {{ "shared.action.go-back" | translate }}
+    {{ "shared.button.go-back" | translate }}
   </button>
 </div>

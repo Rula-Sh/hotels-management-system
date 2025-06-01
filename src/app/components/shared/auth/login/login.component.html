@@ -9,37 +9,37 @@
 </ngb-toast>
 
 <div class="login-container">
-  <h2>Login</h2>
+  <h2>{{ "title.login" | translate }}</h2>
   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <div class="input-container">
-      <label>Email</label>
+      <label>{{ "shared.form.email" | translate }}</label>
       <input formControlName="email" type="email" />
       <div
         *ngIf="(f['email'].invalid && f['email'].touched) || f['email'].errors?.['emailNotFound']"
       >
         <small *ngIf="f['email'].errors?.['required']">
-          {{ "profile.email-required" | translate }}
+          {{ "shared.form.email-required" | translate }}
         </small>
         <small *ngIf="f['email'].errors?.['pattern']">
-          {{ "profile.email-invalid-pattern" | translate }}
+          {{ "shared.form.email-invalid" | translate }}
         </small>
         <small *ngIf="f['email'].errors?.['emailNotFound']">
-          {{ "profile.email-not-found" | translate }}
+          {{ "shared.form.email-not-found" | translate }}
         </small>
       </div>
     </div>
 
     <div class="input-container">
-      <label>Password</label>
+      <label>{{ "shared.form.password" | translate }}</label>
       <input formControlName="password" type="password" />
       <div
         *ngIf="(f['password'].invalid && f['password'].touched) || f['password'].errors?.['invalidPassword']"
       >
         <small *ngIf="f['password'].errors?.['required']">
-          {{ "profile.password-required" | translate }}
+          {{ "shared.form.password-required" | translate }}
         </small>
         <small *ngIf="f['password'].errors?.['invalidPassword']">
-          {{ "profile.incorrect-password" | translate }}
+          {{ "shared.form.password-invalid" | translate }}
         </small>
       </div>
     </div>
@@ -53,9 +53,9 @@
   </form>
 
   <p style="text-align: center; margin-top: 1rem">
-    Don't have an account?
+    {{ "login.dont-have-an-account" | translate }}
     <a routerLink="/signup" style="font-weight: bold; display: inline-block"
-      >Sign up here</a
+      >{{ "shared.button.signup" | translate }}!</a
     >
   </p>
 </div>

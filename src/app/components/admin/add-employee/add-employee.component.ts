@@ -77,7 +77,15 @@ export class AddEmployeeComponent {
 
   ngOnInit() {
     this.profileForm = this.fb.group({
-      name: ['', Validators.required],
+      name: [
+        '',
+        [
+          Validators.required,
+          Validators.maxLength(20),
+          Validators.minLength(3),
+          Validators.pattern(/^[\u0600-\u06FFa-zA-Z'\s]+$"/),
+        ],
+      ],
       email: [
         '',
         [
@@ -91,7 +99,15 @@ export class AddEmployeeComponent {
       phone: [undefined, Validators.required],
       jobCategory: ['', Validators.required],
       jobTitle: ['', Validators.required],
-      hotel: ['', Validators.required],
+      hotel: [
+        '',
+        [
+          Validators.required,
+          Validators.maxLength(30),
+          Validators.maxLength(2),
+          Validators.pattern(/^[a-zA-Z0-9'\-$!& ]+$/),
+        ],
+      ],
       newPassword: [
         '',
         [

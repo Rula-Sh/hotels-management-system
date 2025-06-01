@@ -2,6 +2,16 @@
   "app": {
     "title": "Hotels Hub"
   },
+  "title": {
+    "signup": "Sign up",
+    "login": "Login"
+  },
+  "signup": {
+    "already-have-an-account": "Already have an account?"
+  },
+  "login": {
+    "dont-have-an-account": "Don't have an account?"
+  },
   "header": {
     "auth": {
       "profile": "Profile",
@@ -32,20 +42,20 @@
     "phone": "Phone",
     "new-password": "New Password",
     "confirm-password": "Confirm Password",
-    "name-required": "Name required",
-    "email-required": "Email required",
-    "phone-required": "Phone required",
-    "password-required": "Password required",
+    "name-required": "Name Required",
+    "email-required": "Email Required",
+    "phone-required": "Phone Required",
+    "password-required": "Password Required",
     "password-min-length": "Password must be at least 6 characters long",
     "password-match": "Passwords do not match",
     "add-phone": "Add phone number",
     "submit": "Submit",
     "cancel": "Cancel",
     "add-employee": "Add Employee",
+    "job-category": "Job Category",
+    "job-category-required": "Job category Required",
     "job-title": "Job Title",
-    "hotel": "Hotel",
-    "job-required": "Job Title required",
-    "hotel-required": "Hotel required"
+    "job-title-required": "Job Title Required"
   },
   "user": {
     "name": "Name",
@@ -81,10 +91,12 @@
     "add-room": "Add Room",
     "edit-room": "Edit Room",
     "delete-room": "Delete Room",
-    "type-required": "Room Type required",
-    "floor-required": "Floor required",
-    "hotel-required": "Hotel required",
-    "location-required": "Location required",
+    "room-type-required": "Room Type Required",
+    "floor-required": "Floor Required",
+    "floor-min": "Floor level should start with 2",
+    "floor-max": "Floor level should not exceed 99",
+    "hotel-required": "Hotel Required",
+    "location-required": "Location Required",
     "room-details": "Room Details",
     "room-image": "Room Image",
     "submit": "Submit",
@@ -147,26 +159,61 @@
     "entity": {
       "id": "ID"
     },
-    "action": {
-      "key-name": "Actions",
+    "button": {
+      "signup": "Sign up",
+      "login": "Login",
+      "go-back-to-home-page": "Go Back To Home Page",
       "details": "Details",
       "approve": "Approve",
       "reject": "Reject",
       "add": "Add",
       "update": "Update",
       "submit": "Submit",
+      "cancel": "Cancel",
       "go-back": "Go Back"
     },
     "form": {
+      "input-invalid": "Invalid input",
+      "name": "Name",
+      "name-required": "Name Required",
+      "name-minlength": "Name should conain at least 3 letters",
+      "name-maxlength": "Name should not exceed 20 characters",
+      "name-invalid": "Invalid name",
+      "email": "Email",
+      "email-required": "Email Required",
+      "email-invalid": "Invalid email address",
+      "email-not-found": "Email not found",
+      "phone": "Phone",
+      "phone-required": "Phone Required",
+      "new-password": "New Password",
+      "password-required": "Password Required",
+      "password-pattern": "Password must have at least 6 characters, one uppercase, lowecase, numer and a special character",
+      "password-invalid": "Invalid Password",
+      "confirm-password": "Confirm Password",
+      "confimation-required": "Confirm Password Required",
+      "password-match": "Passwords must match",
       "title": "Title",
-      "title-required": "Title required",
+      "title-required": "Title Required",
+      "title-minlength": "Title should conain at least 4 letters",
+      "title-maxlength": "Title should not exceed 30 characters",
+      "title-invalid": "Invalid Title",
       "details": "Details",
-      "details-required": "Details required",
+      "details-required": "Details Required",
+      "details-minlength": "Details should conain at least 4 letters",
+      "details-maxlength": "Details should not exceed 30 characters",
       "price": "Price",
-      "price-required": "Price required",
-      "image-url": "Image Url",
-      "image-url-required": "Image URL required"
+      "price-required": "Price Required",
+      "price-max": "Price should not exceed 9999.99",
+      "price-invalid": "Invalid price format",
+      "image": "Image Url",
+      "image-required": "Image URL Required",
+      "image-invalid": "Invalid image type, you can upload a .png, .jpg, .jpeg, or .gif file",
+      "image-max": "Image size should not exceed 2MB",
+      "hotel": "Hotel",
+      "hotel-required": "Hotel Name Required",
+      "hotel-minlength": "Hotel name should conain at least 2 letters",
+      "hotel-maxlength": "Hotel name should not exceed 30 characters"
     },
-    "go-back-to-home-page": "Go Back To Home Page"
+    "actions": "Actions"
   }
 }
