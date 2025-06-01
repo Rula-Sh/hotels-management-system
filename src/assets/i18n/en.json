@@ -190,7 +190,7 @@
       "password-pattern": "Password must have at least 6 characters, one uppercase, lowecase, numer and a special character",
       "password-invalid": "Invalid Password",
       "confirm-password": "Confirm Password",
-      "confimation-required": "Confirm Password Required",
+      "confirmation-required": "Confirm Password Required",
       "password-match": "Passwords must match",
       "title": "Title",
       "title-required": "Title Required",

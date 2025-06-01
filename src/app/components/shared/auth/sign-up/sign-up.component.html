@@ -10,7 +10,7 @@
 </ngb-toast>
 
 <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
-  <h2>{{ "title.signup.name" | translate }}</h2>
+  <h2>{{ "title.signup" | translate }}</h2>
   <div>
     <label>{{ "shared.form.name" | translate }}</label>
     <input
@@ -25,12 +25,12 @@
       <small *ngIf="f['name'].errors?.['minlength']">{{
         "shared.form.name-minlength" | translate
       }}</small>
-      <small *ngIf="f['name'].errors?.['maxLength']">{{
+      <small *ngIf="f['name'].errors?.['maxlength']">{{
         "shared.form.name-maxlength" | translate
       }}</small>
-      <div *ngIf="f['name'].errors?.['pattern']">
+      <small *ngIf="f['name'].errors?.['pattern']">
         {{ "shared.form.name-invalid" | translate }}
-      </div>
+      </small>
     </div>
   </div>
 
