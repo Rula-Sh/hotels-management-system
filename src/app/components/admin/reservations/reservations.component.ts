@@ -9,6 +9,7 @@ import { ButtonModule } from 'primeng/button';
 import { I18nPipe } from '../../../pipes/i18n.pipe';
 import { AuthService } from '../../../services/auth.service';
 import { ReservationService } from '../../../services/reservation.service';
+import { RoomService } from '../../../services/room.service';
 
 @Component({
   selector: 'app-reservations',
@@ -63,7 +64,8 @@ export class ReservationsComponent {
     private ReservationService: ReservationService,
     private router: Router,
     private messageService: MessageService,
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
+    private roomService: RoomService
   ) {}
 
   role: string | null = null;
@@ -101,6 +103,20 @@ export class ReservationsComponent {
       reservation
     ).subscribe({
       next: (value) => {
+         // ✅ بعد الموافقة على الحجز، حدّث الغرفة إلى 'Booked'
+      const updatedRoom = {
+        ...reservation.room,
+        bookedStatus: 'Booked' as 'Booked' ,
+      };
+
+      this.roomService.updateRoom(reservation.room.id, updatedRoom).subscribe({
+        next: () => {
+          console.log('Room marked as booked');
+        },
+        error: (err) => {
+          console.error('Failed to update room status:', err);
+        },
+      });
         console.log('reservation approved');
         this.getreservations();
         this.messageService.add({
@@ -131,6 +147,20 @@ export class ReservationsComponent {
           reservation
         ).subscribe({
           next: (value) => {
+             // ✅ إعادة حالة الغرفة إلى 'Available'
+          const updatedRoom = {
+            ...reservation.room,
+            bookedStatus: 'Available' as 'Available',
+          };
+
+          this.roomService.updateRoom(reservation.room.id, updatedRoom).subscribe({
+            next: () => {
+              console.log('Room marked as available again.');
+            },
+            error: (err) => {
+              console.error('Failed to update room to available:', err);
+            },
+          });
             console.log('Reservation rejected');
             this.getreservations();
             this.messageService.add({
