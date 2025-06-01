@@ -15,6 +15,9 @@ import { Router, RouterLink } from '@angular/router';
 import { I18nService } from '../../../services/i18n.service';
 import { Employee } from '../../../models/Employee.model';
 
+import { SearchCountryField, CountryISO } from 'ngx-intl-tel-input';
+import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
+
 @Component({
   selector: 'app-add-employee',
   imports: [
@@ -23,6 +26,7 @@ import { Employee } from '../../../models/Employee.model';
     CommonModule,
     I18nPipe,
     RouterLink,
+    NgxIntlTelInputModule,
   ],
   templateUrl: './add-employee.component.html',
   styleUrl: './add-employee.component.scss',
@@ -30,6 +34,35 @@ import { Employee } from '../../../models/Employee.model';
 export class AddEmployeeComponent {
   user: User | null = null;
   profileForm!: FormGroup;
+  jobCategories = [
+    'Housekeeping',
+    'Food & Beverage',
+    'Guest Services',
+    'Maintenance',
+  ];
+  jobTitles = [
+    // Housekeeping
+    'Room Cleaner',
+    'Laundry Attendant',
+
+    // Dining
+    'Food & Beverage Server',
+
+    // Guest Services / Requests
+    'Valet Parking Attendant',
+    'Concierge',
+    'Porter',
+
+    // Maintenance
+    'Maintenance Technician',
+    'Electrician',
+    'Plumber',
+    'IT Support Technician',
+  ];
+
+  SearchCountryField = SearchCountryField;
+  CountryISO = CountryISO;
+  preferredCountries: CountryISO[] = [CountryISO.Jordan];
 
   get lang(): 'en' | 'ar' {
     return this.i18nService.getLanguage();
@@ -45,19 +78,34 @@ export class AddEmployeeComponent {
   ngOnInit() {
     this.profileForm = this.fb.group({
       name: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      phone: [
+      email: [
         '',
         [
           Validators.required,
-          Validators.pattern(/^079 \d{3} \d{4}$/),
-          Validators.maxLength(13),
+          Validators.email,
+          Validators.pattern(
+            /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+          ),
         ],
       ],
+      phone: [undefined, Validators.required],
+      jobCategory: ['', Validators.required],
       jobTitle: ['', Validators.required],
       hotel: ['', Validators.required],
-      newPassword: ['', Validators.minLength(6)],
-      confirmPassword: ['', Validators.minLength(6)],
+      newPassword: [
+        '',
+        [
+          Validators.minLength(6),
+          Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).+$/), // at least one lowercase, uppercase, digit, special char
+        ],
+      ],
+      confirmPassword: [
+        '',
+        [
+          Validators.minLength(6),
+          Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).+$/),
+        ],
+      ],
     });
   }
 
@@ -81,8 +129,9 @@ export class AddEmployeeComponent {
     const newEmployee: Omit<Employee, 'id'> = {
       name: this.profileForm.value.name,
       email: this.profileForm.value.email,
-      phone: this.profileForm.value.phone,
+      phone: this.profileForm.value.phone.internationalNumber,
       hotel: this.profileForm.value.hotel,
+      jobCategory: this.profileForm.value.jobCategory,
       jobTitle: this.profileForm.value.jobTitle,
       password: this.profileForm.value.newPassword,
       role: 'Employee',

@@ -14,6 +14,7 @@ import { User } from '../../../../models/User.model';
 import { AuthService } from '../../../../services/auth.service';
 import { UserService } from '../../../../services/user.service';
 import { NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
+import { I18nPipe } from '../../../../pipes/i18n.pipe';
 
 @Component({
   selector: 'app-sign-up',
@@ -24,6 +25,7 @@ import { NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
     CommonModule,
     NgbToastModule,
     RouterModule,
+    I18nPipe,
   ],
   templateUrl: './sign-up.component.html',
   styleUrl: './sign-up.component.scss',
@@ -45,13 +47,22 @@ export class SignUpComponent {
     this.signUpForm = this.fb.group(
       {
         name: ['', [Validators.required, Validators.minLength(3)]],
-        email: ['', [Validators.required, Validators.email]],
+        email: [
+          '',
+          [
+            Validators.required,
+            Validators.email,
+            Validators.pattern(
+              /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+            ),
+          ],
+        ],
         password: [
           '',
           [
             Validators.required,
             Validators.minLength(6),
-            Validators.pattern(/^(?=.*[A-Z])(?=.*\d).+$/),
+            Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).+$/), // at least one lowercase, uppercase, digit, special char
           ],
         ],
         confirmPassword: ['', Validators.required],
@@ -69,7 +80,11 @@ export class SignUpComponent {
 
   onSubmit() {
     this.submitted = true;
-    if (this.signUpForm.invalid) return;
+
+    if (this.signUpForm.invalid) {
+      this.signUpForm.markAllAsTouched();
+      return;
+    }
 
     this.userService.getAllUsers().subscribe((users) => {
       const exists = users.find((u) => u.email === this.signUpForm.value.email);
@@ -92,8 +107,7 @@ export class SignUpComponent {
         next: (value) => {
           this.authService.login(value);
           localStorage.setItem('user_id', value.id);
-          
-         
+
           this.toastMessage = 'Registered successfully!';
           this.toastClass = 'bg-success text-white';
           this.showToast = true;

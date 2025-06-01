@@ -11,23 +11,37 @@
 <div class="login-container">
   <h2>Login</h2>
   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-    <div>
+    <div class="input-container">
       <label>Email</label>
       <input formControlName="email" type="email" />
-      <small *ngIf="submitted && f['email'].errors?.['required']"
-        >Email is required.</small
+      <div
+        *ngIf="(f['email'].invalid && f['email'].touched) || f['email'].errors?.['emailNotFound']"
       >
-      <small *ngIf="submitted && f['email'].errors?.['email']"
-        >Invalid email format.</small
-      >
+        <small *ngIf="f['email'].errors?.['required']">
+          {{ "profile.email-required" | translate }}
+        </small>
+        <small *ngIf="f['email'].errors?.['pattern']">
+          {{ "profile.email-invalid-pattern" | translate }}
+        </small>
+        <small *ngIf="f['email'].errors?.['emailNotFound']">
+          {{ "profile.email-not-found" | translate }}
+        </small>
+      </div>
     </div>
 
-    <div>
+    <div class="input-container">
       <label>Password</label>
       <input formControlName="password" type="password" />
-      <small *ngIf="submitted && f['password'].errors?.['required']"
-        >Password is required.</small
+      <div
+        *ngIf="(f['password'].invalid && f['password'].touched) || f['password'].errors?.['invalidPassword']"
       >
+        <small *ngIf="f['password'].errors?.['required']">
+          {{ "profile.password-required" | translate }}
+        </small>
+        <small *ngIf="f['password'].errors?.['invalidPassword']">
+          {{ "profile.incorrect-password" | translate }}
+        </small>
+      </div>
     </div>
 
     <div class="d-flex justify-content-center m-0">

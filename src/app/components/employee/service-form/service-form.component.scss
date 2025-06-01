@@ -97,6 +97,12 @@ select:focus {
   border-radius: 5px 0 0 5px;
 }
 
+.right-input .type-input {
+  border: 2px $color-dark-brown solid;
+  border-right: none;
+  border-radius: 5px 0 0 5px;
+}
+
 .form-control:focus {
   box-shadow: none !important;
   outline: none !important;
@@ -111,7 +117,7 @@ select:focus {
   font-size: 14px;
   margin: -6px 20px 8px;
   padding-left: 15px;
-  font-weight: bold;
+  padding-right: 15px;
 }
 
 button {

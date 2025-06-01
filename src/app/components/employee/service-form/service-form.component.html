@@ -16,20 +16,29 @@
         <input
           type="text"
           class="form-control"
-          placeholder="Title"
           aria-label="Title"
           [placeholder]="'shared.form.title' | translate"
           formControlName="title"
+          pattern="^[a-zA-Z0-9'\-$!& ]+$"
+          maxlength="30"
           required
         />
+
         <div
           class="error"
           *ngIf="
-            serviceForm.get('title')?.invalid &&
-            serviceForm.get('title')?.touched
+            serviceForm.get('title')?.touched || serviceForm.get('title')?.dirty
           "
         >
-          {{ "shared.form.title-required" | translate }}
+          <div *ngIf="serviceForm.get('title')?.errors?.['required']">
+            {{ "shared.form.title-required" | translate }}
+          </div>
+          <div *ngIf="serviceForm.get('title')?.errors?.['maxlength']">
+            {{ "shared.form.title-too-long" | translate }}
+          </div>
+          <div *ngIf="serviceForm.get('title')?.errors?.['pattern']">
+            {{ "shared.form.title-invalid" | translate }}
+          </div>
         </div>
       </div>
       <div class="input-group" [ngClass]="{ 'right-input': lang == 'ar' }">
@@ -78,20 +87,28 @@
         <input
           type="text"
           class="form-control"
-          placeholder="Details"
           aria-label="Details"
           [placeholder]="'shared.form.details' | translate"
           formControlName="details"
           required
+          pattern="[a-zA-Z0-9À-ž.,!?'\&quot;()\-:;$!& ]*"
         />
         <div
           class="error"
           *ngIf="
-            serviceForm.get('details')?.invalid &&
-            serviceForm.get('details')?.touched
+            serviceForm.get('details')?.touched ||
+            serviceForm.get('details')?.dirty
           "
         >
-          {{ "shared.form.details-required" | translate }}
+          <div *ngIf="serviceForm.get('details')?.errors?.['required']">
+            {{ "shared.form.details-required" | translate }}
+          </div>
+          <div *ngIf="serviceForm.get('details')?.errors?.['maxlength']">
+            {{ "shared.form.details-too-long" | translate }}
+          </div>
+          <div *ngIf="serviceForm.get('details')?.errors?.['pattern']">
+            {{ "shared.form.details-invalid" | translate }}
+          </div>
         </div>
       </div>
       <div class="input-group" [ngClass]="{ 'right-input': lang == 'ar' }">
@@ -102,22 +119,35 @@
           </span>
         </div>
         <input
-          type="number"
+          type="text"
           class="form-control"
-          placeholder="Price"
           aria-label="Price"
           [placeholder]="'shared.form.price' | translate"
           formControlName="price"
           required
+          pattern="^\d{1,4}(\.\d{1,2})?$"
+          maxlength="7"
         />
         <div
           class="error"
           *ngIf="
-            serviceForm.get('price')?.invalid &&
-            serviceForm.get('price')?.touched
+            serviceForm.get('price')?.touched || serviceForm.get('price')?.dirty
           "
         >
-          {{ "shared.form.price-required" | translate }}
+          <div *ngIf="serviceForm.get('price')?.errors?.['required']">
+            {{ "shared.form.price-required" | translate }}
+          </div>
+          <div *ngIf="serviceForm.get('price')?.errors?.['min']">
+            {{ "shared.form.price-min" | translate }}
+          </div>
+          <div *ngIf="serviceForm.get('price')?.errors?.['max']">
+            {{ "shared.form.price-max" | translate }}
+          </div>
+          <div
+            *ngIf="serviceForm.get('price')?.errors?.['pattern'] && (!serviceForm.get('price')?.errors?.['max'] && !serviceForm.get('price')?.errors?.['min'])"
+          >
+            {{ "shared.form.price-invalid-format" | translate }}
+          </div>
         </div>
       </div>
       <div class="input-group" [ngClass]="{ 'right-input': lang == 'ar' }">
@@ -130,20 +160,22 @@
         <input
           type="file"
           class="form-control"
-          placeholder="Image URL"
           aria-label="Image URL"
           [placeholder]="'shared.form.image-url' | translate"
           required
           (change)="onFileSelected($event)"
+          accept="image/png, image/jpeg, image/gif"
         />
-        <div
-          class="error"
-          *ngIf="
-            serviceForm.get('imageUrl')?.invalid &&
-            serviceForm.get('imageUrl')?.touched
-          "
-        >
-          {{ "shared.form.image-url-required" | translate }}
+        <div class="error" *ngIf="serviceForm.get('imageUrl')?.errors">
+          <div *ngIf="serviceForm.get('imageUrl')?.errors?.['required']">
+            {{ "shared.form.image-url-required" | translate }}
+          </div>
+          <div *ngIf="serviceForm.get('imageUrl')?.errors?.['invalidType']">
+            {{ "shared.form.image-url-invalid-type" | translate }}
+          </div>
+          <div *ngIf="serviceForm.get('imageUrl')?.errors?.['maxSizeExceeded']">
+            {{ "shared.form.image-url-max-size" | translate }}
+          </div>
         </div>
       </div>
 

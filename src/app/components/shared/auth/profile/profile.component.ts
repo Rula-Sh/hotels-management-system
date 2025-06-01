@@ -17,6 +17,10 @@ import { I18nService } from '../../../../services/i18n.service';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 
+import { SearchCountryField, CountryISO } from 'ngx-intl-tel-input';
+import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
+import { UploadService } from '../../../../services/upload.service';
+
 @Component({
   selector: 'app-profile',
   imports: [
@@ -25,6 +29,7 @@ import { ToastModule } from 'primeng/toast';
     CommonModule,
     I18nPipe,
     ToastModule,
+    NgxIntlTelInputModule,
   ],
   providers: [MessageService],
   templateUrl: './profile.component.html',
@@ -36,6 +41,14 @@ export class ProfileComponent {
   isEditing = false;
   profileData: any;
 
+  selectedFile: File | null = null;
+  uploadPreset = 'HMS - IIH Project';
+  imageUrl: string | null = null;
+
+  SearchCountryField = SearchCountryField;
+  CountryISO = CountryISO;
+  preferredCountries: CountryISO[] = [CountryISO.Jordan];
+
   get lang(): 'en' | 'ar' {
     return this.i18nService.getLanguage();
   }
@@ -46,23 +59,28 @@ export class ProfileComponent {
     private router: Router,
     private fb: FormBuilder,
     private i18nService: I18nService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private uploadService: UploadService
   ) {}
 
   ngOnInit() {
     this.user = this.authService.getCurrentUser();
+    this.imageUrl = localStorage.getItem('pfp');
     this.profileForm = this.fb.group({
       name: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      phone: [
+      email: [
         '',
         [
           Validators.required,
-          Validators.pattern(/^079 \d{3} \d{4}$/),
-          Validators.maxLength(13),
+          Validators.email,
+          Validators.pattern(
+            /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+          ),
         ],
       ],
+      phone: [undefined, Validators.required],
       password: ['', Validators.required],
+      imageUrl: [''],
       newPassword: ['', Validators.minLength(6)],
       confirmPassword: ['', Validators.minLength(6)],
     });
@@ -77,7 +95,69 @@ export class ProfileComponent {
     };
 
     this.profileForm.patchValue(this.profileData);
+    this.profileForm.patchValue({
+      phone: this.profileData.phone.substring(4),
+    });
+
     // i can use mark all as touched to validate the data once it is loaded
+  }
+
+  onFileSelected(event: any) {
+    const file = event.target.files[0];
+    const control = this.profileForm.get('imageUrl');
+
+    if (!file) {
+      control?.setErrors({ required: true });
+      control?.markAsTouched();
+      return;
+    }
+
+    const allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+    const maxSizeInBytes = 2 * 1024 * 1024; // 2MB
+
+    if (!allowedTypes.includes(file.type)) {
+      control?.setErrors({ invalidType: true });
+      control?.markAsTouched();
+      return;
+    }
+
+    if (file.size > maxSizeInBytes) {
+      control?.setErrors({ maxSizeExceeded: true });
+      control?.markAsTouched();
+      return;
+    }
+
+    // Clear all errors and update value safely
+    control?.setErrors(null);
+    control?.markAsTouched();
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      control?.setValue(reader.result);
+    };
+    reader.readAsDataURL(file);
+
+    this.selectedFile = file;
+    if (this.selectedFile) {
+      this.uploadService
+        .uploadImage(this.selectedFile, this.uploadPreset)
+        .subscribe({
+          next: (res: any) => {
+            this.imageUrl = res.url;
+            this.profileForm.get('imageUrl')?.setValue(this.imageUrl);
+
+            this.UpdateProfile();
+          },
+          error: (err) => {
+            console.error('Error uploading image:', err);
+            this.messageService.add({
+              severity: 'error',
+              summary: 'Upload Error',
+              detail: 'Failed to upload image.',
+            });
+          },
+        });
+    }
   }
 
   UpdateProfile() {
@@ -98,8 +178,9 @@ export class ProfileComponent {
         id: this.user!.id,
         name: this.profileForm.value.name,
         email: this.profileForm.value.email,
-        phone: this.profileForm.value.phone,
+        phone: this.profileForm.value.phone.internationalNumber,
         password: password,
+        pfp: this.imageUrl ?? '',
         role: this.user!.role,
       };
 
@@ -114,7 +195,7 @@ export class ProfileComponent {
           });
 
           setTimeout(() => {
-            this.router.navigate(['/']);
+            this.router.navigate(['/profile/' + this.user?.id]);
             this.profileForm.reset();
           }, 1500);
         },

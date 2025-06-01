@@ -33,7 +33,7 @@
 .img {
   width: 100%;
   min-width: 100%;
-  max-height: 500px;
+  height: 350px;
   align-self: center;
   border-radius: 10px;
   display: block;
@@ -128,7 +128,7 @@ i {
 
 .delete-icon {
   position: absolute;
-  top: 35px;
+  top: 20px;
   right: 15px;
   cursor: pointer;
   color: red;
@@ -138,7 +138,7 @@ i {
 
 .edit-icon {
   position: absolute;
-  top: 35px;
+  top: 17px;
   left: 12px;
   cursor: pointer;
   color: $color-cream;

@@ -16,19 +16,26 @@
         <input
           type="text"
           class="form-control"
-          placeholder="Title"
           aria-label="Title"
           [placeholder]="'shared.form.title' | translate"
           formControlName="title"
+          pattern="^[a-zA-Z0-9'\-$!& ]+$"
+          maxlength="30"
           required
         />
         <div
           class="error"
-          *ngIf="
-            roomForm.get('title')?.invalid && roomForm.get('title')?.touched
-          "
+          *ngIf="roomForm.get('title')?.touched || roomForm.get('title')?.dirty"
         >
-          {{ "shared.form.title-required" | translate }}
+          <div *ngIf="roomForm.get('title')?.errors?.['required']">
+            {{ "shared.form.title-required" | translate }}
+          </div>
+          <div *ngIf="roomForm.get('title')?.errors?.['maxlength']">
+            {{ "shared.form.title-too-long" | translate }}
+          </div>
+          <div *ngIf="roomForm.get('title')?.errors?.['pattern']">
+            {{ "shared.form.title-invalid" | translate }}
+          </div>
         </div>
       </div>
       <div class="input-group" [ngClass]="{ 'right-input': lang == 'ar' }">
@@ -78,12 +85,12 @@
         <input
           type="number"
           class="form-control"
-          placeholder="Floor"
           aria-label="Floor"
           [placeholder]="'room.floor' | translate"
           formControlName="floor"
           required
-          maxlength="2"
+          max="99"
+          min="2"
         />
         <div
           class="error"
@@ -91,7 +98,15 @@
             roomForm.get('floor')?.invalid && roomForm.get('floor')?.touched
           "
         >
-          {{ "room.floor-required" | translate }}
+          <div *ngIf="roomForm.get('floor')?.errors?.['required']">
+            {{ "room.floor-required" | translate }}
+          </div>
+          <div *ngIf="roomForm.get('floor')?.errors?.['min']">
+            {{ "room.floor-min" | translate }}
+          </div>
+          <div *ngIf="roomForm.get('floor')?.errors?.['max']">
+            {{ "room.floor-max" | translate }}
+          </div>
         </div>
       </div>
       <div class="input-group" [ngClass]="{ 'right-input': lang == 'ar' }">
@@ -104,19 +119,27 @@
         <input
           type="text"
           class="form-control"
-          placeholder="Hotel"
           aria-label="Hotel"
           [placeholder]="'room.hotel' | translate"
           formControlName="hotel"
+          pattern="^[a-zA-Z0-9'\-$!& ]+$"
+          maxlength="30"
           required
         />
+
         <div
           class="error"
-          *ngIf="
-            roomForm.get('hotel')?.invalid && roomForm.get('hotel')?.touched
-          "
+          *ngIf="roomForm.get('hotel')?.touched || roomForm.get('hotel')?.dirty"
         >
-          {{ "room.hotel-required" | translate }}
+          <div *ngIf="roomForm.get('hotel')?.errors?.['required']">
+            {{ "shared.form.hotel-required" | translate }}
+          </div>
+          <div *ngIf="roomForm.get('hotel')?.errors?.['maxlength']">
+            {{ "shared.form.hotel-too-long" | translate }}
+          </div>
+          <div *ngIf="roomForm.get('hotel')?.errors?.['pattern']">
+            {{ "shared.form.hotel-invalid" | translate }}
+          </div>
         </div>
       </div>
       <div class="input-group" [ngClass]="{ 'right-input': lang == 'ar' }">
@@ -129,7 +152,6 @@
         <input
           type="text"
           class="form-control"
-          placeholder="Location"
           aria-label="Location"
           [placeholder]="'room.location' | translate"
           formControlName="location"
@@ -142,7 +164,7 @@
             roomForm.get('location')?.touched
           "
         >
-          {{ "room.hotel-required" | translate }}
+          {{ "room.location-required" | translate }}
         </div>
       </div>
       <div class="input-group" [ngClass]="{ 'right-input': lang == 'ar' }">
@@ -155,19 +177,27 @@
         <input
           type="text"
           class="form-control"
-          placeholder="Details"
           aria-label="Details"
           [placeholder]="'shared.form.details' | translate"
           formControlName="details"
+          pattern="[a-zA-Z0-9À-ž.,!?'\&quot;()\-:;$!& ]*"
           required
         />
         <div
           class="error"
           *ngIf="
-            roomForm.get('details')?.invalid && roomForm.get('details')?.touched
+            roomForm.get('details')?.touched || roomForm.get('details')?.dirty
           "
         >
-          {{ "shared.form.details-required" | translate }}
+          <div *ngIf="roomForm.get('details')?.errors?.['required']">
+            {{ "shared.form.details-required" | translate }}
+          </div>
+          <div *ngIf="roomForm.get('details')?.errors?.['maxlength']">
+            {{ "shared.form.details-too-long" | translate }}
+          </div>
+          <div *ngIf="roomForm.get('details')?.errors?.['pattern']">
+            {{ "shared.form.details-invalid" | translate }}
+          </div>
         </div>
       </div>
       <div class="input-group" [ngClass]="{ 'right-input': lang == 'ar' }">
@@ -180,19 +210,31 @@
         <input
           type="number"
           class="form-control"
-          placeholder="Price"
           aria-label="Price"
           [placeholder]="'shared.form.price' | translate"
           formControlName="price"
           required
+          pattern="^\d{1,4}(\.\d{1,2})?$"
+          maxlength="7"
         />
         <div
           class="error"
-          *ngIf="
-            roomForm.get('price')?.invalid && roomForm.get('price')?.touched
-          "
+          *ngIf="roomForm.get('price')?.touched || roomForm.get('price')?.dirty"
         >
-          {{ "shared.form.price-required" | translate }}
+          <div *ngIf="roomForm.get('price')?.errors?.['required']">
+            {{ "shared.form.price-required" | translate }}
+          </div>
+          <div *ngIf="roomForm.get('price')?.errors?.['min']">
+            {{ "shared.form.price-min" | translate }}
+          </div>
+          <div *ngIf="roomForm.get('price')?.errors?.['max']">
+            {{ "shared.form.price-max" | translate }}
+          </div>
+          <div
+            *ngIf="roomForm.get('price')?.errors?.['pattern'] && (!roomForm.get('price')?.errors?.['max'] && !roomForm.get('price')?.errors?.['min'])"
+          >
+            {{ "shared.form.price-invalid-format" | translate }}
+          </div>
         </div>
       </div>
       <div class="input-group" [ngClass]="{ 'right-input': lang == 'ar' }">
@@ -205,21 +247,28 @@
         <input
           type="file"
           class="form-control"
-          placeholder="Image URL"
           aria-label="Image URL"
           [placeholder]="'shared.form.image-url' | translate"
           (change)="onFileSelected($event)"
-          formControlName="imagesUrl"
+          accept="image/png, image/jpeg, image/gif"
           required
         />
         <div
           class="error"
           *ngIf="
-            roomForm.get('imagesUrl')?.invalid &&
-            roomForm.get('imagesUrl')?.touched
+            roomForm.get('imagesUrl')?.touched ||
+            roomForm.get('imagesUrl')?.dirty
           "
         >
-          {{ "shared.form.image-url-required" | translate }}
+          <div *ngIf="roomForm.get('imagesUrl')?.errors?.['required']">
+            {{ "shared.form.image-url-required" | translate }}
+          </div>
+          <div *ngIf="roomForm.get('imagesUrl')?.errors?.['invalidType']">
+            {{ "shared.form.image-url-invalid-type" | translate }}
+          </div>
+          <div *ngIf="roomForm.get('imagesUrl')?.errors?.['maxSizeExceeded']">
+            {{ "shared.form.image-url-max-size" | translate }}
+          </div>
         </div>
       </div>
 

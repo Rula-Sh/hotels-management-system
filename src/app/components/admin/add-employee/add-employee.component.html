@@ -15,63 +15,80 @@
         <input
           type="text"
           class="form-control"
-          placeholder="Name"
           aria-label="Name"
           [placeholder]="'profile.name' | translate"
           formControlName="name"
+          pattern="^[\u0600-\u06FFa-zA-Z'\s]+$"
+          maxlength="20"
+          minlength="3"
           required
         />
         <div
           class="error"
           *ngIf="
-            profileForm.get('name')?.invalid && profileForm.get('name')?.touched
+            profileForm.get('name')?.touched || profileForm.get('name')?.dirty
           "
         >
-          {{ "profile.name-required" | translate }}
-        </div>
-      </div>
-      <div class="input-group" [ngClass]="{ 'right-input': lang == 'ar' }">
-        <div class="align-self-center">
-          <span class="input-group-text align-self-center bg-white"
-            ><i class="fa-solid fa-envelope"></i>
-          </span>
-        </div>
-        <input
-          type="email"
-          class="form-control"
-          placeholder="Email"
-          aria-label="Email"
-          [placeholder]=""
-          formControlName="email"
-          required
-          email
-        />
-        <div
-          class="error"
-          *ngIf="
-            profileForm.get('email')?.invalid &&
-            profileForm.get('email')?.touched
-          "
-        >
-          {{ "profile.email-required" | translate }}
+          <div *ngIf="profileForm.get('name')?.errors?.['required']">
+            {{ "shared.form.name-required" | translate }}
+          </div>
+          <div *ngIf="profileForm.get('name')?.errors?.['maxlength']">
+            {{ "shared.form.name-too-long" | translate }}
+          </div>
+          <div *ngIf="profileForm.get('name')?.errors?.['pattern']">
+            {{ "shared.form.name-invalid" | translate }}
+          </div>
         </div>
       </div>
       <div class="input-group" [ngClass]="{ 'right-input': lang == 'ar' }">
         <div class="align-self-center">
           <span class="input-group-text align-self-center bg-white">
-            <i class="fa-solid fa-phone"></i>
+            <i class="fa-solid fa-envelope"></i>
           </span>
         </div>
         <input
-          appPhoneFormat
-          type="text"
+          type="email"
           class="form-control"
-          placeholder="e.g. 079-123 4567"
-          aria-label="Phone"
-          [placeholder]="'profile.phone' | translate"
-          formControlName="phone"
+          aria-label="Email"
+          [placeholder]="'profile.email' | translate"
+          formControlName="email"
           required
         />
+        <div class="error" *ngIf="profileForm.get('email')?.touched">
+          <div *ngIf="profileForm.get('email')?.errors?.['required']">
+            {{ "profile.email-required" | translate }}
+          </div>
+          <div *ngIf="profileForm.get('email')?.errors?.['pattern']">
+            {{ "profile.email-invalid-pattern" | translate }}
+          </div>
+        </div>
+      </div>
+
+      <div class="input-group" [ngClass]="{ 'right-input': lang == 'ar' }">
+        <div class="align-self-center">
+          <span
+            class="input-group-text input-group-icon align-self-center bg-white"
+          >
+            <i class="fa-solid fa-phone"></i>
+          </span>
+        </div>
+        <ngx-intl-tel-input
+          class="phone-input"
+          [enableAutoCountrySelect]="true"
+          [enablePlaceholder]="true"
+          [searchCountryFlag]="true"
+          [searchCountryField]="[
+            SearchCountryField.Iso2,
+            SearchCountryField.Name
+          ]"
+          [selectFirstCountry]="true"
+          [preferredCountries]="preferredCountries"
+          [phoneValidation]="true"
+          [separateDialCode]="true"
+          formControlName="phone"
+          [maxLength]="10"
+          name="phone"
+        ></ngx-intl-tel-input>
         <div
           class="error"
           *ngIf="
@@ -84,19 +101,66 @@
       </div>
       <div class="input-group" [ngClass]="{ 'right-input': lang == 'ar' }">
         <div class="align-self-center">
-          <span class="input-group-text align-self-center bg-white">
+          <span
+            class="input-group-text input-group-icon align-self-center bg-white"
+            ><i class="fa-solid fa-address-card"></i>
+          </span>
+        </div>
+        <select
+          class="type-input"
+          aria-label="Job Category"
+          formControlName="jobCategory"
+          required
+          [ngStyle]="{
+            color: profileForm.get('jobCategory')?.value ? 'black' : '#495057'
+          }"
+        >
+          <option value="" disabled selected hidden>
+            {{ "service.job-category" | translate }}
+          </option>
+
+          @for(jobCategory of jobCategories; let i= $index; track i){
+
+          <option [value]="jobCategory">{{ jobCategory }}</option>
+          }
+        </select>
+        <div
+          class="error"
+          *ngIf="
+            profileForm.get('jobCategory')?.invalid &&
+            profileForm.get('jobCategory')?.touched
+          "
+        >
+          {{ "service.job-category-required" | translate }}
+        </div>
+      </div>
+      <div class="input-group" [ngClass]="{ 'right-input': lang == 'ar' }">
+        <div class="align-self-center">
+          <span
+            class="input-group-text input-group-icon align-self-center bg-white"
+          >
             <i class="fa-solid fa-briefcase"></i>
           </span>
         </div>
-        <input
-          type="text"
-          class="form-control"
-          placeholder="Job Title"
+        <select
+          class="type-input"
           aria-label="Job Title"
-          [placeholder]="'profile.job-title' | translate"
           formControlName="jobTitle"
           required
-        />
+          [ngStyle]="{
+            color: profileForm.get('jobTitle')?.value ? 'black' : '#495057'
+          }"
+        >
+          <option value="" disabled selected hidden>
+            {{ "service.job-title" | translate }}
+          </option>
+
+          @for(jobTitle of jobTitles; let i= $index; track i){
+
+          <option [value]="jobTitle">{{ jobTitle }}</option>
+          }
+        </select>
+
         <div
           class="error"
           *ngIf="
@@ -104,9 +168,10 @@
             profileForm.get('jobTitle')?.touched
           "
         >
-          {{ "profile.job-required" | translate }}
+          {{ "profile.job-title-required" | translate }}
         </div>
       </div>
+
       <div class="input-group" [ngClass]="{ 'right-input': lang == 'ar' }">
         <div class="align-self-center">
           <span class="input-group-text align-self-center bg-white">
@@ -116,20 +181,28 @@
         <input
           type="text"
           class="form-control"
-          placeholder="Hotel"
           aria-label="Hotel"
           [placeholder]="'profile.hotel' | translate"
           formControlName="hotel"
+          pattern="^[a-zA-Z0-9'\-$!& ]+$"
+          maxlength="30"
           required
         />
         <div
           class="error"
           *ngIf="
-            profileForm.get('hotel')?.invalid &&
-            profileForm.get('hotel')?.touched
+            profileForm.get('hotel')?.touched || profileForm.get('hotel')?.dirty
           "
         >
-          {{ "profile.hotel-required" | translate }}
+          <div *ngIf="profileForm.get('hotel')?.errors?.['required']">
+            {{ "shared.form.hotel-required" | translate }}
+          </div>
+          <div *ngIf="profileForm.get('hotel')?.errors?.['maxlength']">
+            {{ "shared.form.hotel-too-long" | translate }}
+          </div>
+          <div *ngIf="profileForm.get('hotel')?.errors?.['pattern']">
+            {{ "shared.form.hotel-invalid" | translate }}
+          </div>
         </div>
       </div>
       <div class="input-group" [ngClass]="{ 'right-input': lang == 'ar' }">
@@ -154,11 +227,14 @@
             profileForm.get('newPassword')?.errors as errors
           "
         >
+          <div *ngIf="errors['required']">
+            {{ "profile.password-required" | translate }}
+          </div>
           <div *ngIf="errors['minlength']">
             {{ "profile.password-min-length" | translate }}
           </div>
-          <div *ngIf="errors['required']">
-            {{ "profile.password-required" | translate }}
+          <div *ngIf="errors['pattern']">
+            {{ "profile.password-pattern" | translate }}
           </div>
         </div>
       </div>
@@ -180,8 +256,10 @@
         <div
           class="error"
           *ngIf="
-            profileForm.get('confirmPassword')?.valueChanges &&
-            profileForm.get('confirmPassword')?.value !=
+            profileForm.get('confirmPassword')?.touched &&
+            profileForm.get('confirmPassword')?.value &&
+            profileForm.get('newPassword')?.value &&
+            profileForm.get('confirmPassword')?.value !==
               profileForm.get('newPassword')?.value
           "
         >
