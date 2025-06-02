@@ -186,6 +186,7 @@
       "email-not-found": "البريد الإلكتروني غير موجود",
       "phone": "الهاتف",
       "phone-required": "الهاتف مطلوب",
+      "password": "كلمة المرور",
       "new-password": "كلمة المرور الجديدة",
       "password-required": "كلمة المرور مطلوبة",
       "password-pattern": "يجب أن تحتوي كلمة المرور على 6 أحرف على الأقل، حرف كبير وحرف صغير وحرف رقمي وحرف خاص",
@@ -214,6 +215,25 @@
       "hotel-required": "اسم الفندق مطلوب",
       "hotel-minlength": "يجب أن يحتوي اسم الفندق على حرفين على الأقل",
       "hotel-maxlength": "يجب ألا يزيد اسم الفندق عن 30 حرفاً"
+    },
+    "toast": {
+      "success": "نجاح",
+      "warning": "تحذير",
+      "error": "خطأ",
+      "something-went-wrong": "لقد حدث خطأ ما !!!",
+      "failed-to-upload-image": "فشل تحميل الصورة!",
+      "at-least-one-image-is-required": "مطلوب صورة واحدة على الأقل!",
+      "room-added-successfuly": "تمت إضافة الغرفة بنجاح!",
+      "room-updated-successfuly": "تم تحديث الغرفة بنجاح!",
+      "room-removed": "تمت إزالة الغرفة!",
+      "profile-added-successfuly": "تمت إضافة الملف الشخصي بنجاح!",
+      "service-added-successfuly": "تمت إضافة الخدمة بنجاح!",
+      "service-updated-successfuly": "تم تحديث الخدمة بنجاح!",
+      "service-request-completed": "تم إنجاز طلب الخدمة!",
+      "service-request-approved": "تمت الموافقة على طلب الخدمة!",
+      "reservation-approved": "تمت الموافقة على الحجز",
+      "reservation-rejected": "تم رفض الحجز",
+      "employee-fired": "فصل الموظف"
     },
     "key-name": "الإجراءات"
   }

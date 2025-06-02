@@ -46,7 +46,8 @@ export class RoomFormComponent {
     private roomService: RoomService,
     private messageService: MessageService,
     private activatedRoute: ActivatedRoute,
-    private uploadService: UploadService
+    private uploadService: UploadService,
+    private i18n: I18nService
   ) {}
 
   get lang(): 'en' | 'ar' {
@@ -147,8 +148,7 @@ export class RoomFormComponent {
         console.error('Upload error', err);
         this.messageService.add({
           severity: 'error',
-          summary: 'Error',
-          detail: 'Failed to upload image',
+          summary: `${this.i18n.t('shared.toast.failed-to-upload-image')}`,
         });
       },
     });
@@ -185,8 +185,7 @@ export class RoomFormComponent {
     if (this.images.length === 0) {
       this.messageService.add({
         severity: 'warn',
-        summary: 'Warning',
-        detail: 'At least one image is required',
+        summary: `${this.i18n.t('shared.toast.at-least-one-image-is-required')}`,
       });
       return;
     }
@@ -206,10 +205,9 @@ export class RoomFormComponent {
       next: () => {
         this.messageService.add({
           severity: 'success',
-          summary: 'Success',
-          detail: this.isAddingARoom
-            ? 'Room added successfully'
-            : 'Room updated successfully',
+          summary: this.isAddingARoom
+            ? `${this.i18n.t('shared.toast.room-added-successfuly')}`
+            : `${this.i18n.t('shared.toast.room-updated-successfuly')}`,
         });
         setTimeout(() => {
           this.router.navigate(['/rooms']);
@@ -219,8 +217,7 @@ export class RoomFormComponent {
         console.error(err);
         this.messageService.add({
           severity: 'error',
-          summary: 'Error',
-          detail: 'Something went wrong',
+          summary: `${this.i18n.t('shared.toast.something-went-wrong')}`,
         });
       },
     });

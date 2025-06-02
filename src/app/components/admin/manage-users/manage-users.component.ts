@@ -8,6 +8,7 @@ import { ConfirmationService, MessageService, PrimeIcons } from 'primeng/api';
 import { User } from '../../../models/User.model';
 import { Router, RouterLink } from '@angular/router';
 import { UserService } from '../../../services/user.service';
+import { I18nService } from '../../../services/i18n.service';
 
 @Component({
   selector: 'app-manage-users',
@@ -39,7 +40,8 @@ export class ManageUsersComponent {
     private userService: UserService,
     private router: Router,
     private messageService: MessageService,
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
+    private i18n: I18nService
   ) {}
 
   role: string | null = null;
@@ -60,49 +62,25 @@ export class ManageUsersComponent {
     });
   }
 
-  HireUser(id: string, user: User) {
-    this.userService.UpdateUserDetails(user).subscribe({
-      next: (value) => {
-        console.log('user hired');
-        this.getUsers();
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Success',
-          detail: 'User has been hired',
-        });
-      },
-      error: (err) => {
-        console.log('Error hiring user: ' + err);
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Error',
-          detail: 'Failed hire user',
-        });
-      },
-    });
-  }
-
   FireEmployee(id: string, user: User) {
     this.confirmationService.confirm({
-      message: 'Are you sure you want to reject this reservation?',
-      header: 'Reject Reservation',
+      message: `Are you sure you want to fire ${user.name}?`,
+      header: 'Fire Employee',
       accept: () => {
         this.userService.UpdateUserDetails(user).subscribe({
           next: (value) => {
-            console.log('Reservation rejected');
+            console.log('Employee Fired');
             this.getUsers();
             this.messageService.add({
               severity: 'warn',
-              summary: 'Rejected',
-              detail: 'Reservation has been rejected',
+              summary: `${this.i18n.t('shared.toast.employee-fired')}`,
             });
           },
           error: (err) => {
-            console.log('Error rejecting reservation: ' + err);
+            console.log('Error firing  employee: ' + err);
             this.messageService.add({
               severity: 'error',
-              summary: 'Error',
-              detail: 'Failed to reject reservation',
+              summary: `${this.i18n.t('shared.toast.something-went-wrong')}`,
             });
           },
         });

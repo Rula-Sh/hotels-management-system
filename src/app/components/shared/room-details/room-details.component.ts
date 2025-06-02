@@ -54,7 +54,8 @@ export class RoomDetailsComponent {
     private authService: AuthService,
     private route: ActivatedRoute,
     private confirmationService: ConfirmationService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private i18n: I18nService
   ) {}
   role: string | null = null;
   ngOnInit() {
@@ -130,7 +131,7 @@ export class RoomDetailsComponent {
         });
         this.messageService.add({
           severity: 'error',
-          summary: 'Room Removed',
+          summary: `${this.i18n.t('shared.toast.room-removed')}`,
         });
       },
       reject: () => {},
