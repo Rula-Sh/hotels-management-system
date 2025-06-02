@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive, RouterModule } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { I18nPipe } from '../../../pipes/i18n.pipe';
+import { I18nService } from '../../../services/i18n.service';
 
 @Component({
   selector: 'app-header',
@@ -32,8 +33,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
   constructor(
     private authService: AuthService,
     private router: Router,
+    private i18nService: I18nService,
     private cdr: ChangeDetectorRef
   ) {}
+
+  get lang(): 'en' | 'ar' {
+    return this.i18nService.getLanguage();
+  }
 
   ngOnInit() {
     this.subscription = this.authService.isLoggedIn$.subscribe((status) => {
