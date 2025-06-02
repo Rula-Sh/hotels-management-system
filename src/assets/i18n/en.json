@@ -186,6 +186,7 @@
       "email-not-found": "Email not found",
       "phone": "Phone",
       "phone-required": "Phone Required",
+      "password": "Password",
       "new-password": "New Password",
       "password-required": "Password Required",
       "password-pattern": "Password must have at least 6 characters, one uppercase, lowecase, numer and a special character",
@@ -214,6 +215,38 @@
       "hotel-required": "Hotel Name Required",
       "hotel-minlength": "Hotel name should conain at least 2 letters",
       "hotel-maxlength": "Hotel name should not exceed 30 characters"
+    },
+    "toast": {
+      "success": "Success",
+      "warning": "Warning",
+      "error": "Error",
+      "something-went-wrong": "Something went wrong!!",
+      "failed-to-upload-image": "Failed to upload image!",
+      "at-least-one-image-is-required": "At least one image is required!",
+      "room-added-successfuly": "Room added successfully!",
+      "room-updated-successfuly": "Room updated successfully!",
+      "room-removed": "Room Removed",
+      "profile-added-successfuly": "Profile added successfully!",
+      "service-added-successfuly": "Service added successfully!",
+      "service-updated-successfuly": "Service updated successfully!",
+      "service-request-completed": "Service Request Completed!",
+      "service-request-approved": "Service Request Approved!",
+      "reservation-approved": "Reservation Approved",
+      "reservation-rejected": "Reservation Rejected",
+      "employee-fired": "Employee Fired"
+    },
+    "confirm-dialog": {
+      "delete": "Delete",
+      "reject": "Reject",
+      "cancel": "Cancel",
+      "fire-employee": "Fire Employee",
+      "confirm-fire-employee-question": "Are you sure you want to fire",
+      "reject-reservation": "Reject Reservation",
+      "confirm-reject-reservation-question": "Are you sure you want to reject this reservation?",
+      "remove-service": "Remove Service",
+      "confirm-remove-service-question": "Are you sure you want to remove this service?",
+      "remove-room": "Remove Room",
+      "confirm-remove-room-question": "Are you sure you want to remove this room?"
     },
     "actions": "Actions"
   }

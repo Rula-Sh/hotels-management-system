@@ -10,6 +10,7 @@ import { I18nPipe } from '../../../pipes/i18n.pipe';
 import { ServiceService } from '../../../services/service.service';
 import { Service } from '../../../models/Service.model';
 import { ServiceRequest } from '../../../models/ServiceRequest.model';
+import { I18nService } from '../../../services/i18n.service';
 
 @Component({
   selector: 'app-requests',
@@ -37,7 +38,8 @@ export class RequestsComponent {
   constructor(
     private serviceService: ServiceService,
     private messageService: MessageService,
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
+    private i18n: I18nService
   ) {}
 
   role: string | null = null;
@@ -90,16 +92,14 @@ export class RequestsComponent {
         this.getServices();
         this.messageService.add({
           severity: 'success',
-          summary: 'Success',
-          detail: 'Request Approved',
+          summary: `${this.i18n.t('shared.toast.service-request-approved')}`,
         });
       },
       error: (err) => {
         console.log('Error approving request: ' + err);
         this.messageService.add({
           severity: 'error',
-          summary: 'Error',
-          detail: 'Failed to approve request',
+          summary: `${this.i18n.t('shared.toast.something-went-wrong')}`,
         });
       },
     });
@@ -113,16 +113,14 @@ export class RequestsComponent {
         this.getServices();
         this.messageService.add({
           severity: 'success',
-          summary: 'Success',
-          detail: 'Request completed',
+          summary: `${this.i18n.t('shared.toast.service-request-completed')}`,
         });
       },
       error: (err) => {
         console.log('Error completing request: ' + err);
         this.messageService.add({
           severity: 'error',
-          summary: 'Error',
-          detail: 'Failed to completed request',
+          summary: `${this.i18n.t('shared.toast.something-went-wrong')}`,
         });
       },
     });

@@ -54,7 +54,8 @@ export class RoomDetailsComponent {
     private authService: AuthService,
     private route: ActivatedRoute,
     private confirmationService: ConfirmationService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private i18n: I18nService
   ) {}
   role: string | null = null;
   ngOnInit() {
@@ -116,8 +117,10 @@ export class RoomDetailsComponent {
 
   deleteRoom(id: string | undefined) {
     this.confirmationService.confirm({
-      message: 'Are you sure you want to remove this room?',
-      header: 'Remove Room',
+      message: `${this.i18n.t(
+        'shared.confirm-dialog.confirm-remove-room-question'
+      )}`,
+      header: `${this.i18n.t('shared.confirm-dialog.remove-room')}`,
       accept: () => {
         this.roomService.RemoveRoom(id!).subscribe({
           next: (value) => {
@@ -130,7 +133,7 @@ export class RoomDetailsComponent {
         });
         this.messageService.add({
           severity: 'error',
-          summary: 'Room Removed',
+          summary: `${this.i18n.t('shared.toast.room-removed')}`,
         });
       },
       reject: () => {},

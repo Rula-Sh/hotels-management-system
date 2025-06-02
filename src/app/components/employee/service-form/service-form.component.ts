@@ -55,7 +55,8 @@ export class ServiceFormComponent {
     private serviceService: ServiceService,
     private activatedRoute: ActivatedRoute,
     private messageService: MessageService,
-    private uploadService: UploadService
+    private uploadService: UploadService,
+    private i18n: I18nService
   ) {}
 
   ngOnInit() {
@@ -189,8 +190,7 @@ export class ServiceFormComponent {
           console.error('Error uploading image:', err);
           this.messageService.add({
             severity: 'error',
-            summary: 'Upload Error',
-            detail: 'Failed to upload image.',
+            summary: `${this.i18n.t('shared.toast.failed-to-upload-image')}`,
           });
         },
       });
@@ -223,8 +223,7 @@ export class ServiceFormComponent {
           console.log('Service added successfully');
           this.messageService.add({
             severity: 'success',
-            summary: 'Success',
-            detail: 'Service Added successfully',
+            summary: `${this.i18n.t('shared.toast.service-added-successfuly')}`,
           });
           setTimeout(() => {
             this.router.navigate(['/employee/services']);
@@ -235,8 +234,7 @@ export class ServiceFormComponent {
           console.log('Error on Adding a Service', err);
           this.messageService.add({
             severity: 'error',
-            summary: 'Error',
-            detail: 'Failed to add service',
+            summary: `${this.i18n.t('shared.toast.something-went-wrong')}`,
           });
         },
       });
@@ -257,8 +255,9 @@ export class ServiceFormComponent {
           console.log('Service added successfully');
           this.messageService.add({
             severity: 'success',
-            summary: 'Success',
-            detail: 'Service updated successfully',
+            summary: `${this.i18n.t(
+              'shared.toast.service-updated-successfuly'
+            )}`,
           });
           setTimeout(() => {
             this.router.navigate(['/employee/services']);
@@ -269,8 +268,7 @@ export class ServiceFormComponent {
           console.log('Error on Adding a Service', err);
           this.messageService.add({
             severity: 'error',
-            summary: 'Error',
-            detail: 'Failed to update service',
+            summary: `${this.i18n.t('shared.toast.something-went-wrong')}`,
           });
         },
       });

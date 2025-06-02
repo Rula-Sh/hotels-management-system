@@ -13,6 +13,7 @@ import { ReservationService } from '../../../services/reservation.service';
 import { Reservation } from '../../../models/Reservation.model';
 import { User } from '../../../models/User.model';
 import { NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
+import { I18nService } from '../../../services/i18n.service';
 @Component({
   selector: 'app-rooms',
   imports: [
@@ -41,7 +42,8 @@ export class RoomsComponent {
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
     private reservationService: ReservationService,
-    private authService: AuthService
+    private authService: AuthService,
+    private i18n: I18nService
   ) {}
 
   role: string | null = null;
@@ -72,8 +74,10 @@ export class RoomsComponent {
 
   deleteRoom(id: string) {
     this.confirmationService.confirm({
-      message: 'Are you sure you want to remove this room?',
-      header: 'Remove Room',
+      message: `${this.i18n.t(
+        'shared.confirm-dialog.confirm-remove-room-question'
+      )}`,
+      header: `${this.i18n.t('shared.confirm-dialog.remove-room')}`,
       accept: () => {
         this.roomService.RemoveRoom(id).subscribe({
           next: (value) => {
@@ -86,7 +90,7 @@ export class RoomsComponent {
         });
         this.messageService.add({
           severity: 'error',
-          summary: 'Room Removed',
+          summary: `${this.i18n.t('shared.toast.room-removed')}`,
         });
       },
       reject: () => {},

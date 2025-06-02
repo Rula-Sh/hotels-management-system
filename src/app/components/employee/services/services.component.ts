@@ -11,6 +11,7 @@ import { User } from '../../../models/User.model';
 import { NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
 import { ServiceService } from '../../../services/service.service';
 import { Service } from '../../../models/Service.model';
+import { I18nService } from '../../../services/i18n.service';
 
 @Component({
   selector: 'app-services',
@@ -39,7 +40,8 @@ export class ServicesComponent {
     private router: Router,
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
-    private authService: AuthService
+    private authService: AuthService,
+    private i18n: I18nService
   ) {}
 
   userId: string | null = null;
@@ -66,11 +68,13 @@ export class ServicesComponent {
       },
     });
   }
-  
+
   deleteService(id: string) {
     this.confirmationService.confirm({
-      message: 'Are you sure you want to remove this service?',
-      header: 'Remove service',
+      message: `${this.i18n.t(
+        'shared.confirm-dialog.confirm-remove-service-question'
+      )}`,
+      header: `${this.i18n.t('shared.confirm-dialog.remove-service')}`,
       accept: () => {
         this.serviceService.DeleteService(id).subscribe({
           next: (value) => {
@@ -83,7 +87,7 @@ export class ServicesComponent {
         });
         this.messageService.add({
           severity: 'error',
-          summary: 'Service Removed',
+          summary: `${this.i18n.t('shared.toast.something-went-wrong')}`,
         });
       },
       reject: () => {},

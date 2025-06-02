@@ -60,7 +60,8 @@ export class ProfileComponent {
     private fb: FormBuilder,
     private i18nService: I18nService,
     private messageService: MessageService,
-    private uploadService: UploadService
+    private uploadService: UploadService,
+    private i18n: I18nService
   ) {}
 
   ngOnInit() {
@@ -167,8 +168,7 @@ export class ProfileComponent {
             console.error('Error uploading image:', err);
             this.messageService.add({
               severity: 'error',
-              summary: 'Upload Error',
-              detail: 'Failed to upload image.',
+              summary: `${this.i18n.t('shared.toast.failed-to-upload-image')}`,
             });
           },
         });
@@ -205,8 +205,7 @@ export class ProfileComponent {
           this.authService.login(updatedUser);
           this.messageService.add({
             severity: 'success',
-            summary: 'Success',
-            detail: 'Profile updated successfully',
+            summary: `${this.i18n.t('shared.toast.profile-added-successfuly')}`,
           });
 
           setTimeout(() => {
@@ -218,8 +217,7 @@ export class ProfileComponent {
           console.log('Error on Update', err);
           this.messageService.add({
             severity: 'error',
-            summary: 'Error',
-            detail: 'Failed update profile',
+            summary: `${this.i18n.t('shared.toast.something-went-wrong')}`,
           });
         },
       });

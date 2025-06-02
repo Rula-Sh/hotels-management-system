@@ -9,6 +9,7 @@ import { ButtonModule } from 'primeng/button';
 import { I18nPipe } from '../../../pipes/i18n.pipe';
 import { AuthService } from '../../../services/auth.service';
 import { ReservationService } from '../../../services/reservation.service';
+import { I18nService } from '../../../services/i18n.service';
 
 @Component({
   selector: 'app-reservations',
@@ -64,7 +65,8 @@ export class ReservationsComponent {
     private ReservationService: ReservationService,
     private router: Router,
     private messageService: MessageService,
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
+    private i18n: I18nService
   ) {}
 
   role: string | null = null;
@@ -102,16 +104,14 @@ export class ReservationsComponent {
         this.getreservations();
         this.messageService.add({
           severity: 'success',
-          summary: 'Success',
-          detail: 'Reservation approved',
+          summary: `${this.i18n.t('shared.toast.reservation-approved')}`,
         });
       },
       error: (err) => {
         console.log('Error approving reservation: ' + err);
         this.messageService.add({
           severity: 'error',
-          summary: 'Error',
-          detail: 'Failed to approve reservation',
+          summary: `${this.i18n.t('shared.toast.something-went-wrong')}`,
         });
       },
     });
@@ -120,8 +120,10 @@ export class ReservationsComponent {
   RejectReservationRequest(id: string, reservation: Reservation) {
     reservation.approvalStatus = 'Rejected';
     this.confirmationService.confirm({
-      message: 'Are you sure you want to reject this reservation?',
-      header: 'Reject Reservation',
+      message: `${this.i18n.t(
+        'shared.confirm-dialog.confirm-reject-reservation-question'
+      )}`,
+      header: `${this.i18n.t('shared.confirm-dialog.reject-reservation')}`,
       accept: () => {
         this.ReservationService.RejectReservationRequest(
           id,
@@ -131,17 +133,15 @@ export class ReservationsComponent {
             console.log('Reservation rejected');
             this.getreservations();
             this.messageService.add({
-              severity: 'warn',
-              summary: 'Rejected',
-              detail: 'Reservation has been rejected',
+              severity: 'error',
+              summary: `${this.i18n.t('shared.toast.reservation-rejected')}`,
             });
           },
           error: (err) => {
             console.log('Error rejecting reservation: ' + err);
             this.messageService.add({
               severity: 'error',
-              summary: 'Error',
-              detail: 'Failed to reject reservation',
+              summary: `${this.i18n.t('shared.toast.something-went-wrong')}`,
             });
           },
         });
