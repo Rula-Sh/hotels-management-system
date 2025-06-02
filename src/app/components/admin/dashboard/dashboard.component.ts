@@ -11,10 +11,19 @@ Chart.register(...registerables);
   styleUrl: './dashboard.component.scss',
 })
 export class DashboardComponent {
-  totalUsers = 0;
+  totalEmployees = 0;
+  totalCustomers = 0;
   totalRooms = 0;
   totalReservations = 0;
   totalServices = 0;
+  totalServicesRequests = 0;
+  avgServicesPerEmployee = 0;
+  avgReservationsPerDay = 0;
+  avgRequestsPerDay = 0;
+
+  employeeOfTheMonth = '';
+  getTopSellingService = '';
+  mostBookedRoomType = '';
 
   constructor(private dashboardService: DashboardService) {}
 
@@ -23,8 +32,13 @@ export class DashboardComponent {
   }
 
   getStatistics() {
-    this.dashboardService.getNumberOfUsers().subscribe((users) => {
-      this.totalUsers = users.length;
+    // System Overview
+    this.dashboardService.getTotalEmployees().subscribe((emps) => {
+      this.totalEmployees = emps;
+    });
+
+    this.dashboardService.getTotalCustomers().subscribe((custs) => {
+      this.totalCustomers = custs;
     });
 
     this.dashboardService.getNumberOfRooms().subscribe((rooms) => {
@@ -35,12 +49,40 @@ export class DashboardComponent {
       .getNumberOfReservations()
       .subscribe((reservations) => {
         this.totalReservations = reservations.length;
-        this.getReservationsCharts(reservations);
+        this.getReservationsCharts(reservations); // Reservations Charts
       });
 
     this.dashboardService.getNumberOfServices().subscribe((services) => {
       this.totalServices = services.length;
-      this.getServicesCharts(services);
+      this.avgServicesPerEmployee = this.totalServices / this.totalEmployees; // Performance Metrics - Avg Services Per Employee
+    });
+
+    this.dashboardService.getNumberOfServicesRequests().subscribe((request) => {
+      this.totalServicesRequests = request.length;
+      this.getServicesRequestsCharts(request); // Services Requests Charts
+    });
+
+    // Performance Metrics
+
+    this.dashboardService.getAvgReservationsPerDay().subscribe((result) => {
+      this.avgReservationsPerDay = result;
+    });
+
+    this.dashboardService.getAvgServicesPerDay().subscribe((result) => {
+      this.avgRequestsPerDay = parseFloat(result.toFixed(2));
+    });
+
+    // Highlights
+    this.dashboardService.getEmployeeOfTheMonth().subscribe((result) => {
+      this.employeeOfTheMonth = result ?? 'In Progress';
+    });
+
+    this.dashboardService.getTopSellingService().subscribe((result) => {
+      this.getTopSellingService = result ?? 'In Progress';
+    });
+
+    this.dashboardService.getMostBookedRoomType().subscribe((result) => {
+      this.mostBookedRoomType = result ?? 'In Progress';
     });
   }
 
@@ -205,8 +247,8 @@ export class DashboardComponent {
     });
   }
 
-  getServicesCharts(services: any[]) {
-    // services provided this week
+  getServicesRequestsCharts(requests: any[]) {
+    // requests provided this week
     const now = new Date();
     const startOfWeek = new Date(now);
     startOfWeek.setDate(now.getDate() - now.getDay());
@@ -218,7 +260,7 @@ export class DashboardComponent {
 
     const dailyCounts = new Array(7).fill(0);
 
-    services.forEach((serv) => {
+    requests.forEach((serv) => {
       const d = new Date(serv.date);
       if (d >= startOfWeek && d < endOfWeek) {
         const day = d.getDay(); // 0 = Sunday
@@ -226,13 +268,13 @@ export class DashboardComponent {
       }
     });
 
-    new Chart('dailyServicesChart', {
+    new Chart('dailyRequestsChart', {
       type: 'line',
       data: {
         labels: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
         datasets: [
           {
-            label: 'Reservations This Week',
+            label: 'Requests This Week',
             data: dailyCounts,
             borderWidth: 2,
             borderColor: 'green',
@@ -250,8 +292,7 @@ export class DashboardComponent {
       },
     });
 
-    // reservations this month
-
+    // requests this month
     const year = now.getFullYear();
     const month = now.getMonth();
 
@@ -267,8 +308,8 @@ export class DashboardComponent {
     }
 
     console.log(`Current Year: ${year}, Month: ${month + 1}`);
-    services.forEach((serv) => {
-      const d = new Date(serv.date);
+    requests.forEach((req) => {
+      const d = new Date(req.date);
       const resYear = d.getFullYear();
       const resMonth = d.getMonth(); // 0 = Jan
       const resDay = d.getDate();
@@ -285,13 +326,13 @@ export class DashboardComponent {
 
     console.log('Weekly counts:', weeklyCounts);
 
-    new Chart('weeklyServicesChart', {
+    new Chart('weeklyRequestsChart', {
       type: 'line',
       data: {
         labels: labels,
         datasets: [
           {
-            label: 'Reservations This Month',
+            label: 'Requests This Month',
             data: weeklyCounts,
             borderWidth: 2,
             borderColor: 'green',
@@ -309,16 +350,16 @@ export class DashboardComponent {
       },
     });
 
-    // Count reservations by status
+    // Count requests by status
     const statusCounts = {
       pending: 0,
       inProgress: 0,
       completed: 0,
-      cancelled: 0,
+      canceled: 0,
     };
 
-    services.forEach((serv) => {
-      switch (serv.approvalStatus) {
+    requests.forEach((res) => {
+      switch (res.requestStatus) {
         case 'Pending':
           statusCounts.pending++;
           break;
@@ -328,23 +369,23 @@ export class DashboardComponent {
         case 'Completed':
           statusCounts.completed++;
           break;
-        case 'Cancelled':
-          statusCounts.cancelled++;
+        case 'Canceled':
+          statusCounts.canceled++;
           break;
       }
     });
 
-    new Chart('servicesStatusChart', {
+    new Chart('requestsStatusChart', {
       type: 'doughnut',
       data: {
-        labels: ['Pending', 'Approved', 'Rejected'],
+        labels: ['Pending', 'inProgress', 'Completed', 'Canceled'],
         datasets: [
           {
             data: [
               statusCounts.pending,
               statusCounts.inProgress,
               statusCounts.completed,
-              statusCounts.cancelled,
+              statusCounts.canceled,
             ],
             backgroundColor: ['orange', 'blue', 'green', 'red'],
           },
@@ -358,7 +399,7 @@ export class DashboardComponent {
           },
           title: {
             display: true,
-            text: 'Services Status Distribution',
+            text: 'Requests Status Distribution',
           },
         },
       },

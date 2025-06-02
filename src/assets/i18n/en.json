@@ -137,23 +137,24 @@
   },
   "dashboard": {
     "system-overview": "System Overview",
-    "total-users": "Total Users",
+    "total-employees": "Total Employees",
+    "total-customers": "Total Customers",
     "total-rooms": "Total Rooms",
     "total-reservations": "Total Reservations",
     "total-services": "Total Services",
+    "total-services-requests": "Total Services Requests",
     "performance-metrics": "Performance Metrics",
     "avg-services-per-employee": "Avg Services Per Employee",
     "avg-reservations-per-day": "Avg Reservations Per Day",
-    "avg-services-per-day": "Avg Services Per Day",
-    "cancellation-rate": "Cancellation Rate",
+    "avg-requests-per-day": "Avg Requests Per Day",
     "highlights": "Highlights",
     "employee-of-the-month": "Employee of the Month",
     "top-selling-service": "Top-Selling Service",
     "most-booked-room-type": "Most Booked Room Type",
     "reservations": "Reservations",
     "reservations-status": "Reservations Status",
-    "services-status": "Services Status",
-    "services": "Services"
+    "requests-status": "Requests Status",
+    "requests": "Services Requests"
   },
   "shared": {
     "entity": {
