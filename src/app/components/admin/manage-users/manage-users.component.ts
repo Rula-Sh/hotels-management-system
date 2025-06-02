@@ -64,8 +64,10 @@ export class ManageUsersComponent {
 
   FireEmployee(id: string, user: User) {
     this.confirmationService.confirm({
-      message: `Are you sure you want to fire ${user.name}?`,
-      header: 'Fire Employee',
+      message: `${this.i18n.t(
+        'shared.confirm-dialog.confirm-fire-employee-question'
+      )} ${user.name}?`,
+      header: `${this.i18n.t('shared.confirm-dialog.fire-employee')}`,
       accept: () => {
         this.userService.UpdateUserDetails(user).subscribe({
           next: (value) => {

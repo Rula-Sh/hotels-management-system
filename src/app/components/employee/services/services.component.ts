@@ -71,8 +71,10 @@ export class ServicesComponent {
 
   deleteService(id: string) {
     this.confirmationService.confirm({
-      message: 'Are you sure you want to remove this service?',
-      header: 'Remove service',
+      message: `${this.i18n.t(
+        'shared.confirm-dialog.confirm-remove-service-question'
+      )}`,
+      header: `${this.i18n.t('shared.confirm-dialog.remove-service')}`,
       accept: () => {
         this.serviceService.DeleteService(id).subscribe({
           next: (value) => {

@@ -92,7 +92,7 @@
       type="button"
       pButton
       icon="pi pi-times"
-      label="Delete"
+      [label]="'shared.confirm-dialog.delete' | translate"
       [ngStyle]="{ backgroundColor: '#e09fa6', border: 'red' }"
       (click)="cd.onAccept()"
     ></button>
@@ -101,7 +101,7 @@
       type="button"
       pButton
       icon="pi pi-check"
-      label="Cancel"
+      [label]="'shared.confirm-dialog.cancel' | translate"
       [ngStyle]="{ backgroundColor: '#90c67c', border: 'green' }"
       (click)="cd.onReject()"
     ></button>

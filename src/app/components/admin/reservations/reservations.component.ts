@@ -120,8 +120,10 @@ export class ReservationsComponent {
   RejectReservationRequest(id: string, reservation: Reservation) {
     reservation.approvalStatus = 'Rejected';
     this.confirmationService.confirm({
-      message: 'Are you sure you want to reject this reservation?',
-      header: 'Reject Reservation',
+      message: `${this.i18n.t(
+        'shared.confirm-dialog.confirm-reject-reservation-question'
+      )}`,
+      header: `${this.i18n.t('shared.confirm-dialog.reject-reservation')}`,
       accept: () => {
         this.ReservationService.RejectReservationRequest(
           id,

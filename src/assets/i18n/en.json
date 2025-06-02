@@ -235,6 +235,19 @@
       "reservation-rejected": "Reservation Rejected",
       "employee-fired": "Employee Fired"
     },
+    "confirm-dialog": {
+      "delete": "Delete",
+      "reject": "Reject",
+      "cancel": "Cancel",
+      "fire-employee": "Fire Employee",
+      "confirm-fire-employee-question": "Are you sure you want to fire",
+      "reject-reservation": "Reject Reservation",
+      "confirm-reject-reservation-question": "Are you sure you want to reject this reservation?",
+      "remove-service": "Remove Service",
+      "confirm-remove-service-question": "Are you sure you want to remove this service?",
+      "remove-room": "Remove Room",
+      "confirm-remove-room-question": "Are you sure you want to remove this room?"
+    },
     "actions": "Actions"
   }
 }

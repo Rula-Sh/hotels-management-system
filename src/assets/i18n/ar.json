@@ -235,6 +235,19 @@
       "reservation-rejected": "تم رفض الحجز",
       "employee-fired": "فصل الموظف"
     },
+    "confirm-dialog": {
+      "delete": "حذف",
+      "reject": "رفض",
+      "cancel": "إلغاء",
+      "fire-employee": "طرد الموظف ",
+      "confirm-fire-employee-question": "هل أنت متأكد أنك تريد طرد",
+      "reject-reservation": "رفض الحجز",
+      "confirm-reject-reservation-question": "هل أنت متأكد من رغبتك في رفض هذا الحجز؟",
+      "remove-service": "إزالة الخدمة",
+      "confirm-remove-service-question": "هل أنت متأكد من رغبتك في إزالة هذه الخدمة؟",
+      "remove-room": "إزالة الغرفة",
+      "confirm-remove-room-question": "هل أنت متأكد من رغبتك في إزالة هذه الغرفة؟"
+    },
     "key-name": "الإجراءات"
   }
 }

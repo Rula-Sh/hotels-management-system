@@ -74,8 +74,10 @@ export class RoomsComponent {
 
   deleteRoom(id: string) {
     this.confirmationService.confirm({
-      message: 'Are you sure you want to remove this room?',
-      header: 'Remove Room',
+      message: `${this.i18n.t(
+        'shared.confirm-dialog.confirm-remove-room-question'
+      )}`,
+      header: `${this.i18n.t('shared.confirm-dialog.remove-room')}`,
       accept: () => {
         this.roomService.RemoveRoom(id).subscribe({
           next: (value) => {
