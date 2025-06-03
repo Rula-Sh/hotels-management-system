@@ -71,14 +71,17 @@ export class RoomFormComponent {
         '',
         [
           Validators.required,
+          Validators.minLength(2),
           Validators.maxLength(30),
           Validators.pattern(/^[a-zA-Z0-9'\-$!& ]+$/),
         ],
       ],
+      location: ['', [Validators.required, Validators.minLength(20)]],
       details: [
         '',
         [
           Validators.required,
+          Validators.minLength(10),
           Validators.maxLength(70),
           Validators.pattern(/^[a-zA-Z0-9.,!?'"()\-:;$!& ]*$/),
         ],
@@ -92,7 +95,6 @@ export class RoomFormComponent {
           Validators.pattern(/^\d{1,4}(\.\d{1,2})?$/),
         ],
       ],
-      location: ['', Validators.required],
       imagesUrl: ['', Validators.required],
     });
 
@@ -185,7 +187,9 @@ export class RoomFormComponent {
     if (this.images.length === 0) {
       this.messageService.add({
         severity: 'warn',
-        summary: `${this.i18n.t('shared.toast.at-least-one-image-is-required')}`,
+        summary: `${this.i18n.t(
+          'shared.toast.at-least-one-image-is-required'
+        )}`,
       });
       return;
     }

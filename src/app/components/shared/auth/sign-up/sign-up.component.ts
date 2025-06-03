@@ -50,8 +50,8 @@ export class SignUpComponent {
           '',
           [
             Validators.required,
-            Validators.maxLength(20),
             Validators.minLength(3),
+            Validators.maxLength(20),
             Validators.pattern(/^[\u0600-\u06FFa-zA-Z'\s]+$/),
           ],
         ],

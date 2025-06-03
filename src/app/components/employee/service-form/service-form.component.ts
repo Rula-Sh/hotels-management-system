@@ -85,8 +85,8 @@ export class ServiceFormComponent {
         '',
         [
           Validators.required,
+          Validators.minLength(4),
           Validators.maxLength(30),
-          Validators.maxLength(4),
           Validators.pattern(/^[a-zA-Z0-9'\-$!& ]+$/),
         ],
       ],
@@ -95,8 +95,8 @@ export class ServiceFormComponent {
         '',
         [
           Validators.required,
+          Validators.minLength(10),
           Validators.maxLength(70),
-          Validators.maxLength(10),
           Validators.pattern(/^[a-zA-Z0-9.,!?'"()\-:;$!& ]*$/),
         ],
       ],
