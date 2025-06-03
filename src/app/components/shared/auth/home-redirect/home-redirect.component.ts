@@ -15,7 +15,7 @@ export class HomeRedirectComponent {
   ngOnInit() {
     this.role = localStorage.getItem('user_role');
     if (this.role == 'Admin') {
-    this.router.navigate([`/admin/dashboard`]);
+      this.router.navigate([`/admin/dashboard`]);
     } else if (this.role == 'Employee') {
       this.router.navigate([`/employee/requests`]);
     } else {

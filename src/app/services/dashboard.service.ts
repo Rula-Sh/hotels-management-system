@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { Reservation } from '../models/Reservation.model';
-import { Service } from '../models/Service.model';
 import { ServiceRequest } from '../models/ServiceRequest.model';
 
 @Injectable({

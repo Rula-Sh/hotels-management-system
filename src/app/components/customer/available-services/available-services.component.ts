@@ -1,5 +1,3 @@
-
-
 import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Service } from '../../../models/Service.model';
@@ -26,8 +24,7 @@ export class AvailableServicesComponent implements OnInit {
   toastMessage = '';
   showToast = false;
   requestedServiceIds: string[] = [];
- requestedServicesStatus: { [title: string]: string } = {};
-
+  requestedServicesStatus: { [title: string]: string } = {};
 
   private serviceService = inject(ServiceService);
   private route = inject(ActivatedRoute);
@@ -44,29 +41,27 @@ export class AvailableServicesComponent implements OnInit {
 
     this.loadUserRooms();
   }
-  
+
   loadUserRequestedServices() {
-  const userId = localStorage.getItem('id');
-  if (!userId) return;
+    const userId = localStorage.getItem('id');
+    if (!userId) return;
 
-  this.serviceService.getServicesByCustomerId(userId).subscribe({
-    next: (requests) => {
-      // بناء خريطة عنوان الخدمة -> حالة الطلب
-      this.requestedServicesStatus = {};
-      requests.forEach(req => {
-        this.requestedServicesStatus[req.title] = req.requestStatus;
-      });
+    this.serviceService.getServicesByCustomerId(userId).subscribe({
+      next: (requests) => {
+        // بناء خريطة عنوان الخدمة -> حالة الطلب
+        this.requestedServicesStatus = {};
+        requests.forEach((req) => {
+          this.requestedServicesStatus[req.title] = req.requestStatus;
+        });
 
-      // أيضاً لتسهيل التحقق بـ requestedServiceIds إذا حابب تستخدمه:
-      this.requestedServiceIds = requests.map(r => r.title);
-    },
-    error: () => {
-      console.error('Failed to load requested services.');
-    }
-  });
-}
-
-
+        // أيضاً لتسهيل التحقق بـ requestedServiceIds إذا حابب تستخدمه:
+        this.requestedServiceIds = requests.map((r) => r.title);
+      },
+      error: () => {
+        console.error('Failed to load requested services.');
+      },
+    });
+  }
 
   saveRequestedServices() {
     localStorage.setItem(
@@ -109,43 +104,42 @@ export class AvailableServicesComponent implements OnInit {
     }
   }
 
- requestService(service: Service) {
-  const user = this.authService.getCurrentUser();
-  const selectedRoom = this.userRooms[0];
+  requestService(service: Service) {
+    const user = this.authService.getCurrentUser();
+    const selectedRoom = this.userRooms[0];
 
-  if (!user || !selectedRoom) {
-    this.showToastMessage('No room selected or user not found');
-    return;
+    if (!user || !selectedRoom) {
+      this.showToastMessage('No room selected or user not found');
+      return;
+    }
+
+    const requestPayload: Omit<ServiceRequest, 'id'> = {
+      customerId: user.id,
+      roomId: selectedRoom.id,
+      date: new Date(),
+      requestStatus: 'Pending',
+      notes: '',
+      customer: user,
+      room: selectedRoom,
+      employeeId: service.employee?.id,
+      title: service.title,
+      serviceType: service.serviceType,
+      details: service.details,
+      price: service.price,
+      imageUrl: service.imageUrl,
+      employee: undefined as any,
+    };
+
+    this.serviceService.createServiceRequest(requestPayload).subscribe({
+      next: () => {
+        this.showToastMessage('Service request submitted successfully!');
+        this.loadUserRequestedServices(); // 🔄 إعادة تحميل الطلبات للمستخدم الحالي
+      },
+      error: () => {
+        this.showToastMessage('Failed to submit service request.');
+      },
+    });
   }
-
-  const requestPayload: Omit<ServiceRequest, 'id'> = {
-    customerId: user.id,
-    roomId: selectedRoom.id,
-    date: new Date(),
-    requestStatus: 'Pending',
-    notes: '',
-    customer: user,
-    room: selectedRoom,
-    employeeId: service.employee?.id,
-    title: service.title,
-    serviceType: service.serviceType,
-    details: service.details,
-    price: service.price,
-    imageUrl: service.imageUrl,
-    employee: undefined as any,
-  };
-
-  this.serviceService.createServiceRequest(requestPayload).subscribe({
-    next: () => {
-      this.showToastMessage('Service request submitted successfully!');
-      this.loadUserRequestedServices(); // 🔄 إعادة تحميل الطلبات للمستخدم الحالي
-    },
-    error: () => {
-      this.showToastMessage('Failed to submit service request.');
-    },
-  });
-}
-
 
   showToastMessage(message: string) {
     this.toastMessage = message;

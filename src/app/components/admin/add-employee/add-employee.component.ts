@@ -9,7 +9,6 @@ import {
 } from '@angular/forms';
 import { I18nPipe } from '../../../pipes/i18n.pipe';
 import { User } from '../../../models/User.model';
-import { AuthService } from '../../../services/auth.service';
 import { UserService } from '../../../services/user.service';
 import { Router, RouterLink } from '@angular/router';
 import { I18nService } from '../../../services/i18n.service';
