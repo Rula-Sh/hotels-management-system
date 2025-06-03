@@ -2,7 +2,11 @@ import { Service } from './Service.model';
 import { ServiceRequest } from './ServiceRequest.model';
 import { User } from './User.model';
 
-type JobCategory = 'Housekeeping' | 'Food & Beverage' | 'Guest Services' | 'Maintenance';
+type JobCategory =
+  | 'Housekeeping'
+  | 'Food & Beverage'
+  | 'Guest Services'
+  | 'Maintenance';
 
 export type JobTitle =
   // Housekeeping

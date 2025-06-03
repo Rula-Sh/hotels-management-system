@@ -24,7 +24,9 @@
         />
         <div
           class="error"
-          *ngIf="roomForm.get('title')?.touched || roomForm.get('title')?.dirty"
+          *ngIf="
+            roomForm.get('title')?.touched && roomForm.get('title')?.invalid
+          "
         >
           <div *ngIf="roomForm.get('title')?.errors?.['required']">
             {{ "shared.form.title-required" | translate }}
@@ -130,7 +132,9 @@
 
         <div
           class="error"
-          *ngIf="roomForm.get('hotel')?.touched || roomForm.get('hotel')?.dirty"
+          *ngIf="
+            roomForm.get('hotel')?.touched && roomForm.get('hotel')?.invalid
+          "
         >
           <div *ngIf="roomForm.get('hotel')?.errors?.['required']">
             {{ "shared.form.hotel-required" | translate }}
@@ -168,7 +172,12 @@
             roomForm.get('location')?.touched
           "
         >
-          {{ "room.location-required" | translate }}
+          <div *ngIf="roomForm.get('location')?.errors?.['required']">
+            {{ "room.location-required" | translate }}
+          </div>
+          <div *ngIf="roomForm.get('location')?.errors?.['minlength']">
+            {{ "shared.form.location-minlength" | translate }}
+          </div>
         </div>
       </div>
       <div class="input-group" [ngClass]="{ 'right-input': lang == 'ar' }">
@@ -190,7 +199,7 @@
         <div
           class="error"
           *ngIf="
-            roomForm.get('details')?.touched || roomForm.get('details')?.dirty
+            roomForm.get('details')?.touched && roomForm.get('details')?.invalid
           "
         >
           <div *ngIf="roomForm.get('details')?.errors?.['required']">
@@ -226,7 +235,9 @@
         />
         <div
           class="error"
-          *ngIf="roomForm.get('price')?.touched || roomForm.get('price')?.dirty"
+          *ngIf="
+            roomForm.get('price')?.touched && roomForm.get('price')?.invalid
+          "
         >
           <div *ngIf="roomForm.get('price')?.errors?.['required']">
             {{ "shared.form.price-required" | translate }}
@@ -260,8 +271,8 @@
         <div
           class="error"
           *ngIf="
-            roomForm.get('imagesUrl')?.touched ||
-            roomForm.get('imagesUrl')?.dirty
+            roomForm.get('imagesUrl')?.touched &&
+            roomForm.get('imagesUrl')?.invalid
           "
         >
           <div *ngIf="roomForm.get('imagesUrl')?.errors?.['required']">

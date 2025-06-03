@@ -26,7 +26,8 @@
         <div
           class="error"
           *ngIf="
-            serviceForm.get('title')?.touched || serviceForm.get('title')?.dirty
+            serviceForm.get('title')?.touched &&
+            serviceForm.get('title')?.invalid
           "
         >
           <div *ngIf="serviceForm.get('title')?.errors?.['required']">
@@ -98,8 +99,8 @@
         <div
           class="error"
           *ngIf="
-            serviceForm.get('details')?.touched ||
-            serviceForm.get('details')?.dirty
+            serviceForm.get('details')?.touched &&
+            serviceForm.get('details')?.invalid
           "
         >
           <div *ngIf="serviceForm.get('details')?.errors?.['required']">
@@ -136,7 +137,8 @@
         <div
           class="error"
           *ngIf="
-            serviceForm.get('price')?.touched || serviceForm.get('price')?.dirty
+            serviceForm.get('price')?.touched &&
+            serviceForm.get('price')?.invalid
           "
         >
           <div *ngIf="serviceForm.get('price')?.errors?.['required']">
@@ -168,7 +170,13 @@
           (change)="onFileSelected($event)"
           accept="image/png, image/jpg, image/jpeg, image/gif"
         />
-        <div class="error" *ngIf="serviceForm.get('imageUrl')?.errors">
+        <div
+          class="error"
+          *ngIf="
+            serviceForm.get('imageUrl')?.touched &&
+            serviceForm.get('imageUrl')?.invalid
+          "
+        >
           <div *ngIf="serviceForm.get('imageUrl')?.errors?.['required']">
             {{ "shared.form.image-required" | translate }}
           </div>

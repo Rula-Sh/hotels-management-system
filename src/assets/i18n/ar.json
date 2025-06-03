@@ -201,7 +201,7 @@
       "title-invalid": "عنوان غير صالح",
       "details": "التفاصيل",
       "details-required": "التفاصيل مطلوبة",
-      "details-minlength": "يجب أن تحتوي التفاصيل على 4 أحرف على الأقل",
+      "details-minlength": "يجب أن تحتوي التفاصيل على 10 أحرف على الأقل",
       "details-maxlength": "يجب ألا تزيد التفاصيل عن 30 حرفاً",
       "price": "السعر",
       "price-required": "السعر مطلوب",
@@ -214,7 +214,8 @@
       "hotel": "الفندق",
       "hotel-required": "اسم الفندق مطلوب",
       "hotel-minlength": "يجب أن يحتوي اسم الفندق على حرفين على الأقل",
-      "hotel-maxlength": "يجب ألا يزيد اسم الفندق عن 30 حرفاً"
+      "hotel-maxlength": "يجب ألا يزيد اسم الفندق عن 30 حرفاً",
+      "location-minlength": "يجب أن يحتوي وصف الموقع على 20 على الأقل"
     },
     "toast": {
       "success": "نجاح",

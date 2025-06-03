@@ -6,14 +6,14 @@ import { I18nPipe } from '../../../pipes/i18n.pipe';
   selector: 'app-footer',
   imports: [I18nPipe],
   templateUrl: './footer.component.html',
-  styleUrl: './footer.component.scss'
+  styleUrl: './footer.component.scss',
 })
 export class FooterComponent {
-  constructor(private i18nService: I18nService){}
+  constructor(private i18nService: I18nService) {}
 
-  lang:'en'|'ar' = 'en';
+  lang: 'en' | 'ar' = 'en';
 
-  changeLanguage(lang: 'en'|'ar'){
+  changeLanguage(lang: 'en' | 'ar') {
     this.i18nService.loadTranslations(lang);
     this.lang = lang;
   }

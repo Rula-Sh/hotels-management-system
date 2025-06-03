@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import {
   FormBuilder,
-  FormControl,
   FormGroup,
   FormsModule,
   ReactiveFormsModule,
@@ -72,8 +71,8 @@ export class ProfileComponent {
         '',
         [
           Validators.required,
-          Validators.maxLength(20),
           Validators.minLength(3),
+          Validators.maxLength(20),
           Validators.pattern(/^[\u0600-\u06FFa-zA-Z'\s]+$/),
         ],
       ],

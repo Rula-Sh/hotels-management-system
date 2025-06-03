@@ -7,7 +7,6 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { I18nPipe } from '../../../pipes/i18n.pipe';
-import { AuthService } from '../../../services/auth.service';
 import { ReservationService } from '../../../services/reservation.service';
 import { I18nService } from '../../../services/i18n.service';
 

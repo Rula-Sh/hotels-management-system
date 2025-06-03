@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { Reservation as Reservation } from '../../../models/Reservation.model';
-import { Router } from '@angular/router';
 import { ConfirmationService, MessageService, PrimeIcons } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
@@ -8,7 +6,6 @@ import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { I18nPipe } from '../../../pipes/i18n.pipe';
 import { ServiceService } from '../../../services/service.service';
-import { Service } from '../../../models/Service.model';
 import { ServiceRequest } from '../../../models/ServiceRequest.model';
 import { I18nService } from '../../../services/i18n.service';
 

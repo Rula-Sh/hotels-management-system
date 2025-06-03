@@ -201,7 +201,7 @@
       "title-invalid": "Invalid Title",
       "details": "Details",
       "details-required": "Details Required",
-      "details-minlength": "Details should conain at least 4 letters",
+      "details-minlength": "Details should conain at least 10 letters",
       "details-maxlength": "Details should not exceed 30 characters",
       "price": "Price",
       "price-required": "Price Required",
@@ -214,7 +214,8 @@
       "hotel": "Hotel",
       "hotel-required": "Hotel Name Required",
       "hotel-minlength": "Hotel name should conain at least 2 letters",
-      "hotel-maxlength": "Hotel name should not exceed 30 characters"
+      "hotel-maxlength": "Hotel name should not exceed 30 characters",
+      "location-minlength": "Location Discription should conain at least 20 characters"
     },
     "toast": {
       "success": "Success",

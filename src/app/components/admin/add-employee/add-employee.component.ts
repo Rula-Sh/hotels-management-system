@@ -9,7 +9,6 @@ import {
 } from '@angular/forms';
 import { I18nPipe } from '../../../pipes/i18n.pipe';
 import { User } from '../../../models/User.model';
-import { AuthService } from '../../../services/auth.service';
 import { UserService } from '../../../services/user.service';
 import { Router, RouterLink } from '@angular/router';
 import { I18nService } from '../../../services/i18n.service';
@@ -81,8 +80,8 @@ export class AddEmployeeComponent {
         '',
         [
           Validators.required,
-          Validators.maxLength(20),
           Validators.minLength(3),
+          Validators.maxLength(20),
           Validators.pattern(/^[\u0600-\u06FFa-zA-Z'\s]+$/),
         ],
       ],
@@ -103,8 +102,8 @@ export class AddEmployeeComponent {
         '',
         [
           Validators.required,
-          Validators.maxLength(30),
           Validators.maxLength(2),
+          Validators.maxLength(30),
           Validators.pattern(/^[a-zA-Z0-9'\-$!& ]+$/),
         ],
       ],
