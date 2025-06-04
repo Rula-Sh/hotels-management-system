@@ -12,7 +12,7 @@ import { User } from '../../../models/User.model';
 import { UserService } from '../../../services/user.service';
 import { Router, RouterLink } from '@angular/router';
 import { I18nService } from '../../../services/i18n.service';
-import { Employee } from '../../../models/Employee.model';
+import { Employee, jobTitlesByCategory } from '../../../models/Employee.model';
 
 import { SearchCountryField, CountryISO } from 'ngx-intl-tel-input';
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
@@ -33,31 +33,8 @@ import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 export class AddEmployeeComponent {
   user: User | null = null;
   profileForm!: FormGroup;
-  jobCategories = [
-    'Housekeeping',
-    'Food & Beverage',
-    'Guest Services',
-    'Maintenance',
-  ];
-  jobTitles = [
-    // Housekeeping
-    'Room Cleaner',
-    'Laundry Attendant',
-
-    // Dining
-    'Food & Beverage Server',
-
-    // Guest Services / Requests
-    'Valet Parking Attendant',
-    'Concierge',
-    'Porter',
-
-    // Maintenance
-    'Maintenance Technician',
-    'Electrician',
-    'Plumber',
-    'IT Support Technician',
-  ];
+  jobCategories: string[] = [];
+  jobTitles: readonly string[] = [];
 
   SearchCountryField = SearchCountryField;
   CountryISO = CountryISO;
@@ -122,6 +99,17 @@ export class AddEmployeeComponent {
         ],
       ],
     });
+
+    this.jobCategories = Object.keys(jobTitlesByCategory);
+    this.profileForm
+      .get('jobCategory')
+      ?.valueChanges.subscribe((selectedCategory: string) => {
+        this.jobTitles =
+          jobTitlesByCategory[
+            selectedCategory as keyof typeof jobTitlesByCategory
+          ] ?? [];
+        this.profileForm.get('jobTitle')?.setValue('');
+      });
   }
 
   addEmployee() {
