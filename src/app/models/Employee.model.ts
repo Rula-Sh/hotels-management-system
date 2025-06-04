@@ -13,6 +13,7 @@ export const jobTitlesByCategory = {
     'Plumber',
     'IT Support Technician',
   ],
+  Wellness: ['Massage Therapist', 'Hair Stylist', 'Personal Trainer'],
 } as const;
 
 // instead of declaring a type with the same const content
