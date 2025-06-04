@@ -13,9 +13,9 @@ import { I18nService } from '../../../services/i18n.service';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { ServiceService } from '../../../services/service.service';
-import { Service } from '../../../models/Service.model';
+import { Service, serviceTypesByJobTitle } from '../../../models/Service.model';
 import { AuthService } from '../../../services/auth.service';
-import { Employee } from '../../../models/Employee.model';
+import { Employee, JobTitle } from '../../../models/Employee.model';
 import { UploadService } from '../../../services/upload.service';
 
 @Component({
@@ -35,7 +35,8 @@ import { UploadService } from '../../../services/upload.service';
 export class ServiceFormComponent {
   serviceForm!: FormGroup;
   user: Employee | null = null;
-  servicesTypes = ['Cleaning', 'Dining', 'Maintenance', 'Health', 'Beauty'];
+  jobTitle: string | null = null;
+  servicesTypes: string[] = [];
   isAddingAService = true;
   service!: any;
 
@@ -111,6 +112,18 @@ export class ServiceFormComponent {
       ],
       imageUrl: ['', Validators.required],
     });
+
+    this.jobTitle = localStorage.getItem('jobTitle');
+    this.updateServiceTypes();
+  }
+
+  updateServiceTypes() {
+    const title = this.jobTitle as JobTitle;
+    if (title && serviceTypesByJobTitle[title]) {
+      this.servicesTypes = serviceTypesByJobTitle[title];
+    } else {
+      this.servicesTypes = [];
+    }
   }
 
   loadService() {
