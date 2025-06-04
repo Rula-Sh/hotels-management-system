@@ -61,33 +61,4 @@ export class ManageUsersComponent {
       },
     });
   }
-
-  FireEmployee(id: string, user: User) {
-    this.confirmationService.confirm({
-      message: `${this.i18n.t(
-        'shared.confirm-dialog.confirm-fire-employee-question'
-      )} ${user.name}?`,
-      header: `${this.i18n.t('shared.confirm-dialog.fire-employee')}`,
-      accept: () => {
-        this.userService.UpdateUserDetails(user).subscribe({
-          next: (value) => {
-            console.log('Employee Fired');
-            this.getUsers();
-            this.messageService.add({
-              severity: 'warn',
-              summary: `${this.i18n.t('shared.toast.employee-fired')}`,
-            });
-          },
-          error: (err) => {
-            console.log('Error firing  employee: ' + err);
-            this.messageService.add({
-              severity: 'error',
-              summary: `${this.i18n.t('shared.toast.something-went-wrong')}`,
-            });
-          },
-        });
-      },
-      reject: () => {},
-    });
-  }
 }
