@@ -200,6 +200,7 @@
       "title-minlength": "Title should conain at least 4 letters",
       "title-maxlength": "Title should not exceed 30 characters",
       "title-invalid": "Invalid Title",
+      "type": "Type",
       "details": "Details",
       "details-required": "Details Required",
       "details-minlength": "Details should conain at least 10 letters",
@@ -252,6 +253,10 @@
       "confirm-remove-service-question": "Are you sure you want to remove this service?",
       "fire-employee": "Fire Employee",
       "confirm-fire-employee-question": "Are you sure you want to fire"
+    },
+    "filter": {
+      "search": "Search...",
+      "sort-by": "Sort By"
     },
     "actions": "Actions"
   }
