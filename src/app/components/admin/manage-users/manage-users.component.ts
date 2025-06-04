@@ -9,6 +9,7 @@ import { User } from '../../../models/User.model';
 import { Router, RouterLink } from '@angular/router';
 import { UserService } from '../../../services/user.service';
 import { I18nService } from '../../../services/i18n.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-manage-users',
@@ -35,23 +36,19 @@ export class ManageUsersComponent {
       role: 'customer',
     },
   ];
-
-  constructor(
-    private userService: UserService,
-    private router: Router,
-    private messageService: MessageService,
-    private confirmationService: ConfirmationService,
-    private i18n: I18nService
-  ) {}
-
   role: string | null = null;
+
+  subscriptions: Subscription[] = [];
+
+  constructor(private userService: UserService) {}
+
   ngOnInit() {
     this.getUsers();
     this.role = localStorage.getItem('user_role');
   }
 
   getUsers() {
-    this.userService.getAllUsers().subscribe({
+    const getAllUsersSub = this.userService.getAllUsers().subscribe({
       next: (value) => {
         this.users = value;
         console.log('users Loaded Successfuly');
@@ -60,5 +57,10 @@ export class ManageUsersComponent {
         console.log(`Failed to Load users: ${err}`);
       },
     });
+    this.subscriptions.push(getAllUsersSub);
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach((sub) => sub.unsubscribe());
   }
 }

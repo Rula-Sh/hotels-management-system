@@ -12,6 +12,7 @@ import { NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
 import { ServiceService } from '../../../services/service.service';
 import { Service } from '../../../models/Service.model';
 import { I18nService } from '../../../services/i18n.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-services',
@@ -35,9 +36,11 @@ export class ServicesComponent {
   toastClass = '';
   services: Service[] = [];
   user: User | null = null;
+
+  subscriptions: Subscription[] = [];
+
   constructor(
     private serviceService: ServiceService,
-    private router: Router,
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
     private authService: AuthService,
@@ -58,15 +61,18 @@ export class ServicesComponent {
   }
 
   getServices() {
-    this.serviceService.getServicesByEmployeeId(this.userId!).subscribe({
-      next: (value) => {
-        this.services = value;
-        console.log('Services Loaded Successfuly');
-      },
-      error: (err) => {
-        console.log(`Failed to Load Services: ${err}`);
-      },
-    });
+    const getServicesByEmployeeIdSub = this.serviceService
+      .getServicesByEmployeeId(this.userId!)
+      .subscribe({
+        next: (value) => {
+          this.services = value;
+          console.log('Services Loaded Successfuly');
+        },
+        error: (err) => {
+          console.log(`Failed to Load Services: ${err}`);
+        },
+      });
+    this.subscriptions.push(getServicesByEmployeeIdSub);
   }
 
   deleteService(id: string) {
@@ -76,21 +82,28 @@ export class ServicesComponent {
       )}`,
       header: `${this.i18n.t('shared.confirm-dialog.remove-service')}`,
       accept: () => {
-        this.serviceService.DeleteService(id).subscribe({
-          next: (value) => {
-            console.log('Service deleted');
-            this.getServices();
-          },
-          error(err) {
-            console.log('Error deleting service: ' + err);
-          },
-        });
+        const DeleteServiceSub = this.serviceService
+          .DeleteService(id)
+          .subscribe({
+            next: (value) => {
+              console.log('Service deleted');
+              this.getServices();
+            },
+            error(err) {
+              console.log('Error deleting service: ' + err);
+            },
+          });
         this.messageService.add({
           severity: 'error',
           summary: `${this.i18n.t('shared.toast.something-went-wrong')}`,
         });
+        this.subscriptions.push(DeleteServiceSub);
       },
       reject: () => {},
     });
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach((sub) => sub.unsubscribe());
   }
 }

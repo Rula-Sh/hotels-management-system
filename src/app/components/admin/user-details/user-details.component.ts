@@ -13,7 +13,7 @@ import { ToastModule } from 'primeng/toast';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ButtonModule } from 'primeng/button';
-import { forkJoin } from 'rxjs';
+import { forkJoin, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-user-details',
@@ -34,6 +34,8 @@ export class UserDetailsComponent {
   reservations!: Reservation[];
   services!: Service[];
   isEditing = false;
+
+  subscriptions: Subscription[] = [];
 
   get lang(): 'en' | 'ar' {
     return this.i18nService.getLanguage();
@@ -59,7 +61,7 @@ export class UserDetailsComponent {
     const userId = this.activatedRoute.snapshot.paramMap.get('id');
 
     if (userId) {
-      this.userService.getUserById(userId).subscribe({
+      const getUserByIdSub = this.userService.getUserById(userId).subscribe({
         next: (value) => {
           this.user = value;
           console.log('User Loaded');
@@ -69,6 +71,7 @@ export class UserDetailsComponent {
           console.log('Error Retrieving the User: ' + err);
         },
       });
+      this.subscriptions.push(getUserByIdSub);
     } else {
       console.log('User ID is null');
     }
@@ -76,25 +79,32 @@ export class UserDetailsComponent {
 
   getUserActivities(userId: string) {
     if (this.user && this.user.role == 'Employee') {
-      this.serviceService.getServicesByEmployeeId(userId).subscribe({
-        next: (value) => {
-          this.services = value;
-          console.log('Loaded Services');
-        },
-        error: (err) => {
-          console.log('Error Loading Services');
-        },
-      });
+      const getServicesByEmployeeIdSub = this.serviceService
+        .getServicesByEmployeeId(userId)
+        .subscribe({
+          next: (value) => {
+            this.services = value;
+            console.log('Loaded Services');
+          },
+          error: (err) => {
+            console.log('Error Loading Services');
+          },
+        });
+
+      this.subscriptions.push(getServicesByEmployeeIdSub);
     } else {
-      this.reservationService.getReservationsByCustomerId(userId).subscribe({
-        next: (value) => {
-          this.reservations = value;
-          console.log('Loaded Reservations');
-        },
-        error: (err) => {
-          console.log('Error Loading Reservations');
-        },
-      });
+      const getReservationsByCustomerIdSub = this.reservationService
+        .getReservationsByCustomerId(userId)
+        .subscribe({
+          next: (value) => {
+            this.reservations = value;
+            console.log('Loaded Reservations');
+          },
+          error: (err) => {
+            console.log('Error Loading Reservations');
+          },
+        });
+      this.subscriptions.push(getReservationsByCustomerIdSub);
     }
   }
   fireEmployee(user: User) {
@@ -105,95 +115,111 @@ export class UserDetailsComponent {
       header: `${this.i18n.t('shared.confirm-dialog.fire-employee')}`,
       accept: () => {
         // Check for active service requests
-        this.serviceService.getServicesRequestsByEmployeeId(user.id).subscribe({
-          next: (requests) => {
-            const activeServices = requests.filter(
-              (s) => s.requestStatus === 'In Progress'
-            );
+        const getServicesRequestsByEmployeeIdSub = this.serviceService
+          .getServicesRequestsByEmployeeId(user.id)
+          .subscribe({
+            next: (requests) => {
+              const activeServices = requests.filter(
+                (s) => s.requestStatus === 'In Progress'
+              );
 
-            if (activeServices.length > 0) {
-              this.messageService.add({
-                severity: 'warn',
-                summary: `${this.i18n.t(
-                  'shared.toast.employee-has-active-services'
-                )}`,
-                detail: `${this.i18n.t('shared.toast.cannot-fire')} ${
-                  user.name
-                } `,
-              });
-              return;
-            }
-
-            // Get non-active services
-            this.serviceService.getServicesByEmployeeId(user.id).subscribe({
-              next: (services) => {
-                const deleteServicesObservables = services.map((s) =>
-                  this.serviceService.DeleteService(s.id)
-                );
-
-                const updateRole = () => {
-                  user.role = 'Customer';
-                  this.userService.UpdateUserDetails(user).subscribe({
-                    next: () => {
-                      this.messageService.add({
-                        severity: 'error',
-                        summary: `${this.i18n.t(
-                          'shared.toast.employee-fired'
-                        )}`,
-                      });
-                    },
-                    error: (err) => {
-                      console.log('Error updating user role:', err);
-                      this.messageService.add({
-                        severity: 'error',
-                        summary: `${this.i18n.t(
-                          'shared.toast.something-went-wrong'
-                        )}`,
-                      });
-                    },
-                  });
-                };
-
-                if (deleteServicesObservables.length === 0) {
-                  // No services to delete, just update role
-                  updateRole();
-                } else {
-                  // Subscrive to deleteServicesObservables then update role
-                  forkJoin(deleteServicesObservables).subscribe({
-                    next: () => updateRole(),
-                    error: (err) => {
-                      console.log('Error deleting services:', err);
-                      this.messageService.add({
-                        severity: 'error',
-                        summary: `${this.i18n.t(
-                          'shared.toast.something-went-wrong'
-                        )}`,
-                      });
-                    },
-                  });
-                }
-              },
-              error: (err) => {
-                console.log('Error loading services:', err);
+              if (activeServices.length > 0) {
                 this.messageService.add({
-                  severity: 'error',
+                  severity: 'warn',
                   summary: `${this.i18n.t(
-                    'shared.toast.something-went-wrong'
+                    'shared.toast.employee-has-active-services'
                   )}`,
+                  detail: `${this.i18n.t('shared.toast.cannot-fire')} ${
+                    user.name
+                  } `,
                 });
-              },
-            });
-          },
-          error: (err) => {
-            console.log('Error loading service requests:', err);
-            this.messageService.add({
-              severity: 'error',
-              summary: `${this.i18n.t('shared.toast.something-went-wrong')}`,
-            });
-          },
-        });
+                return;
+              }
+
+              // Get non-active services
+              const getServicesByEmployeeIdSub = this.serviceService
+                .getServicesByEmployeeId(user.id)
+                .subscribe({
+                  next: (services) => {
+                    const deleteServicesObservables = services.map((s) =>
+                      this.serviceService.DeleteService(s.id)
+                    );
+
+                    const updateRole = () => {
+                      user.role = 'Customer';
+                      const UpdateUserDetailsSub = this.userService
+                        .UpdateUserDetails(user)
+                        .subscribe({
+                          next: () => {
+                            this.messageService.add({
+                              severity: 'error',
+                              summary: `${this.i18n.t(
+                                'shared.toast.employee-fired'
+                              )}`,
+                            });
+                          },
+                          error: (err) => {
+                            console.log('Error updating user role:', err);
+                            this.messageService.add({
+                              severity: 'error',
+                              summary: `${this.i18n.t(
+                                'shared.toast.something-went-wrong'
+                              )}`,
+                            });
+                          },
+                        });
+                      this.subscriptions.push(UpdateUserDetailsSub);
+                    };
+
+                    if (deleteServicesObservables.length === 0) {
+                      // No services to delete, just update role
+                      updateRole();
+                    } else {
+                      // Subscribe to deleteServicesObservables then update role
+                      const deleteServicesObservablesSub = forkJoin(
+                        deleteServicesObservables
+                      ).subscribe({
+                        next: () => updateRole(),
+                        error: (err) => {
+                          console.log('Error deleting services:', err);
+                          this.messageService.add({
+                            severity: 'error',
+                            summary: `${this.i18n.t(
+                              'shared.toast.something-went-wrong'
+                            )}`,
+                          });
+                        },
+                      });
+                      this.subscriptions.push(deleteServicesObservablesSub);
+                    }
+                  },
+                  error: (err) => {
+                    console.log('Error loading services:', err);
+                    this.messageService.add({
+                      severity: 'error',
+                      summary: `${this.i18n.t(
+                        'shared.toast.something-went-wrong'
+                      )}`,
+                    });
+                  },
+                });
+              this.subscriptions.push(getServicesByEmployeeIdSub);
+            },
+            error: (err) => {
+              console.log('Error loading service requests:', err);
+              this.messageService.add({
+                severity: 'error',
+                summary: `${this.i18n.t('shared.toast.something-went-wrong')}`,
+              });
+            },
+          });
+        this.subscriptions.push(getServicesRequestsByEmployeeIdSub);
       },
       reject: () => {},
     });
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach((sub) => sub.unsubscribe());
   }
 }

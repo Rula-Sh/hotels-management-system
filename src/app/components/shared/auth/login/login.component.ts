@@ -12,6 +12,7 @@ import { NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
 import { UserService } from '../../../../services/user.service';
 import { AuthService } from '../../../../services/auth.service';
 import { I18nPipe } from '../../../../pipes/i18n.pipe';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -34,6 +35,8 @@ export class LoginComponent {
   toastMessage = '';
   toastHeader = '';
   toastClass = '';
+
+  subscriptions: Subscription[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -72,7 +75,7 @@ export class LoginComponent {
     const email = this.loginForm.value.email;
     const password = btoa(this.loginForm.value.password);
 
-    this.userService.getAllUsers().subscribe((users) => {
+    const getAllUsersSub = this.userService.getAllUsers().subscribe((users) => {
       const userByEmail = users.find((u) => u.email === email);
 
       // If email is not found
@@ -100,5 +103,10 @@ export class LoginComponent {
         this.router.navigate(['/']);
       }, 1500);
     });
+    this.subscriptions.push(getAllUsersSub);
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach((sub) => sub.unsubscribe());
   }
 }

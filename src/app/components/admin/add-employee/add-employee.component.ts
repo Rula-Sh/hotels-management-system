@@ -16,6 +16,7 @@ import { Employee, jobTitlesByCategory } from '../../../models/Employee.model';
 
 import { SearchCountryField, CountryISO } from 'ngx-intl-tel-input';
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-add-employee',
@@ -39,6 +40,8 @@ export class AddEmployeeComponent {
   SearchCountryField = SearchCountryField;
   CountryISO = CountryISO;
   preferredCountries: CountryISO[] = [CountryISO.Jordan];
+
+  subscriptions: Subscription[] = [];
 
   get lang(): 'en' | 'ar' {
     return this.i18nService.getLanguage();
@@ -101,15 +104,20 @@ export class AddEmployeeComponent {
     });
 
     this.jobCategories = Object.keys(jobTitlesByCategory);
-    this.profileForm
-      .get('jobCategory')
-      ?.valueChanges.subscribe((selectedCategory: string) => {
-        this.jobTitles =
-          jobTitlesByCategory[
-            selectedCategory as keyof typeof jobTitlesByCategory
-          ] ?? [];
-        this.profileForm.get('jobTitle')?.setValue('');
-      });
+
+    const jobCategoryControl = this.profileForm.get('jobCategory'); // had to do this so that i can add onJobCategoryChangeSub to subscriptions... it caused the error "Argument of type 'Subscription | undefined'  not assignable to parameter of type 'Subscription'"
+    if (jobCategoryControl) {
+      const onJobCategoryChangeSub = jobCategoryControl.valueChanges.subscribe(
+        (selectedCategory: string) => {
+          this.jobTitles =
+            jobTitlesByCategory[
+              selectedCategory as keyof typeof jobTitlesByCategory
+            ] ?? [];
+          this.profileForm.get('jobTitle')?.setValue('');
+        }
+      );
+      this.subscriptions.push(onJobCategoryChangeSub);
+    }
   }
 
   addEmployee() {
@@ -142,7 +150,7 @@ export class AddEmployeeComponent {
 
     console.log(newEmployee);
 
-    this.userService.AddEmployee(newEmployee).subscribe({
+    const addEmployeeSub = this.userService.AddEmployee(newEmployee).subscribe({
       next: () => {
         console.log('Employee added successfully');
         this.router.navigate(['/']);
@@ -152,5 +160,10 @@ export class AddEmployeeComponent {
         console.log('Error on Adding an Employee', err);
       },
     });
+    this.subscriptions.push(addEmployeeSub);
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach((sub) => sub.unsubscribe());
   }
 }
