@@ -167,6 +167,7 @@
       "details": "التفاصيل",
       "approve": "الموافقة",
       "reject": "رفض",
+      "fire": "طرد",
       "add": "إضافة",
       "update": "تحديث",
       "submit": "إرسال",
@@ -228,26 +229,29 @@
       "room-added-successfuly": "تمت إضافة الغرفة بنجاح!",
       "room-updated-successfuly": "تم تحديث الغرفة بنجاح!",
       "room-removed": "تمت إزالة الغرفة!",
+      "reservation-approved": "تمت الموافقة على الحجز!",
+      "reservation-rejected": "تم رفض الحجز!",
       "service-added-successfuly": "تمت إضافة الخدمة بنجاح!",
       "service-updated-successfuly": "تم تحديث الخدمة بنجاح!",
       "service-request-completed": "تم إنجاز طلب الخدمة!",
       "service-request-approved": "تمت الموافقة على طلب الخدمة!",
-      "reservation-approved": "تمت الموافقة على الحجز",
-      "reservation-rejected": "تم رفض الحجز",
-      "employee-fired": "فصل الموظف"
+      "employee-has-active-services": "الموظف لديه خدمات نشطة!",
+      "cannot-fire": "لا يمكن طرد",
+      "employee-fired": "تم فصل الموظف!"
     },
     "confirm-dialog": {
       "delete": "حذف",
       "reject": "رفض",
+      "fire": "طرد",
       "cancel": "إلغاء",
-      "fire-employee": "طرد الموظف ",
-      "confirm-fire-employee-question": "هل أنت متأكد أنك تريد طرد",
       "reject-reservation": "رفض الحجز",
       "confirm-reject-reservation-question": "هل أنت متأكد من رغبتك في رفض هذا الحجز؟",
       "remove-service": "إزالة الخدمة",
       "confirm-remove-service-question": "هل أنت متأكد من رغبتك في إزالة هذه الخدمة؟",
       "remove-room": "إزالة الغرفة",
-      "confirm-remove-room-question": "هل أنت متأكد من رغبتك في إزالة هذه الغرفة؟"
+      "confirm-remove-room-question": "هل أنت متأكد من رغبتك في إزالة هذه الغرفة؟",
+      "fire-employee": "طرد الموظف ",
+      "confirm-fire-employee-question": "هل أنت متأكد أنك تريد طرد"
     },
     "key-name": "الإجراءات"
   }

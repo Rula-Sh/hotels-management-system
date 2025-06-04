@@ -9,10 +9,23 @@ import { Service } from '../../../models/Service.model';
 import { ServiceService } from '../../../services/service.service';
 import { ReservationService } from '../../../services/reservation.service';
 import { I18nService } from '../../../services/i18n.service';
+import { ToastModule } from 'primeng/toast';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ButtonModule } from 'primeng/button';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-user-details',
-  imports: [CommonModule, I18nPipe, RouterLink],
+  imports: [
+    CommonModule,
+    I18nPipe,
+    RouterLink,
+    ToastModule,
+    ConfirmDialogModule,
+    ButtonModule,
+  ],
+  providers: [MessageService, ConfirmationService],
   templateUrl: './user-details.component.html',
   styleUrl: './user-details.component.scss',
 })
@@ -32,7 +45,10 @@ export class UserDetailsComponent {
     private userService: UserService,
     private serviceService: ServiceService,
     private reservationService: ReservationService,
-    private i18nService: I18nService
+    private i18nService: I18nService,
+    private messageService: MessageService,
+    private confirmationService: ConfirmationService,
+    private i18n: I18nService
   ) {}
 
   ngOnInit() {
@@ -80,5 +96,104 @@ export class UserDetailsComponent {
         },
       });
     }
+  }
+  fireEmployee(user: User) {
+    this.confirmationService.confirm({
+      message: `${this.i18n.t(
+        'shared.confirm-dialog.confirm-fire-employee-question'
+      )} ${user.name}?`,
+      header: `${this.i18n.t('shared.confirm-dialog.fire-employee')}`,
+      accept: () => {
+        // Check for active service requests
+        this.serviceService.getServicesRequestsByEmployeeId(user.id).subscribe({
+          next: (requests) => {
+            const activeServices = requests.filter(
+              (s) => s.requestStatus === 'In Progress'
+            );
+
+            if (activeServices.length > 0) {
+              this.messageService.add({
+                severity: 'warn',
+                summary: `${this.i18n.t(
+                  'shared.toast.employee-has-active-services'
+                )}`,
+                detail: `${this.i18n.t('shared.toast.cannot-fire')} ${
+                  user.name
+                } `,
+              });
+              return;
+            }
+
+            // Get non-active services
+            this.serviceService.getServicesByEmployeeId(user.id).subscribe({
+              next: (services) => {
+                const deleteServicesObservables = services.map((s) =>
+                  this.serviceService.DeleteService(s.id)
+                );
+
+                const updateRole = () => {
+                  user.role = 'Customer';
+                  this.userService.UpdateUserDetails(user).subscribe({
+                    next: () => {
+                      this.messageService.add({
+                        severity: 'error',
+                        summary: `${this.i18n.t(
+                          'shared.toast.employee-fired'
+                        )}`,
+                      });
+                    },
+                    error: (err) => {
+                      console.log('Error updating user role:', err);
+                      this.messageService.add({
+                        severity: 'error',
+                        summary: `${this.i18n.t(
+                          'shared.toast.something-went-wrong'
+                        )}`,
+                      });
+                    },
+                  });
+                };
+
+                if (deleteServicesObservables.length === 0) {
+                  // No services to delete, just update role
+                  updateRole();
+                } else {
+                  // Subscrive to deleteServicesObservables then update role
+                  forkJoin(deleteServicesObservables).subscribe({
+                    next: () => updateRole(),
+                    error: (err) => {
+                      console.log('Error deleting services:', err);
+                      this.messageService.add({
+                        severity: 'error',
+                        summary: `${this.i18n.t(
+                          'shared.toast.something-went-wrong'
+                        )}`,
+                      });
+                    },
+                  });
+                }
+              },
+              error: (err) => {
+                console.log('Error loading services:', err);
+                this.messageService.add({
+                  severity: 'error',
+                  summary: `${this.i18n.t(
+                    'shared.toast.something-went-wrong'
+                  )}`,
+                });
+              },
+            });
+          },
+          error: (err) => {
+            console.log('Error loading service requests:', err);
+            this.messageService.add({
+              severity: 'error',
+              summary: `${this.i18n.t('shared.toast.something-went-wrong')}`,
+            });
+          },
+        });
+      },
+      reject: () => {},
+    });
   }
 }
