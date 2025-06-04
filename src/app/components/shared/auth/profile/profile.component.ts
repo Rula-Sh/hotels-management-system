@@ -204,7 +204,7 @@ export class ProfileComponent {
           this.authService.login(updatedUser);
           this.messageService.add({
             severity: 'success',
-            summary: `${this.i18n.t('shared.toast.profile-added-successfuly')}`,
+            summary: `${this.i18n.t('shared.toast.profile-udpated-successfuly')}`,
           });
 
           setTimeout(() => {
