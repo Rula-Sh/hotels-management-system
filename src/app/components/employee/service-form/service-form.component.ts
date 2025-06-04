@@ -17,6 +17,7 @@ import { Service, serviceTypesByJobTitle } from '../../../models/Service.model';
 import { AuthService } from '../../../services/auth.service';
 import { Employee, JobTitle } from '../../../models/Employee.model';
 import { UploadService } from '../../../services/upload.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-add-service',
@@ -44,6 +45,8 @@ export class ServiceFormComponent {
   imageUrl: string | null = null;
   uploadPreset = 'HMS - IIH Project';
 
+  subscriptions: Subscription[] = [];
+
   get lang(): 'en' | 'ar' {
     return this.i18nService.getLanguage();
   }
@@ -66,16 +69,19 @@ export class ServiceFormComponent {
 
       var serviceId = this.activatedRoute.snapshot.paramMap.get('id');
       if (serviceId) {
-        this.serviceService.getServiceById(serviceId).subscribe({
-          next: (value) => {
-            this.service = value;
-            console.log('Recieved Service Details');
-            this.loadService();
-          },
-          error: (err) => {
-            console.log('Error Loading Service Details:', err);
-          },
-        });
+        const getServiceByIdSub = this.serviceService
+          .getServiceById(serviceId)
+          .subscribe({
+            next: (value) => {
+              this.service = value;
+              console.log('Recieved Service Details');
+              this.loadService();
+            },
+            error: (err) => {
+              console.log('Error Loading Service Details:', err);
+            },
+          });
+        this.subscriptions.push(getServiceByIdSub);
       }
     }
 
@@ -137,6 +143,7 @@ export class ServiceFormComponent {
 
     this.serviceForm.patchValue(serviceData);
   }
+
   onFileSelected(event: any) {
     const file = event.target.files[0];
     const control = this.serviceForm.get('imageUrl');
@@ -179,6 +186,7 @@ export class ServiceFormComponent {
     this.serviceForm.get('imageUrl')?.reset();
     this.selectedFile = null;
   }
+
   submit() {
     if (this.serviceForm.invalid) {
       this.serviceForm.markAllAsTouched();
@@ -190,7 +198,7 @@ export class ServiceFormComponent {
       return;
     }
 
-    this.uploadService
+    const uploadImageSub = this.uploadService
       .uploadImage(this.selectedFile, this.uploadPreset)
       .subscribe({
         next: (res: any) => {
@@ -207,6 +215,7 @@ export class ServiceFormComponent {
           });
         },
       });
+    this.subscriptions.push(uploadImageSub);
   }
 
   saveService() {
@@ -231,26 +240,31 @@ export class ServiceFormComponent {
         employee: this.user,
       };
 
-      this.serviceService.CreateService(newService).subscribe({
-        next: () => {
-          console.log('Service added successfully');
-          this.messageService.add({
-            severity: 'success',
-            summary: `${this.i18n.t('shared.toast.service-added-successfuly')}`,
-          });
-          setTimeout(() => {
-            this.router.navigate(['/employee/services']);
-            this.serviceForm.reset();
-          }, 1500);
-        },
-        error: (err) => {
-          console.log('Error on Adding a Service', err);
-          this.messageService.add({
-            severity: 'error',
-            summary: `${this.i18n.t('shared.toast.something-went-wrong')}`,
-          });
-        },
-      });
+      const createServiceSub = this.serviceService
+        .createService(newService)
+        .subscribe({
+          next: () => {
+            console.log('Service added successfully');
+            this.messageService.add({
+              severity: 'success',
+              summary: `${this.i18n.t(
+                'shared.toast.service-added-successfuly'
+              )}`,
+            });
+            setTimeout(() => {
+              this.router.navigate(['/employee/services']);
+              this.serviceForm.reset();
+            }, 1500);
+          },
+          error: (err) => {
+            console.log('Error on Adding a Service', err);
+            this.messageService.add({
+              severity: 'error',
+              summary: `${this.i18n.t('shared.toast.something-went-wrong')}`,
+            });
+          },
+        });
+      this.subscriptions.push(createServiceSub);
     } else {
       const updatedService: Service = {
         id: this.service.id,
@@ -263,28 +277,35 @@ export class ServiceFormComponent {
         employee: this.service.employee,
       };
 
-      this.serviceService.UpdateService(updatedService).subscribe({
-        next: () => {
-          console.log('Service added successfully');
-          this.messageService.add({
-            severity: 'success',
-            summary: `${this.i18n.t(
-              'shared.toast.service-updated-successfuly'
-            )}`,
-          });
-          setTimeout(() => {
-            this.router.navigate(['/employee/services']);
-            this.serviceForm.reset();
-          }, 1500);
-        },
-        error: (err) => {
-          console.log('Error on Adding a Service', err);
-          this.messageService.add({
-            severity: 'error',
-            summary: `${this.i18n.t('shared.toast.something-went-wrong')}`,
-          });
-        },
-      });
+      const updateServiceSub = this.serviceService
+        .updateService(updatedService)
+        .subscribe({
+          next: () => {
+            console.log('Service added successfully');
+            this.messageService.add({
+              severity: 'success',
+              summary: `${this.i18n.t(
+                'shared.toast.service-updated-successfuly'
+              )}`,
+            });
+            setTimeout(() => {
+              this.router.navigate(['/employee/services']);
+              this.serviceForm.reset();
+            }, 1500);
+          },
+          error: (err) => {
+            console.log('Error on Adding a Service', err);
+            this.messageService.add({
+              severity: 'error',
+              summary: `${this.i18n.t('shared.toast.something-went-wrong')}`,
+            });
+          },
+        });
+      this.subscriptions.push(updateServiceSub);
     }
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach((sub) => sub.unsubscribe());
   }
 }

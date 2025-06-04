@@ -52,7 +52,7 @@
             <button
               class="approve"
               (click)="
-                ApproveServiceRequest(
+                approveServiceRequest(
                   pendingServiceRequest.id,
                   pendingServiceRequest
                 )
@@ -104,7 +104,7 @@
             <button
               class="approve"
               (click)="
-                CompleteServiceRequest(
+                completeServiceRequest(
                   inProgressServiceRequest.id,
                   inProgressServiceRequest
                 )

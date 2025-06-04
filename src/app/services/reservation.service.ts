@@ -40,7 +40,7 @@ export class ReservationService {
     );
   }
 
-  ApproveReservationRequest(
+  approveReservationRequest(
     id: string,
     reservation: Reservation
   ): Observable<Reservation> {
@@ -50,7 +50,7 @@ export class ReservationService {
     );
   }
 
-  RejectReservationRequest(
+  rejectReservationRequest(
     id: string,
     reservation: Reservation
   ): Observable<Reservation> {

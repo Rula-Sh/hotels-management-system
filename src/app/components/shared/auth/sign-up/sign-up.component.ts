@@ -15,6 +15,7 @@ import { AuthService } from '../../../../services/auth.service';
 import { UserService } from '../../../../services/user.service';
 import { NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
 import { I18nPipe } from '../../../../pipes/i18n.pipe';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-sign-up',
@@ -38,12 +39,16 @@ export class SignUpComponent {
   toastClass = '';
   showToast = false;
 
+  subscriptions: Subscription[] = [];
+
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private authService: AuthService,
     private userService: UserService
-  ) {
+  ) {}
+
+  ngOnInit() {
     this.signUpForm = this.fb.group(
       {
         name: [
@@ -94,7 +99,7 @@ export class SignUpComponent {
       return;
     }
 
-    this.userService.getAllUsers().subscribe((users) => {
+    const getAllUsersSub = this.userService.getAllUsers().subscribe((users) => {
       const exists = users.find((u) => u.email === this.signUpForm.value.email);
       if (exists) {
         this.toastMessage = 'This email is already registered.';
@@ -111,7 +116,7 @@ export class SignUpComponent {
         role: 'Customer',
       };
 
-      this.userService.CreateUser(user).subscribe({
+      const createUserSub = this.userService.createUser(user).subscribe({
         next: (value) => {
           this.authService.login(value);
           localStorage.setItem('user_id', value.id);
@@ -131,10 +136,16 @@ export class SignUpComponent {
           console.log('Error on Create', err);
         },
       });
+      this.subscriptions.push(createUserSub);
     });
+    this.subscriptions.push(getAllUsersSub);
   }
 
   get f() {
     return this.signUpForm.controls;
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach((sub) => sub.unsubscribe());
   }
 }

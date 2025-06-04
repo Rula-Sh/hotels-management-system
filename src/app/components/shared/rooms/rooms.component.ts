@@ -7,13 +7,14 @@ import { ButtonModule } from 'primeng/button';
 import { ConfirmationService, MessageService, PrimeIcons } from 'primeng/api';
 import { Room } from '../../../models/Room.model';
 import { RoomService } from '../../../services/room.service';
-import { Router, RouterLink } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { ReservationService } from '../../../services/reservation.service';
 import { Reservation } from '../../../models/Reservation.model';
 import { User } from '../../../models/User.model';
 import { NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
 import { I18nService } from '../../../services/i18n.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-rooms',
@@ -37,9 +38,11 @@ export class RoomsComponent {
   toastClass = '';
   rooms: Room[] = [];
   user: User | null = null;
+
+  subscriptions: Subscription[] = [];
+
   constructor(
     private roomService: RoomService,
-    private router: Router,
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
     private reservationService: ReservationService,
@@ -62,7 +65,7 @@ export class RoomsComponent {
   }
 
   getRooms() {
-    this.roomService.getAllRooms().subscribe({
+    const getAllRoomsSub = this.roomService.getAllRooms().subscribe({
       next: (value) => {
         this.rooms = value;
         console.log('Rooms Loaded Successfuly');
@@ -71,6 +74,7 @@ export class RoomsComponent {
         console.log(`Failed to Load Rooms: ${err}`);
       },
     });
+    this.subscriptions.push(getAllRoomsSub);
   }
 
   deleteRoom(id: string) {
@@ -80,7 +84,7 @@ export class RoomsComponent {
       )}`,
       header: `${this.i18n.t('shared.confirm-dialog.remove-room')}`,
       accept: () => {
-        this.roomService.RemoveRoom(id).subscribe({
+        const removeRoomSub = this.roomService.removeRoom(id).subscribe({
           next: (value) => {
             console.log('Room deleted');
             this.getRooms();
@@ -93,10 +97,12 @@ export class RoomsComponent {
           severity: 'error',
           summary: `${this.i18n.t('shared.toast.room-removed')}`,
         });
+        this.subscriptions.push(removeRoomSub);
       },
       reject: () => {},
     });
   }
+
   bookRoom(room: Room) {
     this.showToast = false;
     const user = this.authService.getCurrentUser();
@@ -109,68 +115,82 @@ export class RoomsComponent {
     }
 
     // 👇 التحقق من وجود حجز سابق
-    this.reservationService.getReservationsByCustomerId(user.id).subscribe({
-      next: (reservations) => {
-        const alreadyBooked = reservations.some(
-          (res) => res.roomId === room.id
-        );
+    const getReservationsByCustomerIdSub = this.reservationService
+      .getReservationsByCustomerId(user.id)
+      .subscribe({
+        next: (reservations) => {
+          const alreadyBooked = reservations.some(
+            (res) => res.roomId === room.id
+          );
 
-        if (alreadyBooked) {
-          this.toastMessage = `You already sent a booking request for "${room.title}".`;
-          this.toastClass = 'bg-info text-white';
-          this.showToast = true;
+          if (alreadyBooked) {
+            this.toastMessage = `You already sent a booking request for "${room.title}".`;
+            this.toastClass = 'bg-info text-white';
+            this.showToast = true;
 
-          setTimeout(() => {
-            this.showToast = false;
-          }, 3000);
-          return;
-        }
+            setTimeout(() => {
+              this.showToast = false;
+            }, 3000);
+            return;
+          }
 
-        // 🟢 إذا لم يكن هناك حجز مسبق، إنشاء الحجز
-        const reservation: Omit<Reservation, 'id'> = {
-          customer: user,
-          customerId: user.id,
-          roomId: room.id,
-          room: room,
-          date: new Date(),
-          paymentAmount: room.price,
-          paymentStatus: 'Unpaid',
-          approvalStatus: 'Pending',
-        };
+          // 🟢 إذا لم يكن هناك حجز مسبق، إنشاء الحجز
+          const reservation: Omit<Reservation, 'id'> = {
+            customer: user,
+            customerId: user.id,
+            roomId: room.id,
+            room: room,
+            date: new Date(),
+            paymentAmount: room.price,
+            paymentStatus: 'Unpaid',
+            approvalStatus: 'Pending',
+          };
 
-        this.reservationService.createReservation(reservation).subscribe({
-          next: () => {
-            const updatedRoom: Room = { ...room, bookedStatus: 'Pending' };
-            this.roomService.updateRoom(room.id, updatedRoom).subscribe({
+          const createReservationSub = this.reservationService
+            .createReservation(reservation)
+            .subscribe({
               next: () => {
-                this.toastMessage = `Room "${room.title}" booked! Waiting for admin approval.`;
-                this.toastClass = 'bg-success text-light';
-                this.showToast = true;
-                room.bookedStatus = 'Pending';
+                const updatedRoom: Room = { ...room, bookedStatus: 'Pending' };
+                const updateRoomSub = this.roomService
+                  .updateRoom(room.id, updatedRoom)
+                  .subscribe({
+                    next: () => {
+                      this.toastMessage = `Room "${room.title}" booked! Waiting for admin approval.`;
+                      this.toastClass = 'bg-success text-light';
+                      this.showToast = true;
+                      room.bookedStatus = 'Pending';
 
-                setTimeout(() => {
-                  this.showToast = false;
-                }, 3000);
+                      setTimeout(() => {
+                        this.showToast = false;
+                      }, 3000);
+                    },
+                    error: () => {
+                      this.toastMessage =
+                        'Room booked but failed to update status.';
+                      this.toastClass = 'bg-warning text-dark';
+                      this.showToast = true;
+                    },
+                  });
+                this.subscriptions.push(updateRoomSub);
               },
               error: () => {
-                this.toastMessage = 'Room booked but failed to update status.';
-                this.toastClass = 'bg-warning text-dark';
+                this.toastMessage = 'Booking failed. Please try again later.';
+                this.toastClass = 'bg-danger text-light';
                 this.showToast = true;
               },
             });
-          },
-          error: () => {
-            this.toastMessage = 'Booking failed. Please try again later.';
-            this.toastClass = 'bg-danger text-light';
-            this.showToast = true;
-          },
-        });
-      },
-      error: () => {
-        this.toastMessage = 'Error checking previous reservations.';
-        this.toastClass = 'bg-danger text-light';
-        this.showToast = true;
-      },
-    });
+          this.subscriptions.push(createReservationSub);
+        },
+        error: () => {
+          this.toastMessage = 'Error checking previous reservations.';
+          this.toastClass = 'bg-danger text-light';
+          this.showToast = true;
+        },
+      });
+    this.subscriptions.push(getReservationsByCustomerIdSub);
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach((sub) => sub.unsubscribe());
   }
 }

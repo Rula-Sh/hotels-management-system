@@ -15,6 +15,7 @@ import { RoomService } from '../../../services/room.service';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { UploadService } from '../../../services/upload.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-add-room',
@@ -38,6 +39,8 @@ export class RoomFormComponent {
   images: string[] = []; // Replace FormArray with simple array
   selectedFile: File | null = null;
   currentIndex = 0;
+
+  subscriptions: Subscription[] = [];
 
   constructor(
     private router: Router,
@@ -102,13 +105,14 @@ export class RoomFormComponent {
       this.isAddingARoom = false;
       const roomId = this.activatedRoute.snapshot.paramMap.get('id');
       if (roomId) {
-        this.roomService.getRoomById(roomId).subscribe({
+        const getRoomByIdSub = this.roomService.getRoomById(roomId).subscribe({
           next: (roomData) => {
             this.room = roomData;
             this.roomForm.patchValue(roomData);
             this.images = [...roomData.imagesUrl]; // Load old images
           },
         });
+        this.subscriptions.push(getRoomByIdSub);
       }
     }
   }
@@ -141,19 +145,22 @@ export class RoomFormComponent {
     // Clear all errors and update value safely
     control?.setErrors(null);
     control?.markAsTouched();
-    this.uploadService.uploadImage(file, 'HMS - IIH Project').subscribe({
-      next: (res: any) => {
-        this.images.push(res.url);
-        this.selectedFile = null;
-      },
-      error: (err) => {
-        console.error('Upload error', err);
-        this.messageService.add({
-          severity: 'error',
-          summary: `${this.i18n.t('shared.toast.failed-to-upload-image')}`,
-        });
-      },
-    });
+    const uploadImageSub = this.uploadService
+      .uploadImage(file, 'HMS - IIH Project')
+      .subscribe({
+        next: (res: any) => {
+          this.images.push(res.url);
+          this.selectedFile = null;
+        },
+        error: (err) => {
+          console.error('Upload error', err);
+          this.messageService.add({
+            severity: 'error',
+            summary: `${this.i18n.t('shared.toast.failed-to-upload-image')}`,
+          });
+        },
+      });
+    this.subscriptions.push(uploadImageSub);
   }
 
   removeImage(index: number) {
@@ -202,10 +209,10 @@ export class RoomFormComponent {
     };
 
     const action = this.isAddingARoom
-      ? this.roomService.CreateRoom(roomData)
+      ? this.roomService.createRoom(roomData)
       : this.roomService.updateRoom(this.room.id, roomData);
 
-    action.subscribe({
+    const submitRoomFormSub = action.subscribe({
       next: () => {
         this.messageService.add({
           severity: 'success',
@@ -225,5 +232,10 @@ export class RoomFormComponent {
         });
       },
     });
+    this.subscriptions.push(submitRoomFormSub);
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach((sub) => sub.unsubscribe());
   }
 }

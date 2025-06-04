@@ -8,6 +8,7 @@ import { I18nPipe } from '../../../pipes/i18n.pipe';
 import { ServiceService } from '../../../services/service.service';
 import { ServiceRequest } from '../../../models/ServiceRequest.model';
 import { I18nService } from '../../../services/i18n.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-requests',
@@ -32,10 +33,12 @@ export class RequestsComponent {
     active: true,
     completed: true,
   };
+
+  subscriptions: Subscription[] = [];
+
   constructor(
     private serviceService: ServiceService,
     private messageService: MessageService,
-    private confirmationService: ConfirmationService,
     private i18n: I18nService
   ) {}
 
@@ -50,7 +53,7 @@ export class RequestsComponent {
   getServices() {
     console.log(this.userId);
 
-    this.serviceService
+    const getServicesRequestsByEmployeeIdSub = this.serviceService
       .getServicesRequestsByEmployeeId(this.userId!)
       .subscribe({
         next: (value) => {
@@ -79,47 +82,59 @@ export class RequestsComponent {
           console.log(`Failed to Load requests: ${err}`);
         },
       });
+
+    this.subscriptions.push(getServicesRequestsByEmployeeIdSub);
   }
 
-  ApproveServiceRequest(id: string, request: ServiceRequest) {
+  approveServiceRequest(id: string, request: ServiceRequest) {
     request.requestStatus = 'In Progress';
-    this.serviceService.ApproveServicesRequest(id, request).subscribe({
-      next: (value) => {
-        console.log('reservation approved');
-        this.getServices();
-        this.messageService.add({
-          severity: 'success',
-          summary: `${this.i18n.t('shared.toast.service-request-approved')}`,
-        });
-      },
-      error: (err) => {
-        console.log('Error approving request: ' + err);
-        this.messageService.add({
-          severity: 'error',
-          summary: `${this.i18n.t('shared.toast.something-went-wrong')}`,
-        });
-      },
-    });
+    const approveServiceRequestSub = this.serviceService
+      .approveOrCompleteServiceRequest(id, request)
+      .subscribe({
+        next: (value) => {
+          console.log('reservation approved');
+          this.getServices();
+          this.messageService.add({
+            severity: 'success',
+            summary: `${this.i18n.t('shared.toast.service-request-approved')}`,
+          });
+        },
+        error: (err) => {
+          console.log('Error approving request: ' + err);
+          this.messageService.add({
+            severity: 'error',
+            summary: `${this.i18n.t('shared.toast.something-went-wrong')}`,
+          });
+        },
+      });
+    this.subscriptions.push(approveServiceRequestSub);
   }
 
-  CompleteServiceRequest(id: string, request: ServiceRequest) {
+  completeServiceRequest(id: string, request: ServiceRequest) {
     request.requestStatus = 'Completed';
-    this.serviceService.ApproveServicesRequest(id, request).subscribe({
-      next: (value) => {
-        console.log('reservation completed');
-        this.getServices();
-        this.messageService.add({
-          severity: 'success',
-          summary: `${this.i18n.t('shared.toast.service-request-completed')}`,
-        });
-      },
-      error: (err) => {
-        console.log('Error completing request: ' + err);
-        this.messageService.add({
-          severity: 'error',
-          summary: `${this.i18n.t('shared.toast.something-went-wrong')}`,
-        });
-      },
-    });
+    const completeServiceRequestSub = this.serviceService
+      .approveOrCompleteServiceRequest(id, request)
+      .subscribe({
+        next: (value) => {
+          console.log('reservation completed');
+          this.getServices();
+          this.messageService.add({
+            severity: 'success',
+            summary: `${this.i18n.t('shared.toast.service-request-completed')}`,
+          });
+        },
+        error: (err) => {
+          console.log('Error completing request: ' + err);
+          this.messageService.add({
+            severity: 'error',
+            summary: `${this.i18n.t('shared.toast.something-went-wrong')}`,
+          });
+        },
+      });
+    this.subscriptions.push(completeServiceRequestSub);
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach((sub) => sub.unsubscribe());
   }
 }

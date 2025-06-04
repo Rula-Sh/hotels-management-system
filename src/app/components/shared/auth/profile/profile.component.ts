@@ -19,6 +19,7 @@ import { ToastModule } from 'primeng/toast';
 import { SearchCountryField, CountryISO } from 'ngx-intl-tel-input';
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { UploadService } from '../../../../services/upload.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-profile',
@@ -47,6 +48,8 @@ export class ProfileComponent {
   SearchCountryField = SearchCountryField;
   CountryISO = CountryISO;
   preferredCountries: CountryISO[] = [CountryISO.Jordan];
+
+  subscriptions: Subscription[] = [];
 
   get lang(): 'en' | 'ar' {
     return this.i18nService.getLanguage();
@@ -154,14 +157,14 @@ export class ProfileComponent {
 
     this.selectedFile = file;
     if (this.selectedFile) {
-      this.uploadService
+      const uploadImageSub = this.uploadService
         .uploadImage(this.selectedFile, this.uploadPreset)
         .subscribe({
           next: (res: any) => {
             this.imageUrl = res.url;
             this.profileForm.get('imageUrl')?.setValue(this.imageUrl);
 
-            this.UpdateProfile();
+            this.updateProfile();
           },
           error: (err) => {
             console.error('Error uploading image:', err);
@@ -171,56 +174,65 @@ export class ProfileComponent {
             });
           },
         });
+      this.subscriptions.push(uploadImageSub);
     }
   }
 
-  UpdateProfile() {
+  updateProfile() {
     if (!this.user) return;
 
-    this.userService.getUserById(this.user.id).subscribe((fullUser) => {
-      let password = fullUser.password;
+    const getUserByIdSub = this.userService
+      .getUserById(this.user.id)
+      .subscribe((fullUser) => {
+        let password = fullUser.password;
 
-      if (
-        this.profileForm.value.newPassword ===
-          this.profileForm.value.confirmPassword &&
-        this.profileForm.value.newPassword.trim() !== ''
-      ) {
-        password = btoa(this.profileForm.value.newPassword);
-      }
+        if (
+          this.profileForm.value.newPassword ===
+            this.profileForm.value.confirmPassword &&
+          this.profileForm.value.newPassword.trim() !== ''
+        ) {
+          password = btoa(this.profileForm.value.newPassword);
+        }
 
-      const updatedUser: User = {
-        id: this.user!.id,
-        name: this.profileForm.value.name,
-        email: this.profileForm.value.email,
-        phone: this.profileForm.value.phone.internationalNumber,
-        password: password,
-        pfp: this.imageUrl ?? '',
-        role: this.user!.role,
-      };
+        const updatedUser: User = {
+          id: this.user!.id,
+          name: this.profileForm.value.name,
+          email: this.profileForm.value.email,
+          phone: this.profileForm.value.phone.internationalNumber,
+          password: password,
+          pfp: this.imageUrl ?? '',
+          role: this.user!.role,
+        };
 
-      this.userService.UpdateUserDetails(updatedUser).subscribe({
-        next: () => {
-          console.log('Form Submitted');
-          this.authService.login(updatedUser);
-          this.messageService.add({
-            severity: 'success',
-            summary: `${this.i18n.t('shared.toast.profile-added-successfuly')}`,
+        const updateUserDetailsSub = this.userService
+          .updateUserDetails(updatedUser)
+          .subscribe({
+            next: () => {
+              console.log('Form Submitted');
+              this.authService.login(updatedUser);
+              this.messageService.add({
+                severity: 'success',
+                summary: `${this.i18n.t(
+                  'shared.toast.profile-udpated-successfuly'
+                )}`,
+              });
+
+              setTimeout(() => {
+                this.router.navigate(['/profile/' + this.user?.id]);
+                this.profileForm.reset();
+              }, 1500);
+            },
+            error: (err) => {
+              console.log('Error on Update', err);
+              this.messageService.add({
+                severity: 'error',
+                summary: `${this.i18n.t('shared.toast.something-went-wrong')}`,
+              });
+            },
           });
-
-          setTimeout(() => {
-            this.router.navigate(['/profile/' + this.user?.id]);
-            this.profileForm.reset();
-          }, 1500);
-        },
-        error: (err) => {
-          console.log('Error on Update', err);
-          this.messageService.add({
-            severity: 'error',
-            summary: `${this.i18n.t('shared.toast.something-went-wrong')}`,
-          });
-        },
+        this.subscriptions.push(updateUserDetailsSub);
       });
-    });
+    this.subscriptions.push(getUserByIdSub);
   }
 
   edit() {
@@ -229,5 +241,9 @@ export class ProfileComponent {
 
   cancel() {
     this.isEditing = false;
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach((sub) => sub.unsubscribe());
   }
 }

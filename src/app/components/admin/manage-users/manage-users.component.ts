@@ -6,9 +6,9 @@ import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { ConfirmationService, MessageService, PrimeIcons } from 'primeng/api';
 import { User } from '../../../models/User.model';
-import { Router, RouterLink } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { UserService } from '../../../services/user.service';
-import { I18nService } from '../../../services/i18n.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-manage-users',
@@ -35,23 +35,19 @@ export class ManageUsersComponent {
       role: 'customer',
     },
   ];
-
-  constructor(
-    private userService: UserService,
-    private router: Router,
-    private messageService: MessageService,
-    private confirmationService: ConfirmationService,
-    private i18n: I18nService
-  ) {}
-
   role: string | null = null;
+
+  subscriptions: Subscription[] = [];
+
+  constructor(private userService: UserService) {}
+
   ngOnInit() {
     this.getUsers();
     this.role = localStorage.getItem('user_role');
   }
 
   getUsers() {
-    this.userService.getAllUsers().subscribe({
+    const getAllUsersSub = this.userService.getAllUsers().subscribe({
       next: (value) => {
         this.users = value;
         console.log('users Loaded Successfuly');
@@ -60,34 +56,10 @@ export class ManageUsersComponent {
         console.log(`Failed to Load users: ${err}`);
       },
     });
+    this.subscriptions.push(getAllUsersSub);
   }
 
-  FireEmployee(id: string, user: User) {
-    this.confirmationService.confirm({
-      message: `${this.i18n.t(
-        'shared.confirm-dialog.confirm-fire-employee-question'
-      )} ${user.name}?`,
-      header: `${this.i18n.t('shared.confirm-dialog.fire-employee')}`,
-      accept: () => {
-        this.userService.UpdateUserDetails(user).subscribe({
-          next: (value) => {
-            console.log('Employee Fired');
-            this.getUsers();
-            this.messageService.add({
-              severity: 'warn',
-              summary: `${this.i18n.t('shared.toast.employee-fired')}`,
-            });
-          },
-          error: (err) => {
-            console.log('Error firing  employee: ' + err);
-            this.messageService.add({
-              severity: 'error',
-              summary: `${this.i18n.t('shared.toast.something-went-wrong')}`,
-            });
-          },
-        });
-      },
-      reject: () => {},
-    });
+  ngOnDestroy() {
+    this.subscriptions.forEach((sub) => sub.unsubscribe());
   }
 }

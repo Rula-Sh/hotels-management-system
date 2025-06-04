@@ -9,6 +9,7 @@ import { I18nPipe } from '../../../pipes/i18n.pipe';
 import { Room } from '../../../models/Room.model';
 import { NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
 import { ServiceRequest } from '../../../models/ServiceRequest.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-available-services',
@@ -26,6 +27,8 @@ export class AvailableServicesComponent implements OnInit {
   requestedServiceIds: string[] = [];
   requestedServicesStatus: { [title: string]: string } = {};
 
+  subscriptions: Subscription[] = [];
+
   private serviceService = inject(ServiceService);
   private route = inject(ActivatedRoute);
   private authService = inject(AuthService);
@@ -33,11 +36,13 @@ export class AvailableServicesComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadUserRequestedServices();
-    this.route.queryParams.subscribe((params) => {
-      const hotelName = params['hotel'];
-      console.log('📦 اسم الفندق من الرابط:', hotelName);
-      this.loadAvailableServices(hotelName);
-    });
+    const loadAvailableServicesByHotelNameSub =
+      this.route.queryParams.subscribe((params) => {
+        const hotelName = params['hotel'];
+        console.log('📦 اسم الفندق من الرابط:', hotelName);
+        this.loadAvailableServices(hotelName);
+      });
+    this.subscriptions.push(loadAvailableServicesByHotelNameSub);
 
     this.loadUserRooms();
   }
@@ -46,21 +51,24 @@ export class AvailableServicesComponent implements OnInit {
     const userId = localStorage.getItem('id');
     if (!userId) return;
 
-    this.serviceService.getServicesByCustomerId(userId).subscribe({
-      next: (requests) => {
-        // بناء خريطة عنوان الخدمة -> حالة الطلب
-        this.requestedServicesStatus = {};
-        requests.forEach((req) => {
-          this.requestedServicesStatus[req.title] = req.requestStatus;
-        });
+    const getServicesByCustomerIdSub = this.serviceService
+      .getServicesByCustomerId(userId)
+      .subscribe({
+        next: (requests) => {
+          // بناء خريطة عنوان الخدمة -> حالة الطلب
+          this.requestedServicesStatus = {};
+          requests.forEach((req) => {
+            this.requestedServicesStatus[req.title] = req.requestStatus;
+          });
 
-        // أيضاً لتسهيل التحقق بـ requestedServiceIds إذا حابب تستخدمه:
-        this.requestedServiceIds = requests.map((r) => r.title);
-      },
-      error: () => {
-        console.error('Failed to load requested services.');
-      },
-    });
+          // أيضاً لتسهيل التحقق بـ requestedServiceIds إذا حابب تستخدمه:
+          this.requestedServiceIds = requests.map((r) => r.title);
+        },
+        error: () => {
+          console.error('Failed to load requested services.');
+        },
+      });
+    this.subscriptions.push(getServicesByCustomerIdSub);
   }
 
   saveRequestedServices() {
@@ -71,7 +79,7 @@ export class AvailableServicesComponent implements OnInit {
   }
 
   loadAvailableServices(hotelName?: string): void {
-    this.serviceService.getAllServices().subscribe({
+    const getAllServicesSub = this.serviceService.getAllServices().subscribe({
       next: (services: Service[]) => {
         this.services = services;
         // طباعة أسماء الفنادق الموجودة في الخدمات
@@ -88,19 +96,23 @@ export class AvailableServicesComponent implements OnInit {
         console.error('Error loading services:', error);
       },
     });
+    this.subscriptions.push(getAllServicesSub);
   }
 
   loadUserRooms() {
     const user = this.authService.getCurrentUser();
     if (user) {
-      this.reservationService.getReservationsByCustomerId(user.id).subscribe({
-        next: (reservations) => {
-          this.userRooms = reservations.map((r) => r.room);
-        },
-        error: (error) => {
-          console.error('Error loading user rooms:', error);
-        },
-      });
+      const getReservationsByCustomerIdSub = this.reservationService
+        .getReservationsByCustomerId(user.id)
+        .subscribe({
+          next: (reservations) => {
+            this.userRooms = reservations.map((r) => r.room);
+          },
+          error: (error) => {
+            console.error('Error loading user rooms:', error);
+          },
+        });
+      this.subscriptions.push(getReservationsByCustomerIdSub);
     }
   }
 
@@ -130,20 +142,27 @@ export class AvailableServicesComponent implements OnInit {
       employee: undefined as any,
     };
 
-    this.serviceService.createServiceRequest(requestPayload).subscribe({
-      next: () => {
-        this.showToastMessage('Service request submitted successfully!');
-        this.loadUserRequestedServices(); // 🔄 إعادة تحميل الطلبات للمستخدم الحالي
-      },
-      error: () => {
-        this.showToastMessage('Failed to submit service request.');
-      },
-    });
+    const createServiceRequestSub = this.serviceService
+      .createServiceRequest(requestPayload)
+      .subscribe({
+        next: () => {
+          this.showToastMessage('Service request submitted successfully!');
+          this.loadUserRequestedServices(); // 🔄 إعادة تحميل الطلبات للمستخدم الحالي
+        },
+        error: () => {
+          this.showToastMessage('Failed to submit service request.');
+        },
+      });
+    this.subscriptions.push(createServiceRequestSub);
   }
 
   showToastMessage(message: string) {
     this.toastMessage = message;
     this.showToast = true;
     setTimeout(() => (this.showToast = false), 3000);
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach((sub) => sub.unsubscribe());
   }
 }

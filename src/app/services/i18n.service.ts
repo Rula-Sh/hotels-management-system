@@ -25,6 +25,7 @@ export class I18nService {
       return false;
     }
   }
+
   t(key: string): string {
     if (!this.translations) return key;
     const keys = key.split('.');
@@ -38,6 +39,7 @@ export class I18nService {
     }
     return typeof value === 'string' ? value : key;
   }
+
   getLanguage(): 'en' | 'ar' {
     return this.currentLanguage;
   }

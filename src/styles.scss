@@ -52,3 +52,31 @@
     transition: all 0.5s ease;
   }
 }
+
+.btn-danger {
+  margin-top: 1rem;
+  padding: 0.5rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  background: linear-gradient(
+    to right,
+    $color-light-red,
+    $color-red,
+    $color-red,
+    $color-light-red
+  );
+  color: white;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  text-decoration: none;
+
+  background-color: $color-red !important;
+  border-color: transparent !important;
+  &:hover {
+    border-color: transparent !important;
+    background: linear-gradient(to right, $color-red);
+    transform: scale(1.05);
+  }
+}

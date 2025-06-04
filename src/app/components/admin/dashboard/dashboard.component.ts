@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Chart, registerables } from 'chart.js';
 import { DashboardService } from '../../../services/dashboard.service';
 import { I18nPipe } from '../../../pipes/i18n.pipe';
+import { Subscription } from 'rxjs';
 
 Chart.register(...registerables);
 @Component({
@@ -25,6 +26,8 @@ export class DashboardComponent {
   getTopSellingService = '';
   mostBookedRoomType = '';
 
+  subscriptions: Subscription[] = [];
+
   constructor(private dashboardService: DashboardService) {}
 
   ngOnInit() {
@@ -33,57 +36,88 @@ export class DashboardComponent {
 
   getStatistics() {
     // System Overview
-    this.dashboardService.getTotalEmployees().subscribe((emps) => {
-      this.totalEmployees = emps;
-    });
+    const getTotalEmployeesSub = this.dashboardService
+      .getTotalEmployees()
+      .subscribe((emps) => {
+        this.totalEmployees = emps;
+      });
+    this.subscriptions.push(getTotalEmployeesSub);
 
-    this.dashboardService.getTotalCustomers().subscribe((custs) => {
-      this.totalCustomers = custs;
-    });
+    const getTotalCustomersSub = this.dashboardService
+      .getTotalCustomers()
+      .subscribe((custs) => {
+        this.totalCustomers = custs;
+      });
+    this.subscriptions.push(getTotalCustomersSub);
 
-    this.dashboardService.getNumberOfRooms().subscribe((rooms) => {
-      this.totalRooms = rooms.length;
-    });
+    const getNumberOfRoomsSub = this.dashboardService
+      .getNumberOfRooms()
+      .subscribe((rooms) => {
+        this.totalRooms = rooms.length;
+      });
+    this.subscriptions.push(getNumberOfRoomsSub);
 
-    this.dashboardService
+    const getNumberOfReservationsSub = this.dashboardService
       .getNumberOfReservations()
       .subscribe((reservations) => {
         this.totalReservations = reservations.length;
         this.getReservationsCharts(reservations); // Reservations Charts
       });
+    this.subscriptions.push(getNumberOfReservationsSub);
 
-    this.dashboardService.getNumberOfServices().subscribe((services) => {
-      this.totalServices = services.length;
-      this.avgServicesPerEmployee = this.totalServices / this.totalEmployees; // Performance Metrics - Avg Services Per Employee
-    });
+    const getNumberOfServicesSub = this.dashboardService
+      .getNumberOfServices()
+      .subscribe((services) => {
+        this.totalServices = services.length;
+        this.avgServicesPerEmployee = this.totalServices / this.totalEmployees; // Performance Metrics - Avg Services Per Employee
+      });
+    this.subscriptions.push(getNumberOfServicesSub);
 
-    this.dashboardService.getNumberOfServicesRequests().subscribe((request) => {
-      this.totalServicesRequests = request.length;
-      this.getServicesRequestsCharts(request); // Services Requests Charts
-    });
+    const getNumberOfServicesRequestsSub = this.dashboardService
+      .getNumberOfServicesRequests()
+      .subscribe((request) => {
+        this.totalServicesRequests = request.length;
+        this.getServicesRequestsCharts(request); // Services Requests Charts
+      });
+    this.subscriptions.push(getNumberOfServicesRequestsSub);
 
     // Performance Metrics
 
-    this.dashboardService.getAvgReservationsPerDay().subscribe((result) => {
-      this.avgReservationsPerDay = result;
-    });
+    const getAvgReservationsPerDaySub = this.dashboardService
+      .getAvgReservationsPerDay()
+      .subscribe((result) => {
+        this.avgReservationsPerDay = result;
+      });
+    this.subscriptions.push(getAvgReservationsPerDaySub);
 
-    this.dashboardService.getAvgServicesPerDay().subscribe((result) => {
-      this.avgRequestsPerDay = parseFloat(result.toFixed(2));
-    });
+    const getAvgServicesPerDaySub = this.dashboardService
+      .getAvgServicesPerDay()
+      .subscribe((result) => {
+        this.avgRequestsPerDay = parseFloat(result.toFixed(2));
+      });
+    this.subscriptions.push(getAvgServicesPerDaySub);
 
     // Highlights
-    this.dashboardService.getEmployeeOfTheMonth().subscribe((result) => {
-      this.employeeOfTheMonth = result ?? 'In Progress';
-    });
+    const getEmployeeOfTheMonthSub = this.dashboardService
+      .getEmployeeOfTheMonth()
+      .subscribe((result) => {
+        this.employeeOfTheMonth = result ?? 'In Progress';
+      });
+    this.subscriptions.push(getEmployeeOfTheMonthSub);
 
-    this.dashboardService.getTopSellingService().subscribe((result) => {
-      this.getTopSellingService = result ?? 'In Progress';
-    });
+    const getTopSellingServiceSub = this.dashboardService
+      .getTopSellingService()
+      .subscribe((result) => {
+        this.getTopSellingService = result ?? 'In Progress';
+      });
+    this.subscriptions.push(getTopSellingServiceSub);
 
-    this.dashboardService.getMostBookedRoomType().subscribe((result) => {
-      this.mostBookedRoomType = result ?? 'In Progress';
-    });
+    const getMostBookedRoomTypeSub = this.dashboardService
+      .getMostBookedRoomType()
+      .subscribe((result) => {
+        this.mostBookedRoomType = result ?? 'In Progress';
+      });
+    this.subscriptions.push(getMostBookedRoomTypeSub);
   }
 
   getReservationsCharts(reservations: any[]) {
@@ -404,5 +438,9 @@ export class DashboardComponent {
         },
       },
     });
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach((sub) => sub.unsubscribe());
   }
 }
