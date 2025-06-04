@@ -209,7 +209,7 @@ export class RoomFormComponent {
     };
 
     const action = this.isAddingARoom
-      ? this.roomService.CreateRoom(roomData)
+      ? this.roomService.createRoom(roomData)
       : this.roomService.updateRoom(this.room.id, roomData);
 
     const submitRoomFormSub = action.subscribe({

@@ -6,9 +6,8 @@ import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { ConfirmationService, MessageService, PrimeIcons } from 'primeng/api';
 import { User } from '../../../models/User.model';
-import { Router, RouterLink } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { UserService } from '../../../services/user.service';
-import { I18nService } from '../../../services/i18n.service';
 import { Subscription } from 'rxjs';
 
 @Component({

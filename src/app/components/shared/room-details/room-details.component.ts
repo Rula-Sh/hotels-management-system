@@ -61,6 +61,7 @@ export class RoomDetailsComponent {
     private messageService: MessageService,
     private i18n: I18nService
   ) {}
+
   role: string | null = null;
   ngOnInit() {
     this.userId = localStorage.getItem('id');
@@ -127,7 +128,7 @@ export class RoomDetailsComponent {
       )}`,
       header: `${this.i18n.t('shared.confirm-dialog.remove-room')}`,
       accept: () => {
-        const RemoveRoomSub = this.roomService.RemoveRoom(id!).subscribe({
+        const removeRoomSub = this.roomService.removeRoom(id!).subscribe({
           next: (value) => {
             console.log('Room deleted');
             this.router.navigate(['/rooms']);
@@ -141,7 +142,7 @@ export class RoomDetailsComponent {
           summary: `${this.i18n.t('shared.toast.room-removed')}`,
         });
 
-        this.subscriptions.push(RemoveRoomSub);
+        this.subscriptions.push(removeRoomSub);
       },
       reject: () => {},
     });

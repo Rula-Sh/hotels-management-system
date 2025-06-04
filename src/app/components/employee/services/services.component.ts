@@ -5,7 +5,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { ConfirmationService, MessageService, PrimeIcons } from 'primeng/api';
-import { Router, RouterLink } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { User } from '../../../models/User.model';
 import { NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
@@ -82,8 +82,8 @@ export class ServicesComponent {
       )}`,
       header: `${this.i18n.t('shared.confirm-dialog.remove-service')}`,
       accept: () => {
-        const DeleteServiceSub = this.serviceService
-          .DeleteService(id)
+        const deleteServiceSub = this.serviceService
+          .deleteService(id)
           .subscribe({
             next: (value) => {
               console.log('Service deleted');
@@ -97,7 +97,7 @@ export class ServicesComponent {
           severity: 'error',
           summary: `${this.i18n.t('shared.toast.something-went-wrong')}`,
         });
-        this.subscriptions.push(DeleteServiceSub);
+        this.subscriptions.push(deleteServiceSub);
       },
       reject: () => {},
     });

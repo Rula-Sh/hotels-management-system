@@ -46,7 +46,9 @@ export class SignUpComponent {
     private router: Router,
     private authService: AuthService,
     private userService: UserService
-  ) {
+  ) {}
+
+  ngOnInit() {
     this.signUpForm = this.fb.group(
       {
         name: [
@@ -114,7 +116,7 @@ export class SignUpComponent {
         role: 'Customer',
       };
 
-      const CreateUserSub = this.userService.CreateUser(user).subscribe({
+      const createUserSub = this.userService.createUser(user).subscribe({
         next: (value) => {
           this.authService.login(value);
           localStorage.setItem('user_id', value.id);
@@ -134,7 +136,7 @@ export class SignUpComponent {
           console.log('Error on Create', err);
         },
       });
-      this.subscriptions.push(CreateUserSub);
+      this.subscriptions.push(createUserSub);
     });
     this.subscriptions.push(getAllUsersSub);
   }

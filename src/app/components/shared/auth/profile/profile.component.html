@@ -103,7 +103,7 @@
           (click)="cancel()"
         ></i>
       </div>
-      <form [formGroup]="profileForm" (ngSubmit)="UpdateProfile()">
+      <form [formGroup]="profileForm" (ngSubmit)="updateProfile()">
         <div class="input-container">
           <label for="name"> {{ "shared.form.name" | translate }}:</label>
           <div class="input-error">

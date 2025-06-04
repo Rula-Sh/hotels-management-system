@@ -39,7 +39,6 @@ export class RequestsComponent {
   constructor(
     private serviceService: ServiceService,
     private messageService: MessageService,
-    private confirmationService: ConfirmationService,
     private i18n: I18nService
   ) {}
 
@@ -87,10 +86,10 @@ export class RequestsComponent {
     this.subscriptions.push(getServicesRequestsByEmployeeIdSub);
   }
 
-  ApproveServiceRequest(id: string, request: ServiceRequest) {
+  approveServiceRequest(id: string, request: ServiceRequest) {
     request.requestStatus = 'In Progress';
-    const ApproveServiceRequestSub = this.serviceService
-      .ApproveServicesRequest(id, request)
+    const approveServiceRequestSub = this.serviceService
+      .approveOrCompleteServiceRequest(id, request)
       .subscribe({
         next: (value) => {
           console.log('reservation approved');
@@ -108,13 +107,13 @@ export class RequestsComponent {
           });
         },
       });
-    this.subscriptions.push(ApproveServiceRequestSub);
+    this.subscriptions.push(approveServiceRequestSub);
   }
 
-  CompleteServiceRequest(id: string, request: ServiceRequest) {
+  completeServiceRequest(id: string, request: ServiceRequest) {
     request.requestStatus = 'Completed';
-    const CompleteServiceRequestSub = this.serviceService
-      .ApproveServicesRequest(id, request)
+    const completeServiceRequestSub = this.serviceService
+      .approveOrCompleteServiceRequest(id, request)
       .subscribe({
         next: (value) => {
           console.log('reservation completed');
@@ -132,7 +131,7 @@ export class RequestsComponent {
           });
         },
       });
-    this.subscriptions.push(CompleteServiceRequestSub);
+    this.subscriptions.push(completeServiceRequestSub);
   }
 
   ngOnDestroy() {

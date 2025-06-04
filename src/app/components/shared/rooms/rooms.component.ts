@@ -7,7 +7,7 @@ import { ButtonModule } from 'primeng/button';
 import { ConfirmationService, MessageService, PrimeIcons } from 'primeng/api';
 import { Room } from '../../../models/Room.model';
 import { RoomService } from '../../../services/room.service';
-import { Router, RouterLink } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { ReservationService } from '../../../services/reservation.service';
 import { Reservation } from '../../../models/Reservation.model';
@@ -84,7 +84,7 @@ export class RoomsComponent {
       )}`,
       header: `${this.i18n.t('shared.confirm-dialog.remove-room')}`,
       accept: () => {
-        const RemoveRoomSub = this.roomService.RemoveRoom(id).subscribe({
+        const removeRoomSub = this.roomService.removeRoom(id).subscribe({
           next: (value) => {
             console.log('Room deleted');
             this.getRooms();
@@ -97,11 +97,12 @@ export class RoomsComponent {
           severity: 'error',
           summary: `${this.i18n.t('shared.toast.room-removed')}`,
         });
-        this.subscriptions.push(RemoveRoomSub);
+        this.subscriptions.push(removeRoomSub);
       },
       reject: () => {},
     });
   }
+
   bookRoom(room: Room) {
     this.showToast = false;
     const user = this.authService.getCurrentUser();

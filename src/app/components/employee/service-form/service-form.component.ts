@@ -143,6 +143,7 @@ export class ServiceFormComponent {
 
     this.serviceForm.patchValue(serviceData);
   }
+
   onFileSelected(event: any) {
     const file = event.target.files[0];
     const control = this.serviceForm.get('imageUrl');
@@ -185,6 +186,7 @@ export class ServiceFormComponent {
     this.serviceForm.get('imageUrl')?.reset();
     this.selectedFile = null;
   }
+
   submit() {
     if (this.serviceForm.invalid) {
       this.serviceForm.markAllAsTouched();
@@ -238,8 +240,8 @@ export class ServiceFormComponent {
         employee: this.user,
       };
 
-      const CreateServiceSub = this.serviceService
-        .CreateService(newService)
+      const createServiceSub = this.serviceService
+        .createService(newService)
         .subscribe({
           next: () => {
             console.log('Service added successfully');
@@ -262,7 +264,7 @@ export class ServiceFormComponent {
             });
           },
         });
-      this.subscriptions.push(CreateServiceSub);
+      this.subscriptions.push(createServiceSub);
     } else {
       const updatedService: Service = {
         id: this.service.id,
@@ -275,8 +277,8 @@ export class ServiceFormComponent {
         employee: this.service.employee,
       };
 
-      const UpdateServiceSub = this.serviceService
-        .UpdateService(updatedService)
+      const updateServiceSub = this.serviceService
+        .updateService(updatedService)
         .subscribe({
           next: () => {
             console.log('Service added successfully');
@@ -299,7 +301,7 @@ export class ServiceFormComponent {
             });
           },
         });
-      this.subscriptions.push(UpdateServiceSub);
+      this.subscriptions.push(updateServiceSub);
     }
   }
 

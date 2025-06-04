@@ -150,7 +150,7 @@ export class AddEmployeeComponent {
 
     console.log(newEmployee);
 
-    const addEmployeeSub = this.userService.AddEmployee(newEmployee).subscribe({
+    const addEmployeeSub = this.userService.createUser(newEmployee).subscribe({
       next: () => {
         console.log('Employee added successfully');
         this.router.navigate(['/']);

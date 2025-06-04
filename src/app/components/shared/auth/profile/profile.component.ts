@@ -164,7 +164,7 @@ export class ProfileComponent {
             this.imageUrl = res.url;
             this.profileForm.get('imageUrl')?.setValue(this.imageUrl);
 
-            this.UpdateProfile();
+            this.updateProfile();
           },
           error: (err) => {
             console.error('Error uploading image:', err);
@@ -178,7 +178,7 @@ export class ProfileComponent {
     }
   }
 
-  UpdateProfile() {
+  updateProfile() {
     if (!this.user) return;
 
     const getUserByIdSub = this.userService
@@ -204,8 +204,8 @@ export class ProfileComponent {
           role: this.user!.role,
         };
 
-        const UpdateUserDetailsSub = this.userService
-          .UpdateUserDetails(updatedUser)
+        const updateUserDetailsSub = this.userService
+          .updateUserDetails(updatedUser)
           .subscribe({
             next: () => {
               console.log('Form Submitted');
@@ -230,7 +230,7 @@ export class ProfileComponent {
               });
             },
           });
-        this.subscriptions.push(UpdateUserDetailsSub);
+        this.subscriptions.push(updateUserDetailsSub);
       });
     this.subscriptions.push(getUserByIdSub);
   }

@@ -42,7 +42,6 @@ export class UserDetailsComponent {
   }
 
   constructor(
-    private router: Router,
     private activatedRoute: ActivatedRoute,
     private userService: UserService,
     private serviceService: ServiceService,
@@ -107,6 +106,7 @@ export class UserDetailsComponent {
       this.subscriptions.push(getReservationsByCustomerIdSub);
     }
   }
+
   fireEmployee(user: User) {
     this.confirmationService.confirm({
       message: `${this.i18n.t(
@@ -142,13 +142,13 @@ export class UserDetailsComponent {
                 .subscribe({
                   next: (services) => {
                     const deleteServicesObservables = services.map((s) =>
-                      this.serviceService.DeleteService(s.id)
+                      this.serviceService.deleteService(s.id)
                     );
 
                     const updateRole = () => {
                       user.role = 'Customer';
-                      const UpdateUserDetailsSub = this.userService
-                        .UpdateUserDetails(user)
+                      const updateUserDetailsSub = this.userService
+                        .updateUserDetails(user)
                         .subscribe({
                           next: () => {
                             this.messageService.add({
@@ -168,7 +168,7 @@ export class UserDetailsComponent {
                             });
                           },
                         });
-                      this.subscriptions.push(UpdateUserDetailsSub);
+                      this.subscriptions.push(updateUserDetailsSub);
                     };
 
                     if (deleteServicesObservables.length === 0) {

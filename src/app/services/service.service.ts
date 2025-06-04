@@ -26,15 +26,15 @@ export class ServiceService {
       `${this.servicesUrl}/?employeeId=${employeeId}`
     );
   }
-  CreateService(service: Omit<Service, 'id'>): Observable<Service> {
+  createService(service: Omit<Service, 'id'>): Observable<Service> {
     return this.api.post<Service>(this.servicesUrl, service);
   }
 
-  UpdateService(service: Service): Observable<Service> {
+  updateService(service: Service): Observable<Service> {
     return this.api.put<Service>(`${this.servicesUrl}/${service.id}`, service);
   }
 
-  DeleteService(id: string): Observable<void> {
+  deleteService(id: string): Observable<void> {
     return this.api.delete<void>(`${this.servicesUrl}/${id}`);
   }
 
@@ -46,7 +46,7 @@ export class ServiceService {
     );
   }
 
-  ApproveServicesRequest(
+  approveOrCompleteServiceRequest(
     id: string,
     request: ServiceRequest
   ): Observable<ServiceRequest> {
@@ -56,20 +56,12 @@ export class ServiceService {
     );
   }
 
-  RejectServicesRequest(
-    id: string,
-    request: ServiceRequest
-  ): Observable<ServiceRequest> {
-    return this.api.put<ServiceRequest>(
-      `${this.servicesRequestsUrl}/${id}`,
-      request
-    );
-  }
   createServiceRequest(
     request: Omit<ServiceRequest, 'id'>
   ): Observable<ServiceRequest> {
     return this.api.post<ServiceRequest>(this.servicesRequestsUrl, request);
   }
+
   // جلب كل طلبات الخدمة
   getAllRequests(): Observable<ServiceRequest[]> {
     return this.api.get<ServiceRequest[]>(this.servicesRequestsUrl);
@@ -97,11 +89,13 @@ export class ServiceService {
       request
     );
   }
+
   getServicesByRoomId(roomId: string): Observable<ServiceRequest[]> {
     return this.api.get<ServiceRequest[]>(
       `${this.servicesRequestsUrl}/?roomId=${roomId}`
     );
   }
+
   getServicesByCustomerId(customerId: string): Observable<ServiceRequest[]> {
     return this.api.get<ServiceRequest[]>(
       `${this.servicesRequestsUrl}/?customerId=${customerId}`
