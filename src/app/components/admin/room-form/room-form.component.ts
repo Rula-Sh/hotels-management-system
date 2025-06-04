@@ -193,7 +193,7 @@ export class RoomFormComponent {
 
     if (this.images.length === 0) {
       this.messageService.add({
-        severity: 'warn',
+        severity: 'error',
         summary: `${this.i18n.t(
           'shared.toast.at-least-one-image-is-required'
         )}`,

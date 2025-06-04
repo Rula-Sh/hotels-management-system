@@ -15,6 +15,7 @@ import { User } from '../../../models/User.model';
 import { NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
 import { I18nService } from '../../../services/i18n.service';
 import { Subscription } from 'rxjs';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-rooms',
@@ -26,6 +27,7 @@ import { Subscription } from 'rxjs';
     ButtonModule,
     NgbToastModule,
     RouterLink,
+    FormsModule,
   ],
   providers: [MessageService, ConfirmationService, PrimeIcons],
   templateUrl: './rooms.component.html',
@@ -39,7 +41,16 @@ export class RoomsComponent {
   rooms: Room[] = [];
   user: User | null = null;
 
+  searchInput: string = '';
+  sortBy: 'title' | 'type' | 'hotel' | 'price' | '' = '';
+  filteredRooms: Room[] = [];
+  sortDirection: 'Ascending' | 'Descending' = 'Ascending';
+
   subscriptions: Subscription[] = [];
+
+  get lang(): 'en' | 'ar' {
+    return this.i18nService.getLanguage();
+  }
 
   constructor(
     private roomService: RoomService,
@@ -47,7 +58,7 @@ export class RoomsComponent {
     private confirmationService: ConfirmationService,
     private reservationService: ReservationService,
     private authService: AuthService,
-    private i18n: I18nService
+    private i18nService: I18nService
   ) {}
 
   role: string | null = null;
@@ -69,6 +80,7 @@ export class RoomsComponent {
       next: (value) => {
         this.rooms = value;
         console.log('Rooms Loaded Successfuly');
+        this.applyFilters();
       },
       error: (err) => {
         console.log(`Failed to Load Rooms: ${err}`);
@@ -77,12 +89,49 @@ export class RoomsComponent {
     this.subscriptions.push(getAllRoomsSub);
   }
 
+  applyFilters() {
+    this.filteredRooms = this.rooms
+      .filter((room) =>
+        room.title.toLowerCase().includes(this.searchInput.toLowerCase())
+      )
+      .sort((a, b) => {
+        let result = 0;
+
+        if (this.sortBy === 'title') {
+          result = a.title.localeCompare(b.title);
+        } else if (this.sortBy === 'type') {
+          result = a.roomType.localeCompare(b.roomType);
+        } else if (this.sortBy === 'hotel') {
+          result = a.hotel.localeCompare(b.hotel);
+        } else if (this.sortBy === 'price') {
+          result = a.price - b.price;
+        }
+
+        return this.sortDirection === 'Ascending' ? result : -result;
+      });
+  }
+
+  onSearchChange() {
+    this.applyFilters();
+  }
+
+  onSortChange(value: string) {
+    this.sortBy = value as 'title' | 'type' | 'hotel' | 'price';
+    this.applyFilters();
+  }
+
+  toggleSortDirection() {
+    this.sortDirection =
+      this.sortDirection === 'Ascending' ? 'Descending' : 'Ascending';
+    this.applyFilters();
+  }
+
   deleteRoom(id: string) {
     this.confirmationService.confirm({
-      message: `${this.i18n.t(
+      message: `${this.i18nService.t(
         'shared.confirm-dialog.confirm-remove-room-question'
       )}`,
-      header: `${this.i18n.t('shared.confirm-dialog.remove-room')}`,
+      header: `${this.i18nService.t('shared.confirm-dialog.remove-room')}`,
       accept: () => {
         const removeRoomSub = this.roomService.removeRoom(id).subscribe({
           next: (value) => {
@@ -95,7 +144,7 @@ export class RoomsComponent {
         });
         this.messageService.add({
           severity: 'error',
-          summary: `${this.i18n.t('shared.toast.room-removed')}`,
+          summary: `${this.i18nService.t('shared.toast.room-removed')}`,
         });
         this.subscriptions.push(removeRoomSub);
       },

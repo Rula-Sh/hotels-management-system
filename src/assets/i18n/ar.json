@@ -200,6 +200,7 @@
       "title-minlength": "يجب أن يحتوي العنوان على 4 أحرف على الأقل",
       "title-maxlength": "يجب ألا يتجاوز العنوان 30 حرفاً",
       "title-invalid": "عنوان غير صالح",
+      "type": "النوع",
       "details": "التفاصيل",
       "details-required": "التفاصيل مطلوبة",
       "details-minlength": "يجب أن تحتوي التفاصيل على 10 أحرف على الأقل",
@@ -252,6 +253,10 @@
       "confirm-remove-room-question": "هل أنت متأكد من رغبتك في إزالة هذه الغرفة؟",
       "fire-employee": "طرد الموظف ",
       "confirm-fire-employee-question": "هل أنت متأكد أنك تريد طرد"
+    },
+    "filter": {
+      "search": "بحث...",
+      "sort-by": "فرز حسب"
     },
     "key-name": "الإجراءات"
   }
