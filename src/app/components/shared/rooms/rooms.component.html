@@ -65,7 +65,9 @@
 </div>
 
 <div class="rooms-container">
-  @for(room of filteredRooms; let i= $index; track i){
+  @if(rooms.length > 0){ @if(filteredRooms.length >0){ @for(room of
+  filteredRooms; let i= $index; track i){
+
   <div class="room-card">
     @if(role == 'Admin'){
     <i
@@ -123,11 +125,19 @@
       </div>
       @if(role != 'Admin'){
       <button class="book-btn btn-primary" (click)="bookRoom(room)">
-        Book Now
+        {{ "room.book-now" | translate }}
       </button>
       }
     </div>
   </div>
+  } } @else{
+  <h3 class="text-center mt-5">
+    {{ "room.couldnt-find-a-room" | translate }}
+  </h3>
+  } }@else{
+  <h3 class="text-center mt-5">
+    {{ "room.no-available-rooms" | translate }}
+  </h3>
   }
 </div>
 

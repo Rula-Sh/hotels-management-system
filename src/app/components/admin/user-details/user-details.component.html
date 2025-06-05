@@ -81,7 +81,9 @@
     </table>
   </div>
   } @else{
-  <h3 class="text-center mt-5">Does Not Have Any Service Yet</h3>
+  <h3 class="text-center mt-5">
+    {{ "service.does-not-have-any-services" | translate }}
+  </h3>
   } } @else if(user?.role == "Customer"){ @if(reservations &&
   reservations.length>0){
   <h1 class="m-4 mb-4">{{ "reservation.reservations" | translate }}</h1>
@@ -121,7 +123,9 @@
     </table>
   </div>
   } @else{
-  <h3 class="text-center mt-5">Does Not Have Any Reservation Yet</h3>
+  <h3 class="text-center mt-5">
+    {{ "reservation.does-not-have-any-reservations" | translate }}
+  </h3>
   } }
   <button
     class="mt-5 go-back-button btn-outline-primary rounded-2"
