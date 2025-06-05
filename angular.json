@@ -20,19 +20,29 @@
             "outputPath": "dist/hotels-management-system",
             "index": "src/index.html",
             "browser": "src/main.ts",
-            "polyfills": ["zone.js", "@angular/localize/init"],
+            "polyfills": [
+              "zone.js",
+              "@angular/localize/init"
+            ],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": ["src/favicon.ico", "src/assets"],
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
             "styles": [
               "src/styles.scss",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/bootstrap-icons/font/bootstrap-icons.css",
-              "node_modules/intl-tel-input/build/css/intlTelInput.css"
+              "node_modules/intl-tel-input/build/css/intlTelInput.css",
+              "node_modules/datatables.net-bs5/css/dataTables.bootstrap5.min.css"
             ],
             "scripts": [
               "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
-              "node_modules/chart.js/dist/chart.umd.js"
+              "node_modules/chart.js/dist/chart.umd.js",
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/datatables.net/js/dataTables.min.js",
+              "node_modules/datatables.net-bs5/js/dataTables.bootstrap5.min.js"
             ]
           },
           "configurations": {
@@ -84,8 +94,13 @@
             ],
             "tsConfig": "tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
-            "assets": ["src/favicon.ico", "src/assets"],
-            "styles": ["src/styles.scss"],
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/styles.scss"
+            ],
             "scripts": []
           }
         }

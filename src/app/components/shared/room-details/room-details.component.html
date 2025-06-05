@@ -100,7 +100,7 @@
     <div class="mt-5">
       <h4 class="mb-3">
         <i class="fa-solid fa-concierge-bell me-2"></i>
-        Approved Services
+        {{ "room.approved-services" | translate }}
       </h4>
 
       <div *ngIf="approvedServices.length > 0; else noServices">
@@ -126,14 +126,14 @@
       </div>
       <ng-template #noServices>
         <p class="text-muted mt-3">
-          No approved or active services for this room.
+          {{ "room.no-approved-or-active-services-in-this-room" | translate }}
         </p>
       </ng-template>
     </div>
 
     @if(role != 'Admin'){
     <button class="book-btn btn-primary" (click)="bookRoom(room!)">
-      Book Now
+      {{ "room.book-now" | translate }}
     </button>
     }
   </div>

@@ -104,6 +104,12 @@ select:focus {
   border-radius: 5px 0 0 5px;
 }
 
+// move select arrow to the left
+.right-input select {
+  //or .form-select{}
+  background-position: calc(7% - 0.75rem) center !important;
+}
+
 .form-control:focus {
   box-shadow: none !important;
   outline: none !important;

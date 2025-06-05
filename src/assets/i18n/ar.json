@@ -100,7 +100,11 @@
     "room-details": "تفاصيل الغرفة",
     "room-image": "صورة الغرفة",
     "submit": "إضافة",
-    "no-available-rooms": "لا يوجد غرف متاحة حاليا."
+    "no-available-rooms": "لا يوجد غرف متاحة حاليا.",
+    "couldnt-find-a-room": "تعذر العثور على غرفة بهذا الاسم",
+    "approved-services": "الخدمات الموافق عليها",
+    "no-approved-or-active-services-in-this-room": "لا توجد خدمات معتمدة أو نشطة في هذه الغرفة",
+    "book-now":"احجز الآن"
   },
   "reservation": {
     "reservations": "الحجوزات",
@@ -111,8 +115,8 @@
     "reservation-details": "معلومات الحجز",
     "approve-reservation": "الموافقة على الحجز",
     "reject-reservation": "رفض الحجز",
-    "no-pending-reservations": "لا يوجد حجوزات منتظرة",
-    "no-active-reservations": "لا يوجد حجوزات نشطة"
+    "no-reservations": "لا يوجد حجوزات حاليا",
+    "does-not-have-any-reservations": "ليس لديه أي حجوزات حتى الآن"
   },
   "service": {
     "services": "الخدمات",
@@ -129,7 +133,8 @@
     "completed-requests": "طلبات المكتملة",
     "add-service": "إضافة خدمة",
     "you-dont-have-services-to-provide": "لا يوجد لديك خدمات لتقدمها",
-    "service-type-required": "نوع الخدمة مطلوب"
+    "service-type-required": "نوع الخدمة مطلوب",
+    "does-not-have-any-services": "ليس لديه أي خدمات حتى الآن"
   },
   "footer": {
     "english": "الإنجليزية",
@@ -255,7 +260,7 @@
       "confirm-fire-employee-question": "هل أنت متأكد أنك تريد طرد"
     },
     "filter": {
-      "search": "بحث...",
+      "search": "البحث باسم الغرفة...",
       "sort-by": "فرز حسب"
     },
     "key-name": "الإجراءات"

@@ -1,16 +1,18 @@
-<div class="d-flex">
-  <h1 class="m-4">{{ "reservation.reservations" | translate }}</h1>
-  <img
-    class="fill-icon p-0"
-    src="/assets/images/reservations-brown-filled-icon.png"
-  />
-</div>
-
 <div class="page">
-  @if(pendingReservations.length >0){
-  <h1 class="m-4">{{ "reservation.pending" | translate }}</h1>
+  @if(pendingReservations.length > 0){
+  <h1 class="m-4">
+    {{ "reservation.pending-reservations" | translate }}
+    <i class="fill-icon fa-solid fa-clock fa-xs ms-1 me-1"></i>
+  </h1>
   <div class="rounded-4 shadow border overflow-hidden mb-5">
     <table class="table table-striped table-bordered mb-0">
+      <!--   <table
+    #pendingTable
+    datatable
+    [dtOptions]="dtOptionsPending"
+    [dtTrigger]="dtTriggerPending"
+    class="table table-striped table-bordered mb-4 rounded-4"
+  > -->
       <thead>
         <tr>
           <th>{{ "shared.entity.id" | translate }}</th>
@@ -46,7 +48,7 @@
             </button>
             <button
               class="approve"
-              (click)="approveReservationRequest(reservation.id, reservation)"
+              (click)="approveReservationRequest(reservation)"
             >
               <!-- <i class="bi bi-check-circle h5"></i> -->
               <i
@@ -57,7 +59,7 @@
             </button>
             <button
               class="reject"
-              (click)="rejectReservationRequest(reservation.id, reservation)"
+              (click)="rejectReservationRequest(reservation)"
             >
               <!-- <i class="bi bi-x-circle-fill h5"></i> -->
               <i
@@ -73,14 +75,20 @@
       </tbody>
     </table>
   </div>
-  } @else {
-  <h3 class="text-center mt-5">
-    {{ "reservation.no-pending-reservations" | translate }}
-  </h3>
   } @if(activeReservations.length > 0){
-  <h1 class="m-4 mb-4">{{ "reservation.active" | translate }}</h1>
+  <h1 class="m-4 mb-4">
+    {{ "reservation.active-reservations" | translate }}
+    <i class="fill-icon fa-solid fa-calendar-week fa-xs ms-1 me-1"></i>
+  </h1>
   <div class="rounded-4 shadow border overflow-hidden">
     <table class="table table-striped table-bordered mb-0">
+      <!--   <table
+    #activeTable
+    datatable
+    [dtOptions]="dtOptionsActive"
+    [dtTrigger]="dtTriggerActive"
+    class="table table-striped table-bordered mb-4 rounded-4"
+  >s -->
       <thead>
         <tr>
           <th>{{ "shared.entity.id" | translate }}</th>
@@ -121,9 +129,9 @@
       </tbody>
     </table>
   </div>
-  } @else {
+  } @if(pendingReservations.length <= 0 && activeReservations.length <= 0) {
   <h3 class="text-center">
-    {{ "reservation.no-active-reservations" | translate }}
+    {{ "reservation.no-reservations" | translate }}
   </h3>
   }
 </div>

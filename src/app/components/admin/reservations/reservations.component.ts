@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Reservation as Reservation } from '../../../models/Reservation.model';
 import { RouterLink } from '@angular/router';
 import { ConfirmationService, MessageService, PrimeIcons } from 'primeng/api';
@@ -9,7 +9,9 @@ import { ButtonModule } from 'primeng/button';
 import { I18nPipe } from '../../../pipes/i18n.pipe';
 import { ReservationService } from '../../../services/reservation.service';
 import { I18nService } from '../../../services/i18n.service';
-import { Subscription } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
+// import { Subject, Subscription } from 'rxjs';
+// import { DataTablesModule } from 'angular-datatables';
 
 @Component({
   selector: 'app-reservations',
@@ -20,43 +22,22 @@ import { Subscription } from 'rxjs';
     CommonModule,
     ButtonModule,
     RouterLink,
+    // DataTablesModule,
   ],
   providers: [MessageService, ConfirmationService, PrimeIcons],
   templateUrl: './reservations.component.html',
   styleUrl: './reservations.component.scss',
 })
 export class ReservationsComponent {
-  reservations: Reservation[] = [
-    {
-      id: '',
-      roomId: '',
-      customerId: '',
-      date: new Date(),
-      approvalStatus: 'Pending',
-      paymentStatus: 'Unpaid',
-      paymentAmount: 0,
-      customer: {
-        id: '',
-        name: '',
-        email: '',
-        password: '',
-        phone: '',
-        role: 'customer',
-      },
-      room: {
-        id: '',
-        title: '',
-        roomType: 'Room',
-        floor: 0,
-        hotel: '',
-        details: '',
-        bookedStatus: 'Available',
-        price: 0,
-        location: '',
-        imagesUrl: [''],
-      },
-    },
-  ];
+  // @ViewChild('pendingTable', { static: false }) pendingTable: any;
+  // @ViewChild('activeTable', { static: false }) activeTable: any;
+
+  reservations: Reservation[] = [];
+
+  // dtOptionsPending: any = {};
+  // dtTriggerPending: Subject<any> = new Subject<any>();
+  // dtOptionsActive: any = {};
+  // dtTriggerActive: Subject<any> = new Subject<any>();
 
   pendingReservations: Reservation[] = [];
   activeReservations: Reservation[] = [];
@@ -72,6 +53,28 @@ export class ReservationsComponent {
 
   role: string | null = null;
   ngOnInit() {
+    // this.dtOptionsPending = {
+    //   pagingType: 'full_numbers',
+    //   pageLength: 10,
+    //   lengthMenu: [5, 10, 15, 20, 25],
+    //   responsive: true,
+    //   // paging:false, // to disable pages in the table
+    //   // ordering:false, // to disable order by in the table
+    //   // order: [0,'asc'], // orders the first column in ascending order
+    //   // lengthChange: false, // disables selecting the lengthMenu
+    //   // scrollY: '400, // to add scroll to the datatable
+    //   // language: {
+    //   //   searchPlaceholder: 'Search...',
+    //   // },
+    // };
+
+    // this.dtOptionsActive = {
+    //   pagingType: 'full_numbers',
+    //   pageLength: 10,
+    //   lengthMenu: [5, 10, 15, 20, 25],
+    //   responsive: true,
+    // };
+
     this.getreservations();
     this.role = localStorage.getItem('user_role');
   }
@@ -87,6 +90,23 @@ export class ReservationsComponent {
           this.activeReservations = this.reservations.filter(
             (r) => r.approvalStatus === 'Approved'
           );
+
+          // const pendingTable = $(this.pendingTable?.nativeElement).DataTable();
+          // const activeTable = $(this.activeTable?.nativeElement).DataTable();
+
+          // if (pendingTable) {
+          //   pendingTable.destroy();
+          // }
+          // if (activeTable) {
+          //   activeTable.destroy();
+          // }
+
+          // // Trigger DataTable render
+          // setTimeout(() => {
+          //   this.dtTriggerPending.next(null);
+          //   this.dtTriggerActive.next(null);
+          // }, 0);
+
           console.log('reservations Loaded Successfuly');
         },
         error: (err) => {
@@ -96,11 +116,11 @@ export class ReservationsComponent {
     this.subscriptions.push(getAllReservationsSub);
   }
 
-  approveReservationRequest(id: string, reservation: Reservation) {
+  approveReservationRequest(reservation: Reservation) {
     reservation.approvalStatus = 'Approved';
     const approveReservationRequestSub =
       this.ReservationService.approveReservationRequest(
-        id,
+        reservation.id,
         reservation
       ).subscribe({
         next: (value) => {
@@ -122,7 +142,7 @@ export class ReservationsComponent {
     this.subscriptions.push(approveReservationRequestSub);
   }
 
-  rejectReservationRequest(id: string, reservation: Reservation) {
+  rejectReservationRequest(reservation: Reservation) {
     reservation.approvalStatus = 'Rejected';
     this.confirmationService.confirm({
       message: `${this.i18n.t(
@@ -132,7 +152,7 @@ export class ReservationsComponent {
       accept: () => {
         const rejectReservationRequestSub =
           this.ReservationService.rejectReservationRequest(
-            id,
+            reservation.id,
             reservation
           ).subscribe({
             next: (value) => {
@@ -156,7 +176,6 @@ export class ReservationsComponent {
       reject: () => {},
     });
   }
-
   ngOnDestroy() {
     this.subscriptions.forEach((sub) => sub.unsubscribe());
   }

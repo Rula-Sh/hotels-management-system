@@ -69,7 +69,9 @@ export class DashboardComponent {
       .getNumberOfServices()
       .subscribe((services) => {
         this.totalServices = services.length;
-        this.avgServicesPerEmployee = this.totalServices / this.totalEmployees; // Performance Metrics - Avg Services Per Employee
+        this.avgServicesPerEmployee = parseFloat(
+          (this.totalServices / this.totalEmployees).toFixed(2)
+        ); // Performance Metrics - Avg Services Per Employee
       });
     this.subscriptions.push(getNumberOfServicesSub);
 
@@ -86,7 +88,7 @@ export class DashboardComponent {
     const getAvgReservationsPerDaySub = this.dashboardService
       .getAvgReservationsPerDay()
       .subscribe((result) => {
-        this.avgReservationsPerDay = result;
+        this.avgReservationsPerDay = parseFloat(result.toFixed(2));
       });
     this.subscriptions.push(getAvgReservationsPerDaySub);
 

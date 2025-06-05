@@ -100,7 +100,11 @@
     "room-details": "Room Details",
     "room-image": "Room Image",
     "submit": "Submit",
-    "no-available-rooms": "No available rooms at the moment."
+    "no-available-rooms": "No available rooms at the moment.",
+    "couldnt-find-a-room": "Couldnt find a room with this name",
+    "approved-services": "Approved Services",
+    "no-approved-or-active-services-in-this-room": "No approved or active services in this room.",
+    "book-now": "Book Now"
   },
   "reservation": {
     "reservations": "Reservations",
@@ -111,8 +115,8 @@
     "reservation-details": "Reservation Details",
     "approve-reservation": "Approve Reservation",
     "reject-reservation": "Reject Reservation",
-    "no-pending-reservations": "No Pending Reservations",
-    "no-active-reservations": "No Active Reservations"
+    "no-reservations": "There Are No Reservations At The Moment",
+    "does-not-have-any-reservations": "Does not have any reservations yet"
   },
   "service": {
     "services": "Services",
@@ -129,7 +133,8 @@
     "completed-requests": "Completed Requests",
     "add-service": "Add Service",
     "you-dont-have-services-to-provide": "You Dont Have Services To Provide",
-    "service-type-required": "Service Type Required"
+    "service-type-required": "Service Type Required",
+    "does-not-have-any-services": "Does not have any services yet"
   },
   "footer": {
     "english": "English",
@@ -255,7 +260,7 @@
       "confirm-fire-employee-question": "Are you sure you want to fire"
     },
     "filter": {
-      "search": "Search...",
+      "search": "Search By Room Title...",
       "sort-by": "Sort By"
     },
     "actions": "Actions"

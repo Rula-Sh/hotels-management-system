@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ConfirmationService, MessageService, PrimeIcons } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
@@ -8,7 +8,9 @@ import { I18nPipe } from '../../../pipes/i18n.pipe';
 import { ServiceService } from '../../../services/service.service';
 import { ServiceRequest } from '../../../models/ServiceRequest.model';
 import { I18nService } from '../../../services/i18n.service';
-import { Subscription } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
+// import { Subject } from 'rxjs';
+// import { DataTablesModule } from 'angular-datatables';
 
 @Component({
   selector: 'app-requests',
@@ -18,12 +20,17 @@ import { Subscription } from 'rxjs';
     ConfirmDialogModule,
     CommonModule,
     ButtonModule,
+    // DataTablesModule,
   ],
   providers: [MessageService, ConfirmationService, PrimeIcons],
   templateUrl: './requests.component.html',
   styleUrl: './requests.component.scss',
 })
 export class RequestsComponent {
+  // @ViewChild('pendingTable', { static: false }) pendingTable: any;
+  // @ViewChild('activeTable', { static: false }) activeTable: any;
+  // @ViewChild('completeTable', { static: false }) completeTable: any;
+
   servicesRequests: ServiceRequest[] = [];
   pendingServicesRequests: ServiceRequest[] = [];
   inProgressServicesRequests: ServiceRequest[] = [];
@@ -33,6 +40,13 @@ export class RequestsComponent {
     active: true,
     completed: true,
   };
+
+  // dtOptionsPending: any = {};
+  // dtTriggerPending: Subject<any> = new Subject<any>();
+  // dtOptionsActive: any = {};
+  // dtTriggerActive: Subject<any> = new Subject<any>();
+  // dtOptionsComplete: any = {};
+  // dtTriggerComplete: Subject<any> = new Subject<any>();
 
   subscriptions: Subscription[] = [];
 
@@ -45,6 +59,16 @@ export class RequestsComponent {
   role: string | null = null;
   userId: string | null = null;
   ngOnInit() {
+    // const tableOptions = {
+    //   pagingType: 'full_numbers',
+    //   pageLength: 10,
+    //   lengthMenu: [5, 10, 15, 20, 25],
+    //   responsive: true,
+    // };
+    // this.dtOptionsPending = tableOptions;
+    // this.dtOptionsActive = tableOptions;
+    // this.dtOptionsComplete = tableOptions;
+
     this.role = localStorage.getItem('user_role');
     this.userId = localStorage.getItem('id');
     this.getServices();
@@ -76,6 +100,30 @@ export class RequestsComponent {
           if (this.completedServicesRequests.length <= 0) {
             this.requests.completed = false;
           }
+
+          // const pendingTable = $(this.pendingTable?.nativeElement).DataTable();
+          // const activeTable = $(this.activeTable?.nativeElement).DataTable();
+          // const completeTable = $(
+          //   this.completeTable?.nativeElement
+          // ).DataTable();
+
+          // if (pendingTable) {
+          //   pendingTable.destroy();
+          // }
+          // if (activeTable) {
+          //   activeTable.destroy();
+          // }
+          // if (completeTable) {
+          //   completeTable.destroy();
+          // }
+
+          // // Trigger DataTable render
+          // setTimeout(() => {
+          //   this.dtTriggerPending.next(null);
+          //   this.dtTriggerActive.next(null);
+          //   this.dtTriggerComplete.next(null);
+          // }, 0);
+
           console.log('Requests Loaded Successfuly');
         },
         error: (err) => {
@@ -86,10 +134,10 @@ export class RequestsComponent {
     this.subscriptions.push(getServicesRequestsByEmployeeIdSub);
   }
 
-  approveServiceRequest(id: string, request: ServiceRequest) {
+  approveServiceRequest(request: ServiceRequest) {
     request.requestStatus = 'In Progress';
     const approveServiceRequestSub = this.serviceService
-      .approveOrCompleteServiceRequest(id, request)
+      .approveOrCompleteServiceRequest(request.id, request)
       .subscribe({
         next: (value) => {
           console.log('reservation approved');
@@ -110,10 +158,10 @@ export class RequestsComponent {
     this.subscriptions.push(approveServiceRequestSub);
   }
 
-  completeServiceRequest(id: string, request: ServiceRequest) {
+  completeServiceRequest(request: ServiceRequest) {
     request.requestStatus = 'Completed';
     const completeServiceRequestSub = this.serviceService
-      .approveOrCompleteServiceRequest(id, request)
+      .approveOrCompleteServiceRequest(request.id, request)
       .subscribe({
         next: (value) => {
           console.log('reservation completed');
