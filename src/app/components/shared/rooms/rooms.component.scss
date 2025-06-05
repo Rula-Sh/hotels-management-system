@@ -85,6 +85,11 @@
   object-fit: contain;
 }
 
+@media screen and (max-width: 675px) {
+  .add-rooms-text {
+    display: none;
+  }
+}
 // ------------------------ Search Bar and Sort By Styling ------------------------
 
 .input-group-text {
@@ -105,6 +110,16 @@ select {
   border-radius: 5px;
   width: 100%;
   border-left: none;
+}
+
+.search-container {
+  width: 50%;
+  min-width: 120px;
+}
+
+.sort-by-container {
+  width: 25%;
+  min-width: 120px;
 }
 
 .form-control:focus,

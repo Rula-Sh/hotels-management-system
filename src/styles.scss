@@ -107,3 +107,12 @@
     transform: scale(1.05);
   }
 }
+
+@media screen and (max-width: 900px) {
+  .side-image {
+    display: none;
+  }
+  .main-content {
+    margin: 0 !important;
+  }
+}

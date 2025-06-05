@@ -3,8 +3,7 @@
 .page {
   max-width: 1300px;
   width: auto;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 20px;
 }
 
 tr {
@@ -36,6 +35,7 @@ h3 {
 }
 
 // ------------------------------ Datatable Styling ------------------------------
+
 table.dataTable {
   border-radius: 10spx !important; /* or use 1rem, 12px, etc. */
   overflow: hidden; /* ensure internal elements don't break the radius */
