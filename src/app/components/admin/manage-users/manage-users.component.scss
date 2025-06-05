@@ -34,3 +34,19 @@ tr {
 .fill-icon {
   color: $color-dark-brown;
 }
+
+// ------------------------------ Datatable Styling ------------------------------
+table.dataTable {
+  border-radius: 10spx !important; /* or use 1rem, 12px, etc. */
+  overflow: hidden; /* ensure internal elements don't break the radius */
+}
+
+:host ::ng-deep .page-item.active .page-link {
+  background-color: $color-caramel !important;
+  border-color: $color-caramel !important;
+  color: $color-light-cream !important;
+}
+
+:host ::ng-deep .page-item .page-link {
+  color: $color-dark-brown !important;
+}

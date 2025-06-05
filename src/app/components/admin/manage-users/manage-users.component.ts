@@ -8,7 +8,8 @@ import { ConfirmationService, MessageService, PrimeIcons } from 'primeng/api';
 import { User } from '../../../models/User.model';
 import { RouterLink } from '@angular/router';
 import { UserService } from '../../../services/user.service';
-import { Subscription } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
+import { DataTablesModule } from 'angular-datatables';
 
 @Component({
   selector: 'app-manage-users',
@@ -19,6 +20,7 @@ import { Subscription } from 'rxjs';
     CommonModule,
     ButtonModule,
     RouterLink,
+    DataTablesModule,
   ],
   providers: [MessageService, ConfirmationService, PrimeIcons],
   templateUrl: './manage-users.component.html',
@@ -36,12 +38,20 @@ export class ManageUsersComponent {
     },
   ];
   role: string | null = null;
+  dtOptions: any;
+  dtTrigger: Subject<any> = new Subject<any>();
 
   subscriptions: Subscription[] = [];
 
   constructor(private userService: UserService) {}
 
   ngOnInit() {
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 10,
+      responsive: true,
+    };
+
     this.getUsers();
     this.role = localStorage.getItem('user_role');
   }
@@ -50,6 +60,7 @@ export class ManageUsersComponent {
     const getAllUsersSub = this.userService.getAllUsers().subscribe({
       next: (value) => {
         this.users = value;
+        this.dtTrigger.next(null);
         console.log('users Loaded Successfuly');
       },
       error: (err) => {
@@ -61,5 +72,6 @@ export class ManageUsersComponent {
 
   ngOnDestroy() {
     this.subscriptions.forEach((sub) => sub.unsubscribe());
+    this.dtTrigger.unsubscribe();
   }
 }
