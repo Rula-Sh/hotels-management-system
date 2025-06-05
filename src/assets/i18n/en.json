@@ -111,8 +111,7 @@
     "reservation-details": "Reservation Details",
     "approve-reservation": "Approve Reservation",
     "reject-reservation": "Reject Reservation",
-    "no-pending-reservations": "No Pending Reservations",
-    "no-active-reservations": "No Active Reservations"
+    "no-reservations": "There Are No Reservations At The Moment"
   },
   "service": {
     "services": "Services",

@@ -111,8 +111,7 @@
     "reservation-details": "معلومات الحجز",
     "approve-reservation": "الموافقة على الحجز",
     "reject-reservation": "رفض الحجز",
-    "no-pending-reservations": "لا يوجد حجوزات منتظرة",
-    "no-active-reservations": "لا يوجد حجوزات نشطة"
+    "no-reservations": "لا يوجد حجوزات حاليا"
   },
   "service": {
     "services": "الخدمات",
