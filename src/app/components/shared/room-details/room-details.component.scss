@@ -5,6 +5,8 @@
   width: auto;
   margin-left: auto;
   margin-right: auto;
+  display: grid;
+  place-items: center;
 }
 
 .container {
@@ -17,8 +19,13 @@
   align-items: center;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   padding: 25px;
-  margin-top: 20px;
+  padding-right: 45px;
+  padding-left: 45px;
+  margin-top: 25px;
+  margin-bottom: 25px;
   min-height: 300px;
+  margin-right: 6px;
+  margin-left: 6px;
 }
 
 .img-container {
@@ -144,4 +151,10 @@ i {
   color: $color-cream;
   padding: 4px;
   text-shadow: 2px 2px 20px black;
+}
+
+@media screen and (max-width: 575px) {
+  .container {        
+    margin: 40px;
+  }
 }
