@@ -13,6 +13,7 @@ import { ServiceService } from '../../../services/service.service';
 import { Service } from '../../../models/Service.model';
 import { I18nService } from '../../../services/i18n.service';
 import { Subscription } from 'rxjs';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-services',
@@ -24,6 +25,7 @@ import { Subscription } from 'rxjs';
     ButtonModule,
     NgbToastModule,
     RouterLink,
+    FormsModule,
   ],
   providers: [MessageService, ConfirmationService, PrimeIcons],
   templateUrl: './services.component.html',
@@ -37,14 +39,23 @@ export class ServicesComponent {
   services: Service[] = [];
   user: User | null = null;
 
+  searchInput: string = '';
+  sortBy: 'title' | 'type' | 'price' | '' = '';
+  filteredServices: Service[] = [];
+  sortDirection: 'Ascending' | 'Descending' = 'Ascending';
+
   subscriptions: Subscription[] = [];
+
+  get lang(): 'en' | 'ar' {
+    return this.i18nService.getLanguage();
+  }
 
   constructor(
     private serviceService: ServiceService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
     private authService: AuthService,
-    private i18n: I18nService
+    private i18nService: I18nService
   ) {}
 
   userId: string | null = null;
@@ -66,6 +77,7 @@ export class ServicesComponent {
       .subscribe({
         next: (value) => {
           this.services = value;
+          this.applyFilters();
           console.log('Services Loaded Successfuly');
         },
         error: (err) => {
@@ -75,12 +87,47 @@ export class ServicesComponent {
     this.subscriptions.push(getServicesByEmployeeIdSub);
   }
 
+  applyFilters() {
+    this.filteredServices = this.services
+      .filter((service) =>
+        service.title.toLowerCase().includes(this.searchInput.toLowerCase())
+      )
+      .sort((a, b) => {
+        let result = 0;
+
+        if (this.sortBy === 'title') {
+          result = a.title.localeCompare(b.title);
+        } else if (this.sortBy === 'type') {
+          result = a.serviceType.localeCompare(b.serviceType);
+        } else if (this.sortBy === 'price') {
+          result = a.price - b.price;
+        }
+
+        return this.sortDirection === 'Ascending' ? result : -result;
+      });
+  }
+
+  onSearchChange() {
+    this.applyFilters();
+  }
+
+  onSortChange(value: string) {
+    this.sortBy = value as 'title' | 'type' | 'price';
+    this.applyFilters();
+  }
+
+  toggleSortDirection() {
+    this.sortDirection =
+      this.sortDirection === 'Ascending' ? 'Descending' : 'Ascending';
+    this.applyFilters();
+  }
+
   deleteService(id: string) {
     this.confirmationService.confirm({
-      message: `${this.i18n.t(
+      message: `${this.i18nService.t(
         'shared.confirm-dialog.confirm-remove-service-question'
       )}`,
-      header: `${this.i18n.t('shared.confirm-dialog.remove-service')}`,
+      header: `${this.i18nService.t('shared.confirm-dialog.remove-service')}`,
       accept: () => {
         const deleteServiceSub = this.serviceService
           .deleteService(id)
@@ -95,7 +142,7 @@ export class ServicesComponent {
           });
         this.messageService.add({
           severity: 'error',
-          summary: `${this.i18n.t('shared.toast.something-went-wrong')}`,
+          summary: `${this.i18nService.t('shared.toast.something-went-wrong')}`,
         });
         this.subscriptions.push(deleteServiceSub);
       },

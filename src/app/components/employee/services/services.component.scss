@@ -87,3 +87,98 @@
 .title-icon {
   color: $color-dark-brown;
 }
+
+// ------------------------ Search Bar and Sort By Styling ------------------------
+
+.input-group-text {
+  margin: 10px 5px;
+  padding: 11px;
+  font-size: 16px;
+  width: 100%;
+  border: 2px $color-dark-brown solid;
+  border-right: none;
+}
+
+input,
+select {
+  margin: 10px 5px;
+  padding: 7px;
+  font-size: 16px;
+  border: 2px $color-dark-brown solid;
+  border-radius: 5px;
+  width: 100%;
+  border-left: none;
+}
+
+.search-container {
+  width: 50%;
+  min-width: 120px;
+}
+
+.sort-by-container {
+  width: 25%;
+  min-width: 120px;
+}
+
+.form-control:focus,
+.form-select:focus {
+  box-shadow: 3px 3px 5px $color-caramel !important;
+  outline: none !important;
+  border: 3px $color-dark-brown solid;
+  border-left: none;
+}
+
+.input-group:has(.form-control:focus) .input-group-text,
+.input-group:has(.form-select:focus) .input-group-text {
+  box-shadow: 3px 3px 5px $color-caramel !important;
+  border: 3px $color-dark-brown solid;
+}
+/* RTL-specific overrides */
+:dir(rtl) {
+  .input-group {
+    margin: 10px 5px;
+  }
+
+  .input-group-text {
+    border-right: 2px $color-dark-brown solid;
+    border-left: none;
+    border-radius: 0 5px 5px 0;
+  }
+
+  input,
+  select {
+    border-left: 2px $color-dark-brown solid;
+    border-right: none;
+    border-radius: 5px 0 0 5px;
+  }
+
+  .form-control:focus,
+  .form-select:focus {
+    box-shadow: -3px 3px 5px $color-caramel !important;
+    border-left: 2px $color-dark-brown solid;
+    border-right: none !important;
+  }
+
+  .input-group:has(.form-control:focus) .input-group-text,
+  .input-group:has(.form-select:focus) .input-group-text {
+    box-shadow: -3px 3px 5px $color-caramel !important;
+    border: 3px $color-dark-brown solid;
+    border-left: none;
+  }
+
+  // move select arrow to the left
+  select {
+    //or .form-select{}
+    background-position: left 0.5rem center;
+  }
+}
+
+.filter-icon {
+  color: $color-dark-brown;
+}
+
+@media screen and (max-width: 675px) {
+  .add-service-text {
+    display: none;
+  }
+}
