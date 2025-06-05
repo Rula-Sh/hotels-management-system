@@ -96,11 +96,11 @@ export class ReservationsComponent {
     this.subscriptions.push(getAllReservationsSub);
   }
 
-  approveReservationRequest(id: string, reservation: Reservation) {
+  approveReservationRequest(reservation: Reservation) {
     reservation.approvalStatus = 'Approved';
     const approveReservationRequestSub =
       this.ReservationService.approveReservationRequest(
-        id,
+        reservation.id,
         reservation
       ).subscribe({
         next: (value) => {
@@ -122,7 +122,7 @@ export class ReservationsComponent {
     this.subscriptions.push(approveReservationRequestSub);
   }
 
-  rejectReservationRequest(id: string, reservation: Reservation) {
+  rejectReservationRequest(reservation: Reservation) {
     reservation.approvalStatus = 'Rejected';
     this.confirmationService.confirm({
       message: `${this.i18n.t(
@@ -132,7 +132,7 @@ export class ReservationsComponent {
       accept: () => {
         const rejectReservationRequestSub =
           this.ReservationService.rejectReservationRequest(
-            id,
+            reservation.id,
             reservation
           ).subscribe({
             next: (value) => {

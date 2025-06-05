@@ -86,10 +86,10 @@ export class RequestsComponent {
     this.subscriptions.push(getServicesRequestsByEmployeeIdSub);
   }
 
-  approveServiceRequest(id: string, request: ServiceRequest) {
+  approveServiceRequest(request: ServiceRequest) {
     request.requestStatus = 'In Progress';
     const approveServiceRequestSub = this.serviceService
-      .approveOrCompleteServiceRequest(id, request)
+      .approveOrCompleteServiceRequest(request.id, request)
       .subscribe({
         next: (value) => {
           console.log('reservation approved');
@@ -110,10 +110,10 @@ export class RequestsComponent {
     this.subscriptions.push(approveServiceRequestSub);
   }
 
-  completeServiceRequest(id: string, request: ServiceRequest) {
+  completeServiceRequest(request: ServiceRequest) {
     request.requestStatus = 'Completed';
     const completeServiceRequestSub = this.serviceService
-      .approveOrCompleteServiceRequest(id, request)
+      .approveOrCompleteServiceRequest(request.id, request)
       .subscribe({
         next: (value) => {
           console.log('reservation completed');
