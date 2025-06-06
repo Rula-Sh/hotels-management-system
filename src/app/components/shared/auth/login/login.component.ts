@@ -27,6 +27,7 @@ import { ToastModule } from 'primeng/toast';
     I18nPipe,
     ToastModule,
   ],
+  providers:[MessageService],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })

@@ -30,6 +30,7 @@ import { ToastModule } from 'primeng/toast';
     I18nPipe,
     ToastModule
   ],
+   providers:[MessageService],
   templateUrl: './sign-up.component.html',
   styleUrl: './sign-up.component.scss',
 })
