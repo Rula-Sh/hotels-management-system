@@ -116,3 +116,9 @@
     margin: 0 !important;
   }
 }
+
+@media screen and (max-width: 675px) {
+  .input-group {
+    width: 80% !important;
+  }
+}
