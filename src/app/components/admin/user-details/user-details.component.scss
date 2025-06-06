@@ -6,7 +6,12 @@
   margin-left: auto;
   margin-right: auto;
 }
-
+.title {
+  padding: 25px;
+  padding-left: 45px;
+  padding-right: 45px;
+  margin-top: 20px;
+}
 .container {
   margin: auto;
   border-radius: 10px;
@@ -38,6 +43,7 @@
   border-radius: 100%;
   width: 100%;
   max-width: 200px;
+  max-height: 200px;
   align-self: center;
 }
 
@@ -75,19 +81,6 @@ i {
   color: $color-dark-brown;
 }
 
-.go-back-button {
-  text-decoration: none;
-  width: auto;
-  margin: auto;
-  font-size: 15px;
-  border-radius: 7px;
-  padding: 7px 10px;
-}
-
-tr {
-  text-align: center;
-}
-
 .details {
   border: none;
   margin: 5px;
@@ -95,4 +88,78 @@ tr {
   background-color: transparent;
   cursor: pointer;
   color: $color-caramel;
+}
+
+.go-back-button {
+  text-decoration: none;
+  width: auto;
+  margin: auto;
+  font-size: 15px;
+  border-radius: 7px;
+  padding: 7px 10px;
+  margin-top: 50px;
+}
+
+tr {
+  text-align: center;
+}
+
+@media (max-width: 900px) {
+  .go-back-button {
+    margin-left: 85px;
+    margin-right: 85px;
+  }
+}
+
+@media (max-width: 768px) {
+  .title {
+    text-align: center;
+  }
+
+  .details-container {
+    flex-direction: column;
+    align-items: center;
+    min-width: unset;
+    max-height: unset;
+    padding: 20px;
+  }
+
+  .pfp-container {
+    width: 100%;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .pfp {
+    max-width: 250px;
+    max-height: 250px;
+  }
+
+  .data-container {
+    width: 100%;
+    margin-left: 0;
+    align-items: flex-start;
+  }
+
+  .data-title,
+  .data {
+    width: 100%;
+    max-width: 100%;
+    font-size: 16px;
+  }
+
+  .data-title {
+    margin-bottom: 4px;
+  }
+
+  .btn-danger {
+    width: 100%;
+  }
+
+  .go-back-button {
+    display: block;
+    margin: auto;
+    margin-top: 50px;
+    margin-left: 10%;
+  }
 }
