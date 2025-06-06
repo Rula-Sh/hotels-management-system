@@ -7,14 +7,17 @@ import { ReservationService } from '../../../services/reservation.service';
 import { CommonModule } from '@angular/common';
 import { I18nPipe } from '../../../pipes/i18n.pipe';
 import { Room } from '../../../models/Room.model';
-import { NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
 import { ServiceRequest } from '../../../models/ServiceRequest.model';
 import { Subscription } from 'rxjs';
+import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
+import { I18nService } from '../../../services/i18n.service';
 
 @Component({
   selector: 'app-available-services',
   standalone: true,
-  imports: [CommonModule, I18nPipe, NgbToastModule],
+  imports: [CommonModule, I18nPipe, ToastModule],
+  providers: [MessageService],
   templateUrl: './available-services.component.html',
   styleUrl: './available-services.component.scss',
 })
@@ -22,17 +25,19 @@ export class AvailableServicesComponent implements OnInit {
   services: Service[] = [];
   filteredServices: Service[] = [];
   userRooms: Room[] = [];
-  toastMessage = '';
-  showToast = false;
   requestedServiceIds: string[] = [];
   requestedServicesStatus: { [title: string]: string } = {};
 
   subscriptions: Subscription[] = [];
 
-  private serviceService = inject(ServiceService);
-  private route = inject(ActivatedRoute);
-  private authService = inject(AuthService);
-  private reservationService = inject(ReservationService);
+  constructor(
+    private serviceService: ServiceService,
+    private route: ActivatedRoute,
+    private authService: AuthService,
+    private reservationService: ReservationService,
+    private messageService: MessageService,
+    private i18nService: I18nService
+  ) {}
 
   ngOnInit(): void {
     this.loadUserRequestedServices();
@@ -121,7 +126,12 @@ export class AvailableServicesComponent implements OnInit {
     const selectedRoom = this.userRooms[0];
 
     if (!user || !selectedRoom) {
-      this.showToastMessage('No room selected or user not found');
+      this.messageService.add({
+        severity: 'error',
+        summary: `${this.i18nService.t(
+          'shared.toast.no-room-selected-or-user-found'
+        )}`,
+      });
       return;
     }
 
@@ -146,20 +156,24 @@ export class AvailableServicesComponent implements OnInit {
       .createServiceRequest(requestPayload)
       .subscribe({
         next: () => {
-          this.showToastMessage('Service request submitted successfully!');
+          this.messageService.add({
+            severity: 'success',
+            summary: `${this.i18nService.t(
+              'shared.toast.service-request-submitted-successfully'
+            )}`,
+          });
           this.loadUserRequestedServices(); // 🔄 إعادة تحميل الطلبات للمستخدم الحالي
         },
         error: () => {
-          this.showToastMessage('Failed to submit service request.');
+          this.messageService.add({
+            severity: 'error',
+            summary: `${this.i18nService.t(
+              'shared.toast.something-went-wrong'
+            )}`,
+          });
         },
       });
     this.subscriptions.push(createServiceRequestSub);
-  }
-
-  showToastMessage(message: string) {
-    this.toastMessage = message;
-    this.showToast = true;
-    setTimeout(() => (this.showToast = false), 3000);
   }
 
   ngOnDestroy() {
