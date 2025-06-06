@@ -89,13 +89,12 @@ export class ProfileComponent {
           ),
         ],
       ],
-      phone: [undefined, Validators.required],
+      phone: [undefined],
       password: ['', Validators.required],
       imageUrl: [''],
       newPassword: [
         '',
         [
-          Validators.required,
           Validators.minLength(6),
           Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).+$/), // at least one lowercase, uppercase, digit, special char
         ],
@@ -198,7 +197,7 @@ export class ProfileComponent {
           id: this.user!.id,
           name: this.profileForm.value.name,
           email: this.profileForm.value.email,
-          phone: this.profileForm.value.phone.internationalNumber,
+          phone: this.profileForm.value.phone?.internationalNumber ?? '',
           password: password,
           pfp: this.imageUrl ?? '',
           role: this.user!.role,
@@ -219,6 +218,9 @@ export class ProfileComponent {
 
               setTimeout(() => {
                 this.router.navigate(['/profile/' + this.user?.id]);
+                this.isEditing = false;
+                this.user = this.authService.getCurrentUser();
+                this.loadProfile();
                 this.profileForm.reset();
               }, 1500);
             },
