@@ -236,6 +236,7 @@
                 aria-label="Password"
                 formControlName="newPassword"
                 required
+                autocomplete="on"
               />
             </div>
             <div
@@ -276,11 +277,13 @@
                 formControlName="confirmPassword"
                 required
                 minlength="6"
+                autocomplete="on"
               />
             </div>
             <div class="error">
               <div
-                *ngIf="profileForm.get('confirmPassword')?.errors?.['required']"
+                *ngIf="
+                profileForm.get('confirmPassword')?.touched && profileForm.get('confirmPassword')?.errors?.['required']"
               >
                 {{ "shared.form.confirmation-required" | translate }}.
               </div>
@@ -308,3 +311,4 @@
     </div>
   </div>
 </div>
+<p-toast></p-toast>

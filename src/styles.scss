@@ -5,6 +5,10 @@
 @import "../node_modules/bootstrap-icons/font/bootstrap-icons.css";
 @import "../src/styles/variables.scss";
 
+.page {
+  min-width: 500px;
+}
+
 .btn-primary {
   margin-top: 1rem;
   padding: 0.7rem 1.5rem;
@@ -114,5 +118,12 @@
   }
   .main-content {
     margin: 0 !important;
+    padding: 30px !important;
+  }
+}
+
+@media screen and (max-width: 675px) {
+  .input-group {
+    width: 80% !important;
   }
 }

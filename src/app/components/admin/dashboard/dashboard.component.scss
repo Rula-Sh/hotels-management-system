@@ -1,8 +1,21 @@
+@import "../../../../styles/variables.scss";
+
+.page {
+  padding: 1rem;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
 .child-container {
-  margin: 20px;
+  margin: 20px 0;
   padding: 20px;
   border-radius: 16px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background-color: $color-light-cream;
 }
 
 .stats-section {
@@ -13,6 +26,46 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
-  margin-left: 40px;
-  margin-right: 40px;
+  margin: 0 2rem;
+
+  @media (max-width: 992px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+    margin: 0 1rem;
+  }
+}
+
+@media (max-width: 900px) {
+  /* For all direct flex containers wrapping your canvases */
+  .child-container > .d-flex {
+    flex-direction: column !important; /* stack vertically */
+    gap: 1rem; /* some spacing between canvases */
+  }
+
+  /* Make each canvas full width inside the flex container */
+  .child-container > .d-flex canvas {
+    width: 100% !important; /* full container width */
+    height: auto !important; /* keep aspect ratio */
+    max-height: 400px; /* optional max height to keep it reasonable */
+  }
+
+  /* For inner flex containers with multiple columns (like reservation & requests status) */
+  .child-container > .d-flex.justify-content-around {
+    flex-direction: column !important;
+    gap: 2rem;
+  }
+
+  .child-container > .d-flex.justify-content-around > div {
+    width: 100% !important;
+    margin-bottom: 1rem;
+  }
+
+  .child-container > .d-flex.justify-content-around canvas {
+    width: 100% !important;
+    height: auto !important;
+    max-height: 400px;
+  }
 }

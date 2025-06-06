@@ -27,16 +27,7 @@ import { DataTablesModule } from 'angular-datatables';
   styleUrl: './manage-users.component.scss',
 })
 export class ManageUsersComponent {
-  users: User[] = [
-    {
-      id: '',
-      name: '',
-      email: '',
-      password: '',
-      phone: '',
-      role: 'customer',
-    },
-  ];
+  users: User[] = [];
   role: string | null = null;
   dtOptions: any;
   dtTrigger: Subject<any> = new Subject<any>();
@@ -50,6 +41,14 @@ export class ManageUsersComponent {
       pagingType: 'full_numbers',
       pageLength: 10,
       responsive: true,
+      //   // paging:false, // to disable pages in the table
+      //   // ordering:false, // to disable order by in the table
+      // order: [0, 'asc'], // orders the first column in ascending order
+      //   // lengthChange: false, // disables selecting the lengthMenu
+      //   // scrollY: '400, // to add scroll to the datatable
+      //   // language: {
+      //   //   searchPlaceholder: 'Search...',
+      //   // },
     };
 
     this.getUsers();
