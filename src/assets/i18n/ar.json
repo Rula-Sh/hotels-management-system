@@ -2,6 +2,16 @@
   "app": {
     "title": "هوتيل هب"
   },
+  "title": {
+    "signup": "الاشترك",
+    "login": "تسجيل الدخول"
+  },
+  "signup": {
+    "already-have-an-account": "هل لديك حساب؟"
+  },
+  "login": {
+    "dont-have-an-account": "ليس لديك حساب؟"
+  },
   "header": {
     "auth": {
       "profile": "الملف الشخصي",
@@ -42,10 +52,10 @@
     "submit": "تحديث",
     "cancel": "إلغاء",
     "add-employee": "إضافة موظف",
+    "job-category": "الفئة الوظيفية",
+    "job-category-required": "الفئة الوظيفية المطلوبة",
     "job-title": "المسمى الوظيفي",
-    "hotel": "الفندق",
-    "job-required": "المسمى الوظيفي مطلوب",
-    "hotel-required": "الفندق مطلوب"
+    "job-title-required": "المسمى الوظيفي مطلوب"
   },
   "user": {
     "name": "الاسم",
@@ -71,7 +81,6 @@
   },
   "room": {
     "rooms": "الغرف",
-    "add-room": "إضافة غرفة",
     "type": "النوع",
     "room": "غرفة",
     "hall": "قاعة",
@@ -79,15 +88,23 @@
     "hotel": "الفندق",
     "booked-status": "الحالة",
     "location": "الموقع",
-    "type-required": "نوع الغرفة مطلوب",
+    "add-room": "إضافة غرفة",
+    "edit-room": "تعديل الغرفة",
+    "delete-room": "حذف الغرفة",
+    "room-type-required": "نوع الغرفة مطلوب",
     "floor-required": "الطابق مطلوب",
+    "floor-min": "يجب أن يبدأ رقم الطابق ب 2",
+    "floor-max": "يجب ألا يتجاوز رقم الطابق 99",
     "hotel-required": "الفندق مطلوب",
     "location-required": "الموقع مطلوب",
     "room-details": "تفاصيل الغرفة",
     "room-image": "صورة الغرفة",
-    "delete-room": "حذف الغرفة",
     "submit": "إضافة",
-    "no-available-rooms": "لا يوجد غرف متاحة حاليا."
+    "no-available-rooms": "لا يوجد غرف متاحة حاليا.",
+    "couldnt-find-a-room": "تعذر العثور على غرفة بهذا الاسم",
+    "approved-services": "الخدمات الموافق عليها",
+    "no-approved-or-active-services-in-this-room": "لا توجد خدمات معتمدة أو نشطة في هذه الغرفة",
+    "book-now":"احجز الآن"
   },
   "reservation": {
     "reservations": "الحجوزات",
@@ -98,8 +115,8 @@
     "reservation-details": "معلومات الحجز",
     "approve-reservation": "الموافقة على الحجز",
     "reject-reservation": "رفض الحجز",
-    "no-pending-reservations": "لا يوجد حجوزات منتظرة",
-    "no-active-reservations": "لا يوجد حجوزات نشطة"
+    "no-reservations": "لا يوجد حجوزات حاليا",
+    "does-not-have-any-reservations": "ليس لديه أي حجوزات حتى الآن"
   },
   "service": {
     "services": "الخدمات",
@@ -108,17 +125,16 @@
     "delete-service": "حذف الخدمة",
     "no-available-services": "لا يوجد خدمات متاحة حاليا",
     "approve-request": "الموافقة على الطلب",
-    "reject-request": "رفض الطلب",
     "complete-request": "إكمال الطلب",
-    "no-pending-requests": "لا توجد طلبات قيد الانتظار",
-    "no-active-requests": "لا توجد طلبات نشطة",
-    "no-completed-requests": "لا توجد طلبات مكتملة",
+    "there-are-no-requests": "لا توجد طلبات حاليا.",
+    "there-are-no-services": "لا توجد خدمات حاليا.",
     "pending-requests": "طلبات منتظرة",
     "active-requests": "طلبات نشطة",
     "completed-requests": "طلبات المكتملة",
     "add-service": "إضافة خدمة",
     "you-dont-have-services-to-provide": "لا يوجد لديك خدمات لتقدمها",
-    "service-type-required": "نوع الخدمة مطلوب"
+    "service-type-required": "نوع الخدمة مطلوب",
+    "does-not-have-any-services": "ليس لديه أي خدمات حتى الآن"
   },
   "footer": {
     "english": "الإنجليزية",
@@ -126,47 +142,138 @@
   },
   "dashboard": {
     "system-overview": "نظرة عامة على النظام",
-    "total-users": "إجمالي المستخدمين",
+    "total-employees": "إجمالي الموظفين",
+    "total-customers": "إجمالي الزبائن",
     "total-rooms": "إجمالي الغرف",
     "total-reservations": "إجمالي الحجوزات",
     "total-services": "إجمالي الخدمات",
+    "total-services-requests": "إجمالي طلبات للخدمات",
     "performance-metrics": "مقاييس الأداء",
     "avg-services-per-employee": "متوسط الخدمات لكل موظف",
     "avg-reservations-per-day": "متوسط الحجوزات في اليوم",
-    "avg-services-per-day": "متوسط الخدمات في اليوم الواحد",
-    "cancellation-rate": "معدل الإلغاء",
+    "avg-requests-per-day": "متوسط الطلبات في اليوم الواحد",
     "highlights": "أبرز الملامح",
     "employee-of-the-month": "موظف الشهر",
     "top-selling-service": "الخدمة الأكثر مبيعاً",
     "most-booked-room-type": "نوع الغرفة الأكثر حجزاً",
     "reservations": "الحجوزات",
     "reservations-status": "حالة الحجوزات",
-    "services-status": "حالة الخدمات",
-    "services": "الخدمات"
+    "requests-status": "حالة الطلبات",
+    "requests": "الطلبات الخدمات"
   },
   "shared": {
     "entity": {
       "id": "الرقم التعريفي"
     },
-    "action": {
-      "key-name": "الإجراءات",
+    "button": {
+      "signup": "الاشترك",
+      "login": "تسجيل الدخول",
+      "go-back-to-home-page": "الرجوع الى الصفخة الرئيسية",
       "details": "التفاصيل",
       "approve": "الموافقة",
       "reject": "رفض",
+      "fire": "طرد",
       "add": "إضافة",
       "update": "تحديث",
       "submit": "إرسال",
+      "cancel": "إلغاء",
       "go-back": "العودة"
     },
     "form": {
+      "input-invalid": "المعطى غير صالح",
+      "name": "الاسم",
+      "name-required": "الاسم مطلوب",
+      "name-minlength": "يجب أن يحتوي الاسم على 3 أحرف على الأقل",
+      "name-maxlength": "يجب ألا يزيد الاسم عن 20 حرفاً",
+      "name-invalid": "اسم غير صالح",
+      "email": "البريد الإلكتروني",
+      "email-required": "البريد الإلكتروني مطلوب",
+      "email-invalid": "عنوان بريد إلكتروني غير صالح",
+      "email-not-found": "البريد الإلكتروني غير موجود",
+      "phone": "الهاتف",
+      "phone-required": "الهاتف مطلوب",
+      "password": "كلمة المرور",
+      "new-password": "كلمة المرور الجديدة",
+      "password-required": "كلمة المرور مطلوبة",
+      "password-pattern": "يجب أن تحتوي كلمة المرور على 6 أحرف على الأقل، حرف كبير وحرف صغير وحرف رقمي وحرف خاص",
+      "password-invalid": "كلمة مرور غير صالحة",
+      "confirm-password": "تأكيد كلمة المرور",
+      "confirmation-required": "مطلوب تأكيد كلمة المرور",
+      "password-match": "يجب أن تتطابق كلمات المرور",
       "title": "العنوان",
       "title-required": "العنوان مطلوب",
+      "title-minlength": "يجب أن يحتوي العنوان على 4 أحرف على الأقل",
+      "title-maxlength": "يجب ألا يتجاوز العنوان 30 حرفاً",
+      "title-invalid": "عنوان غير صالح",
+      "type": "النوع",
       "details": "التفاصيل",
       "details-required": "التفاصيل مطلوبة",
+      "details-minlength": "يجب أن تحتوي التفاصيل على 10 أحرف على الأقل",
+      "details-maxlength": "يجب ألا تزيد التفاصيل عن 30 حرفاً",
       "price": "السعر",
       "price-required": "السعر مطلوب",
-      "image-url": "رابط الصورة",
-      "image-url-required": "رابط الصورة مطلوب"
-    }
+      "price-max": "يجب ألا يزيد السعر عن 9999.99",
+      "price-invalid": "السعر غير صالح",
+      "image": "الصورة",
+      "image-required": "الصورة مطلوبة",
+      "image-invalid": "نوع الصورة غير صالح، يمكنك رفع ملف .png أو .jpg أو .jpeg أو .gif",
+      "image-max": "يجب ألا يتجاوز حجم الصورة 2 ميغابايت",
+      "hotel": "الفندق",
+      "hotel-required": "اسم الفندق مطلوب",
+      "hotel-minlength": "يجب أن يحتوي اسم الفندق على حرفين على الأقل",
+      "hotel-maxlength": "يجب ألا يزيد اسم الفندق عن 30 حرفاً",
+      "location-minlength": "يجب أن يحتوي وصف الموقع على 20 على الأقل"
+    },
+    "toast": {
+      "success": "نجاح",
+      "warning": "تحذير",
+      "error": "خطأ",
+      "something-went-wrong": "لقد حدث خطأ ما !!!",
+      "profile-updated-successfuly": "تم تحديث الملف الشخصي بنجاح!",
+      "failed-to-upload-image": "فشل تحميل الصورة!",
+      "at-least-one-image-is-required": "مطلوب صورة واحدة على الأقل!",
+      "room-added-successfuly": "تمت إضافة الغرفة بنجاح!",
+      "room-updated-successfuly": "تم تحديث الغرفة بنجاح!",
+      "room-removed": "تمت إزالة الغرفة!",
+      "reservation-approved": "تمت الموافقة على الحجز!",
+      "reservation-rejected": "تم رفض الحجز!",
+      "service-added-successfuly": "تمت إضافة الخدمة بنجاح!",
+      "service-updated-successfuly": "تم تحديث الخدمة بنجاح!",
+      "service-request-completed": "تم إنجاز طلب الخدمة!",
+      "service-request-approved": "تمت الموافقة على طلب الخدمة!",
+      "employee-has-active-services": "الموظف لديه خدمات نشطة!",
+      "cannot-fire": "لا يمكن طرد",
+      "employee-fired": "تم فصل الموظف!",
+      "login-first": "يرجى تسجيل الدخول أولاً!",
+      "already-sent-a-booking-request": "لقد أرسلت بالفعل طلب حجز لـ",
+      "booked-waiting-for-admin-approval": "تم الحجز! في انتظار موافقة الإدارة.",
+      "booked-but-failed-to-update-status": "تم حجز الغرفة ولكن لم يتم تحديث الحالة.",
+      "error-getting-reservations": "حدث خطأ في الحصول على الحجوزات",
+      "no-room-selected-or-user-found": "لم يتم تحديد غرفة أو لم يتم العثور على المستخدم",
+      "service-request-submitted-successfully": "تم تقديم طلب الخدمة بنجاح!",
+      "reservation-cancelled": "تم إلغاء الحجز",
+      "login-successful": "تم تسجيل الدخول بنجاح!",
+      "email-already-exists": "البريد الإلكتروني موجود بالفعل!",
+      "registered-successfully":"تم التسجيل بنجاح!"
+    },
+    "confirm-dialog": {
+      "delete": "حذف",
+      "reject": "رفض",
+      "fire": "طرد",
+      "cancel": "إلغاء",
+      "reject-reservation": "رفض الحجز",
+      "confirm-reject-reservation-question": "هل أنت متأكد من رغبتك في رفض هذا الحجز؟",
+      "remove-service": "إزالة الخدمة",
+      "confirm-remove-service-question": "هل أنت متأكد من رغبتك في إزالة هذه الخدمة؟",
+      "remove-room": "إزالة الغرفة",
+      "confirm-remove-room-question": "هل أنت متأكد من رغبتك في إزالة هذه الغرفة؟",
+      "fire-employee": "طرد الموظف ",
+      "confirm-fire-employee-question": "هل أنت متأكد أنك تريد طرد"
+    },
+    "filter": {
+      "search": "البحث باسم الغرفة...",
+      "sort-by": "فرز حسب"
+    },
+    "key-name": "الإجراءات"
   }
 }

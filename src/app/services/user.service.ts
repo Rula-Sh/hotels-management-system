@@ -24,23 +24,15 @@ export class UserService {
     return this.api.get<User>(`${this.url}/${id}`);
   }
 
-  CreateUser(user: Omit<User, 'id'>): Observable<User> {
+  createUser(user: Omit<User, 'id'>): Observable<User> {
     return this.api.post<User>(this.url, user);
   }
 
-  AddEmployee(user: Omit<Employee, 'id'>): Observable<Employee> {
+  addEmployee(user: Omit<Employee, 'id'>): Observable<Employee> {
     return this.api.post<Employee>(this.url, user);
   }
 
-  UpdateUserDetails(user: User): Observable<User> {
+  updateUserDetails(user: User): Observable<User> {
     return this.api.put<User>(`${this.url}/${user.id}`, user);
-  }
-
-  BookARoom(room: Room): Observable<Room> {
-    return this.api.post<Room>(`${this.roomsUrl}/${room.id}`, room);
-  }
-
-  requestAService(service: Service): Observable<Service> {
-    return this.api.post<Service>(`${this.roomsUrl}/${service.id}`, service);
   }
 }

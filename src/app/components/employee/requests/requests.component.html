@@ -25,6 +25,13 @@
   </div>
   <div class="rounded-4 shadow border overflow-hidden mb-5">
     <table class="table table-striped table-bordered mb-0">
+      <!-- <table
+      #pendingTable
+      datatable
+      [dtOptions]="dtOptionsPending"
+      [dtTrigger]="dtTriggerPending"
+      class="table table-striped table-bordered mb-0"
+    > -->
       <thead>
         <tr>
           <th>
@@ -35,9 +42,9 @@
             {{ "user.user-role.customer" | translate }}
             {{ "user.name" | translate }}
           </th>
-          <th>{{ "service.title" | translate }}</th>
+          <th>{{ "shared.form.title" | translate }}</th>
           <th>{{ "room.floor" | translate }}</th>
-          <th>{{ "shared.action.key-name" | translate }}</th>
+          <th>{{ "shared.actions" | translate }}</th>
         </tr>
       </thead>
       <tbody>
@@ -51,30 +58,11 @@
           <td>
             <button
               class="approve"
-              (click)="
-                ApproveServiceRequest(
-                  pendingServiceRequest.id,
-                  pendingServiceRequest
-                )
-              "
+              (click)="approveServiceRequest(pendingServiceRequest)"
             >
               <i
                 class="bi bi-check-circle-fill h5"
                 [title]="'service.approve-request' | translate"
-              ></i>
-            </button>
-            <button
-              class="reject"
-              (click)="
-                RejectServiceRequest(
-                  pendingServiceRequest.id,
-                  pendingServiceRequest
-                )
-              "
-            >
-              <i
-                class="bi bi-x-circle-fill h5"
-                [title]="'service.reject-request' | translate"
               ></i>
             </button>
           </td>
@@ -91,6 +79,13 @@
   </div>
   <div class="rounded-4 shadow border overflow-hidden mb-5">
     <table class="table table-striped table-bordered mb-0">
+      <!-- <table
+      #activeTable
+      datatable
+      [dtOptions]="dtOptionsActive"
+      [dtTrigger]="dtTriggerActive"
+      class="table table-striped table-bordered mb-0"
+    > -->
       <thead>
         <tr>
           <th>
@@ -103,7 +98,7 @@
           </th>
           <th>{{ "service.title" | translate }}</th>
           <th>{{ "room.floor" | translate }}</th>
-          <th>{{ "shared.action.key-name" | translate }}</th>
+          <th>{{ "shared.actions" | translate }}</th>
         </tr>
       </thead>
       <tbody>
@@ -117,12 +112,7 @@
           <td>
             <button
               class="approve"
-              (click)="
-                CompleteServiceRequest(
-                  inProgressServiceRequest.id,
-                  inProgressServiceRequest
-                )
-              "
+              (click)="completeServiceRequest(inProgressServiceRequest)"
             >
               <i
                 class="fa-solid fa-clipboard-check fa-xl"
@@ -143,6 +133,13 @@
   </div>
   <div class="rounded-4 shadow border overflow-hidden mb-5">
     <table class="table table-striped table-bordered mb-0">
+      <!-- <table
+      #completeTable
+      datatable
+      [dtOptions]="dtOptionsComplete"
+      [dtTrigger]="dtTriggerComplete"
+      class="table table-striped table-bordered mb-0"
+    > -->
       <thead>
         <tr>
           <th>
@@ -173,17 +170,9 @@
   </div>
   }
 </div>
-@if(!requests.pending){
+@if(!requests.pending && !requests.active && !requests.completed){
 <h3 class="text-center mt-5">
-  {{ "service.no-pending-requests" | translate }}
-</h3>
-} @if(!requests.active){
-<h3 class="text-center mt-5">
-  {{ "service.no-active-requests" | translate }}
-</h3>
-} @if(!requests.completed){
-<h3 class="text-center mt-5">
-  {{ "service.no-completed-requests" | translate }}
+  {{ "service.there-are-no-requests" | translate }}
 </h3>
 }
 <p-toast />

@@ -1,0 +1,350 @@
+<div class="page">
+  @if(isAddingARoom){
+  <h1 class="m-4 mb-4 text-center">{{ "room.add-room" | translate }}</h1>
+  } @else {
+  <h1 class="m-4 mb-4 text-center">{{ "room.edit-room" | translate }}</h1>
+  }
+  <div class="center-wrapper">
+    <form class="container p-4" [formGroup]="roomForm" (ngSubmit)="submit()">
+      <div class="input-group" [ngClass]="{ 'right-input': lang == 'ar' }">
+        <div class="align-self-center">
+          <span
+            class="input-group-text input-group-icon align-self-center bg-white"
+            ><i class="fa-solid fa-t"></i>
+          </span>
+        </div>
+        <input
+          type="text"
+          class="form-control"
+          aria-label="Title"
+          [placeholder]="'shared.form.title' | translate"
+          formControlName="title"
+          pattern="^[a-zA-Z0-9'\-$!& ]+$"
+          required
+        />
+        <div
+          class="error"
+          *ngIf="
+            roomForm.get('title')?.touched && roomForm.get('title')?.invalid
+          "
+        >
+          <div *ngIf="roomForm.get('title')?.errors?.['required']">
+            {{ "shared.form.title-required" | translate }}
+          </div>
+          <div *ngIf="roomForm.get('title')?.errors?.['minlength']">
+            {{ "shared.form.title-minlength" | translate }}
+          </div>
+          <div *ngIf="roomForm.get('title')?.errors?.['maxlength']">
+            {{ "shared.form.title-maxlength" | translate }}
+          </div>
+          <div *ngIf="roomForm.get('title')?.errors?.['pattern']">
+            {{ "shared.form.title-invalid" | translate }}
+          </div>
+        </div>
+      </div>
+      <div class="input-group" [ngClass]="{ 'right-input': lang == 'ar' }">
+        <div class="align-self-center">
+          <span
+            class="input-group-text input-group-icon align-self-center bg-white"
+            ><i class="fa-solid fa-door-closed"></i>
+          </span>
+        </div>
+        <div class="form-control radio-container d-flex justify-content-around">
+          <div class="radio-label">
+            <input
+              class="radio-input"
+              type="radio"
+              value="Room"
+              formControlName="roomType"
+            />
+            <label>{{ "room.room" | translate }}</label>
+          </div>
+          <div class="radio-label">
+            <input
+              class="radio-input"
+              type="radio"
+              value="Hall"
+              formControlName="roomType"
+            />
+            <label>{{ "room.hall" | translate }}</label>
+          </div>
+        </div>
+        <div
+          class="error"
+          *ngIf="
+            roomForm.get('roomType')?.invalid &&
+            roomForm.get('roomType')?.touched
+          "
+        >
+          {{ "room.room-type-required" | translate }}
+        </div>
+      </div>
+      <div class="input-group" [ngClass]="{ 'right-input': lang == 'ar' }">
+        <div class="align-self-center">
+          <span
+            class="input-group-text input-group-icon align-self-center bg-white"
+            ><i class="fa-solid fa-layer-group"></i>
+          </span>
+        </div>
+        <input
+          type="number"
+          class="form-control"
+          aria-label="Floor"
+          [placeholder]="'room.floor' | translate"
+          formControlName="floor"
+          required
+          max="99"
+          min="2"
+        />
+        <div
+          class="error"
+          *ngIf="
+            roomForm.get('floor')?.invalid && roomForm.get('floor')?.touched
+          "
+        >
+          <div *ngIf="roomForm.get('floor')?.errors?.['required']">
+            {{ "room.floor-required" | translate }}
+          </div>
+          <div *ngIf="roomForm.get('floor')?.errors?.['min']">
+            {{ "room.floor-min" | translate }}
+          </div>
+          <div *ngIf="roomForm.get('floor')?.errors?.['max']">
+            {{ "room.floor-max" | translate }}
+          </div>
+        </div>
+      </div>
+      <div class="input-group" [ngClass]="{ 'right-input': lang == 'ar' }">
+        <div class="align-self-center">
+          <span
+            class="input-group-text input-group-icon align-self-center bg-white"
+            ><i class="fa-solid fa-hotel"></i>
+          </span>
+        </div>
+        <input
+          type="text"
+          class="form-control"
+          aria-label="Hotel"
+          [placeholder]="'shared.form.hotel' | translate"
+          formControlName="hotel"
+          pattern="^[a-zA-Z0-9'\-$!& ]+$"
+          required
+        />
+
+        <div
+          class="error"
+          *ngIf="
+            roomForm.get('hotel')?.touched && roomForm.get('hotel')?.invalid
+          "
+        >
+          <div *ngIf="roomForm.get('hotel')?.errors?.['required']">
+            {{ "shared.form.hotel-required" | translate }}
+          </div>
+          <div *ngIf="roomForm.get('hotel')?.errors?.['minlength']">
+            {{ "shared.form.hotel-minlength" | translate }}
+          </div>
+          <div *ngIf="roomForm.get('hotel')?.errors?.['maxlength']">
+            {{ "shared.form.hotel-maxlength" | translate }}
+          </div>
+          <div *ngIf="roomForm.get('hotel')?.errors?.['pattern']">
+            {{ "shared.form.input-invalid" | translate }}
+          </div>
+        </div>
+      </div>
+      <div class="input-group" [ngClass]="{ 'right-input': lang == 'ar' }">
+        <div class="align-self-center">
+          <span
+            class="input-group-text input-group-icon align-self-center bg-white"
+            ><i class="fa-solid fa-location-dot"></i>
+          </span>
+        </div>
+        <input
+          type="text"
+          class="form-control"
+          aria-label="Location"
+          [placeholder]="'room.location' | translate"
+          formControlName="location"
+          required
+        />
+        <div
+          class="error"
+          *ngIf="
+            roomForm.get('location')?.invalid &&
+            roomForm.get('location')?.touched
+          "
+        >
+          <div *ngIf="roomForm.get('location')?.errors?.['required']">
+            {{ "room.location-required" | translate }}
+          </div>
+          <div *ngIf="roomForm.get('location')?.errors?.['minlength']">
+            {{ "shared.form.location-minlength" | translate }}
+          </div>
+        </div>
+      </div>
+      <div class="input-group" [ngClass]="{ 'right-input': lang == 'ar' }">
+        <div class="align-self-center">
+          <span
+            class="input-group-text input-group-icon align-self-center bg-white"
+            ><i class="fa-solid fa-circle-info"></i>
+          </span>
+        </div>
+        <input
+          type="text"
+          class="form-control"
+          aria-label="Details"
+          [placeholder]="'shared.form.details' | translate"
+          formControlName="details"
+          pattern="[a-zA-Z0-9À-ž.,!?'\&quot;()\-:;$!& ]*"
+          required
+        />
+        <div
+          class="error"
+          *ngIf="
+            roomForm.get('details')?.touched && roomForm.get('details')?.invalid
+          "
+        >
+          <div *ngIf="roomForm.get('details')?.errors?.['required']">
+            {{ "shared.form.details-required" | translate }}
+          </div>
+          <div *ngIf="roomForm.get('details')?.errors?.['minlength']">
+            {{ "shared.form.details-minlength" | translate }}
+          </div>
+          <div *ngIf="roomForm.get('details')?.errors?.['maxlength']">
+            {{ "shared.form.details-maxlength" | translate }}
+          </div>
+          <div *ngIf="roomForm.get('details')?.errors?.['pattern']">
+            {{ "shared.form.ipnut-invalid" | translate }}
+          </div>
+        </div>
+      </div>
+      <div class="input-group" [ngClass]="{ 'right-input': lang == 'ar' }">
+        <div class="align-self-center">
+          <span
+            class="input-group-text input-group-icon align-self-center bg-white"
+            ><i class="fa-solid fa-dollar-sign"></i>
+          </span>
+        </div>
+        <input
+          type="number"
+          class="form-control"
+          aria-label="Price"
+          [placeholder]="'shared.form.price' | translate"
+          formControlName="price"
+          required
+          pattern="^\d{1,4}(\.\d{1,2})?$"
+          maxlength="7"
+        />
+        <div
+          class="error"
+          *ngIf="
+            roomForm.get('price')?.touched && roomForm.get('price')?.invalid
+          "
+        >
+          <div *ngIf="roomForm.get('price')?.errors?.['required']">
+            {{ "shared.form.price-required" | translate }}
+          </div>
+          <div *ngIf="roomForm.get('price')?.errors?.['max']">
+            {{ "shared.form.price-max" | translate }}
+          </div>
+          <div
+            *ngIf="roomForm.get('price')?.errors?.['pattern'] && (!roomForm.get('price')?.errors?.['max'] && !roomForm.get('price')?.errors?.['min'])"
+          >
+            {{ "shared.form.price-invalid" | translate }}
+          </div>
+        </div>
+      </div>
+      <div class="input-group" [ngClass]="{ 'right-input': lang == 'ar' }">
+        <div class="align-self-center">
+          <span
+            class="input-group-text input-group-icon align-self-center bg-white"
+            ><i class="fa-solid fa-image"></i>
+          </span>
+        </div>
+        <input
+          type="file"
+          class="form-control"
+          aria-label="Image URL"
+          [placeholder]="'shared.form.image' | translate"
+          (change)="onFileSelected($event)"
+          accept="image/png, image/jpg, image/jpeg, image/gif"
+          required
+        />
+        <div
+          class="error"
+          *ngIf="
+            roomForm.get('imagesUrl')?.touched &&
+            roomForm.get('imagesUrl')?.invalid
+          "
+        >
+          <div *ngIf="roomForm.get('imagesUrl')?.errors?.['required']">
+            {{ "shared.form.image-required" | translate }}
+          </div>
+          <div *ngIf="roomForm.get('imagesUrl')?.errors?.['invalidType']">
+            {{ "shared.form.image-invalid" | translate }}
+          </div>
+          <div *ngIf="roomForm.get('imagesUrl')?.errors?.['maxSizeExceeded']">
+            {{ "shared.form.image-max" | translate }}
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="images.length > 0" class="img-container">
+        <div class="slider" [style.transform]="slide()">
+          <img
+            *ngFor="let img of images"
+            class="img"
+            [src]="img"
+            alt="slider image"
+          />
+        </div>
+
+        <i
+          *ngIf="images.length > 1"
+          class="slide-icon fa-solid fa-angle-left"
+          (click)="prevImage()"
+        ></i>
+        <i
+          *ngIf="images.length > 1"
+          class="slide-icon fa-solid fa-angle-right"
+          (click)="nextImage()"
+        ></i>
+
+        <i
+          class="delete-icon bi bi-trash-fill h4"
+          (click)="removeImage(currentIndex)"
+          title="Delete image"
+        ></i>
+      </div>
+
+      @if(isAddingARoom){
+      <button
+        class="mt-4 btn-primary"
+        [title]="'shared.button.submit' | translate"
+      >
+        {{ "shared.button.submit" | translate }}
+      </button>
+      } @else {
+      <button
+        class="mt-4 btn-primary"
+        [title]="'shared.button.update' | translate"
+      >
+        {{ "shared.button.update" | translate }}</button
+      >}
+    </form>
+  </div>
+
+  <button
+    class="mt-4 ms-4 btn-outline-primary rounded-2"
+    [routerLink]="['/rooms']"
+    routerLinkActive="router-link-active"
+    [title]="'shared.button.go-back' | translate"
+  >
+    @if(lang == 'ar') {
+    <i class="fa-solid fa-arrow-right"></i>
+    } @else {
+    <i class="fa-solid fa-arrow-left"></i>
+    }
+    {{ "shared.button.go-back" | translate }}
+  </button>
+</div>
+
+<p-toast></p-toast>

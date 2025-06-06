@@ -13,7 +13,11 @@ import { Router, RouterModule } from '@angular/router';
 import { User } from '../../../../models/User.model';
 import { AuthService } from '../../../../services/auth.service';
 import { UserService } from '../../../../services/user.service';
-import { NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
+import { I18nPipe } from '../../../../pipes/i18n.pipe';
+import { Subscription } from 'rxjs';
+import { MessageService } from 'primeng/api';
+import { I18nService } from '../../../../services/i18n.service';
+import { ToastModule } from 'primeng/toast';
 
 @Component({
   selector: 'app-sign-up',
@@ -22,8 +26,9 @@ import { NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
     FormsModule,
     ReactiveFormsModule,
     CommonModule,
-    NgbToastModule,
     RouterModule,
+    I18nPipe,
+    ToastModule
   ],
   templateUrl: './sign-up.component.html',
   styleUrl: './sign-up.component.scss',
@@ -32,26 +37,45 @@ export class SignUpComponent {
   signUpForm!: FormGroup;
   submitted = false;
 
-  toastMessage = '';
-  toastClass = '';
-  showToast = false;
+  subscriptions: Subscription[] = [];
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private authService: AuthService,
-    private userService: UserService
-  ) {
+    private userService: UserService,
+    private messageService: MessageService,
+    private i18nService: I18nService
+  ) {}
+
+  ngOnInit() {
     this.signUpForm = this.fb.group(
       {
-        name: ['', [Validators.required, Validators.minLength(3)]],
-        email: ['', [Validators.required, Validators.email]],
+        name: [
+          '',
+          [
+            Validators.required,
+            Validators.minLength(3),
+            Validators.maxLength(20),
+            Validators.pattern(/^[\u0600-\u06FFa-zA-Z'\s]+$/),
+          ],
+        ],
+        email: [
+          '',
+          [
+            Validators.required,
+            Validators.email,
+            Validators.pattern(
+              /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+            ),
+          ],
+        ],
         password: [
           '',
           [
             Validators.required,
             Validators.minLength(6),
-            Validators.pattern(/^(?=.*[A-Z])(?=.*\d).+$/),
+            Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).+$/), // at least one lowercase, uppercase, digit, special char
           ],
         ],
         confirmPassword: ['', Validators.required],
@@ -69,14 +93,19 @@ export class SignUpComponent {
 
   onSubmit() {
     this.submitted = true;
-    if (this.signUpForm.invalid) return;
 
-    this.userService.getAllUsers().subscribe((users) => {
+    if (this.signUpForm.invalid) {
+      this.signUpForm.markAllAsTouched();
+      return;
+    }
+
+    const getAllUsersSub = this.userService.getAllUsers().subscribe((users) => {
       const exists = users.find((u) => u.email === this.signUpForm.value.email);
       if (exists) {
-        this.toastMessage = 'This email is already registered.';
-        this.toastClass = 'bg-danger text-white';
-        this.showToast = true;
+        this.messageService.add({
+          severity: 'error',
+          summary: `${this.i18nService.t('shared.toast.email-already-exists')}`,
+        });
         return;
       }
 
@@ -88,31 +117,41 @@ export class SignUpComponent {
         role: 'Customer',
       };
 
-      this.userService.CreateUser(user).subscribe({
+      const createUserSub = this.userService.createUser(user).subscribe({
         next: (value) => {
           this.authService.login(value);
           localStorage.setItem('user_id', value.id);
-          
-         
-          this.toastMessage = 'Registered successfully!';
-          this.toastClass = 'bg-success text-white';
-          this.showToast = true;
 
+          this.messageService.add({
+            severity: 'success',
+            summary: `${this.i18nService.t(
+              'shared.toast.registered-successfully'
+            )}`,
+          });
           setTimeout(() => {
             this.router.navigate(['/']);
           }, 700);
         },
         error: (err) => {
-          this.toastMessage = 'An error occurred while registering.';
-          this.toastClass = 'bg-danger text-white';
-          this.showToast = true;
+          this.messageService.add({
+            severity: 'error',
+            summary: `${this.i18nService.t(
+              'shared.toast.something-went-wrong'
+            )}`,
+          });
           console.log('Error on Create', err);
         },
       });
+      this.subscriptions.push(createUserSub);
     });
+    this.subscriptions.push(getAllUsersSub);
   }
 
   get f() {
     return this.signUpForm.controls;
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach((sub) => sub.unsubscribe());
   }
 }

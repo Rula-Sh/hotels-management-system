@@ -5,12 +5,14 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { ConfirmationService, MessageService, PrimeIcons } from 'primeng/api';
-import { Router } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { User } from '../../../models/User.model';
-import { NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
 import { ServiceService } from '../../../services/service.service';
 import { Service } from '../../../models/Service.model';
+import { I18nService } from '../../../services/i18n.service';
+import { Subscription } from 'rxjs';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-services',
@@ -20,25 +22,34 @@ import { Service } from '../../../models/Service.model';
     ConfirmDialogModule,
     CommonModule,
     ButtonModule,
-    NgbToastModule,
+    RouterLink,
+    FormsModule,
   ],
   providers: [MessageService, ConfirmationService, PrimeIcons],
   templateUrl: './services.component.html',
   styleUrl: './services.component.scss',
 })
 export class ServicesComponent {
-  showToast = false;
-  toastMessage = '';
-  toastHeader = '';
-  toastClass = '';
   services: Service[] = [];
   user: User | null = null;
+
+  searchInput: string = '';
+  sortBy: 'title' | 'type' | 'price' | '' = '';
+  filteredServices: Service[] = [];
+  sortDirection: 'Ascending' | 'Descending' = 'Ascending';
+
+  subscriptions: Subscription[] = [];
+
+  get lang(): 'en' | 'ar' {
+    return this.i18nService.getLanguage();
+  }
+
   constructor(
     private serviceService: ServiceService,
-    private router: Router,
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
-    private authService: AuthService
+    private authService: AuthService,
+    private i18nService: I18nService
   ) {}
 
   userId: string | null = null;
@@ -55,45 +66,85 @@ export class ServicesComponent {
   }
 
   getServices() {
-    this.serviceService.getServicesByEmployeeId(this.userId!).subscribe({
-      next: (value) => {
-        this.services = value;
-        console.log('Services Loaded Successfuly');
-      },
-      error: (err) => {
-        console.log(`Failed to Load Services: ${err}`);
-      },
-    });
+    const getServicesByEmployeeIdSub = this.serviceService
+      .getServicesByEmployeeId(this.userId!)
+      .subscribe({
+        next: (value) => {
+          this.services = value;
+          this.applyFilters();
+          console.log('Services Loaded Successfuly');
+        },
+        error: (err) => {
+          console.log(`Failed to Load Services: ${err}`);
+        },
+      });
+    this.subscriptions.push(getServicesByEmployeeIdSub);
   }
 
-  AddService() {
-    this.router.navigate([`employee/add-service`]);
+  applyFilters() {
+    this.filteredServices = this.services
+      .filter((service) =>
+        service.title.toLowerCase().includes(this.searchInput.toLowerCase())
+      )
+      .sort((a, b) => {
+        let result = 0;
+
+        if (this.sortBy === 'title') {
+          result = a.title.localeCompare(b.title);
+        } else if (this.sortBy === 'type') {
+          result = a.serviceType.localeCompare(b.serviceType);
+        } else if (this.sortBy === 'price') {
+          result = a.price - b.price;
+        }
+
+        return this.sortDirection === 'Ascending' ? result : -result;
+      });
   }
 
-  editService(id: string) {
-    this.router.navigate([`employee/edit-service/${id}`]);
+  onSearchChange() {
+    this.applyFilters();
+  }
+
+  onSortChange(value: string) {
+    this.sortBy = value as 'title' | 'type' | 'price';
+    this.applyFilters();
+  }
+
+  toggleSortDirection() {
+    this.sortDirection =
+      this.sortDirection === 'Ascending' ? 'Descending' : 'Ascending';
+    this.applyFilters();
   }
 
   deleteService(id: string) {
     this.confirmationService.confirm({
-      message: 'Are you sure you want to remove this service?',
-      header: 'Remove service',
+      message: `${this.i18nService.t(
+        'shared.confirm-dialog.confirm-remove-service-question'
+      )}`,
+      header: `${this.i18nService.t('shared.confirm-dialog.remove-service')}`,
       accept: () => {
-        this.serviceService.DeleteService(id).subscribe({
-          next: (value) => {
-            console.log('Service deleted');
-            this.getServices();
-          },
-          error(err) {
-            console.log('Error deleting service: ' + err);
-          },
-        });
+        const deleteServiceSub = this.serviceService
+          .deleteService(id)
+          .subscribe({
+            next: (value) => {
+              console.log('Service deleted');
+              this.getServices();
+            },
+            error(err) {
+              console.log('Error deleting service: ' + err);
+            },
+          });
         this.messageService.add({
           severity: 'error',
-          summary: 'Service Removed',
+          summary: `${this.i18nService.t('shared.toast.something-went-wrong')}`,
         });
+        this.subscriptions.push(deleteServiceSub);
       },
       reject: () => {},
     });
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach((sub) => sub.unsubscribe());
   }
 }

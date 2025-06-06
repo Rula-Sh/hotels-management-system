@@ -1,26 +1,77 @@
 <div class="d-flex justify-content-between mt-2 ms-5 me-5">
-  <div class="d-flex">
-    <h1 class="m-4">
-      {{ "service.services" | translate }}
-    </h1>
-    <i
-      class="title-icon fa-solid fa-screwdriver-wrench fa-xl align-self-center"
-    ></i>
+  <div></div>
+  <div class="d-flex justify-content-center align-items-center w-75">
+    <div
+      class="input-group search-container"
+      [ngClass]="{ 'right-input': lang == 'ar' }"
+    >
+      <div class="align-self-center">
+        <span class="input-group-text align-self-center bg-white"
+          ><i class="fa-solid fa-magnifying-glass filter-icon"></i>
+        </span>
+      </div>
+      <input
+        type="text"
+        class="form-control"
+        [placeholder]="'shared.filter.search' | translate"
+        [(ngModel)]="searchInput"
+        (input)="onSearchChange()"
+      />
+    </div>
+    <div
+      class="input-group sort-by-container w-25"
+      [ngClass]="{ 'right-input': lang == 'ar' }"
+    >
+      <div class="align-self-center">
+        <span class="input-group-text align-self-center bg-white">
+          <i class="fa-solid fa-filter filter-icon"></i>
+        </span>
+      </div>
+      <select
+        class="form-select"
+        [(ngModel)]="sortBy"
+        (change)="onSortChange(sortBy)"
+      >
+        <option value="">{{ "shared.filter.sort-by" | translate }}</option>
+        <option value="title">{{ "shared.form.title" | translate }}</option>
+        <option value="type">{{ "shared.form.type" | translate }}</option>
+        <option value="hotel">{{ "shared.form.hotel" | translate }}</option>
+        <option value="price">{{ "shared.form.price" | translate }}</option>
+      </select>
+      <button
+        class="btn-outline border-0 p-1"
+        type="button"
+        (click)="toggleSortDirection()"
+        [title]="'shared.filter.toggle-direction' | translate"
+      >
+        <i
+          *ngIf="sortDirection === 'Ascending'"
+          class="bi bi-sort-down-alt h4"
+        ></i>
+        <i
+          *ngIf="sortDirection === 'Descending'"
+          class="bi bi-sort-up-alt h4"
+        ></i>
+      </button>
+    </div>
   </div>
-  <button
-    class="btn btn-primary"
-    (click)="AddService()"
-    [title]="'service.add-service' | translate"
-  >
-    <i class="fa-solid fa-circle-plus m-1 align-middle"></i>
-    <span class="m-1 align-middle">{{
-      "service.add-service" | translate
-    }}</span>
-  </button>
+  <div class="d-flex flex-column flex-md-row align-items-center">
+    <button
+      class="btn btn-primary"
+      [routerLink]="['/employee/add-service']"
+      routerLinkActive="router-link-active"
+      [title]="'service.add-service' | translate"
+    >
+      <i class="fa-solid fa-circle-plus m-1 align-middle"></i>
+      <span class="m-1 align-middle add-service-text">{{
+        "service.add-service" | translate
+      }}</span>
+    </button>
+  </div>
 </div>
 
 <div class="services-container">
-  @for(service of services; let i= $index; track i){
+  @for(service of filteredServices; let i= $index; track i){
   <div class="service-card">
     <i
       class="delete-icon bi bi-trash-fill h4"
@@ -29,7 +80,8 @@
     ></i>
     <i
       class="edit-icon bi bi-pencil-square h5"
-      (click)="editService(service.id)"
+      [routerLink]="['/employee/edit-service/', service.id]"
+      routerLinkActive="router-link-active"
       [title]="'service.edit-service' | translate"
     ></i>
     <img class="service-img" [src]="service.imageUrl" />
@@ -59,6 +111,10 @@
       </div>
     </div>
   </div>
+  } @if(services.length <= 0 ){
+  <h3 class="text-center mt-5">
+    {{ "service.there-are-no-services" | translate }}
+  </h3>
   }
 </div>
 
@@ -75,7 +131,7 @@
       type="button"
       pButton
       icon="pi pi-times"
-      label="Delete"
+      [label]="'shared.confirm-dialog.delete' | translate"
       [ngStyle]="{ backgroundColor: '#e09fa6', border: 'red' }"
       (click)="cd.onAccept()"
     ></button>
@@ -84,32 +140,9 @@
       type="button"
       pButton
       icon="pi pi-check"
-      label="Cancel"
+      [label]="'shared.confirm-dialog.cancel' | translate"
       [ngStyle]="{ backgroundColor: '#90c67c', border: 'green' }"
       (click)="cd.onReject()"
     ></button>
   </ng-template>
 </p-confirmdialog>
-<!-- Toast for booking message -->
-<div
-  class="toast-container position-fixed top-0 end-0 p-3"
-  style="z-index: 1200"
-  *ngIf="showToast"
->
-  <div
-    class="toast show align-items-center text-white {{ toastClass }} border-0"
-    role="alert"
-    aria-live="assertive"
-    aria-atomic="true"
-  >
-    <div class="d-flex">
-      <div class="toast-body">{{ toastMessage }}</div>
-      <button
-        type="button"
-        class="btn-close btn-close-white me-2 m-auto"
-        (click)="showToast = false"
-        aria-label="Close"
-      ></button>
-    </div>
-  </div>
-</div>

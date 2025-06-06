@@ -1,24 +1,81 @@
-<div class="d-flex justify-content-between mt-2 ms-5 me-5">
-  <div class="d-flex">
-    <h1 class="m-4">
-      {{ "room.rooms" | translate }}
-    </h1>
-    <img class="fill-icon" src="/assets/images/bed-brown-filled-icon.png" />
+<div class="d-flex justify-content-between mt-2 ms-5 me-5 align-items-center">
+  <div></div>
+  <div class="d-flex justify-content-center w-75">
+    <div
+      class="input-group search-container"
+      [ngClass]="{ 'right-input': lang == 'ar' }"
+    >
+      <div class="align-self-center">
+        <span class="input-group-text align-self-center bg-white"
+          ><i class="fa-solid fa-magnifying-glass filter-icon"></i>
+        </span>
+      </div>
+      <input
+        type="text"
+        class="form-control"
+        [placeholder]="'shared.filter.search' | translate"
+        [(ngModel)]="searchInput"
+        (input)="onSearchChange()"
+      />
+    </div>
+    <div
+      class="input-group sort-by-container"
+      [ngClass]="{ 'right-input': lang == 'ar' }"
+    >
+      <div class="align-self-center">
+        <span class="input-group-text align-self-center bg-white">
+          <i class="fa-solid fa-filter filter-icon"></i>
+        </span>
+      </div>
+      <select
+        class="form-select"
+        [(ngModel)]="sortBy"
+        (change)="onSortChange(sortBy)"
+      >
+        <option value="">{{ "shared.filter.sort-by" | translate }}</option>
+        <option value="title">{{ "shared.form.title" | translate }}</option>
+        <option value="type">{{ "shared.form.type" | translate }}</option>
+        <option value="hotel">{{ "shared.form.hotel" | translate }}</option>
+        <option value="price">{{ "shared.form.price" | translate }}</option>
+      </select>
+    </div>
+    <button
+      class="btn-outline border-0 p-1"
+      type="button"
+      (click)="toggleSortDirection()"
+      [title]="'shared.filter.toggle-direction' | translate"
+    >
+      <i
+        *ngIf="sortDirection === 'Ascending'"
+        class="bi bi-sort-down-alt h4"
+      ></i>
+      <i
+        *ngIf="sortDirection === 'Descending'"
+        class="bi bi-sort-up-alt h4"
+      ></i>
+    </button>
   </div>
-  @if(user?.role == "Admin"){
-  <button
-    class="btn btn-primary"
-    (click)="AddRoom()"
-    [title]="'room.add-room' | translate"
-  >
-    <i class="bi bi-house-add-fill h4 m-1 align-middle"></i>
-    <span class="m-1 align-middle">{{ "room.add-room" | translate }}</span>
-  </button>
-  }
+  <div class="d-flex flex-column flex-md-row align-items-center">
+    @if(user?.role == "Admin"){
+    <button
+      class="btn btn-primary"
+      [routerLink]="['/admin/add-room']"
+      routerLinkActive="router-link-active"
+      [title]="'room.add-room' | translate"
+    >
+      <i class="bi bi-house-add-fill h4 m-1 align-middle"></i>
+      <span class="m-1 align-middle add-rooms-text">{{
+        "room.add-room" | translate
+      }}</span>
+    </button>
+    }
+  </div>
 </div>
 
 <div class="rooms-container">
-  @for(room of rooms; let i= $index; track i){
+  @if(rooms.length > 0){ @if(filteredRooms.length >0){ @for(room of
+  filteredRooms; let i= $index; track i){
+
   <div class="room-card">
     @if(role == 'Admin'){
     <i
@@ -26,19 +83,25 @@
       (click)="deleteRoom(room.id)"
       [title]="'room.delete-room' | translate"
     ></i>
+    }
     <i
       class="info-icon bi bi-info-circle-fill h5"
-      (click)="showRoomDetails(room.id)"
+      [routerLink]="['/room-details/', room.id]"
+      routerLinkActive="router-link-active"
       [title]="'room.room-details' | translate"
     ></i>
-    }
     <img
       class="room-img"
       [src]="room.imagesUrl[0]"
-      (click)="showRoomDetails(room.id)"
+      [routerLink]="['/room-details/', room.id]"
+      routerLinkActive="router-link-active"
     />
     <div class="room-info">
-      <div class="room-content" (click)="showRoomDetails(room.id)">
+      <div
+        class="room-content"
+        [routerLink]="['/room-details/', room.id]"
+        routerLinkActive="router-link-active"
+      >
         <h4>{{ room.title }}</h4>
         <div>
           <strong class="me-2">{{ "room.type" | translate }}:</strong>
@@ -52,13 +115,17 @@
           } {{ room.roomType }}
         </div>
         <div>
+          <strong class="me-2">{{ "room.hotel" | translate }}:</strong>
+          <span> {{ room.hotel }}</span>
+        </div>
+        <!-- <div>
           <strong class="me-2">{{ "room.booked-status" | translate }}:</strong>
           <span
             [style.color]="room.bookedStatus === 'Available' ? 'green' : 'red'"
           >
             {{ room.bookedStatus }}</span
           >
-        </div>
+        </div> -->
         <div>
           <strong class="me-2">{{ "shared.form.price" | translate }}:</strong
           >{{ room.price | currency : "USD" : "symbol" : "1.0-0" }}
@@ -66,11 +133,19 @@
       </div>
       @if(role != 'Admin'){
       <button class="book-btn btn-primary" (click)="bookRoom(room)">
-        Book Now
+        {{ "room.book-now" | translate }}
       </button>
       }
     </div>
   </div>
+  } } @else{
+  <h3 class="text-center mt-5">
+    {{ "room.couldnt-find-a-room" | translate }}
+  </h3>
+  } }@else{
+  <h3 class="text-center mt-5">
+    {{ "room.no-available-rooms" | translate }}
+  </h3>
   }
 </div>
 
@@ -85,7 +160,7 @@
       type="button"
       pButton
       icon="pi pi-times"
-      label="Delete"
+      [label]="'shared.confirm-dialog.delete' | translate"
       [ngStyle]="{ backgroundColor: '#e09fa6', border: 'red' }"
       (click)="cd.onAccept()"
     ></button>
@@ -94,32 +169,9 @@
       type="button"
       pButton
       icon="pi pi-check"
-      label="Cancel"
+      [label]="'shared.confirm-dialog.cancel' | translate"
       [ngStyle]="{ backgroundColor: '#90c67c', border: 'green' }"
       (click)="cd.onReject()"
     ></button>
   </ng-template>
 </p-confirmdialog>
-<!-- Toast for booking message -->
-<div
-  class="toast-container position-fixed top-0 end-0 p-3"
-  style="z-index: 1200"
-  *ngIf="showToast"
->
-  <div
-    class="toast show align-items-center text-white {{ toastClass }} border-0"
-    role="alert"
-    aria-live="assertive"
-    aria-atomic="true"
-  >
-    <div class="d-flex">
-      <div class="toast-body">{{ toastMessage }}</div>
-      <button
-        type="button"
-        class="btn-close btn-close-white me-2 m-auto"
-        (click)="showToast = false"
-        aria-label="Close"
-      ></button>
-    </div>
-  </div>
-</div>

@@ -1,5 +1,5 @@
 <div class="page">
-  <h1 class="m-4 mb-4">{{ "user.personal-details" | translate }}</h1>
+  <h1 class="title m-4 mb-4">{{ "user.personal-details" | translate }}</h1>
   <div class="container details-container p-4 ps-5 pe-5 mt-4">
     <div class="pfp-container">
       <img
@@ -46,9 +46,16 @@
           }
         </p>
       </div>
+      @if(user?.role == "Employee"){
+      <div class="d-flex justify-content-start w-50">
+        <button class="btn-danger mt-0" (click)="fireEmployee(user!)">
+          {{ "shared.button.fire" | translate }}
+        </button>
+      </div>
+      }
     </div>
   </div>
-  @if(user?.role == "Employee"){ @if(services.length>0){
+  @if(user?.role == "Employee"){ @if(services && services.length>0){
   <h1 class="m-4 mb-4">{{ "service.services" | translate }}</h1>
 
   <div class="rounded-4 shadow border overflow-hidden">
@@ -74,8 +81,11 @@
     </table>
   </div>
   } @else{
-  <h3 class="text-center mt-5">Does Not Have Any Service Yet</h3>
-  } } @else if(user?.role == "Customer"){ @if( reservations.length>0){
+  <h3 class="text-center mt-5">
+    {{ "service.does-not-have-any-services" | translate }}
+  </h3>
+  } } @else if(user?.role == "Customer"){ @if(reservations &&
+  reservations.length>0){
   <h1 class="m-4 mb-4">{{ "reservation.reservations" | translate }}</h1>
   <div class="rounded-4 shadow border overflow-hidden">
     <table class="table table-striped table-bordered mb-0">
@@ -86,7 +96,7 @@
           <th>{{ "room.type" | translate }}</th>
           <th>{{ "room.floor" | translate }}</th>
           <th>{{ "shared.form.price" | translate }}</th>
-          <th>{{ "shared.action.key-name" | translate }}</th>
+          <th>{{ "shared.actions" | translate }}</th>
         </tr>
       </thead>
       <tbody>
@@ -100,7 +110,8 @@
           <td>
             <button
               class="details"
-              (click)="showReservationDetails(reservation.id)"
+              [routerLink]="['/room-details/', reservation.room.id]"
+              routerLinkActive="router-link-active"
               [title]="'reservation.reservation-details' | translate"
             >
               <i class="bi bi-info-circle-fill h5"></i>
@@ -112,18 +123,44 @@
     </table>
   </div>
   } @else{
-  <h3 class="text-center mt-5">Does Not Have Any Reservation Yet</h3>
+  <h3 class="text-center mt-5">
+    {{ "reservation.does-not-have-any-reservations" | translate }}
+  </h3>
   } }
   <button
-    class="mt-5 go-back-button btn-outline-primary rounded-2"
-    (click)="goBack()"
-    [title]="'shared.action.go-back' | translate"
+    class="go-back-button btn-outline-primary rounded-2"
+    [routerLink]="['/admin/manage-users']"
+    routerLinkActive="router-link-active"
+    [title]="'shared.button.go-back' | translate"
   >
     @if(lang == 'ar') {
     <i class="fa-solid fa-arrow-right"></i>
     } @else {
     <i class="fa-solid fa-arrow-left"></i>
     }
-    {{ "shared.action.go-back" | translate }}
+    {{ "shared.button.go-back" | translate }}
   </button>
 </div>
+
+<p-toast />
+<p-confirmdialog #cd>
+  <ng-template pTemplate="footer">
+    <button
+      type="button"
+      pButton
+      icon="pi pi-times"
+      [label]="'shared.confirm-dialog.fire' | translate"
+      [ngStyle]="{ backgroundColor: '#e09fa6', border: 'red' }"
+      (click)="cd.onAccept()"
+    ></button>
+
+    <button
+      type="button"
+      pButton
+      icon="pi pi-check"
+      [label]="'shared.confirm-dialog.cancel' | translate"
+      [ngStyle]="{ backgroundColor: '#90c67c', border: 'green' }"
+      (click)="cd.onReject()"
+    ></button>
+  </ng-template>
+</p-confirmdialog>

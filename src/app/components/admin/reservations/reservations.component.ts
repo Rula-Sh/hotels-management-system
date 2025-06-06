@@ -1,15 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Reservation as Reservation } from '../../../models/Reservation.model';
-import { Router } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { ConfirmationService, MessageService, PrimeIcons } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { I18nPipe } from '../../../pipes/i18n.pipe';
-import { AuthService } from '../../../services/auth.service';
 import { ReservationService } from '../../../services/reservation.service';
-import { RoomService } from '../../../services/room.service';
+import { I18nService } from '../../../services/i18n.service';
+import { Subject, Subscription } from 'rxjs';
+// import { Subject, Subscription } from 'rxjs';
+// import { DataTablesModule } from 'angular-datatables';
 
 @Component({
   selector: 'app-reservations',
@@ -19,167 +21,162 @@ import { RoomService } from '../../../services/room.service';
     ConfirmDialogModule,
     CommonModule,
     ButtonModule,
+    RouterLink,
+    // DataTablesModule,
   ],
   providers: [MessageService, ConfirmationService, PrimeIcons],
   templateUrl: './reservations.component.html',
   styleUrl: './reservations.component.scss',
 })
 export class ReservationsComponent {
-  reservations: Reservation[] = [
-    {
-      id: '',
-      roomId: '',
-      customerId: '',
-      date: new Date(),
-      approvalStatus: 'Pending',
-      paymentStatus: 'Unpaid',
-      paymentAmount: 0,
-      customer: {
-        id: '',
-        name: '',
-        email: '',
-        password: '',
-        phone: '',
-        role: 'customer',
-      },
-      room: {
-        id: '',
-        title: '',
-        roomType: 'Room',
-        floor: 0,
-        hotel: '',
-        details: '',
-        bookedStatus: 'Available',
-        price: 0,
-        location: '',
-        imagesUrl: [''],
-      },
-    },
-  ];
+  // @ViewChild('pendingTable', { static: false }) pendingTable: any;
+  // @ViewChild('activeTable', { static: false }) activeTable: any;
+
+  reservations: Reservation[] = [];
+
+  // dtOptionsPending: any = {};
+  // dtTriggerPending: Subject<any> = new Subject<any>();
+  // dtOptionsActive: any = {};
+  // dtTriggerActive: Subject<any> = new Subject<any>();
 
   pendingReservations: Reservation[] = [];
   activeReservations: Reservation[] = [];
 
+  subscriptions: Subscription[] = [];
+
   constructor(
     private ReservationService: ReservationService,
-    private router: Router,
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
-    private roomService: RoomService
+    private i18n: I18nService
   ) {}
 
   role: string | null = null;
   ngOnInit() {
+    // this.dtOptionsPending = {
+    //   pagingType: 'full_numbers',
+    //   pageLength: 10,
+    //   lengthMenu: [5, 10, 15, 20, 25],
+    //   responsive: true,
+    //   // paging:false, // to disable pages in the table
+    //   // ordering:false, // to disable order by in the table
+    //   // order: [0,'asc'], // orders the first column in ascending order
+    //   // lengthChange: false, // disables selecting the lengthMenu
+    //   // scrollY: '400, // to add scroll to the datatable
+    //   // language: {
+    //   //   searchPlaceholder: 'Search...',
+    //   // },
+    // };
+
+    // this.dtOptionsActive = {
+    //   pagingType: 'full_numbers',
+    //   pageLength: 10,
+    //   lengthMenu: [5, 10, 15, 20, 25],
+    //   responsive: true,
+    // };
+
     this.getreservations();
     this.role = localStorage.getItem('user_role');
   }
 
   getreservations() {
-    this.ReservationService.getAllReservations().subscribe({
-      next: (value) => {
-        this.reservations = value;
-        this.pendingReservations = this.reservations.filter(
-          (r) => r.approvalStatus === 'Pending'
-        );
-        this.activeReservations = this.reservations.filter(
-          (r) => r.approvalStatus === 'Approved'
-        );
-        console.log('reservations Loaded Successfuly');
-      },
-      error: (err) => {
-        console.log(`Failed to Load reservations: ${err}`);
-      },
-    });
-  }
+    const getAllReservationsSub =
+      this.ReservationService.getAllReservations().subscribe({
+        next: (value) => {
+          this.reservations = value;
+          this.pendingReservations = this.reservations.filter(
+            (r) => r.approvalStatus === 'Pending'
+          );
+          this.activeReservations = this.reservations.filter(
+            (r) => r.approvalStatus === 'Approved'
+          );
 
-  showReservationDetails(id: string) {
-    this.router.navigate([`room-details/${id}`]);
-  }
+          // const pendingTable = $(this.pendingTable?.nativeElement).DataTable();
+          // const activeTable = $(this.activeTable?.nativeElement).DataTable();
 
-  ApproveReservationRequest(id: string, reservation: Reservation) {
-    reservation.approvalStatus = 'Approved';
-    this.ReservationService.ApproveReservationRequest(
-      id,
-      reservation
-    ).subscribe({
-      next: (value) => {
-         // ✅ بعد الموافقة على الحجز، حدّث الغرفة إلى 'Booked'
-      const updatedRoom = {
-        ...reservation.room,
-        bookedStatus: 'Booked' as 'Booked' ,
-      };
+          // if (pendingTable) {
+          //   pendingTable.destroy();
+          // }
+          // if (activeTable) {
+          //   activeTable.destroy();
+          // }
 
-      this.roomService.updateRoom(reservation.room.id, updatedRoom).subscribe({
-        next: () => {
-          console.log('Room marked as booked');
+          // // Trigger DataTable render
+          // setTimeout(() => {
+          //   this.dtTriggerPending.next(null);
+          //   this.dtTriggerActive.next(null);
+          // }, 0);
+
+          console.log('reservations Loaded Successfuly');
         },
         error: (err) => {
-          console.error('Failed to update room status:', err);
+          console.log(`Failed to Load reservations: ${err}`);
         },
       });
-        console.log('reservation approved');
-        this.getreservations();
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Success',
-          detail: 'Reservation approved',
-        });
-      },
-      error: (err) => {
-        console.log('Error approving reservation: ' + err);
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Error',
-          detail: 'Failed to approve reservation',
-        });
-      },
-    });
+    this.subscriptions.push(getAllReservationsSub);
   }
 
-  RejectReservationRequest(id: string, reservation: Reservation) {
+  approveReservationRequest(reservation: Reservation) {
+    reservation.approvalStatus = 'Approved';
+    const approveReservationRequestSub =
+      this.ReservationService.approveReservationRequest(
+        reservation.id,
+        reservation
+      ).subscribe({
+        next: (value) => {
+          console.log('reservation approved');
+          this.getreservations();
+          this.messageService.add({
+            severity: 'success',
+            summary: `${this.i18n.t('shared.toast.reservation-approved')}`,
+          });
+        },
+        error: (err) => {
+          console.log('Error approving reservation: ' + err);
+          this.messageService.add({
+            severity: 'error',
+            summary: `${this.i18n.t('shared.toast.something-went-wrong')}`,
+          });
+        },
+      });
+    this.subscriptions.push(approveReservationRequestSub);
+  }
+
+  rejectReservationRequest(reservation: Reservation) {
     reservation.approvalStatus = 'Rejected';
     this.confirmationService.confirm({
-      message: 'Are you sure you want to reject this reservation?',
-      header: 'Reject Reservation',
+      message: `${this.i18n.t(
+        'shared.confirm-dialog.confirm-reject-reservation-question'
+      )}`,
+      header: `${this.i18n.t('shared.confirm-dialog.reject-reservation')}`,
       accept: () => {
-        this.ReservationService.RejectReservationRequest(
-          id,
-          reservation
-        ).subscribe({
-          next: (value) => {
-             // ✅ إعادة حالة الغرفة إلى 'Available'
-          const updatedRoom = {
-            ...reservation.room,
-            bookedStatus: 'Available' as 'Available',
-          };
-
-          this.roomService.updateRoom(reservation.room.id, updatedRoom).subscribe({
-            next: () => {
-              console.log('Room marked as available again.');
+        const rejectReservationRequestSub =
+          this.ReservationService.rejectReservationRequest(
+            reservation.id,
+            reservation
+          ).subscribe({
+            next: (value) => {
+              console.log('Reservation rejected');
+              this.getreservations();
+              this.messageService.add({
+                severity: 'error',
+                summary: `${this.i18n.t('shared.toast.reservation-rejected')}`,
+              });
             },
             error: (err) => {
-              console.error('Failed to update room to available:', err);
+              console.log('Error rejecting reservation: ' + err);
+              this.messageService.add({
+                severity: 'error',
+                summary: `${this.i18n.t('shared.toast.something-went-wrong')}`,
+              });
             },
           });
-            console.log('Reservation rejected');
-            this.getreservations();
-            this.messageService.add({
-              severity: 'warn',
-              summary: 'Rejected',
-              detail: 'Reservation has been rejected',
-            });
-          },
-          error: (err) => {
-            console.log('Error rejecting reservation: ' + err);
-            this.messageService.add({
-              severity: 'error',
-              summary: 'Error',
-              detail: 'Failed to reject reservation',
-            });
-          },
-        });
+        this.subscriptions.push(rejectReservationRequestSub);
       },
       reject: () => {},
     });
+  }
+  ngOnDestroy() {
+    this.subscriptions.forEach((sub) => sub.unsubscribe());
   }
 }

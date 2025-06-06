@@ -19,7 +19,7 @@ export class RoomService {
     return this.api.get<Room>(`${this.url}/${id}`);
   }
 
-  CreateRoom(rooms: Omit<Room, 'id'>): Observable<Room> {
+  createRoom(rooms: Omit<Room, 'id'>): Observable<Room> {
     return this.api.post<Room>(this.url, rooms);
   }
 
@@ -27,7 +27,7 @@ export class RoomService {
     return this.api.put<Room>(`${this.url}/${id}`, room);
   }
 
-  RemoveRoom(id: string): Observable<void> {
+  removeRoom(id: string): Observable<void> {
     return this.api.delete<void>(`${this.url}/${id}`);
   }
 }

@@ -5,6 +5,10 @@
 @import "../node_modules/bootstrap-icons/font/bootstrap-icons.css";
 @import "../src/styles/variables.scss";
 
+.page {
+  min-width: 500px;
+}
+
 .btn-primary {
   margin-top: 1rem;
   padding: 0.7rem 1.5rem;
@@ -50,5 +54,76 @@
     background-color: $color-dark-brown !important;
     border-color: transparent !important;
     transition: all 0.5s ease;
+  }
+}
+
+.btn-outline {
+  border: 1px solid $color-dark-brown;
+  border-radius: 5px;
+  background-color: transparent;
+  color: $color-dark-brown;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    box-shadow: 3px 3px 5px $color-caramel !important;
+    background-color: rgba($color-caramel, 0.1);
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba($color-caramel, 0.4);
+    background-color: rgba($color-caramel, 0.05);
+  }
+
+  &:active {
+    outline: none;
+    transform: translateY(2px);
+    box-shadow: 2px 2px 4px $color-caramel;
+  }
+}
+
+.btn-danger {
+  margin-top: 1rem;
+  padding: 0.5rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  background: linear-gradient(
+    to right,
+    $color-light-red,
+    $color-red,
+    $color-red,
+    $color-light-red
+  );
+  color: white;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  text-decoration: none;
+
+  background-color: $color-red !important;
+  border-color: transparent !important;
+  &:hover {
+    border-color: transparent !important;
+    background: linear-gradient(to right, $color-red);
+    transform: scale(1.05);
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .side-image {
+    display: none;
+  }
+  .main-content {
+    margin: 0 !important;
+    padding: 30px !important;
+  }
+}
+
+@media screen and (max-width: 675px) {
+  .input-group {
+    width: 80% !important;
   }
 }

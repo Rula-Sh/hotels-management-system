@@ -10,6 +10,7 @@
 .container {
   background-color: white;
   margin: auto;
+  margin-top: 100px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -23,11 +24,13 @@
   align-items: center;
   margin: 5px;
 }
+
 .data-title {
   width: 15%;
   font-weight: bold;
   font-size: 20px;
 }
+
 .data {
   width: 80%;
   font-size: 20px;
@@ -105,7 +108,18 @@ label {
   border-right: none;
 }
 
-input {
+.input-group-icon {
+  width: 100%;
+  margin: 10px 5px;
+  padding: 11px;
+  font-size: 16px;
+  border: 2px $color-dark-brown solid;
+  border-right: none;
+  border-radius: 5px 0px 0px 5px;
+}
+
+input,
+.phone-input {
   margin: 10px 5px;
   padding: 7px;
   font-size: 16px;
@@ -113,6 +127,14 @@ input {
   border-radius: 5px;
   width: 100%;
   border-left: none;
+}
+
+.phone-input {
+  position: relative;
+  flex: 1 1 auto;
+  width: 1%;
+  min-width: 0;
+  // border: 2px $color-dark-brown solid;
 }
 
 .right-input .input-group-text {
@@ -127,6 +149,12 @@ input {
   border-radius: 5px 0 0 5px;
 }
 
+.right-input .phone-input {
+  border: 2px $color-dark-brown solid;
+  border-right: none;
+  border-radius: 5px 0 0 5px;
+}
+
 .form-control:focus {
   box-shadow: none !important;
   outline: none !important;
@@ -136,11 +164,13 @@ input {
 
 .error {
   color: $color-red;
-  font-size: 14px;
+  font-size: 13px;
   margin-bottom: 10px;
   margin-top: -6px;
-  font-weight: bold;
+  padding-left: 15px;
+  padding-right: 15px;
 }
+
 button {
   text-decoration: none;
   width: auto;
@@ -158,4 +188,11 @@ button {
 
 i {
   color: $color-dark-brown;
+}
+
+::ng-deep ngx-intl-tel-input .iti__tel-input {
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  padding: 0;
 }

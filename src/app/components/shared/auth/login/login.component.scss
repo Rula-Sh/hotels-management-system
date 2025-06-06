@@ -25,14 +25,15 @@
       margin-bottom: 0.5rem;
     }
 
+    .input-container {
+      margin-bottom: 1rem;
+    }
     input {
       width: 100%;
       padding: 0.6rem;
       border: 1px solid #ccc;
       border-radius: 8px;
       transition: border-color 0.3s;
-      margin-bottom: 1rem;
-
       &:focus {
         border-color: $color-dark-brown;
         outline: none;
@@ -40,8 +41,10 @@
     }
 
     small {
-      color: red;
-      font-size: 0.75rem;
+      font-size: 0.8rem;
+      color: $color-red;
+      width: 100%;
+      padding-left: 15px;
     }
 
     button {
@@ -56,4 +59,3 @@
     margin-top: 1rem;
   }
 }
-

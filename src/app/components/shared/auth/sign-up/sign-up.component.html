@@ -1,75 +1,83 @@
-<ngb-toast
-  *ngIf="showToast"
-  [class]="toastClass + ' position-fixed top-0 end-0 m-3'"
-  header="Info"
-  [autohide]="true"
-  [delay]="3000"
-  (hidden)="showToast = false"
->
-  {{ toastMessage }}
-</ngb-toast>
-
 <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
-  <h2>Sign Up</h2>
+  <h2>{{ "title.signup" | translate }}</h2>
   <div>
-    <label>Name:</label>
-    <input formControlName="name" type="text" />
-    <div *ngIf="submitted && f['name'].errors">
-      <small *ngIf="f['name'].errors['required']">Name is required.</small>
-      <small *ngIf="f['name'].errors['minlength']"
-        >Name must be at least 3 characters.</small
-      >
+    <label>{{ "shared.form.name" | translate }}</label>
+    <input
+      formControlName="name"
+      type="text"
+      pattern="^[\u0600-\u06FFa-zA-Z'\s]+$"
+    />
+    <div *ngIf="f['name'].invalid && f['name'].touched">
+      <small *ngIf="f['name'].errors?.['required']">{{
+        "shared.form.name-required" | translate
+      }}</small>
+      <small *ngIf="f['name'].errors?.['minlength']">{{
+        "shared.form.name-minlength" | translate
+      }}</small>
+      <small *ngIf="f['name'].errors?.['maxlength']">{{
+        "shared.form.name-maxlength" | translate
+      }}</small>
+      <small *ngIf="f['name'].errors?.['pattern']">
+        {{ "shared.form.name-invalid" | translate }}
+      </small>
     </div>
   </div>
 
   <div>
-    <label>Email:</label>
+    <label> {{ "shared.form.email" | translate }}</label>
     <input formControlName="email" type="email" />
-    <div *ngIf="submitted && f['email'].errors">
-      <small *ngIf="f['email'].errors['required']">Email is required.</small>
-      <small *ngIf="f['email'].errors['email']">Enter a valid email.</small>
+    <div *ngIf="f['email'].invalid && f['email'].touched">
+      <small *ngIf="f['email'].errors?.['required']">
+        {{ "shared.form.email-required" | translate }}
+      </small>
+      <small *ngIf="f['email'].errors?.['pattern']">
+        {{ "shared.form.email-invalid" | translate }}
+      </small>
     </div>
   </div>
 
   <div>
-    <label>Password:</label>
+    <label>{{ "shared.form.new-password" | translate }}</label>
     <input formControlName="password" type="password" />
-    <div *ngIf="submitted && f['password'].errors">
-      <small *ngIf="f['password'].errors['required']"
-        >Password is required.</small
-      >
-      <small *ngIf="f['password'].errors['minlength']"
-        >Minimum 6 characters.</small
-      >
-      <small *ngIf="f['password'].errors['pattern']"
-        >Must contain uppercase letter and number.</small
-      >
+    <div *ngIf="f['password'].invalid && f['password'].touched">
+      <small *ngIf="f['password'].errors?.['required']">
+        {{ "shared.form.password-required" | translate }}
+      </small>
+      <small *ngIf="f['password'].errors?.['pattern']">
+        {{ "shared.form.password-pattern" | translate }}
+      </small>
     </div>
   </div>
 
   <div>
-    <label>Confirm Password:</label>
+    <label>{{ "shared.form.confirm-password" | translate }}</label>
     <input formControlName="confirmPassword" type="password" />
     <div
-      *ngIf="submitted && (f['confirmPassword'].errors || signUpForm.errors?.['mismatch'])"
+      *ngIf="(f['confirmPassword'].touched || submitted) &&
+         (f['confirmPassword'].errors || signUpForm.errors?.['mismatch'])"
     >
-      <small *ngIf="f['confirmPassword'].errors?.['required']"
-        >Confirmation is required.</small
-      >
+      <small *ngIf="f['confirmPassword'].errors?.['required']">
+        {{ "shared.form.confirmation-required" | translate }}.
+      </small>
       <small
         *ngIf="!f['confirmPassword'].errors && signUpForm.errors?.['mismatch']"
-        >Passwords do not match.</small
       >
+        {{ "shared.form.password-match" | translate }}
+      </small>
     </div>
   </div>
 
   <div class="d-flex justify-content-center">
-    <button class="btn-primary" type="submit">Sign Up</button>
+    <button class="btn-primary" type="submit">
+      {{ "shared.button.signup" | translate }}
+    </button>
   </div>
   <p style="text-align: center; margin-top: 1rem">
-    Already have an account?
+    {{ "signup.already-have-an-account" | translate }}
     <a routerLink="/login" style="font-weight: bold; display: inline-block"
-      >Login!</a
+      >{{ "shared.button.login" | translate }}!</a
     >
   </p>
 </form>
+
+<p-toast></p-toast>

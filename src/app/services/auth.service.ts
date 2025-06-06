@@ -25,6 +25,7 @@ export class AuthService {
     localStorage.setItem('name', user.name);
     localStorage.setItem('email', user.email);
     localStorage.setItem('user_role', user.role);
+    localStorage.setItem('phone', user.phone ?? '');
     localStorage.setItem('pfp', user.pfp ?? '');
 
     if (user.role === 'Employee') {
@@ -41,6 +42,7 @@ export class AuthService {
     localStorage.removeItem('name');
     localStorage.removeItem('email');
     localStorage.removeItem('user_role');
+    localStorage.removeItem('phone');
     localStorage.removeItem('pfp');
     this.loggedInSubject.next(false);
   }
@@ -54,8 +56,10 @@ export class AuthService {
     const name = localStorage.getItem('name');
     const email = localStorage.getItem('email');
     const role = localStorage.getItem('user_role');
+    const phone = localStorage.getItem('phone');
+    const pfp = localStorage.getItem('pfp');
     if (name && email && role) {
-      const user: User = { id, name, email, role } as User;
+      const user: User = { id, name, email, phone, role, pfp } as User;
       return user;
     }
     return null;

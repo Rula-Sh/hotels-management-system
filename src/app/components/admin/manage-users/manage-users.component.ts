@@ -6,8 +6,10 @@ import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { ConfirmationService, MessageService, PrimeIcons } from 'primeng/api';
 import { User } from '../../../models/User.model';
-import { Router } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { UserService } from '../../../services/user.service';
+import { Subject, Subscription } from 'rxjs';
+import { DataTablesModule } from 'angular-datatables';
 
 @Component({
   selector: 'app-manage-users',
@@ -17,103 +19,58 @@ import { UserService } from '../../../services/user.service';
     ConfirmDialogModule,
     CommonModule,
     ButtonModule,
+    RouterLink,
+    DataTablesModule,
   ],
   providers: [MessageService, ConfirmationService, PrimeIcons],
   templateUrl: './manage-users.component.html',
   styleUrl: './manage-users.component.scss',
 })
 export class ManageUsersComponent {
-  users: User[] = [
-    {
-      id: '',
-      name: '',
-      email: '',
-      password: '',
-      phone: '',
-      role: 'customer',
-    },
-  ];
-
-  constructor(
-    private userService: UserService,
-    private router: Router,
-    private messageService: MessageService,
-    private confirmationService: ConfirmationService
-  ) {}
-
+  users: User[] = [];
   role: string | null = null;
+  dtOptions: any;
+  dtTrigger: Subject<any> = new Subject<any>();
+
+  subscriptions: Subscription[] = [];
+
+  constructor(private userService: UserService) {}
+
   ngOnInit() {
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 10,
+      responsive: true,
+      //   // paging:false, // to disable pages in the table
+      //   // ordering:false, // to disable order by in the table
+      // order: [0, 'asc'], // orders the first column in ascending order
+      //   // lengthChange: false, // disables selecting the lengthMenu
+      //   // scrollY: '400, // to add scroll to the datatable
+      //   // language: {
+      //   //   searchPlaceholder: 'Search...',
+      //   // },
+    };
+
     this.getUsers();
     this.role = localStorage.getItem('user_role');
   }
 
-  AddEmployee() {
-    this.router.navigate(['/admin/add-employee']);
-  }
-
   getUsers() {
-    this.userService.getAllUsers().subscribe({
+    const getAllUsersSub = this.userService.getAllUsers().subscribe({
       next: (value) => {
         this.users = value;
+        this.dtTrigger.next(null);
         console.log('users Loaded Successfuly');
       },
       error: (err) => {
         console.log(`Failed to Load users: ${err}`);
       },
     });
-  }
-  ShowUserProfile(id: string) {
-    this.router.navigate([`user/${id}`]);
+    this.subscriptions.push(getAllUsersSub);
   }
 
-  HireUser(id: string, user: User) {
-    this.userService.UpdateUserDetails(user).subscribe({
-      next: (value) => {
-        console.log('user hired');
-        this.getUsers();
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Success',
-          detail: 'User has been hired',
-        });
-      },
-      error: (err) => {
-        console.log('Error hiring user: ' + err);
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Error',
-          detail: 'Failed hire user',
-        });
-      },
-    });
-  }
-
-  FireEmployee(id: string, user: User) {
-    this.confirmationService.confirm({
-      message: 'Are you sure you want to reject this reservation?',
-      header: 'Reject Reservation',
-      accept: () => {
-        this.userService.UpdateUserDetails(user).subscribe({
-          next: (value) => {
-            console.log('Reservation rejected');
-            this.getUsers();
-            this.messageService.add({
-              severity: 'warn',
-              summary: 'Rejected',
-              detail: 'Reservation has been rejected',
-            });
-          },
-          error: (err) => {
-            console.log('Error rejecting reservation: ' + err);
-            this.messageService.add({
-              severity: 'error',
-              summary: 'Error',
-              detail: 'Failed to reject reservation',
-            });
-          },
-        });
-      },
-      reject: () => {},
-    });
+  ngOnDestroy() {
+    this.subscriptions.forEach((sub) => sub.unsubscribe());
+    this.dtTrigger.unsubscribe();
   }
 }

@@ -6,7 +6,10 @@
       routerLinkActive="active-link"
       [routerLinkActiveOptions]="{ exact: true }"
     >
-      <img class="logo" src="/assets/images/logo.png" alt="logo" />
+      @if(lang == "ar"){
+      <img class="logo px-2" src="/assets/images/logo-arabic.png" alt="logo" />
+      }@else {
+      <img class="logo" src="/assets/images/logo.png" alt="logo" />}
       <!-- {{ "app.title" | translate }} -->
     </a>
 
@@ -68,7 +71,6 @@
         @if(isLoggedIn){
         <a
           [routerLink]="'/profile/' + userId"
-          (click)="goToProfile(userId!)"
           [title]="'header.auth.profile' | translate"
         >
           <img

@@ -29,7 +29,6 @@ export class ReservationService {
       )
     );
   }
-  
 
   getReservationById(id: string): Observable<Reservation> {
     return this.api.get<Reservation>(`${this.url}/reservations/${id}`);
@@ -41,7 +40,7 @@ export class ReservationService {
     );
   }
 
-  ApproveReservationRequest(
+  approveReservationRequest(
     id: string,
     reservation: Reservation
   ): Observable<Reservation> {
@@ -51,7 +50,7 @@ export class ReservationService {
     );
   }
 
-  RejectReservationRequest(
+  rejectReservationRequest(
     id: string,
     reservation: Reservation
   ): Observable<Reservation> {
@@ -64,9 +63,10 @@ export class ReservationService {
   cancelReservation(id: string): Observable<void> {
     return this.api.delete<void>(`${this.url}/reservations/${id}`);
   }
- 
-  createReservation(reservation: Omit<Reservation,'id'>): Observable<Reservation> {
-  return this.api.post<Reservation>(`${this.url}/reservations`, reservation);
-}
 
+  createReservation(
+    reservation: Omit<Reservation, 'id'>
+  ): Observable<Reservation> {
+    return this.api.post<Reservation>(`${this.url}/reservations`, reservation);
+  }
 }

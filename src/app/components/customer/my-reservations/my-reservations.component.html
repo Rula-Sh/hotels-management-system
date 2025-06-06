@@ -1,13 +1,3 @@
-<ngb-toast
-  *ngIf="showToast"
-  [class]="toastClass + ' position-fixed top-0 end-0 m-3'"
-  [autohide]="true"
-  [delay]="3000"
-  (hidden)="showToast = false"
->
-  {{ toastMessage }}
-</ngb-toast>
-
 <div class="container mt-4">
   <h2 class="text-center mb-4">My Reservations</h2>
 
@@ -73,3 +63,5 @@
     </div>
   </ng-template>
 </div>
+
+<p-toast></p-toast>
