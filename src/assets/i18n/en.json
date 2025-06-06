@@ -243,7 +243,18 @@
       "service-request-approved": "Service Request Approved!",
       "employee-has-active-services": "Employee Has Active Services!",
       "cannot-fire": "cannot fire",
-      "employee-fired": "Employee Fired!"
+      "employee-fired": "Employee Fired!",
+      "login-first": "Please Login First!",
+      "already-sent-a-booking-request": "You already sent a booking request for",
+      "booked-waiting-for-admin-approval": "booked! Waiting for admin approval.",
+      "booked-but-failed-to-update-status": "Room booked but failed to update status.",
+      "error-getting-reservations": "Error getting reservations",
+      "no-room-selected-or-user-found": "No room selected or user not found",
+      "service-request-submitted-successfully": "Service request submitted successfully!",
+      "reservation-cancelled": "Reservation cancelled",
+      "login-successful": "Login successful!",
+      "email-already-exists": "Email already exists!",
+      "registered-successfully":"Registered successfully!"
     },
     "confirm-dialog": {
       "delete": "Delete",

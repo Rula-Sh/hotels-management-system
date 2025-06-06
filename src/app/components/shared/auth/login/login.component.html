@@ -1,13 +1,3 @@
-<ngb-toast
-  *ngIf="showToast"
-  class="bg-success text-white position-fixed top-0 end-0 m-3"
-  [autohide]="true"
-  [delay]="3000"
-  (hidden)="showToast = false"
->
-  {{ toastMessage }}
-</ngb-toast>
-
 <div class="login-container">
   <h2>{{ "title.login" | translate }}</h2>
   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
@@ -61,3 +51,5 @@
     >
   </p>
 </div>
+
+<p-toast></p-toast>

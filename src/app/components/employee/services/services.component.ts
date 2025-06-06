@@ -8,7 +8,6 @@ import { ConfirmationService, MessageService, PrimeIcons } from 'primeng/api';
 import { RouterLink } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { User } from '../../../models/User.model';
-import { NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
 import { ServiceService } from '../../../services/service.service';
 import { Service } from '../../../models/Service.model';
 import { I18nService } from '../../../services/i18n.service';
@@ -23,7 +22,6 @@ import { FormsModule } from '@angular/forms';
     ConfirmDialogModule,
     CommonModule,
     ButtonModule,
-    NgbToastModule,
     RouterLink,
     FormsModule,
   ],
@@ -32,10 +30,6 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './services.component.scss',
 })
 export class ServicesComponent {
-  showToast = false;
-  toastMessage = '';
-  toastHeader = '';
-  toastClass = '';
   services: Service[] = [];
   user: User | null = null;
 

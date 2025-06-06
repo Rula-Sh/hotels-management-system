@@ -30,10 +30,6 @@ import { Subscription } from 'rxjs';
   styleUrl: './room-details.component.scss',
 })
 export class RoomDetailsComponent {
-  showToast = false;
-  toastMessage = '';
-  toastHeader = '';
-  toastClass = '';
   room: Room | undefined;
   images: string[] = []; // Should be populated appropriately
   currentIndex: number = 0;
@@ -149,13 +145,13 @@ export class RoomDetailsComponent {
   }
 
   bookRoom(room: Room) {
-    this.showToast = false;
     const user = this.authService.getCurrentUser();
 
     if (!user) {
-      this.toastMessage = 'Please login first.';
-      this.toastClass = 'bg-warning text-dark';
-      this.showToast = true;
+      this.messageService.add({
+        severity: 'warn',
+        summary: `${this.i18nService.t('shared.toast.login-first')}`,
+      });
       return;
     }
 
@@ -169,13 +165,12 @@ export class RoomDetailsComponent {
           );
 
           if (alreadyBooked) {
-            this.toastMessage = `You already sent a booking request for "${room.title}".`;
-            this.toastClass = 'bg-info text-white';
-            this.showToast = true;
-
-            setTimeout(() => {
-              this.showToast = false;
-            }, 3000);
+            this.messageService.add({
+              severity: 'info',
+              summary: `${this.i18nService.t(
+                'shared.toast.already-sent-a-booking-request'
+              )} "${room.title}".`,
+            });
             return;
           }
 
@@ -200,36 +195,45 @@ export class RoomDetailsComponent {
                   .updateRoom(room.id, updatedRoom)
                   .subscribe({
                     next: () => {
-                      this.toastMessage = `Room "${room.title}" booked! Waiting for admin approval.`;
-                      this.toastClass = 'bg-success text-light';
-                      this.showToast = true;
                       room.bookedStatus = 'Pending';
-
-                      setTimeout(() => {
-                        this.showToast = false;
-                      }, 3000);
+                      this.messageService.add({
+                        severity: 'success',
+                        summary: `${this.i18nService.t('room.room')} "${
+                          room.title
+                        }" ${this.i18nService.t(
+                          'shared.toast.booked-waiting-for-admin-approval'
+                        )}`,
+                      });
                     },
                     error: () => {
-                      this.toastMessage =
-                        'Room booked but failed to update status.';
-                      this.toastClass = 'bg-warning text-dark';
-                      this.showToast = true;
+                      this.messageService.add({
+                        severity: 'error',
+                        summary: `${this.i18nService.t(
+                          'shared.toast.booked-but-failed-to-update-status'
+                        )}`,
+                      });
                     },
                   });
                 this.subscriptions.push(updateRoomSub);
               },
               error: () => {
-                this.toastMessage = 'Booking failed. Please try again later.';
-                this.toastClass = 'bg-danger text-light';
-                this.showToast = true;
+                this.messageService.add({
+                  severity: 'error',
+                  summary: `${this.i18nService.t(
+                    'shared.toast.something-went-wrong'
+                  )}`,
+                });
               },
             });
           this.subscriptions.push(createReservationSub);
         },
         error: () => {
-          this.toastMessage = 'Error checking previous reservations.';
-          this.toastClass = 'bg-danger text-light';
-          this.showToast = true;
+          this.messageService.add({
+            severity: 'error',
+            summary: `${this.i18nService.t(
+              'shared.toast.error-getting-reservations'
+            )}`,
+          });
         },
       });
     this.subscriptions.push(getReservationsByCustomerIdSub);

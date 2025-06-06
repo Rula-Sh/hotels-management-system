@@ -243,7 +243,18 @@
       "service-request-approved": "تمت الموافقة على طلب الخدمة!",
       "employee-has-active-services": "الموظف لديه خدمات نشطة!",
       "cannot-fire": "لا يمكن طرد",
-      "employee-fired": "تم فصل الموظف!"
+      "employee-fired": "تم فصل الموظف!",
+      "login-first": "يرجى تسجيل الدخول أولاً!",
+      "already-sent-a-booking-request": "لقد أرسلت بالفعل طلب حجز لـ",
+      "booked-waiting-for-admin-approval": "تم الحجز! في انتظار موافقة الإدارة.",
+      "booked-but-failed-to-update-status": "تم حجز الغرفة ولكن لم يتم تحديث الحالة.",
+      "error-getting-reservations": "حدث خطأ في الحصول على الحجوزات",
+      "no-room-selected-or-user-found": "لم يتم تحديد غرفة أو لم يتم العثور على المستخدم",
+      "service-request-submitted-successfully": "تم تقديم طلب الخدمة بنجاح!",
+      "reservation-cancelled": "تم إلغاء الحجز",
+      "login-successful": "تم تسجيل الدخول بنجاح!",
+      "email-already-exists": "البريد الإلكتروني موجود بالفعل!",
+      "registered-successfully":"تم التسجيل بنجاح!"
     },
     "confirm-dialog": {
       "delete": "حذف",

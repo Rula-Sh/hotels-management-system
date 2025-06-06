@@ -8,11 +8,13 @@ import {
 } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
 import { UserService } from '../../../../services/user.service';
 import { AuthService } from '../../../../services/auth.service';
 import { I18nPipe } from '../../../../pipes/i18n.pipe';
 import { Subscription } from 'rxjs';
+import { MessageService } from 'primeng/api';
+import { I18nService } from '../../../../services/i18n.service';
+import { ToastModule } from 'primeng/toast';
 
 @Component({
   selector: 'app-login',
@@ -21,9 +23,9 @@ import { Subscription } from 'rxjs';
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
-    NgbToastModule,
     RouterLink,
     I18nPipe,
+    ToastModule,
   ],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
@@ -31,10 +33,6 @@ import { Subscription } from 'rxjs';
 export class LoginComponent {
   loginForm!: FormGroup;
   submitted = false;
-  showToast = false;
-  toastMessage = '';
-  toastHeader = '';
-  toastClass = '';
 
   subscriptions: Subscription[] = [];
 
@@ -42,7 +40,9 @@ export class LoginComponent {
     private fb: FormBuilder,
     private router: Router,
     private userService: UserService,
-    private authService: AuthService
+    private authService: AuthService,
+    private messageService: MessageService,
+    private i18nService: I18nService
   ) {
     this.loginForm = this.fb.group({
       email: [
@@ -65,7 +65,6 @@ export class LoginComponent {
 
   onSubmit() {
     this.submitted = true;
-    this.showToast = false;
 
     if (this.loginForm.invalid) {
       this.loginForm.markAllAsTouched();
@@ -93,15 +92,12 @@ export class LoginComponent {
       }
 
       this.authService.login(userByEmail);
-      this.toastMessage = 'Login successful!';
-      this.toastClass = 'bg-success text-white';
-      this.showToast = true;
+      this.messageService.add({
+        severity: 'success',
+        summary: `${this.i18nService.t('shared.toast.login-successful')}`,
+      });
       this.authService.login(userByEmail);
       localStorage.setItem('id', userByEmail.id.toString());
-      setTimeout(() => {
-        this.showToast = false;
-        this.router.navigate(['/']);
-      }, 1500);
     });
     this.subscriptions.push(getAllUsersSub);
   }

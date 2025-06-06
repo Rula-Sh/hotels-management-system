@@ -13,9 +13,11 @@ import { Router, RouterModule } from '@angular/router';
 import { User } from '../../../../models/User.model';
 import { AuthService } from '../../../../services/auth.service';
 import { UserService } from '../../../../services/user.service';
-import { NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
 import { I18nPipe } from '../../../../pipes/i18n.pipe';
 import { Subscription } from 'rxjs';
+import { MessageService } from 'primeng/api';
+import { I18nService } from '../../../../services/i18n.service';
+import { ToastModule } from 'primeng/toast';
 
 @Component({
   selector: 'app-sign-up',
@@ -24,9 +26,9 @@ import { Subscription } from 'rxjs';
     FormsModule,
     ReactiveFormsModule,
     CommonModule,
-    NgbToastModule,
     RouterModule,
     I18nPipe,
+    ToastModule
   ],
   templateUrl: './sign-up.component.html',
   styleUrl: './sign-up.component.scss',
@@ -35,17 +37,15 @@ export class SignUpComponent {
   signUpForm!: FormGroup;
   submitted = false;
 
-  toastMessage = '';
-  toastClass = '';
-  showToast = false;
-
   subscriptions: Subscription[] = [];
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private authService: AuthService,
-    private userService: UserService
+    private userService: UserService,
+    private messageService: MessageService,
+    private i18nService: I18nService
   ) {}
 
   ngOnInit() {
@@ -102,9 +102,10 @@ export class SignUpComponent {
     const getAllUsersSub = this.userService.getAllUsers().subscribe((users) => {
       const exists = users.find((u) => u.email === this.signUpForm.value.email);
       if (exists) {
-        this.toastMessage = 'This email is already registered.';
-        this.toastClass = 'bg-danger text-white';
-        this.showToast = true;
+        this.messageService.add({
+          severity: 'error',
+          summary: `${this.i18nService.t('shared.toast.email-already-exists')}`,
+        });
         return;
       }
 
@@ -121,18 +122,23 @@ export class SignUpComponent {
           this.authService.login(value);
           localStorage.setItem('user_id', value.id);
 
-          this.toastMessage = 'Registered successfully!';
-          this.toastClass = 'bg-success text-white';
-          this.showToast = true;
-
+          this.messageService.add({
+            severity: 'success',
+            summary: `${this.i18nService.t(
+              'shared.toast.registered-successfully'
+            )}`,
+          });
           setTimeout(() => {
             this.router.navigate(['/']);
           }, 700);
         },
         error: (err) => {
-          this.toastMessage = 'An error occurred while registering.';
-          this.toastClass = 'bg-danger text-white';
-          this.showToast = true;
+          this.messageService.add({
+            severity: 'error',
+            summary: `${this.i18nService.t(
+              'shared.toast.something-went-wrong'
+            )}`,
+          });
           console.log('Error on Create', err);
         },
       });
