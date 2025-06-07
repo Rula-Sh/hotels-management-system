@@ -27,7 +27,7 @@ import { ToastModule } from 'primeng/toast';
     I18nPipe,
     ToastModule,
   ],
-  providers:[MessageService],
+  providers: [MessageService],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
@@ -97,7 +97,9 @@ export class LoginComponent {
         severity: 'success',
         summary: `${this.i18nService.t('shared.toast.login-successful')}`,
       });
-      this.authService.login(userByEmail);
+      setTimeout(() => {
+        this.router.navigate(['/']);
+      }, 1500);
       localStorage.setItem('id', userByEmail.id.toString());
     });
     this.subscriptions.push(getAllUsersSub);

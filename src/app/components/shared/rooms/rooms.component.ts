@@ -36,7 +36,7 @@ export class RoomsComponent {
   user: User | null = null;
 
   searchInput: string = '';
-  sortBy: 'title' | 'type' | 'hotel' | 'price' | '' = '';
+  sortBy: 'title' | 'type' | 'hotel' | 'capacity' | 'price' | '' = '';
   filteredRooms: Room[] = [];
   sortDirection: 'Ascending' | 'Descending' = 'Ascending';
 
@@ -120,6 +120,8 @@ export class RoomsComponent {
           result = a.roomType.localeCompare(b.roomType);
         } else if (this.sortBy === 'hotel') {
           result = a.hotel.localeCompare(b.hotel);
+        } else if (this.sortBy === 'capacity') {
+          result = a.capacity - b.capacity;
         } else if (this.sortBy === 'price') {
           result = a.price - b.price;
         }
@@ -133,7 +135,7 @@ export class RoomsComponent {
   }
 
   onSortChange(value: string) {
-    this.sortBy = value as 'title' | 'type' | 'hotel' | 'price';
+    this.sortBy = value as 'title' | 'type' | 'hotel' | 'capacity' | 'price';
     this.applyFilters();
   }
 

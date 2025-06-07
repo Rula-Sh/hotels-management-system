@@ -83,6 +83,40 @@
         <div class="align-self-center">
           <span
             class="input-group-text input-group-icon align-self-center bg-white"
+            ><i class="fa-solid fa-users"></i>
+          </span>
+        </div>
+        <input
+          type="number"
+          class="form-control"
+          aria-label="Capacity"
+          [placeholder]="'room.capacity' | translate"
+          formControlName="capacity"
+          required
+          max="20"
+          min="2"
+        />
+        <div
+          class="error"
+          *ngIf="
+            roomForm.get('capacity')?.invalid && roomForm.get('capacity')?.touched
+          "
+        >
+          <div *ngIf="roomForm.get('capacity')?.errors?.['required']">
+            {{ "room.capacity-required" | translate }}
+          </div>
+          <div *ngIf="roomForm.get('capacity')?.errors?.['min']">
+            {{ "room.capacity-min" | translate }}
+          </div>
+          <div *ngIf="roomForm.get('capacity')?.errors?.['max']">
+            {{ "room.capacity-max" | translate }}
+          </div>
+        </div>
+      </div>
+      <div class="input-group" [ngClass]="{ 'right-input': lang == 'ar' }">
+        <div class="align-self-center">
+          <span
+            class="input-group-text input-group-icon align-self-center bg-white"
             ><i class="fa-solid fa-layer-group"></i>
           </span>
         </div>

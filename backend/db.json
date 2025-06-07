@@ -4,6 +4,7 @@
       "id": "r1",
       "title": "Deluxe Suite",
       "roomType": "Room",
+      "capacity": 1,
       "floor": 2,
       "hotel": "Sunrise Inn",
       "details": "A deluxe room with sea view.",
@@ -19,6 +20,7 @@
       "id": "r4",
       "title": "Conference Hall A",
       "roomType": "Hall",
+      "capacity": 12,
       "floor": 1,
       "hotel": "Sunrise Inn",
       "details": "Spacious hall for events.",
@@ -32,6 +34,7 @@
       "id": "r2",
       "title": "Conference Hall A",
       "roomType": "Hall",
+      "capacity": 4,
       "floor": 1,
       "hotel": "Sunrise Inn",
       "details": "Spacious hall for events.",
@@ -45,6 +48,7 @@
       "id": "84ca",
       "title": "qwe",
       "roomType": "Room",
+      "capacity": 6,
       "floor": 2321,
       "hotel": "123",
       "details": "123",
@@ -89,10 +93,7 @@
       "role": "Employee",
       "pfp": "",
       "jobTitle": "Hair Stylist",
-      "services": [
-        "svc1",
-        "svc2"
-      ]
+      "services": ["svc1", "svc2"]
     },
     {
       "id": "emp2",
@@ -103,10 +104,9 @@
       "role": "Employee",
       "pfp": "",
       "jobTitle": "Massage Therapist",
-      "services": [
-        "svc3"
-      ]
+      "services": ["svc3"]
     },
+
     {
       "id": "9884",
       "name": "areen",
@@ -179,6 +179,7 @@
         "role": "Employee"
       }
     },
+
     {
       "id": "db37",
       "customer": {
@@ -292,94 +293,5 @@
       }
     }
   ],
-  "serviceRequests": [
-    {
-      "id": "90e6",
-      "customerId": "9884",
-      "roomId": "r1",
-      "date": "2025-06-07T13:07:58.146Z",
-      "requestStatus": "Pending",
-      "notes": "",
-      "customer": {
-        "id": "9884",
-        "name": "areen",
-        "email": "AREEN11823@GMAIL.COM",
-        "phone": "",
-        "role": "Customer",
-        "pfp": ""
-      },
-      "room": {
-        "id": "r1",
-        "title": "Deluxe Suite",
-        "roomType": "Room",
-        "floor": 2,
-        "hotel": "Sunrise Inn",
-        "details": "A deluxe room with sea view.",
-        "bookedStatus": "Pending",
-        "price": 120,
-        "imagesUrl": [
-          "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748011951/SuiteNov2022_0008_1920_hhykez.jpg",
-          "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748011951/140127103345-peninsula-shanghai-deluxe-mock-up_oatn0j.jpg",
-          "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748011951/Sofitel-Dubai-Wafi-Luxury-Room-Bedroom-Skyline-View-Image1_WEB_mal8fr.jpg"
-        ]
-      },
-      "employeeId": "2389",
-      "title": "Room cleaning",
-      "serviceType": "Cleaning",
-      "details": "one hour cleaning",
-      "price": 30,
-      "imageUrl": "https://www.google.com/imgres?q=cleaning%20room&imgurl=https%3A%2F%2Fwww.wecasa.co.uk%2Fmag%2Fwp-content%2Fuploads%2F2025%2F02%2Fdeep-cleaning-bedroom-1024.jpg&imgrefurl=https%3A%2F%2Fwww.wecasa.co.uk%2Fmag%2Froom-by-room-guide-to-deep-cleaning%2F&docid=TAeQCSREjol3wM&tbnid=ONmBumnHb_a-UM&vet=12ahUKEwjsnbjs7ciNAxW8RKQEHZ4xC98QM3oECBwQAA..i&w=1024&h=683&hcb=2&ved=2ahUKEwjsnbjs7ciNAxW8RKQEHZ4xC98QM3oECBwQAA",
-      "employee": {
-        "id": "2389",
-        "name": "AREEN",
-        "email": "AREEN@GMAIL.COM",
-        "role": "Employee",
-        "hotel": "Sunrise Inn",
-        "jobTitle": "CLENER"
-      }
-    },
-    {
-      "id": "907b",
-      "customerId": "9884",
-      "roomId": "r1",
-      "date": "2025-06-07T18:58:10.241Z",
-      "requestStatus": "Pending",
-      "notes": "",
-      "customer": {
-        "id": "9884",
-        "name": "areen",
-        "email": "AREEN11823@GMAIL.COM",
-        "phone": "",
-        "role": "Customer",
-        "pfp": ""
-      },
-      "room": {
-        "id": "r1",
-        "title": "Deluxe Suite",
-        "roomType": "Room",
-        "floor": 2,
-        "hotel": "Sunrise Inn",
-        "details": "A deluxe room with sea view.",
-        "bookedStatus": "Pending",
-        "price": 120,
-        "imagesUrl": [
-          "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748011951/SuiteNov2022_0008_1920_hhykez.jpg",
-          "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748011951/140127103345-peninsula-shanghai-deluxe-mock-up_oatn0j.jpg",
-          "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748011951/Sofitel-Dubai-Wafi-Luxury-Room-Bedroom-Skyline-View-Image1_WEB_mal8fr.jpg"
-        ]
-      },
-      "employeeId": "emp1",
-      "title": "Fix Furniture",
-      "serviceType": "Maintenance",
-      "details": "Basic maintenance service",
-      "price": 20,
-      "imageUrl": "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748501068/678a64ea8faa75e20768a51b_64b64e9c25f6ad976e8ea6b7_Outsource_20maintenance_kpwafy.jpg",
-      "employee": {
-        "id": "emp1",
-        "name": "Alice Johnson",
-        "email": "alice.johnson@example.com",
-        "jobTitle": "Hair Stylist"
-      }
-    }
-  ]
+  "serviceRequests": []
 }
