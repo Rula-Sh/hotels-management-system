@@ -70,17 +70,40 @@ export class RoomsComponent {
   }
 
   getRooms() {
-    const getAllRoomsSub = this.roomService.getAllRooms().subscribe({
-      next: (value) => {
-        this.rooms = value;
-        console.log('Rooms Loaded Successfuly');
-        this.applyFilters();
+    const userId = localStorage.getItem('id');
+
+    if (!userId) {
+      console.error('User ID not found in localStorage.');
+      return;
+    }
+
+    const getRoomsSub = this.roomService.getAllRooms().subscribe({
+      next: (rooms) => {
+        this.reservationService.getReservationsByCustomerId(userId).subscribe({
+          next: (reservations) => {
+            const approvedRoomIds = reservations
+              .filter((r) => r.approvalStatus === 'Approved')
+              .map((r) => r.roomId);
+
+            // ✅ تصفية الغرف بناءً على الحجز الموافق عليه
+            this.rooms = rooms.filter(
+              (room) => !approvedRoomIds.includes(room.id!)
+            );
+            this.applyFilters();
+          },
+          error: (err) => {
+            console.error('Failed to load reservations:', err);
+            this.rooms = rooms; // fallback لعرض كل الغرف
+            this.applyFilters();
+          },
+        });
       },
       error: (err) => {
-        console.log(`Failed to Load Rooms: ${err}`);
+        console.error('Failed to load rooms:', err);
       },
     });
-    this.subscriptions.push(getAllRoomsSub);
+
+    this.subscriptions.push(getRoomsSub);
   }
 
   applyFilters() {
