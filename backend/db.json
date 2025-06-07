@@ -4,6 +4,7 @@
       "id": "r1",
       "title": "Deluxe Suite",
       "roomType": "Room",
+      "capacity": 1,
       "floor": 2,
       "hotel": "Sunrise Inn",
       "details": "A deluxe room with sea view.",
@@ -19,6 +20,7 @@
       "id": "r4",
       "title": "Conference Hall A",
       "roomType": "Hall",
+      "capacity": 12,
       "floor": 1,
       "hotel": "Sunrise Inn",
       "details": "Spacious hall for events.",
@@ -32,6 +34,7 @@
       "id": "r2",
       "title": "Conference Hall A",
       "roomType": "Hall",
+      "capacity": 4,
       "floor": 1,
       "hotel": "Sunrise Inn",
       "details": "Spacious hall for events.",
@@ -45,6 +48,7 @@
       "id": "84ca",
       "title": "qwe",
       "roomType": "Room",
+      "capacity": 6,
       "floor": 2321,
       "hotel": "123",
       "details": "123",
@@ -89,10 +93,7 @@
       "role": "Employee",
       "pfp": "",
       "jobTitle": "Hair Stylist",
-      "services": [
-        "svc1",
-        "svc2"
-      ]
+      "services": ["svc1", "svc2"]
     },
     {
       "id": "emp2",
@@ -103,12 +104,9 @@
       "role": "Employee",
       "pfp": "",
       "jobTitle": "Massage Therapist",
-      "services": [
-        "svc3"
-      ]
+      "services": ["svc3"]
     },
- 
-  
+
     {
       "id": "9884",
       "name": "areen",
@@ -181,7 +179,7 @@
         "role": "Employee"
       }
     },
-   
+
     {
       "id": "cd4b",
       "customer": {
@@ -296,7 +294,5 @@
       }
     }
   ],
-  "serviceRequests": [
-    
-  ]
+  "serviceRequests": []
 }

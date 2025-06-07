@@ -9,10 +9,11 @@ import { Subscription } from 'rxjs';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { I18nService } from '../../../services/i18n.service';
+import { I18nPipe } from '../../../pipes/i18n.pipe';
 
 @Component({
   selector: 'app-my-reservations',
-  imports: [CommonModule, RouterModule, ToastModule],
+  imports: [CommonModule, RouterModule, ToastModule, I18nPipe],
   providers: [MessageService],
   templateUrl: './my-reservations.component.html',
   styleUrls: ['./my-reservations.component.scss'],

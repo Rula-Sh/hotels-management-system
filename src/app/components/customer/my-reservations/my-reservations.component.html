@@ -17,6 +17,7 @@
             <p class="card-text">
               <strong>Type:</strong> {{ reservation.room.roomType }}<br />
               <strong>Hotel:</strong> {{ reservation.room.hotel }}<br />
+              <strong>{{ "room.capacity" | translate }}:</strong> {{ reservation.room.capacity }}<br />
               <strong>Date:</strong> {{ reservation.date | date : "mediumDate"
               }}<br />
               <strong>Payment:</strong>

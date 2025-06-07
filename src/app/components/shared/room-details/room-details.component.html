@@ -69,6 +69,14 @@
 
       <div class="data-section">
         <p class="data-title">
+          <i class="fa-solid fa-users"></i>
+          {{ "room.capacity" | translate }}:
+        </p>
+        <p class="data">{{ room?.capacity }}</p>
+      </div>
+
+      <div class="data-section">
+        <p class="data-title">
           <i class="fa-solid fa-layer-group"></i>
           {{ "room.floor" | translate }}:
         </p>
@@ -137,6 +145,7 @@
     </button>
     }
   </div>
+</div>
   <button
     class="mt-4 ms-4 me-4 p-2 btn-outline-primary rounded-2"
     [routerLink]="['/rooms/']"
@@ -150,7 +159,6 @@
     }
     {{ "shared.button.go-back" | translate }}
   </button>
-</div>
 
 <p-toast />
 <p-confirmdialog #cd>

@@ -5,6 +5,12 @@
 @import "../node_modules/bootstrap-icons/font/bootstrap-icons.css";
 @import "../src/styles/variables.scss";
 
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 .page {
   min-width: 500px;
 }
