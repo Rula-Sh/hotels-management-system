@@ -104,10 +104,11 @@
     "couldnt-find-a-room": "Couldnt find a room with this name",
     "approved-services": "Approved Services",
     "no-approved-or-active-services-in-this-room": "No approved or active services in this room.",
-    "book-now": "Book Now"
+    "book-now": "Book Now",
+    "room-already-booked": "Room already booked"
   },
-  "reservation": {
-    "reservations": "Reservations",
+  "reservation": {   
+     "reservations": "Reservations",
     "pending": "Pending",
     "active": " Active",
     "pending-reservations": "Pending Reservations",
@@ -116,7 +117,21 @@
     "approve-reservation": "Approve Reservation",
     "reject-reservation": "Reject Reservation",
     "no-reservations": "There Are No Reservations At The Moment",
-    "does-not-have-any-reservations": "Does not have any reservations yet"
+    "does-not-have-any-reservations": "Does not have any reservations yet",
+    "room-image": "Room Image",
+    "type": "Type",
+    "hotel": "Hotel",
+    "date": "Date of reservation",
+    "payment": "payment",
+    "cancel": "Cancel reservation",
+    "view-services": "View Services",
+    "status": {
+      "stat":"status",
+      "pending": "Pending",
+      "approved": "Approved",
+      "rejected": "rejected"
+    },
+    "view-room-details": "View Room Details"
   },
   "service": {
     "services": "Services",
@@ -254,7 +269,9 @@
       "reservation-cancelled": "Reservation cancelled",
       "login-successful": "Login successful!",
       "email-already-exists": "Email already exists!",
-      "registered-successfully":"Registered successfully!"
+      "registered-successfully":"Registered successfully!",
+         "status-updated-to-booked": " Status updated to booked!"
+
     },
     "confirm-dialog": {
       "delete": "Delete",
