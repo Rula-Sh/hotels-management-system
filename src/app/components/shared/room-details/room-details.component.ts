@@ -38,7 +38,7 @@ export class RoomDetailsComponent {
   userId: string | null = null;
   roomId: string | null = null;
   requestedServicesStatus: { [serviceTitle: string]: string } = {};
-
+  isRoomBookedByUser: boolean = false;
   subscriptions: Subscription[] = [];
 
   get lang(): 'en' | 'ar' {
@@ -65,6 +65,40 @@ export class RoomDetailsComponent {
     this.roomId = this.route.snapshot.paramMap.get('id'); // تحصل الـ roomId من الـ URL
 
     this.getRoom(); // إذا كانت دالة جلب الغرفة async تأكد من تنفيذ loadApprovedServices بعدها
+    if (this.userId && this.roomId) {
+      const sub = this.reservationService
+        .getReservationsByCustomerId(this.userId)
+        .subscribe((reservations) => {
+          const approvedReservation = reservations.find(
+            (res) =>
+              res.roomId === this.roomId && res.approvalStatus === 'Approved'
+          );
+          // هنا نحدث حالة الحجز عند المستخدم
+          this.isRoomBookedByUser = !!approvedReservation;
+          
+          if (approvedReservation && this.room) {
+            // ✅ تحديث حالة الغرفة إلى "Booked"
+            const updatedRoom: Room = { ...this.room, bookedStatus: 'Booked' };
+
+            this.roomService.updateRoom(this.room.id!, updatedRoom).subscribe({
+              next: () => {
+                this.room!.bookedStatus = 'Booked';
+                this.messageService.add({
+                  severity: 'info',
+                  summary: `${this.i18n.t('room.room')} ${
+                    this.room!.title
+                  } ${this.i18n.t('shared.toast.status-updated-to-booked')}`,
+                });
+              },
+              error: () => {
+                console.error('Failed to update room status to Booked');
+              },
+            });
+          }
+        });
+
+      this.subscriptions.push(sub);
+    }
   }
 
   getRoom() {
