@@ -58,4 +58,13 @@
       background-color: #1f3b73;
     }
   }
+  .service-img {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+  display: block;
+}
+
 }

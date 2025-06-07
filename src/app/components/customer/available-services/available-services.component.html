@@ -6,6 +6,12 @@
     <h3>{{ service.title }}</h3>
     <p><strong>Details:</strong> {{ service.details }}</p>
     <p><strong>Price:</strong> ${{ service.price }}</p>
+    <img
+      *ngIf="service.imageUrl"
+      [src]="service.imageUrl"
+      alt="Service Image"
+      class="service-img mb-2"
+    />
 
     <div class="employee-info">
       <h4>Provided by:</h4>
@@ -16,21 +22,10 @@
 
     <button
       class="btn-primary"
-      [disabled]="
-        requestedServicesStatus[service.title] === 'Pending' ||
-        requestedServicesStatus[service.title] === 'In Progress' ||
-        requestedServicesStatus[service.title] === 'Completed'
-      "
+      [disabled]="isRequestButtonDisabled(service.title)"
       (click)="requestService(service)"
     >
-      {{
-        requestedServicesStatus[service.title] === "Completed" ||
-        requestedServicesStatus[service.title] === "In Progress"
-          ? "Approved"
-          : requestedServicesStatus[service.title] === "Pending"
-          ? "Requested"
-          : "Request Service"
-      }}
+      {{ getServiceButtonLabel(service.title) }}
     </button>
   </div>
 </div>

@@ -111,7 +111,9 @@ export class AvailableServicesComponent implements OnInit {
         .getReservationsByCustomerId(user.id)
         .subscribe({
           next: (reservations) => {
-            this.userRooms = reservations.map((r) => r.room);
+            this.userRooms = reservations
+              .filter((res) => res.approvalStatus === 'Approved')
+              .map((res) => res.room);
           },
           error: (error) => {
             console.error('Error loading user rooms:', error);
@@ -149,7 +151,7 @@ export class AvailableServicesComponent implements OnInit {
       details: service.details,
       price: service.price,
       imageUrl: service.imageUrl,
-      employee: undefined as any,
+      employee: service.employee,
     };
 
     const createServiceRequestSub = this.serviceService
@@ -179,4 +181,16 @@ export class AvailableServicesComponent implements OnInit {
   ngOnDestroy() {
     this.subscriptions.forEach((sub) => sub.unsubscribe());
   }
+  getServiceButtonLabel(serviceTitle: string): string {
+  const status = this.requestedServicesStatus[serviceTitle];
+  if (status === 'Completed' || status === 'In Progress') return 'Approved';
+  if (status === 'Pending') return 'Requested';
+  return 'Request Service';
+}
+
+isRequestButtonDisabled(serviceTitle: string): boolean {
+  const status = this.requestedServicesStatus[serviceTitle];
+  return status === 'Pending' || status === 'In Progress' || status === 'Completed';
+}
+
 }

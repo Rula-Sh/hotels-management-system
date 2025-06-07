@@ -20,19 +20,20 @@
         (click)="nextImage()"
       ></i>
 
-      @if(role == 'Admin'){
+      <!-- للأدمن فقط -->
       <i
+        *ngIf="role === 'Admin'"
         class="edit-icon bi bi-pencil-square h4"
         [routerLink]="['/admin/edit-room/', room?.id]"
         routerLinkActive="router-link-active"
         [title]="'service.edit-room' | translate"
       ></i>
       <i
+        *ngIf="role === 'Admin'"
         class="delete-icon bi bi-trash-fill h4"
         (click)="deleteRoom(room?.id)"
         [title]="'room.delete-room' | translate"
       ></i>
-      }
     </div>
 
     <div class="d-flex justify-content-between w-100 mt-4">
@@ -89,9 +90,10 @@
           {{ "room.booked-status" | translate }}:
         </p>
         <p class="data">
-          @if(room?.bookedStatus == "Available"){
-          <i class="fa-solid fa-circle green"></i> } @else {
-          <i class="fa-solid fa-circle red"></i> }
+          <i
+            class="fa-solid fa-circle"
+            [ngClass]="room?.bookedStatus === 'Available' ? 'green' : 'red'"
+          ></i>
           {{ room?.bookedStatus }}
         </p>
       </div>
@@ -104,46 +106,81 @@
         <p class="data">{{ room?.details }}</p>
       </div>
     </div>
-    <!-- Approved Services Section -->
-    <div class="mt-5">
-      <h4 class="mb-3">
-        <i class="fa-solid fa-concierge-bell me-2"></i>
-        {{ "room.approved-services" | translate }}
-      </h4>
 
-      <div *ngIf="approvedServices.length > 0; else noServices">
-        <ul class="list-group">
-          <li
-            *ngFor="let service of approvedServices"
-            class="list-group-item d-flex justify-content-between align-items-start flex-column flex-md-row gap-2"
-          >
-            <div>
-              <i class="fa-solid fa-circle-check text-success me-2"></i>
-              <strong>{{ service.title }}</strong>
-              <span class="badge bg-info text-dark ms-2">{{
-                service.requestStatus
-              }}</span>
-            </div>
-            <small class="text-muted align-self-end">
-              <i class="fa-regular fa-calendar-days me-1"></i>
-              {{ service.date | date : "fullDate" }} -
-              {{ service.date | date : "shortTime" }}
-            </small>
-          </li>
-        </ul>
+   <!-- قسم الخدمات الموافق عليها يظهر فقط للمستخدم الذي حجز الغرفة وليس للـ Admin -->
+<div
+  class="mt-5"
+  *ngIf="role !== 'Admin' && isRoomBookedByUser && approvedServices.length > 0"
+>
+  <h4 class="mb-3">
+    <i class="fa-solid fa-concierge-bell me-2"></i>
+    {{ "room.approved-services" | translate }}
+  </h4>
+
+  <ul class="list-group">
+    <li
+      *ngFor="let service of approvedServices"
+      class="list-group-item d-flex justify-content-between align-items-start flex-column flex-md-row gap-2"
+    >
+      <div>
+        <i class="fa-solid fa-circle-check text-success me-2"></i>
+        <strong>{{ service.title }}</strong>
+        <span class="badge bg-info text-dark ms-2">{{ service.requestStatus }}</span>
       </div>
-      <ng-template #noServices>
-        <p class="text-muted mt-3">
-          {{ "room.no-approved-or-active-services-in-this-room" | translate }}
-        </p>
-      </ng-template>
-    </div>
+      <small class="text-muted align-self-end">
+        <i class="fa-regular fa-calendar-days me-1"></i>
+        {{ service.date | date : "fullDate" }} -
+        {{ service.date | date : "shortTime" }}
+      </small>
+    </li>
+  </ul>
+</div>
 
-    @if(role != 'Admin'){
-    <button class="book-btn btn-primary" (click)="bookRoom(room!)">
+<!-- قسم الخدمات الموافق عليها يظهر فقط للمستخدم الذي حجز الغرفة وليس للـ Admin -->
+<div
+  class="mt-5"
+  *ngIf="role !== 'Admin' && isRoomBookedByUser && approvedServices.length > 0"
+>
+  <h4 class="mb-3">
+    <i class="fa-solid fa-concierge-bell me-2"></i>
+    {{ "room.approved-services" | translate }}
+  </h4>
+
+  <ul class="list-group">
+    <li
+      *ngFor="let service of approvedServices"
+      class="list-group-item d-flex justify-content-between align-items-start flex-column flex-md-row gap-2"
+    >
+      <div>
+        <i class="fa-solid fa-circle-check text-success me-2"></i>
+        <strong>{{ service.title }}</strong>
+        <span class="badge bg-info text-dark ms-2">{{ service.requestStatus }}</span>
+      </div>
+      <small class="text-muted align-self-end">
+        <i class="fa-regular fa-calendar-days me-1"></i>
+        {{ service.date | date : "fullDate" }} -
+        {{ service.date | date : "shortTime" }}
+      </small>
+    </li>
+  </ul>
+</div>
+
+<!-- رسالة تظهر لو ما فيه خدمات أو المستخدم ما حجز الغرفة -->
+<div *ngIf="role !== 'Admin' && isRoomBookedByUser && approvedServices.length === 0">
+  <p class="text-muted mt-3">
+    {{ "room.no-approved-or-active-services-in-this-room" | translate }}
+  </p>
+</div>
+
+
+    <!-- زر الحجز للعميل فقط -->
+    <button
+      *ngIf="role !== 'Admin'"
+      class="book-btn btn-primary"
+      (click)="bookRoom(room!)"
+    >
       {{ "room.book-now" | translate }}
     </button>
-    }
   </div>
 </div>
   <button
@@ -152,15 +189,14 @@
     routerLinkActive="router-link-active"
     [title]="'shared.button.go-back' | translate"
   >
-    @if(lang == 'ar') {
-    <i class="fa-solid fa-arrow-right"></i>
-    } @else {
-    <i class="fa-solid fa-arrow-left"></i>
-    }
+    <i
+      class="fa-solid"
+      [ngClass]="lang === 'ar' ? 'fa-arrow-right' : 'fa-arrow-left'"
+    ></i>
     {{ "shared.button.go-back" | translate }}
   </button>
 
-<p-toast />
+<p-toast></p-toast>
 <p-confirmdialog #cd>
   <ng-template pTemplate="footer">
     <button
@@ -169,7 +205,7 @@
       icon="pi pi-times"
       [label]="'shared.confirm-dialog.delete' | translate"
       [ngStyle]="{ backgroundColor: '#e09fa6', border: 'red' }"
-      (click)="cd.onAccept()"
+      (click)="cd.onReject()"
     ></button>
 
     <button
@@ -178,7 +214,7 @@
       icon="pi pi-check"
       [label]="'shared.confirm-dialog.cancel' | translate"
       [ngStyle]="{ backgroundColor: '#90c67c', border: 'green' }"
-      (click)="cd.onReject()"
+      (click)="cd.onAccept()"
     ></button>
   </ng-template>
 </p-confirmdialog>

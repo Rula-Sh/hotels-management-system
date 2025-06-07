@@ -23,7 +23,8 @@ export class MyReservationsComponent implements OnInit {
     private reservationService: ReservationService,
     private roomService: RoomService,
     private messageService: MessageService,
-    private i18nService: I18nService
+    private i18nService: I18nService,
+   
   ) {}
 
   reservations: Reservation[] = [];
@@ -116,4 +117,9 @@ export class MyReservationsComponent implements OnInit {
   ngOnDestroy() {
     this.subscriptions.forEach((sub) => sub.unsubscribe());
   }
+  get lang(): 'ar' | 'en' {
+  // لو عندك خدمة i18nService مع خاصية getLanguage()
+  return this.i18nService.getLanguage();
+}
+
 }

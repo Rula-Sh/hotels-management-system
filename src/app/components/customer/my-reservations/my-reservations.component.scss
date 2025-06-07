@@ -68,6 +68,30 @@
     .btn-danger {
       margin-top: 1rem;
     }
+    .room-details-link{
+      display: block;
+      margin-top: 1rem;
+      font-weight: 500;
+      text-decoration: underline;
+      transition: color 0.3s ease;
+
+      // اللغة العربية - محاذاة لليسار
+      &[lang="ar"] {
+        text-align: left;
+        color: $color-dark-brown;
+      }
+
+      // اللغة الإنجليزية - محاذاة لليمين
+      &[lang="en"] {
+        text-align: right;
+        color: $color-dark-brown;
+      }
+
+      &:hover {
+        color: darken($color-dark-brown, 10%);
+        text-decoration: none;
+      }
+    }
   }
 }
 
