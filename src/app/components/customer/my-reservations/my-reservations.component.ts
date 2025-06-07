@@ -9,10 +9,10 @@ import { Subscription } from 'rxjs';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { I18nService } from '../../../services/i18n.service';
-
+import { I18nPipe } from '../../../pipes/i18n.pipe';
 @Component({
   selector: 'app-my-reservations',
-  imports: [CommonModule, RouterModule, ToastModule],
+  imports: [CommonModule, RouterModule, ToastModule,I18nPipe],
   providers: [MessageService],
   templateUrl: './my-reservations.component.html',
   styleUrls: ['./my-reservations.component.scss'],
@@ -22,7 +22,8 @@ export class MyReservationsComponent implements OnInit {
     private reservationService: ReservationService,
     private roomService: RoomService,
     private messageService: MessageService,
-    private i18nService: I18nService
+    private i18nService: I18nService,
+   
   ) {}
 
   reservations: Reservation[] = [];
@@ -115,4 +116,9 @@ export class MyReservationsComponent implements OnInit {
   ngOnDestroy() {
     this.subscriptions.forEach((sub) => sub.unsubscribe());
   }
+  get lang(): 'ar' | 'en' {
+  // لو عندك خدمة i18nService مع خاصية getLanguage()
+  return this.i18nService.getLanguage();
+}
+
 }

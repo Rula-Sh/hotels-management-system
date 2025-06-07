@@ -1,5 +1,5 @@
 <div class="container mt-4">
-  <h2 class="text-center mb-4">My Reservations</h2>
+  <h2 class="text-center mb-4">{{ "reservation.reservations" | translate }}</h2>
 
   <div *ngIf="reservations.length > 0; else noReservations">
     <div class="card mb-3" *ngFor="let reservation of reservations">
@@ -8,22 +8,23 @@
           <img
             [src]="reservation.room.imagesUrl[0]"
             class="img-fluid rounded-start"
-            alt="Room Image"
+            alt="{{ 'reservation.room-image' | translate }}"
           />
         </div>
         <div class="col-md-8">
           <div class="card-body">
             <h5 class="card-title">{{ reservation.room.title }}</h5>
             <p class="card-text">
-              <strong>Type:</strong> {{ reservation.room.roomType }}<br />
-              <strong>Hotel:</strong> {{ reservation.room.hotel }}<br />
-              <strong>Date:</strong> {{ reservation.date | date : "mediumDate"
-              }}<br />
-              <strong>Payment:</strong>
-              {{ reservation.paymentAmount | currency : "USD" }} ({{
-                reservation.paymentStatus
-              }})<br />
-              <strong>Status:</strong>
+              <strong>{{ "reservation.type" | translate }}:</strong>
+              {{ reservation.room.roomType }}<br />
+              <strong>{{ "reservation.hotel" | translate }}:</strong>
+              {{ reservation.room.hotel }}<br />
+              <strong>{{ "reservation.date" | translate }}:</strong>
+              {{ reservation.date | date : "mediumDate" }}<br />
+              <strong>{{ "reservation.payment" | translate }}:</strong>
+              {{ reservation.paymentAmount | currency : "USD" }}
+              ({{ reservation.paymentStatus }})<br />
+              <strong>{{ "reservation.status.stat" | translate }}:</strong>
               <span
                 [ngClass]="{
                   'text-warning': reservation.approvalStatus === 'Pending',
@@ -31,25 +32,38 @@
                   'text-danger': reservation.approvalStatus === 'Rejected'
                 }"
               >
-                {{ reservation.approvalStatus }}
+                {{
+                  "reservation.status." +
+                    reservation.approvalStatus.toLowerCase() | translate
+                }}
               </span>
             </p>
-            <!-- Optional Cancel Button -->
+
+            <!-- زر الإلغاء -->
             <button
               class="btn btn-danger btn-sm"
               (click)="cancelReservation(reservation.id)"
               *ngIf="reservation.approvalStatus !== 'Approved'"
             >
-              Cancel Reservation
+              {{ "reservation.cancel" | translate }}
             </button>
-            <!-- زر View Services يظهر فقط إذا تمت الموافقة على الحجز -->
+
+            <!-- زر الخدمات -->
             <a
               class="btn btn-primary btn-sm ms-2"
               *ngIf="reservation.approvalStatus === 'Approved'"
               [routerLink]="['/available-services']"
               [queryParams]="{ hotel: reservation.room.hotel }"
             >
-              View Services
+              {{ "reservation.view-services" | translate }}
+            </a>
+            <!-- رابط الانتقال إلى صفحة تفاصيل الغرفة -->
+            <a
+              [routerLink]="['/room-details', reservation.room.id]"
+              class="room-details-link"
+              [attr.lang]="lang"
+            >
+              🔗 {{ "reservation.view-room-details" | translate }}
             </a>
           </div>
         </div>
@@ -59,7 +73,7 @@
 
   <ng-template #noReservations>
     <div *ngIf="reservations.length === 0" class="alert alert-info mt-3">
-      You have no reservations yet.
+      {{ "reservations.no-reservations" | translate }}
     </div>
   </ng-template>
 </div>
