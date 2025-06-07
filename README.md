@@ -127,130 +127,130 @@ Include at least 3:
 
 ### 🎨 UI/UX & Styling
 
-- [ ] Improve overall styling and modernize the color palette
-- [ ] Implement responsive design for all screen sizes (mobile, tablet, desktop)
-- [ ] Add burger menu, logo, profile picture, and form icons
-- [ ] Add tooltips and `alt` attributes for accessibility and user guidance
-- [ ] Display "No [data] available" messages when lists are empty
-- [ ] Add PrimeNG Toast for notification messages
-- [ ] Use Font Awesome and Bootstrap Icons for consistent iconography
-- [ ] Use SCSS/CSS variables for theme consistency
-- [ ] Add skeleton loaders for async data states
-- [ ] Implement light/dark mode toggle
+- [x] Improve overall styling and modernize the color palette
+- [x] Implement responsive design for all screen sizes (mobile, tablet, desktop)
+- [x] Add burger menu, logo, profile picture, and form icons
+- [x] Add tooltips and `alt` attributes for accessibility and user guidance
+- [x] Display "No [data] available" messages when lists are empty
+- [x] Add PrimeNG Toast for notification messages
+- [x] Use Font Awesome and Bootstrap Icons for consistent iconography
+- [x] Use SCSS/CSS variables for theme consistency
+- [x] Add skeleton loaders for async data states
+- [x] Implement light/dark mode toggle
 
 ### 🌐 Internationalization
 
-- [ ] Integrate Angular i18n for translation support
-- [ ] Translate all static UI elements and messages
-- [ ] Translate dynamic messages in Toasts, ConfirmDialogs, and Forms
-- [ ] Provide Arabic logo and RTL support
-- [ ] Create language switcher in the header
+- [x] Integrate Angular i18n for translation support
+- [x] Translate all static UI elements and messages
+- [x] Translate dynamic messages in Toasts, ConfirmDialogs, and Forms
+- [x] Provide Arabic logo and RTL support
+- [x] Create language switcher in the header
 
 ### 📦 Components by Role
 
 #### 🔐 Shared Components
 
-- [ ] HomeRedirect, Header, Footer
-- [ ] Login, SignUp, Profile
-- [ ] NotFound, Rooms, RoomDetails
+- [x] HomeRedirect, Header, Footer
+- [x] Login, SignUp, Profile
+- [x] NotFound, Rooms, RoomDetails
 
 #### 👑 Admin Components
 
-- [ ] Dashboard, ManageUsers
-- [ ] AddEmployee, UserDetails
-- [ ] RoomForm, Reservations
+- [x] Dashboard, ManageUsers
+- [x] AddEmployee, UserDetails
+- [x] RoomForm, Reservations
 
 #### 👷 Employee Components
 
-- [ ] Requests, ServiceForm, Services
+- [x] Requests, ServiceForm, Services
 
 #### 🧍 Customer Components
 
-- [ ] AvailableServices, MyReservations
+- [x] AvailableServices, MyReservations
 
 #### 🧩 Reusable Components
 
-- [ ] Combine AddService/EditService into `ServiceForm`
-- [ ] Combine AddRoom/EditRoom into `RoomForm`
-- [ ] Use Rooms, RoomDetails Component in Admin, Customers, and Guests Pages
+- [x] Combine AddService/EditService into `ServiceForm`
+- [x] Combine AddRoom/EditRoom into `RoomForm`
+- [x] Use Rooms, RoomDetails Component in Admin, Customers, and Guests Pages
 
 ### 🛠️ Core Services
 
-- [ ] AuthService – Handle authentication and token storage
-- [ ] I18nService – Language and translation handling
-- [ ] UserService – Manage user CRUD and roles
-- [ ] RoomService – Manage rooms data and actions
-- [ ] ReservationService – Handle booking rooms data and actions
-- [ ] ServiceService – Manage service data and actions
-- [ ] UploadService – Handle image uploads (Cloudinary)
-- [ ] DashboardService – Provide analytics and system stats
+- [x] AuthService – Handle authentication and token storage
+- [x] I18nService – Language and translation handling
+- [x] UserService – Manage user CRUD and roles
+- [x] RoomService – Manage rooms data and actions
+- [x] ReservationService – Handle booking rooms data and actions
+- [x] ServiceService – Manage service data and actions
+- [x] UploadService – Handle image uploads (Cloudinary)
+- [x] DashboardService – Provide analytics and system stats
 
 ### 🏨 Room Management
 
-- [ ] Restrict Add/Edit/Delete Room actions to Admin only
-- [ ] Allow customers to Book Room and View Services
-- [ ] Display multiple images in room listings
-- [ ] Add search, filter, and sorting in Rooms component
-- [ ] Add room availability
+- [x] Restrict Add/Edit/Delete Room actions to Admin only
+- [x] Allow customers to Book Room and View Services
+- [x] Display multiple images in room listings
+- [x] Add search, filter, and sorting in Rooms component
+- [x] Add room availability
 
 ### 📋 Service Management
 
-- [ ] Add search, filter, and sorting to Services component
-- [ ] Allow employees to manage their services and requests
-- [ ] Automatically assign serviceType based on employee job title
+- [x] Add search, filter, and sorting to Services component
+- [x] Allow employees to manage their services and requests
+- [x] Automatically assign serviceType based on employee job title
 
 ### 👨‍💼 Employee Management
 
-- [ ] Enable Admin to add, update, and remove employees
-- [ ] Add “Fire Employee” (deactivate user) feature
-- [ ] Filter employees by job title or category
+- [x] Enable Admin to add, update, and remove employees
+- [x] Add “Fire Employee” (deactivate user) feature
+- [x] Filter employees by job title or category
 
 ### 👤 User Profile
 
-- [ ] Combine View/Edit Profile in a single editable page
-- [ ] Add default profile picture for new users
-- [ ] Allow password update and image, and personal details change
+- [x] Combine View/Edit Profile in a single editable page
+- [x] Add default profile picture for new users
+- [x] Allow password update and image, and personal details change
 
 ### 📞 Phone Input
 
-- [ ] Install and configure `NgxIntlTelInputModule` for international phone numbers
-- [ ] Validate phone number input format
+- [x] Install and configure `NgxIntlTelInputModule` for international phone numbers
+- [x] Validate phone number input format
 
 ### 🌁 Image Upload & Management
 
-- [ ] Add image upload with real-time preview
-- [ ] Replace manual image URL input with Cloudinary integration
-- [ ] Support multiple image uploads for Rooms, Services, and profiles
-- [ ] Store image URLs array (`imagesUrl`) instead of single `imageUrl` for rooms
+- [x] Add image upload with real-time preview
+- [x] Replace manual image URL input with Cloudinary integration
+- [x] Support multiple image uploads for Rooms, Services, and profiles
+- [x] Store image URLs array (`imagesUrl`) instead of single `imageUrl` for rooms
 
 ### 📊 DataTables & Lists
 
-- [ ] Use PrimeNG DataTable for listing Users, Rooms, and Services
-- [ ] Add pagination, search, sorting, and filtering
+- [x] Use PrimeNG DataTable for listing Users, Rooms, and Services
+- [x] Add pagination, search, sorting, and filtering
 
 ### 🧠 State Management
 
-- [ ] Handle subscriptions and properly unsubscribe to avoid memory leaks
+- [x] Handle subscriptions and properly unsubscribe to avoid memory leaks
 
 ### 🧩 Routing & Structure
 
-- [ ] Define and guard routes per user role (Admin, Employee, Customer)
-- [ ] Add shared routes/components for public access
-- [ ] Merge Rooms routes where shared (Admin + Customer)
+- [x] Define and guard routes per user role (Admin, Employee, Customer)
+- [x] Add shared routes/components for public access
+- [x] Merge Rooms routes where shared (Admin + Customer)
 
 ### 📑 Form Handling & Validation
 
-- [ ] Add reactive forms with validations across all components
-- [ ] Add custom validators for phone, password, etc.
-- [ ] Provide translated validation messages for each input
-- [ ] Use dropdowns and image upload fields where needed
+- [x] Add reactive forms with validations across all components
+- [x] Add custom validators for phone, password, etc.
+- [x] Provide translated validation messages for each input
+- [x] Use dropdowns and image upload fields where needed
 
 ### ⚙️ General App Setup
 
-- [ ] Install and configure PrimeNG, Bootstrap, Font Awesome, Bootstrap Icons
-- [ ] Configure Angular i18n and NgxIntlTelInput
-- [ ] Set up routing, guards, and initial layout
-- [ ] Ensure mobile-first design from the beginning
+- [x] Install and configure PrimeNG, Bootstrap, Font Awesome, Bootstrap Icons
+- [x] Configure Angular i18n and NgxIntlTelInput
+- [x] Set up routing, guards, and initial layout
+- [x] Ensure mobile-first design from the beginning
 
 ## 🧪 Testing Steps
 
