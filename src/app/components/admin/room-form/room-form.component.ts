@@ -69,6 +69,7 @@ export class RoomFormComponent {
         ],
       ],
       roomType: ['', Validators.required],
+      capacity: ['', [Validators.required, Validators.min(1), Validators.max(20)]],
       floor: ['', [Validators.required, Validators.min(2), Validators.max(99)]],
       hotel: [
         '',

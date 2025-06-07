@@ -85,6 +85,24 @@
   object-fit: contain;
 }
 
+.info-row {
+  display: flex;
+  margin-bottom: 8px;
+  margin-left: 20%;
+  justify-content: space-evenly;
+}
+
+.label {
+  width: 20%;
+  font-weight: bold;
+  text-align: start;
+}
+
+.value {
+  text-align: start;
+  width: 60%;
+}
+
 @media screen and (max-width: 675px) {
   .add-rooms-text {
     display: none;
