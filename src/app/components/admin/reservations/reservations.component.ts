@@ -9,6 +9,7 @@ import { ButtonModule } from 'primeng/button';
 import { I18nPipe } from '../../../pipes/i18n.pipe';
 import { ReservationService } from '../../../services/reservation.service';
 import { I18nService } from '../../../services/i18n.service';
+import { RoomService } from '../../../services/room.service';
 import { Subject, Subscription } from 'rxjs';
 // import { Subject, Subscription } from 'rxjs';
 // import { DataTablesModule } from 'angular-datatables';
@@ -43,12 +44,12 @@ export class ReservationsComponent {
   activeReservations: Reservation[] = [];
 
   subscriptions: Subscription[] = [];
-
   constructor(
     private ReservationService: ReservationService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
-    private i18n: I18nService
+    private i18n: I18nService,
+    private roomService: RoomService
   ) {}
 
   role: string | null = null;
@@ -124,6 +125,22 @@ export class ReservationsComponent {
         reservation
       ).subscribe({
         next: (value) => {
+          // ✅ بعد الموافقة على الحجز، حدّث الغرفة إلى 'Booked'
+          const updatedRoom = {
+            ...reservation.room,
+            bookedStatus: 'Booked' as 'Booked',
+          };
+
+          this.roomService
+            .updateRoom(reservation.room.id, updatedRoom)
+            .subscribe({
+              next: () => {
+                console.log('Room marked as booked');
+              },
+              error: (err) => {
+                console.error('Failed to update room status:', err);
+              },
+            });
           console.log('reservation approved');
           this.getreservations();
           this.messageService.add({
@@ -156,6 +173,22 @@ export class ReservationsComponent {
             reservation
           ).subscribe({
             next: (value) => {
+              // ✅ إعادة حالة الغرفة إلى 'Available'
+              const updatedRoom = {
+                ...reservation.room,
+                bookedStatus: 'Available' as 'Available',
+              };
+
+              this.roomService
+                .updateRoom(reservation.room.id, updatedRoom)
+                .subscribe({
+                  next: () => {
+                    console.log('Room marked as available again.');
+                  },
+                  error: (err) => {
+                    console.error('Failed to update room to available:', err);
+                  },
+                });
               console.log('Reservation rejected');
               this.getreservations();
               this.messageService.add({
