@@ -150,8 +150,25 @@
       "add-service": "إضافة خدمة",
       "you-dont-have-services-to-provide": "لا يوجد لديك خدمات لتقدمها",
       "service-type-required": "نوع الخدمة مطلوب",
-      "does-not-have-any-services": "ليس لديه أي خدمات حتى الآن"
+      "does-not-have-any-services": "ليس لديه أي خدمات حتى الآن",
+      "provided-by": "مقدمة من",
+      "employee": {
+        "name": "اسم الموظف",
+        "phone": "الهاتف",
+        "email": "البريد الإلكتروني"
+      },
+      "image-alt": "صورة الخدمة",
+      "price": "السعر",
+      "details": "التفاصيل",
+      "sort-by": "ترتيب حسب",
+      "sort": {
+        "price": "السعر",
+        "type": "النوع",
+        "title": "العنوان"
+      },
+      "search-placeholder": "البحث عن الخدمة..."
     },
+    "--select-booked-room--": "-- الرجاء اختيار واحدة من غرفك المحجوزة --",
     "footer": {
       "english": "الإنجليزية",
       "arabic": "العربية"
