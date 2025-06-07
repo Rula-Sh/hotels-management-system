@@ -1,6 +1,6 @@
 <div class="d-flex justify-content-between mt-2 ms-5 me-5 align-items-center">
   <div></div>
-  <div class="d-flex justify-content-center w-75">
+  <div class="d-flex justify-content-center align-items-center w-75">
     <div
       class="input-group search-container"
       [ngClass]="{ 'right-input': lang == 'ar' }"
@@ -36,6 +36,7 @@
         <option value="title">{{ "shared.form.title" | translate }}</option>
         <option value="type">{{ "shared.form.type" | translate }}</option>
         <option value="hotel">{{ "shared.form.hotel" | translate }}</option>
+        <option value="capacity">{{ "room.capacity" | translate }}</option>
         <option value="price">{{ "shared.form.price" | translate }}</option>
       </select>
     </div>
@@ -102,33 +103,41 @@
         [routerLink]="['/room-details/', room.id]"
         routerLinkActive="router-link-active"
       >
-        <h4>{{ room.title }}</h4>
-        <div>
-          <strong class="me-2">{{ "room.type" | translate }}:</strong>
-          @if(room.roomType == 'Hall'){
-          <img
-            class="icon-img mb-1"
-            src="../../../../assets/images/hall-filled-icon.png"
-          />
-          } @else {
-          <i class="fa-solid fa-bed" style="color: #ad926b"></i>
-          } {{ room.roomType }}
+        <div class="d-flex justify-content-between">
+          <h4>{{ room.title }}</h4>
+          <div class="d-flex flex-row align-self-center">
+            @if(room.capacity ==1){
+            <i class="align-self-center fa-solid fa-user"></i>} @else{
+            <i class="align-self-center fa-solid fa-users"></i>}
+            <span class="align-self-center m-1">{{ room.capacity }}</span>
+          </div>
         </div>
-        <div>
-          <strong class="me-2">{{ "room.hotel" | translate }}:</strong>
-          <span> {{ room.hotel }}</span>
+
+        <div class="info-row">
+          <div class="label">{{ "room.type" | translate }}:</div>
+          <div class="value">
+            @if(room.roomType == 'Hall'){
+            <img
+              class="icon-img mb-1"
+              src="../../../../assets/images/hall-filled-icon.png"
+            />
+            } @else {
+            <i class="fa-solid fa-bed" style="color: #ad926b"></i>
+            }
+            {{ room.roomType }}
+          </div>
         </div>
-        <!-- <div>
-          <strong class="me-2">{{ "room.booked-status" | translate }}:</strong>
-          <span
-            [style.color]="room.bookedStatus === 'Available' ? 'green' : 'red'"
-          >
-            {{ room.bookedStatus }}</span
-          >
-        </div> -->
-        <div>
-          <strong class="me-2">{{ "shared.form.price" | translate }}:</strong
-          >{{ room.price | currency : "USD" : "symbol" : "1.0-0" }}
+
+        <div class="info-row">
+          <div class="label">{{ "room.hotel" | translate }}:</div>
+          <div class="value">{{ room.hotel }}</div>
+        </div>
+
+        <div class="info-row">
+          <div class="label">{{ "shared.form.price" | translate }}:</div>
+          <div class="value">
+            {{ room.price | currency : "USD" : "symbol" : "1.0-0" }}
+          </div>
         </div>
       </div>
       @if(role != 'Admin'){

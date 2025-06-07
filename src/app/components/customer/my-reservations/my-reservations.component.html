@@ -25,6 +25,7 @@
               {{ reservation.paymentAmount | currency : "USD" }}
               ({{ reservation.paymentStatus }})<br />
               <strong>{{ "reservation.status.stat" | translate }}:</strong>
+
               <span
                 [ngClass]="{
                   'text-warning': reservation.approvalStatus === 'Pending',
