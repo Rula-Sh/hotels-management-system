@@ -174,6 +174,11 @@ export const routes: Routes = [
 
   {
     path: '',
+    pathMatch: 'full',
+    redirectTo: 'home-redirect',
+  },
+  {
+    path: 'home-redirect',
     loadComponent: () =>
       import(
         './shared/components/auth/home-redirect/home-redirect.component'
