@@ -9,8 +9,6 @@ import { ServiceService } from '../../../core/services/service.service';
 import { ServiceRequest } from '../../../shared/models/ServiceRequest.model';
 import { I18nService } from '../../../core/services/i18n.service';
 import { Subject, Subscription } from 'rxjs';
-// import { Subject } from 'rxjs';
-// import { DataTablesModule } from 'angular-datatables';
 
 @Component({
   selector: 'app-requests',
@@ -20,17 +18,12 @@ import { Subject, Subscription } from 'rxjs';
     ConfirmDialogModule,
     CommonModule,
     ButtonModule,
-    // DataTablesModule,
   ],
   providers: [MessageService, ConfirmationService, PrimeIcons],
   templateUrl: './requests.component.html',
   styleUrl: './requests.component.scss',
 })
 export class RequestsComponent {
-  // @ViewChild('pendingTable', { static: false }) pendingTable: any;
-  // @ViewChild('activeTable', { static: false }) activeTable: any;
-  // @ViewChild('completeTable', { static: false }) completeTable: any;
-
   servicesRequests: ServiceRequest[] = [];
   pendingServicesRequests: ServiceRequest[] = [];
   inProgressServicesRequests: ServiceRequest[] = [];
@@ -40,13 +33,6 @@ export class RequestsComponent {
     active: true,
     completed: true,
   };
-
-  // dtOptionsPending: any = {};
-  // dtTriggerPending: Subject<any> = new Subject<any>();
-  // dtOptionsActive: any = {};
-  // dtTriggerActive: Subject<any> = new Subject<any>();
-  // dtOptionsComplete: any = {};
-  // dtTriggerComplete: Subject<any> = new Subject<any>();
 
   subscriptions: Subscription[] = [];
 
@@ -59,16 +45,6 @@ export class RequestsComponent {
   role: string | null = null;
   userId: string | null = null;
   ngOnInit() {
-    // const tableOptions = {
-    //   pagingType: 'full_numbers',
-    //   pageLength: 10,
-    //   lengthMenu: [5, 10, 15, 20, 25],
-    //   responsive: true,
-    // };
-    // this.dtOptionsPending = tableOptions;
-    // this.dtOptionsActive = tableOptions;
-    // this.dtOptionsComplete = tableOptions;
-
     this.role = localStorage.getItem('user_role');
     this.userId = localStorage.getItem('id');
     this.getServices();
@@ -100,29 +76,6 @@ export class RequestsComponent {
           if (this.completedServicesRequests.length <= 0) {
             this.requests.completed = false;
           }
-
-          // const pendingTable = $(this.pendingTable?.nativeElement).DataTable();
-          // const activeTable = $(this.activeTable?.nativeElement).DataTable();
-          // const completeTable = $(
-          //   this.completeTable?.nativeElement
-          // ).DataTable();
-
-          // if (pendingTable) {
-          //   pendingTable.destroy();
-          // }
-          // if (activeTable) {
-          //   activeTable.destroy();
-          // }
-          // if (completeTable) {
-          //   completeTable.destroy();
-          // }
-
-          // // Trigger DataTable render
-          // setTimeout(() => {
-          //   this.dtTriggerPending.next(null);
-          //   this.dtTriggerActive.next(null);
-          //   this.dtTriggerComplete.next(null);
-          // }, 0);
 
           console.log('Requests Loaded Successfuly');
         },

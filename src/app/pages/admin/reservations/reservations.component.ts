@@ -11,8 +11,6 @@ import { ReservationService } from '../../../core/services/reservation.service';
 import { I18nService } from '../../../core/services/i18n.service';
 import { RoomService } from '../../../core/services/room.service';
 import { Subject, Subscription } from 'rxjs';
-// import { Subject, Subscription } from 'rxjs';
-// import { DataTablesModule } from 'angular-datatables';
 
 @Component({
   selector: 'app-reservations',
@@ -23,22 +21,13 @@ import { Subject, Subscription } from 'rxjs';
     CommonModule,
     ButtonModule,
     RouterLink,
-    // DataTablesModule,
   ],
   providers: [MessageService, ConfirmationService, PrimeIcons],
   templateUrl: './reservations.component.html',
   styleUrl: './reservations.component.scss',
 })
 export class ReservationsComponent {
-  // @ViewChild('pendingTable', { static: false }) pendingTable: any;
-  // @ViewChild('activeTable', { static: false }) activeTable: any;
-
   reservations: Reservation[] = [];
-
-  // dtOptionsPending: any = {};
-  // dtTriggerPending: Subject<any> = new Subject<any>();
-  // dtOptionsActive: any = {};
-  // dtTriggerActive: Subject<any> = new Subject<any>();
 
   pendingReservations: Reservation[] = [];
   activeReservations: Reservation[] = [];
@@ -54,28 +43,6 @@ export class ReservationsComponent {
 
   role: string | null = null;
   ngOnInit() {
-    // this.dtOptionsPending = {
-    //   pagingType: 'full_numbers',
-    //   pageLength: 10,
-    //   lengthMenu: [5, 10, 15, 20, 25],
-    //   responsive: true,
-    //   // paging:false, // to disable pages in the table
-    //   // ordering:false, // to disable order by in the table
-    //   // order: [0,'asc'], // orders the first column in ascending order
-    //   // lengthChange: false, // disables selecting the lengthMenu
-    //   // scrollY: '400, // to add scroll to the datatable
-    //   // language: {
-    //   //   searchPlaceholder: 'Search...',
-    //   // },
-    // };
-
-    // this.dtOptionsActive = {
-    //   pagingType: 'full_numbers',
-    //   pageLength: 10,
-    //   lengthMenu: [5, 10, 15, 20, 25],
-    //   responsive: true,
-    // };
-
     this.getreservations();
     this.role = localStorage.getItem('user_role');
   }
@@ -91,23 +58,6 @@ export class ReservationsComponent {
           this.activeReservations = this.reservations.filter(
             (r) => r.approvalStatus === 'Approved'
           );
-
-          // const pendingTable = $(this.pendingTable?.nativeElement).DataTable();
-          // const activeTable = $(this.activeTable?.nativeElement).DataTable();
-
-          // if (pendingTable) {
-          //   pendingTable.destroy();
-          // }
-          // if (activeTable) {
-          //   activeTable.destroy();
-          // }
-
-          // // Trigger DataTable render
-          // setTimeout(() => {
-          //   this.dtTriggerPending.next(null);
-          //   this.dtTriggerActive.next(null);
-          // }, 0);
-
           console.log('reservations Loaded Successfuly');
         },
         error: (err) => {
