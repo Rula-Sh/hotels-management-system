@@ -76,6 +76,15 @@ export const routes: Routes = [
         canActivate: [authGuard],
         data: { roles: ['Customer'] },
       },
+      {
+        path: 'checkout/:roomId',
+        loadComponent: () =>
+          import('./pages/customer/checkout/checkout.component').then(
+            (m) => m.CheckoutComponent
+          ),
+        canActivate: [authGuard],
+        data: { roles: ['Customer'] },
+      },
     ],
   },
 
