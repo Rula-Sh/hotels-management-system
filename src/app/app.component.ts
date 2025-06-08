@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { RouterOutlet } from '@angular/router';
-import { I18nService } from './services/i18n.service';
-import { HeaderComponent } from './components/shared/header/header.component';
-import { FooterComponent } from './components/shared/footer/footer.component';
+import { I18nService } from './core/services/i18n.service';
+import { HeaderComponent } from './shared/components/layout/header/header.component';
+import { FooterComponent } from './shared/components/layout/footer/footer.component';
 
 @Component({
   selector: 'app-root',

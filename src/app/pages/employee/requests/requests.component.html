@@ -1,0 +1,157 @@
+<div class="page">
+  @if(pendingServicesRequests.length >0){
+  <div style="display: flex; align-items: center; gap: 8px">
+    <h1 class="m-4">{{ "service.pending-requests" | translate }}</h1>
+    <div style="position: relative; width: 1.5em; height: 1.5em">
+      <i
+        class="title-icon fa-solid fa-ellipsis fa-lg"
+        style="
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        "
+      ></i>
+      <i
+        class="title-icon fa-regular fa-circle fa-2xl"
+        style="
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        "
+      ></i>
+    </div>
+  </div>
+  <div class="rounded-4 shadow border overflow-hidden mb-5">
+    <table class="table table-striped table-bordered mb-0">
+      <thead>
+        <tr>
+          <th>
+            {{ "room.room" | translate }}
+            {{ "shared.entity.id" | translate }}
+          </th>
+          <th>
+            {{ "user.user-role.customer" | translate }}
+            {{ "user.name" | translate }}
+          </th>
+          <th>{{ "shared.form.title" | translate }}</th>
+          <th>{{ "room.floor" | translate }}</th>
+          <th>{{ "shared.actions" | translate }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for(pendingServiceRequest of pendingServicesRequests; let i = $index;
+        track i) {
+        <tr>
+          <td>{{ pendingServiceRequest?.room?.id }}</td>
+          <td>{{ pendingServiceRequest?.customer?.name }}</td>
+          <td>{{ pendingServiceRequest?.title }}</td>
+          <td>{{ pendingServiceRequest?.room?.floor }}</td>
+          <td>
+            <button
+              class="approve"
+              (click)="approveServiceRequest(pendingServiceRequest)"
+            >
+              <i
+                class="bi bi-check-circle-fill h5"
+                [title]="'service.approve-request' | translate"
+              ></i>
+            </button>
+          </td>
+        </tr>
+
+        }
+      </tbody>
+    </table>
+  </div>
+  } @if(inProgressServicesRequests.length >0){
+  <div class="d-flex">
+    <h1 class="m-4">{{ "service.active-requests" | translate }}</h1>
+    <i class="title-icon fa-solid fa-spinner fa-xl align-self-center"></i>
+  </div>
+  <div class="rounded-4 shadow border overflow-hidden mb-5">
+    <table class="table table-striped table-bordered mb-0">
+      <thead>
+        <tr>
+          <th>
+            {{ "room.room" | translate }}
+            {{ "shared.entity.id" | translate }}
+          </th>
+          <th>
+            {{ "user.user-role.customer" | translate }}
+            {{ "user.name" | translate }}
+          </th>
+          <th>{{ "service.title" | translate }}</th>
+          <th>{{ "room.floor" | translate }}</th>
+          <th>{{ "shared.actions" | translate }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for(inProgressServiceRequest of inProgressServicesRequests; let i =
+        $index; track i) {
+        <tr>
+          <td>{{ inProgressServiceRequest?.room?.id }}</td>
+          <td>{{ inProgressServiceRequest?.customer?.name }}</td>
+          <td>{{ inProgressServiceRequest?.title }}</td>
+          <td>{{ inProgressServiceRequest?.room?.floor }}</td>
+          <td>
+            <button
+              class="approve"
+              (click)="completeServiceRequest(inProgressServiceRequest)"
+            >
+              <i
+                class="fa-solid fa-clipboard-check fa-xl"
+                [title]="'service.complete-request' | translate"
+              ></i>
+            </button>
+          </td>
+        </tr>
+
+        }
+      </tbody>
+    </table>
+  </div>
+  } @if(completedServicesRequests.length >0){
+  <div class="d-flex">
+    <h1 class="m-4">{{ "service.completed-requests" | translate }}</h1>
+    <i class="title-icon fa-solid fa-circle-check fa-xl align-self-center"></i>
+  </div>
+  <div class="rounded-4 shadow border overflow-hidden mb-5">
+    <table class="table table-striped table-bordered mb-0">
+      <thead>
+        <tr>
+          <th>
+            {{ "room.room" | translate }}
+            {{ "shared.entity.id" | translate }}
+          </th>
+          <th>
+            {{ "user.user-role.customer" | translate }}
+            {{ "user.name" | translate }}
+          </th>
+          <th>{{ "service.title" | translate }}</th>
+          <th>{{ "room.floor" | translate }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for(completedServiceRequest of completedServicesRequests; let i =
+        $index; track i) {
+        <tr>
+          <td>{{ completedServiceRequest?.room?.id }}</td>
+          <td>{{ completedServiceRequest?.customer?.name }}</td>
+          <td>{{ completedServiceRequest?.title }}</td>
+          <td>{{ completedServiceRequest?.room?.floor }}</td>
+        </tr>
+
+        }
+      </tbody>
+    </table>
+  </div>
+  }
+</div>
+@if(!requests.pending && !requests.active && !requests.completed){
+<h3 class="text-center mt-5">
+  {{ "service.there-are-no-requests" | translate }}
+</h3>
+}
+<p-toast />
