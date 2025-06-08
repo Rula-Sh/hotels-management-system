@@ -55,94 +55,52 @@ export const authGuard: CanActivateFn = (
 export const routes: Routes = [
   // ------------------------ Customer ------------------------
   {
-    path: 'rooms',
-    component: RoomsComponent,
-  },
-  {
-    path: 'room-details/:id',
-    component: RoomDetailsComponent,
-  },
-  {
-    path: 'my-reservations',
-    component: MyReservationsComponent,
-    canActivate: [authGuard],
-    data: { roles: ['Customer'] },
-  },
-  {
-    path: 'available-services',
-    component: AvailableServicesComponent,
-    canActivate: [authGuard],
-    data: { roles: ['Customer'] },
+    path: '',
+    children: [
+      { path: 'rooms', component: RoomsComponent }, // shared with guests and admin
+      { path: 'room-details/:id', component: RoomDetailsComponent }, // shared with guests and admin
+      {
+        path: 'my-reservations',
+        component: MyReservationsComponent,
+        canActivate: [authGuard],
+        data: { roles: ['Customer'] },
+      },
+      {
+        path: 'available-services',
+        component: AvailableServicesComponent,
+        canActivate: [authGuard],
+        data: { roles: ['Customer'] },
+      },
+    ],
   },
 
   // ------------------------ Emplyoyee ------------------------
   {
-    path: 'employee/requests',
-    component: RequestsComponent,
+    path: 'employee',
     canActivate: [authGuard],
     data: { roles: ['Employee'] },
-  },
-  {
-    path: 'employee/services',
-    component: ServicesComponent,
-    canActivate: [authGuard],
-    data: { roles: ['Employee'] },
-  },
-  {
-    path: 'employee/add-service',
-    component: ServiceFormComponent,
-    canActivate: [authGuard],
-    data: { roles: ['Employee'] },
-  },
-  {
-    path: 'employee/edit-service/:id',
-    component: ServiceFormComponent,
-    canActivate: [authGuard],
-    data: { roles: ['Employee'] },
+    children: [
+      { path: 'requests', component: RequestsComponent },
+      { path: 'services', component: ServicesComponent },
+      { path: 'add-service', component: ServiceFormComponent },
+      { path: 'edit-service/:id', component: ServiceFormComponent },
+    ],
   },
 
   // ------------------------ Admin ------------------------
   {
-    path: 'admin/dashboard',
-    component: DashboardComponent,
+    path: 'admin',
     canActivate: [authGuard],
     data: { roles: ['Admin'] },
-  },
-  {
-    path: 'admin/add-employee',
-    component: AddEmployeeComponent,
-    canActivate: [authGuard],
-    data: { roles: ['Admin'] },
-  },
-  {
-    path: 'admin/manage-users',
-    component: ManageUsersComponent,
-    canActivate: [authGuard],
-    data: { roles: ['Admin'] },
-  },
-  {
-    path: 'user/:id',
-    component: UserDetailsComponent,
-    canActivate: [authGuard],
-    data: { roles: ['Admin'] },
-  },
-  {
-    path: 'admin/add-room',
-    component: RoomFormComponent,
-    canActivate: [authGuard],
-    data: { roles: ['Admin'] },
-  },
-  {
-    path: 'admin/edit-room/:id',
-    component: RoomFormComponent,
-    canActivate: [authGuard],
-    data: { roles: ['Admin'] },
-  },
-  {
-    path: 'admin/reservations',
-    component: ReservationsComponent,
-    canActivate: [authGuard],
-    data: { roles: ['Admin'] },
+    children: [
+      { path: 'dashboard', component: DashboardComponent },
+      { path: 'add-employee', component: AddEmployeeComponent },
+      { path: 'manage-users', component: ManageUsersComponent },
+      { path: 'user/:id', component: UserDetailsComponent },
+      { path: 'add-room', component: RoomFormComponent },
+      { path: 'edit-room/:id', component: RoomFormComponent },
+      { path: 'reservations', component: ReservationsComponent },
+    ],
   },
   // have a shared route with the customer 'room-details/:id'
 
