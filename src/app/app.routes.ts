@@ -35,6 +35,11 @@ export const authGuard: CanActivateFn = (
 };
 
 export const routes: Routes = [
+  {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'home-redirect',
+  }, // shared with all users
   // ------------------------ Customer ------------------------
   {
     path: '',
@@ -172,11 +177,6 @@ export const routes: Routes = [
 
   // -------- All Users --------
 
-  {
-    path: '',
-    pathMatch: 'full',
-    redirectTo: 'home-redirect',
-  },
   {
     path: 'home-redirect',
     loadComponent: () =>
