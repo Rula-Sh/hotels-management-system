@@ -7,24 +7,6 @@ import {
 } from '@angular/router';
 import { AuthService } from './core/services/auth.service';
 import { inject } from '@angular/core';
-import { HomeRedirectComponent } from './shared/components/auth/home-redirect/home-redirect.component';
-import { LoginComponent } from './shared/components/auth/login/login.component';
-import { SignUpComponent } from './shared/components/auth/sign-up/sign-up.component';
-import { ProfileComponent } from './shared/components/auth/profile/profile.component';
-import { NotFoundComponent } from './shared/components/auth/not-found/not-found.component';
-import { MyReservationsComponent } from './pages/customer/my-reservations/my-reservations.component';
-import { AvailableServicesComponent } from './pages/customer/available-services/available-services.component';
-import { RequestsComponent } from './pages/employee/requests/requests.component';
-import { DashboardComponent } from './pages/admin/dashboard/dashboard.component';
-import { AddEmployeeComponent } from './pages/admin/add-employee/add-employee.component';
-import { ManageUsersComponent } from './pages/admin/manage-users/manage-users.component';
-import { UserDetailsComponent } from './pages/admin/user-details/user-details.component';
-import { ReservationsComponent } from './pages/admin/reservations/reservations.component';
-import { RoomFormComponent } from './pages/admin/room-form/room-form.component';
-import { ServicesComponent } from './pages/employee/services/services.component';
-import { ServiceFormComponent } from './pages/employee/service-form/service-form.component';
-import { RoomsComponent } from './shared/components/room/rooms/rooms.component';
-import { RoomDetailsComponent } from './shared/components/room/room-details/room-details.component';
 
 export const authGuard: CanActivateFn = (
   route: ActivatedRouteSnapshot,
@@ -57,17 +39,35 @@ export const routes: Routes = [
   {
     path: '',
     children: [
-      { path: 'rooms', component: RoomsComponent }, // shared with guests and admin
-      { path: 'room-details/:id', component: RoomDetailsComponent }, // shared with guests and admin
+      {
+        path: 'rooms',
+        loadComponent: () =>
+          import('./shared/components/room/rooms/rooms.component').then(
+            (m) => m.RoomsComponent
+          ),
+      }, // shared with guests and admin
+      {
+        path: 'room-details/:id',
+        loadComponent: () =>
+          import(
+            './shared/components/room/room-details/room-details.component'
+          ).then((m) => m.RoomDetailsComponent),
+      }, // shared with guests and admin
       {
         path: 'my-reservations',
-        component: MyReservationsComponent,
+        loadComponent: () =>
+          import(
+            './pages/customer/my-reservations/my-reservations.component'
+          ).then((m) => m.MyReservationsComponent),
         canActivate: [authGuard],
         data: { roles: ['Customer'] },
       },
       {
         path: 'available-services',
-        component: AvailableServicesComponent,
+        loadComponent: () =>
+          import(
+            './pages/customer/available-services/available-services.component'
+          ).then((m) => m.AvailableServicesComponent),
         canActivate: [authGuard],
         data: { roles: ['Customer'] },
       },
@@ -80,10 +80,34 @@ export const routes: Routes = [
     canActivate: [authGuard],
     data: { roles: ['Employee'] },
     children: [
-      { path: 'requests', component: RequestsComponent },
-      { path: 'services', component: ServicesComponent },
-      { path: 'add-service', component: ServiceFormComponent },
-      { path: 'edit-service/:id', component: ServiceFormComponent },
+      {
+        path: 'requests',
+        loadComponent: () =>
+          import('./pages/employee/requests/requests.component').then(
+            (m) => m.RequestsComponent
+          ),
+      },
+      {
+        path: 'services',
+        loadComponent: () =>
+          import('./pages/employee/services/services.component').then(
+            (m) => m.ServicesComponent
+          ),
+      },
+      {
+        path: 'add-service',
+        loadComponent: () =>
+          import('./pages/employee/service-form/service-form.component').then(
+            (m) => m.ServiceFormComponent
+          ),
+      },
+      {
+        path: 'edit-service/:id',
+        loadComponent: () =>
+          import('./pages/employee/service-form/service-form.component').then(
+            (m) => m.ServiceFormComponent
+          ),
+      },
     ],
   },
 
@@ -93,28 +117,97 @@ export const routes: Routes = [
     canActivate: [authGuard],
     data: { roles: ['Admin'] },
     children: [
-      { path: 'dashboard', component: DashboardComponent },
-      { path: 'add-employee', component: AddEmployeeComponent },
-      { path: 'manage-users', component: ManageUsersComponent },
-      { path: 'user/:id', component: UserDetailsComponent },
-      { path: 'add-room', component: RoomFormComponent },
-      { path: 'edit-room/:id', component: RoomFormComponent },
-      { path: 'reservations', component: ReservationsComponent },
+      {
+        path: 'dashboard',
+        loadComponent: () =>
+          import('./pages/admin/dashboard/dashboard.component').then(
+            (m) => m.DashboardComponent
+          ),
+      },
+      {
+        path: 'add-employee',
+        loadComponent: () =>
+          import('./pages/admin/add-employee/add-employee.component').then(
+            (m) => m.AddEmployeeComponent
+          ),
+      },
+      {
+        path: 'manage-users',
+        loadComponent: () =>
+          import('./pages/admin/manage-users/manage-users.component').then(
+            (m) => m.ManageUsersComponent
+          ),
+      },
+      {
+        path: 'user/:id',
+        loadComponent: () =>
+          import('./pages/admin/user-details/user-details.component').then(
+            (m) => m.UserDetailsComponent
+          ),
+      },
+      {
+        path: 'add-room',
+        loadComponent: () =>
+          import('./pages/admin/room-form/room-form.component').then(
+            (m) => m.RoomFormComponent
+          ),
+      },
+      {
+        path: 'edit-room/:id',
+        loadComponent: () =>
+          import('./pages/admin/room-form/room-form.component').then(
+            (m) => m.RoomFormComponent
+          ),
+      },
+      {
+        path: 'reservations',
+        loadComponent: () =>
+          import('./pages/admin/reservations/reservations.component').then(
+            (m) => m.ReservationsComponent
+          ),
+      },
     ],
   },
-  // have a shared route with the customer 'room-details/:id'
+  // have a shared route with the customer 'rooms' and 'room-details/:id'
 
   // -------- All Users --------
 
-  { path: '', component: HomeRedirectComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'signup', component: SignUpComponent },
+  {
+    path: '',
+    loadComponent: () =>
+      import(
+        './shared/components/auth/home-redirect/home-redirect.component'
+      ).then((m) => m.HomeRedirectComponent),
+  },
+  {
+    path: 'login',
+    loadComponent: () =>
+      import('./shared/components/auth/login/login.component').then(
+        (m) => m.LoginComponent
+      ),
+  },
+  {
+    path: 'signup',
+    loadComponent: () =>
+      import('./shared/components/auth/sign-up/sign-up.component').then(
+        (m) => m.SignUpComponent
+      ),
+  },
   {
     path: 'profile/:id',
-    component: ProfileComponent,
+    loadComponent: () =>
+      import('./shared/components/auth/profile/profile.component').then(
+        (m) => m.ProfileComponent
+      ),
     canActivate: [authGuard],
     data: { roles: ['Admin', 'Employee', 'Customer'] },
   },
 
-  { path: '**', component: NotFoundComponent },
+  {
+    path: '**',
+    loadComponent: () =>
+      import('./shared/components/auth/not-found/not-found.component').then(
+        (m) => m.NotFoundComponent
+      ),
+  },
 ];
