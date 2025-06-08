@@ -69,6 +69,7 @@ export class ReservationsComponent {
 
   approveReservationRequest(reservation: Reservation) {
     reservation.approvalStatus = 'Approved';
+    reservation.date = new Date();
     const approveReservationRequestSub =
       this.ReservationService.approveReservationRequest(
         reservation.id,
