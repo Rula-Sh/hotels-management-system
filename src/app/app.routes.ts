@@ -5,27 +5,27 @@ import {
   RouterStateSnapshot,
   Routes,
 } from '@angular/router';
-import { AuthService } from './services/auth.service';
+import { AuthService } from './core/services/auth.service';
 import { inject } from '@angular/core';
-import { HomeRedirectComponent } from './components/shared/auth/home-redirect/home-redirect.component';
-import { LoginComponent } from './components/shared/auth/login/login.component';
-import { SignUpComponent } from './components/shared/auth/sign-up/sign-up.component';
-import { ProfileComponent } from './components/shared/auth/profile/profile.component';
-import { NotAuthorizedComponent } from './components/shared/auth/not-authorized/not-authorized.component';
-import { NotFoundComponent } from './components/shared/not-found/not-found.component';
-import { MyReservationsComponent } from './components/customer/my-reservations/my-reservations.component';
-import { AvailableServicesComponent } from './components/customer/available-services/available-services.component';
-import { RequestsComponent } from './components/employee/requests/requests.component';
-import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
-import { AddEmployeeComponent } from './components/admin/add-employee/add-employee.component';
-import { ManageUsersComponent } from './components/admin/manage-users/manage-users.component';
-import { UserDetailsComponent } from './components/admin/user-details/user-details.component';
-import { ReservationsComponent } from './components/admin/reservations/reservations.component';
-import { RoomsComponent } from './components/shared/rooms/rooms.component';
-import { RoomFormComponent } from './components/admin/room-form/room-form.component';
-import { RoomDetailsComponent } from './components/shared/room-details/room-details.component';
-import { ServicesComponent } from './components/employee/services/services.component';
-import { ServiceFormComponent } from './components/employee/service-form/service-form.component';
+import { HomeRedirectComponent } from './shared/components/auth/home-redirect/home-redirect.component';
+import { LoginComponent } from './shared/components/auth/login/login.component';
+import { SignUpComponent } from './shared/components/auth/sign-up/sign-up.component';
+import { ProfileComponent } from './shared/components/auth/profile/profile.component';
+import { NotAuthorizedComponent } from './shared/components/auth/not-authorized/not-authorized.component';
+import { NotFoundComponent } from './shared/components/auth/not-found/not-found.component';
+import { MyReservationsComponent } from './pages/customer/my-reservations/my-reservations.component';
+import { AvailableServicesComponent } from './pages/customer/available-services/available-services.component';
+import { RequestsComponent } from './pages/employee/requests/requests.component';
+import { DashboardComponent } from './pages/admin/dashboard/dashboard.component';
+import { AddEmployeeComponent } from './pages/admin/add-employee/add-employee.component';
+import { ManageUsersComponent } from './pages/admin/manage-users/manage-users.component';
+import { UserDetailsComponent } from './pages/admin/user-details/user-details.component';
+import { ReservationsComponent } from './pages/admin/reservations/reservations.component';
+import { RoomFormComponent } from './pages/admin/room-form/room-form.component';
+import { ServicesComponent } from './pages/employee/services/services.component';
+import { ServiceFormComponent } from './pages/employee/service-form/service-form.component';
+import { RoomsComponent } from './shared/components/room/rooms/rooms.component';
+import { RoomDetailsComponent } from './shared/components/room/room-details/room-details.component';
 
 export const authGuard: CanActivateFn = (
   route: ActivatedRouteSnapshot,
