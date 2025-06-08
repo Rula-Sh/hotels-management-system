@@ -11,7 +11,6 @@ import { HomeRedirectComponent } from './shared/components/auth/home-redirect/ho
 import { LoginComponent } from './shared/components/auth/login/login.component';
 import { SignUpComponent } from './shared/components/auth/sign-up/sign-up.component';
 import { ProfileComponent } from './shared/components/auth/profile/profile.component';
-import { NotAuthorizedComponent } from './shared/components/auth/not-authorized/not-authorized.component';
 import { NotFoundComponent } from './shared/components/auth/not-found/not-found.component';
 import { MyReservationsComponent } from './pages/customer/my-reservations/my-reservations.component';
 import { AvailableServicesComponent } from './pages/customer/available-services/available-services.component';
@@ -159,6 +158,5 @@ export const routes: Routes = [
     data: { roles: ['Admin', 'Employee', 'Customer'] },
   },
 
-  { path: 'not-autherized', component: NotAuthorizedComponent },
   { path: '**', component: NotFoundComponent },
 ];

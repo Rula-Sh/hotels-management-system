@@ -87,7 +87,6 @@ npm i angular-datatables@9.0.2
     │       │   ├───auth
     │       │   │   ├───home-redirect
     │       │   │   ├───login
-    │       │   │   ├───not-authorized
     │       │   │   ├───not-found
     │       │   │   ├───profile
     │       │   │   └───sign-up
