@@ -41,14 +41,14 @@ export const authGuard: CanActivateFn = (
     return router.createUrlTree(['/login']);
   }
 
-  // redirect to /not-autherized if the user tries to access a page that is not specified to their role
-  // const expectedRoles = route.data['roles'] as string[] | undefined;
+  // redirect to /not-found if the user tries to access a page that is not specified to their role
+  const expectedRoles = route.data['roles'] as string[] | undefined;
 
-  // const userRole = authService.getUserRole() ?? '';
+  const userRole = authService.getUserRole() ?? '';
 
-  // if (expectedRoles && !expectedRoles.includes(userRole)) {
-  //   return router.createUrlTree(['/not-autherized']);
-  // }
+  if (expectedRoles && !expectedRoles.includes(userRole)) {
+    return router.createUrlTree(['/not-found']);
+  }
 
   return true;
 };
