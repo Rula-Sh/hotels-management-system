@@ -1,4 +1,4 @@
-# 🚀 Project Title: Hotels Hub
+# 🚀 Hotels Hub
 
 ## 👥 Team Members
 
@@ -7,7 +7,40 @@
 
 ## 📚 Project Description
 
-Hotels Hub is a comprehensive web application designed to simplify and enhance the hotel booking experience. Customers can easily search and browse hotels, book rooms, request additional services (like dining or healthcare), and track the progress of their requests. On the operational side, hotel employees can manage and process service requests to ensure customer satisfaction. Admin users oversee the entire platform by managing users, monitoring activity, and controlling booking approvals. The system aims to deliver a smooth, user-friendly, and efficient interface for both customers and hotel staff.
+Hotels Hub is a web app that simplifies hotel bookings and service management. Customers can search for rooms, book them, and track service requests (e.g., dining, healthcare), while staff manage requests efficiently. Admins oversee users, bookings, and platform activity—ensuring a seamless experience for all.
+
+## 🌟 Main Features  
+
+### 🔒 **Security & Access**  
+- **Role-based access control** (Admin, Employee, Customer)  
+- **Route Guards** – Protect sensitive routes from unauthorized users  
+
+### 🌍 **Internationalization (i18n)**  
+- **Multi-language support** (English + Arabic)  
+- **RTL/LTR dynamic switching** – Full layout direction adjustment  
+- **JSON-based translations** – Easy to extend for new languages  
+
+### 🖼️ **Media & Uploads**  
+- **Cloudinary Integration** – Image upload and perview
+- **Multi-image uploads** – For rooms, services, and profiles  
+
+### 📱 **Responsive UI/UX**  
+- **Mobile-first design** – Optimized for all screen sizes  
+- **Bootstrap 5 + SCSS** – Customizable themes and variables  
+- **PrimeNG + Font Awesome** – Rich UI components and icons  
+
+### ⚡ **Performance & Scalability**  
+- **Lazy-loaded modules** – Faster initial page loads  
+- **Modular architecture** – Standalone components/services  
+
+### 🔄 **State & Data Management**  
+- **Reactive Forms** – Real-time validation with error feedback  
+- **DataTables & Pagination** – Sort, filter, and browse datasets  
+
+### 🛠️ **Developer-Friendly**  
+- **Mock Backend (JSON Server)** – Test APIs without a live server  
+- **Custom Services** – Auth, i18n, Uploads, etc.  
+- **Clean Code Practices** – Unsubscriptions, typed models, and solid principles  
 
 ## 🌐 Technologies Used
 
@@ -16,7 +49,7 @@ Hotels Hub is a comprehensive web application designed to simplify and enhance t
 - _Bootstrap Icons & Font Awesome_ – Icon libraries for UI elements
 - _Custom Internationalization (i18n)_ – Manual translation support for English and Arabic
 - _JSON Server_ – Mock backend for testing and development
-- \*PrimeNG Toast & Confirmation Service – For user notifications and confirmations
+- PrimeNG Toast & Confirmation Service – For user notifications and confirmations
 - _Cloudinary_ – Cloud-based image hosting and transformation
 - _libphonenumber-js_ – Phone number validation and formatting
 - _DataTables_ – Tabular data handling with sorting and filtering
@@ -33,7 +66,7 @@ ng serve
 json-server --watch backend/db.json --port 3000
 ```
 
-### ▶️ Run the Application
+### ▶️ Run Application
 
 ```bash
 # Install core dependencies
@@ -138,16 +171,14 @@ Include at least 3:
 - [x] Add PrimeNG Toast for notification messages
 - [x] Use Font Awesome and Bootstrap Icons for consistent iconography
 - [x] Use SCSS/CSS variables for theme consistency
-- [x] Add skeleton loaders for async data states
-- [x] Implement light/dark mode toggle
+- [ ] Implement light/dark mode toggle
 
 ### 🌐 Internationalization
 
-- [x] Integrate Angular i18n for translation support
+- [x] Integrate Angular i18n for translation support including RTL
 - [x] Translate all static UI elements and messages
 - [x] Translate dynamic messages in Toasts, ConfirmDialogs, and Forms
-- [x] Provide Arabic logo and RTL support
-- [x] Create language switcher in the header
+- [ ] Create language switcher in the header
 
 ### 📦 Components by Role
 
@@ -173,40 +204,39 @@ Include at least 3:
 
 #### 🧩 Reusable Components
 
+- [x] Use Rooms, RoomDetails Component in Admin, Customers, and Guests Pages
 - [x] Combine AddService/EditService into `ServiceForm`
 - [x] Combine AddRoom/EditRoom into `RoomForm`
-- [x] Use Rooms, RoomDetails Component in Admin, Customers, and Guests Pages
+- [ ] Implement Notifications on Header
 
 ### 🛠️ Core Services
 
 - [x] AuthService – Handle authentication and token storage
-- [x] I18nService – Language and translation handling
 - [x] UserService – Manage user CRUD and roles
 - [x] RoomService – Manage rooms data and actions
 - [x] ReservationService – Handle booking rooms data and actions
 - [x] ServiceService – Manage service data and actions
 - [x] UploadService – Handle image uploads (Cloudinary)
+- [x] I18nService – Language and translation handling
 - [x] DashboardService – Provide analytics and system stats
 
 ### 🏨 Room Management
 
-- [x] Restrict Add/Edit/Delete Room actions to Admin only
-- [x] Allow customers to Book Room and View Services
+- [x] Restrict Add/Edit/Delete room actions to Admin only
+- [x] Allow customers to book available rooms and view services
 - [x] Display multiple images in room listings
 - [x] Add search, filter, and sorting in Rooms component
-- [x] Add room availability
 
 ### 📋 Service Management
 
-- [x] Add search, filter, and sorting to Services component
 - [x] Allow employees to manage their services and requests
+- [x] Add search, filter, and sorting to Services component
 - [x] Automatically assign serviceType based on employee job title
 
 ### 👨‍💼 Employee Management
 
-- [x] Enable Admin to add, update, and remove employees
-- [x] Add “Fire Employee” (deactivate user) feature
-- [x] Filter employees by job title or category
+- [x] Assign Admin to add, and fire employees
+- [x] Filter job title by category when adding employee
 
 ### 👤 User Profile
 
@@ -214,21 +244,14 @@ Include at least 3:
 - [x] Add default profile picture for new users
 - [x] Allow password update and image, and personal details change
 
-### 📞 Phone Input
-
-- [x] Install and configure `NgxIntlTelInputModule` for international phone numbers
-- [x] Validate phone number input format
-
 ### 🌁 Image Upload & Management
 
 - [x] Add image upload with real-time preview
-- [x] Replace manual image URL input with Cloudinary integration
 - [x] Support multiple image uploads for Rooms, Services, and profiles
-- [x] Store image URLs array (`imagesUrl`) instead of single `imageUrl` for rooms
 
 ### 📊 DataTables & Lists
 
-- [x] Use PrimeNG DataTable for listing Users, Rooms, and Services
+- [x] Use PrimeNG DataTable for listing Users
 - [x] Add pagination, search, sorting, and filtering
 
 ### 🧠 State Management
@@ -237,9 +260,10 @@ Include at least 3:
 
 ### 🧩 Routing & Structure
 
-- [x] Define and guard routes per user role (Admin, Employee, Customer)
+- [x] Define and guard routes by user role (Admin, Employee, Customer)
 - [x] Add shared routes/components for public access
 - [x] Merge Rooms routes where shared (Admin + Customer)
+- [x] Use childeren and implement Lazy Loading
 
 ### 📑 Form Handling & Validation
 
@@ -254,76 +278,97 @@ Include at least 3:
 - [x] Configure Angular i18n and NgxIntlTelInput
 - [x] Set up routing, guards, and initial layout
 - [x] Ensure mobile-first design from the beginning
+- [ ] Restructure db.json
+- [ ] Add Hotel model
+- [ ] Add forgot password
 
-## 🧪 Testing Steps
+## 🧪 Testing Guide
 
-### 🔐 Login & Role Access
+### 🔐 Authentication & Authorization
+#### Role-Based Access Testing
+1. **Admin Login**
+   - Credentials: `admin@gmail.com` / `123123`
+   - Expected: Redirect to Dashboard Home Page
+2. **Employee Login**
+   - Credentials: `emp1@gmail.com` / `123123`
+   - Expected: Redirect to Service Requests Page
+3. **Customer Login**
+   - Credentials: `customer1@gmail.com` / `123123`
+   - Expected: Redirect to Rooms Home Page
 
-1- Login as Admin (email: admin@gmail.com, password: !Q23wewe) and ensure redirection to the Dashboard Home Page.
-2- Login as Employee (email: employee@gmail.com, password: !Q23wewe) and ensure redirection to the Service Requests Home Page.
-3- Login as Customer (email: customer@gmail.com, password: !Q23wewe) and ensure redirection to the Rooms Home Page.
+### 👨‍💼 Admin Functionality
+1. **Dashboard**
+   - Verify system overview metrics and charts
+2. **User Management**
+   - View all users and their details
+   - Test add employee form validation
+3. **Room Management**
+   - CRUD operations on rooms
+   - Test room form validation
+   - Verify image upload functionality
+4. **Reservations**
+   - Approve/Reject  bookings
 
-### 🧑‍💼 Admin Role
+### 👷 Employee Workflows
+1. **Service Requests**
+   - Approve pending requests 
+   - Mark active requests as completed
+   - View request history
+2. **Service Catalog**
+   - CRUD operations on service
+   - Test service form validation
+   - Verify image upload functionality
 
-1- Access the Dashboard to view system overview.
-2- Navigate to Manage Users to view user details or add a new employee.
-3- Navigate to Rooms to view room details, and add, edit, or delete rooms.
-4- Navigate to Reservations to approve or reject room bookings.
-5- Test the Room Form for input validity.
+### 👤 Customer Experience
+1. **Room Booking**
+   - Browse available rooms
+   - View detailed room information
+   - Test booking flow
+2. **My Reservations**
+   - Verify bookings appearance
+   - Check reservation details
+   - View reservation Services
+3. **Service Requests**
+   - Request services for booked rooms
+   - View request status updates
 
-### 👷 Employee Role
+### 🌐 Internationalization
+1. **Language Switching**
+   - Toggle between EN/AR in footer
+   - Verify all UI elements translate
+2. **Layout Direction**
+   - Confirm proper RTL/LTR switching
+3. **Dynamic Content**
+   - Check translated:
+     - Form errors
+     - Toast messages
+     - Tables and cards content
 
-1- Navigate to the Requests page to:
+### ✔️ Validation & UX
+1. **Form Validation**
+   - Submit invalid forms (empty/malformed)
+   - Verify helpful error messages
+2. **Responsive Design**
+   - Test on mobile/tablet:
+     - Burger menu functionality
+     - Readable layouts
+     - RTL adaptation
+3. **Notifications**
+   - Verify PrimeNG toasts appear for:
+     - Success/error states
+     - System messages
 
-- Approve or reject pending service requests
-- Complete active requests
-- View completed requests
-  2- Navigate to Services to view, update, add, or delete services.
-  3- Test the Service Form for input validity.
-
-### 👤 Customer Role
-
-1- Access the Rooms Home Page to browse available hotels and rooms, view room details, and book a room.
-2- Navigate to Room Details to view available services associated with the selected room.
-3- Book a room and verify the reservation appears under My Reservations.
-4- Navigate to Available Services to request services related to a booked room.
-
-### 🌍 Internationalization Testing
-
-1- Toggle between English and Arabic from the footer.
-2- Verify proper translation of all UI elements and dynamic content.
-3- Ensure layout direction changes correctly between LTR and RTL.
-4- Confirm that toasts and confirmation messages are properly translated.
-
-### ✅ Form Validation
-
-1- Submit forms with invalid data (e.g., incorrect phone number format, missing required fields).
-2- Confirm that appropriate translated validation messages are displayed.
-
-### 📱 Responsive Design
-
-- Resize the browser window or test on mobile devices to verify:
-  - Navigation bar collapses into a burger menu
-  - Pages remain readable and functional
-  - Layout adapts correctly in RTL mode
-
-### 🖼️ Image Upload
-
-- Upload images for rooms, services, or user profiles.
-- Check restrictions on file type and size.
-- Confirm real-time previews and successful uploads to Cloudinary.
-
-### 🔔 Toast Notifications
-
-- Perform actions like booking, editing services, or submitting invalid forms.
-- Ensure PrimeNG Toast notifications appear correctly and clearly.
-
-### 📊 DataTables
-
-- Visit pages with user/service/room listings.
-- Use features like search, sort, filter, and pagination.
-
-### 🔒 Security & Routing
-
-- Attempt to access restricted routes (e.g., /admin) as a Customer.
-- Confirm that redirection or access denial is properly enforced.
+### 🛡️ Security & Edge Cases
+1. **Route Protection**
+   - Attempt unauthorized access to:
+     - `/admin` as customer
+     - `/employee` as customer
+   - Verify proper redirection
+2. **Data Integrity**
+   - Test pagination/search/filter
+   - Verify CRUD operations reflect instantly
+3. **Media Handling**
+   - Upload test images:
+     - Verify Cloudinary integration
+     - Check file type/size restrictions
+     - Confirm preview functionality
