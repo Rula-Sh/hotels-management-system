@@ -139,7 +139,7 @@ export const routes: Routes = [
           ),
       },
       {
-        path: 'user/:id',
+        path: 'user-details/:id',
         loadComponent: () =>
           import('./pages/admin/user-details/user-details.component').then(
             (m) => m.UserDetailsComponent
