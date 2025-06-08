@@ -1,4 +1,53 @@
 @import "../../../../styles/variables.scss";
+
+.select-container {
+  display: flex;
+  align-items: center;
+  width: 75%;
+  margin: 1rem auto;
+
+  .input-group-text {
+    background-color: white;
+    color: $color-dark-brown;
+    border: 2px solid $color-dark-brown;
+    border-right: none;
+    padding: 0.6rem 1rem;
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    border-radius: 5px 0 0 5px;
+
+    .filter-icon {
+      color: $color-dark-brown;
+    }
+  }
+
+  select.form-select,
+  select.custom-select {
+    flex-grow: 1;
+    font-size: 1rem;
+    border: 2px solid $color-dark-brown;
+    border-left: none;
+    border-radius: 0 5px 5px 0;
+    padding: 0.5rem 1rem;
+    appearance: none; /* removes default arrow */
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%204%205'%3e%3cpath%20fill='%23666'%20d='M2%200L0%202h4z'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 8px 10px;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+
+    &:focus {
+      outline: none;
+      border-color: darken($color-dark-brown, 10%);
+      box-shadow: 0 0 5px lighten($color-dark-brown, 40%);
+    }
+  }
+}
+
 .services-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -8,22 +57,40 @@
 }
 
 .service-card {
-  background: #ffffff;
+  background: #fff;
   border-radius: 16px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: default;
 
   &:hover {
     transform: translateY(-6px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
   }
 
   h3 {
     margin-bottom: 0.5rem;
     color: $color-dark-brown;
+    font-weight: 700;
+    font-size: 1.4rem;
+  }
+
+  p {
+    color: #555;
+    line-height: 1.4;
+    margin: 0.3rem 0;
+  }
+
+  img.service-img {
+    width: 100%;
+    max-height: 180px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 1rem;
   }
 
   .employee-info {
@@ -31,40 +98,77 @@
     background-color: #f5f7fa;
     padding: 1rem;
     border-radius: 10px;
+    font-size: 0.9rem;
+    color: #444;
 
     h4 {
       margin-bottom: 0.5rem;
-      font-size: 1rem;
-      color: #333;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: $color-dark-brown;
     }
 
     p {
       margin: 0.25rem 0;
+      color: #666;
     }
   }
 
-  .book-btn {
+  button.btn-primary {
     margin-top: 1.5rem;
     align-self: center;
-    background-color: #2a5298;
-    color: white;
-    padding: 0.5rem 1.5rem;
+    background-color: $color-dark-brown;
+    color: #fff;
+    padding: 0.6rem 1.8rem;
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
 
-    &:hover {
-      background-color: #1f3b73;
+    &:hover:not(:disabled) {
+      background-color: darken($color-dark-brown, 10%);
+    }
+
+    &:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+      color: #777;
     }
   }
-  .service-img {
-  width: 100%;
-  max-width: 300px;
-  height: auto;
-  border-radius: 8px;
-  object-fit: cover;
-  display: block;
 }
 
+/* Input group styling used in your filter/search/sort UI */
+
+.input-group-text {
+  margin: 0 0.3rem;
+  padding: 0.55rem 0.8rem;
+  font-size: 1.1rem;
+  border: 2px solid $color-dark-brown;
+  border-right: none;
+  background-color: white;
+  color: $color-dark-brown;
+  border-radius: 5px 0 0 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+input,
+select {
+  margin: 0 0.3rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+  border: 2px solid $color-dark-brown;
+  border-left: none;
+  border-radius: 0 5px 5px 0;
+  width: 100%;
+  transition: border-color 0.3s ease;
+
+  &:focus {
+    outline: none;
+    border-color: darken($color-dark-brown, 10%);
+    box-shadow: 0 0 5px lighten($color-dark-brown, 40%);
+  }
 }

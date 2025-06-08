@@ -8,7 +8,7 @@
       "floor": 2,
       "hotel": "Sunrise Inn",
       "details": "A deluxe room with sea view.",
-      "bookedStatus": "Pending",
+      "bookedStatus": "Booked",
       "price": 120,
       "imagesUrl": [
         "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748011951/SuiteNov2022_0008_1920_hhykez.jpg",
@@ -24,7 +24,7 @@
       "floor": 1,
       "hotel": "Sunrise Inn",
       "details": "Spacious hall for events.",
-      "bookedStatus": "Pending",
+      "bookedStatus": "Available",
       "price": 300,
       "imagesUrl": [
         "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748011951/Sofitel-Dubai-Wafi-Luxury-Room-Bedroom-Skyline-View-Image1_WEB_mal8fr.jpg"
@@ -38,7 +38,7 @@
       "floor": 1,
       "hotel": "Sunrise Inn",
       "details": "Spacious hall for events.",
-      "bookedStatus": "Pending",
+      "bookedStatus": "Available",
       "price": 300,
       "imagesUrl": [
         "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748011951/Sofitel-Dubai-Wafi-Luxury-Room-Bedroom-Skyline-View-Image1_WEB_mal8fr.jpg"
@@ -52,7 +52,7 @@
       "floor": 2321,
       "hotel": "123",
       "details": "123",
-      "bookedStatus": "Pending",
+      "bookedStatus": "Available",
       "price": 123,
       "imagesUrl": [
         "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748011951/140127103345-peninsula-shanghai-deluxe-mock-up_oatn0j.jpg"
@@ -181,14 +181,13 @@
     },
 
     {
-      "id": "cd4b",
+      "id": "db37",
       "customer": {
         "id": "9884",
         "name": "areen",
         "email": "AREEN11823@GMAIL.COM",
-        "phone": "",
-        "role": "Customer",
-        "pfp": ""
+        "password": "QXJlZW4xMSM=",
+        "role": "Customer"
       },
       "customerId": "9884",
       "roomId": "r1",
@@ -207,10 +206,10 @@
           "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748011951/Sofitel-Dubai-Wafi-Luxury-Room-Bedroom-Skyline-View-Image1_WEB_mal8fr.jpg"
         ]
       },
-      "date": "2025-06-06T17:41:38.305Z",
+      "date": "2025-06-07T13:06:55.706Z",
       "paymentAmount": 120,
       "paymentStatus": "Unpaid",
-      "approvalStatus": "Pending"
+      "approvalStatus": "Approved"
     }
   ],
   "services": [

@@ -153,7 +153,25 @@
     "add-service": "Add Service",
     "you-dont-have-services-to-provide": "You Dont Have Services To Provide",
     "service-type-required": "Service Type Required",
-    "does-not-have-any-services": "Does not have any services yet"
+    "does-not-have-any-services": "Does not have any services yet",
+    "provided-by": "Provided By",
+      "employee":{
+        "name": "Employee Name",
+        "phone": "Phone",
+        "email": "Email"
+      },
+      "image-alt": "Service Image",
+      "price": "Price",
+    "details": "Details",
+    "sort-by": "Sort By",
+    
+    "sort":{
+"price": "Price",
+"type": "Type",
+"title": "Title"
+},
+"search-placeholder": "Search for services..."
+
   },
   "footer": {
     "english": "English",
