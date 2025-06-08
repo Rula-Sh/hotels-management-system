@@ -63,14 +63,6 @@ export class AvailableServicesComponent implements OnInit {
               .filter((res) => res.approvalStatus === 'Approved')
               .map((res) => res.room);
 
-            if (this.userRooms.length === 0) {
-              this.messageService.add({
-                severity: 'warn',
-                summary: this.i18nService.t('shared.toast.no-approved-rooms'),
-              });
-              return;
-            }
-
             //load all services for all the booked rooms
             this.hotelNames = [
               ...new Set(this.userRooms.map((room) => room.hotel)),
