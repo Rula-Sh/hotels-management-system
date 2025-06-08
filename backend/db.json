@@ -15,7 +15,8 @@
         "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749379491/565065265_zthw6e.jpg",
         "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749379492/207079375_rsghii.jpg"
       ],
-      "AvailableStatus": "Available"
+      "AvailableStatus": "Available",
+      "bookedStatus": "Booked"
     },
     {
       "id": "r2",
@@ -226,7 +227,42 @@
       "role": "Customer"
     }
   ],
-  "reservations": [],
+  "reservations": [
+    {
+      "id": "0c74",
+      "customer": {
+        "id": "9884",
+        "name": "areen",
+        "email": "AREEN11823@GMAIL.COM",
+        "password": "QXJlZW4xMSM=",
+        "role": "Customer"
+      },
+      "customerId": "9884",
+      "roomId": "r1",
+      "room": {
+        "id": "r1",
+        "title": "Deluxe Suite",
+        "roomType": "Room",
+        "capacity": 2,
+        "floor": 2,
+        "hotel": "Sunrise Inn",
+        "location": "loc r1 12345",
+        "details": "A deluxe room with sea view.",
+        "price": 120,
+        "imagesUrl": [
+          "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749379492/207079479_rwiqgg.jpg",
+          "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749379491/565065265_zthw6e.jpg",
+          "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749379492/207079375_rsghii.jpg"
+        ],
+        "AvailableStatus": "Available",
+        "bookedStatus": "Pending"
+      },
+      "date": "2025-06-08T22:05:58.187Z",
+      "paymentAmount": 120,
+      "paymentStatus": "Unpaid",
+      "approvalStatus": "Approved"
+    }
+  ],
   "services": [
     {
       "id": "s1",
@@ -628,5 +664,56 @@
       }
     }
   ],
-  "serviceRequests": []
+  "serviceRequests": [
+    {
+      "id": "6768",
+      "customerId": "9884",
+      "roomId": "r1",
+      "date": "2025-06-08T22:06:36.955Z",
+      "requestStatus": "Pending",
+      "notes": "",
+      "customer": {
+        "id": "9884",
+        "name": "areen",
+        "email": "AREEN11823@GMAIL.COM",
+        "phone": "",
+        "role": "Customer",
+        "pfp": ""
+      },
+      "room": {
+        "id": "r1",
+        "title": "Deluxe Suite",
+        "roomType": "Room",
+        "capacity": 2,
+        "floor": 2,
+        "hotel": "Sunrise Inn",
+        "location": "loc r1 12345",
+        "details": "A deluxe room with sea view.",
+        "price": 120,
+        "imagesUrl": [
+          "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749379492/207079479_rwiqgg.jpg",
+          "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749379491/565065265_zthw6e.jpg",
+          "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749379492/207079375_rsghii.jpg"
+        ],
+        "AvailableStatus": "Available",
+        "bookedStatus": "Pending"
+      },
+      "employeeId": "emp1",
+      "title": "Tide up room",
+      "serviceType": "Cleaning",
+      "details": "Make room look neat and more clean",
+      "price": 5,
+      "imageUrl": "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749383071/chambermaid-cleaning-hotel-room_23-2148095306_hdkr2s.avif",
+      "employee": {
+        "id": "emp1",
+        "name": "Employee One",
+        "email": "emp1@gmail.com",
+        "phone": "+962 7 9645 6456",
+        "role": "Employee",
+        "pfp": "",
+        "hotel": "Sunrise Inn",
+        "jobTitle": "Room Cleaner"
+      }
+    }
+  ]
 }
