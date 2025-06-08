@@ -82,7 +82,7 @@ export class AddEmployeeComponent {
         '',
         [
           Validators.required,
-          Validators.maxLength(2),
+          Validators.minLength(2),
           Validators.maxLength(30),
           Validators.pattern(/^[a-zA-Z0-9'\-$!& ]+$/),
         ],

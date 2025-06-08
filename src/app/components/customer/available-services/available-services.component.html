@@ -1,25 +1,5 @@
-<div class="select-container d-flex align-items-center w-75 mx-auto my-3">
-  <span class="input-group-text bg-white">
-    <i class="fa-solid fa-door-open filter-icon"></i>
-  </span>
-  <select
-    id="roomSelect"
-    [(ngModel)]="selectedRoomId"
-    (change)="onRoomSelectionChange()"
-    class="form-select custom-select"
-  >
-    <option [ngValue]="null" disabled selected>
-       {{ "--select-booked-room--" | translate }}
-    </option>
-    <option *ngFor="let room of userRooms" [ngValue]="room.id">
-      {{ "room.label" | translate }}  #{{ room.title }} - {{ room.hotel }} - {{ room.price }}$
-    </option>
-  </select>
-</div>
-
-<div class="d-flex justify-content-between mt-2 ms-5 me-5 align-items-center">
-  <div></div>
-  <div class="d-flex justify-content-center w-75">
+<div class="d-flex justify-content-center align-items-center">
+  <div class="d-flex justify-content-center align-items-center w-75">
     <div class="input-group search-container">
       <div class="align-self-center">
         <span class="input-group-text align-self-center bg-white">
@@ -34,6 +14,27 @@
         (input)="filterServices()"
       />
     </div>
+    <div class="input-group sort-by-container ms-3 w-50">
+      <div class="align-self-center">
+        <span class="input-group-text bg-white">
+          <i class="fa-solid fa-door-open filter-icon"></i>
+        </span>
+      </div>
+      <select
+        id="roomSelect"
+        [(ngModel)]="selectedRoomId"
+        (change)="onRoomSelectionChange()"
+        class="form-select custom-select"
+      >
+        <option value="" disabled selected>
+          {{ "service.booked-room" | translate }}
+        </option>
+        <option *ngFor="let room of userRooms" [ngValue]="room.id">
+          {{ "room.room" | translate }}: {{ room.title }} -
+          {{ "room.hotel" | translate }}: {{ room.hotel }}
+        </option>
+      </select>
+    </div>
 
     <div class="input-group sort-by-container ms-3">
       <div class="align-self-center">
@@ -46,12 +47,16 @@
         id="sortSelect"
         class="form-select"
         [(ngModel)]="sortBy"
-        (ngModelChange)="onSortChange($event)"
+        (change)="filterServices()"
       >
-        <option value="">{{ 'service.sort-by' | translate }}</option>
-        <option value="title">{{ 'service.sort.title' | translate }}</option>
-        <option value="serviceType">{{ 'service.sort.type' | translate }}</option>
-        <option value="price">{{ 'service.sort.price' | translate }}</option>
+        <option value="" disabled selected>
+          {{ "service.sort-by" | translate }}
+        </option>
+        <option value="title">{{ "service.sort.title" | translate }}</option>
+        <option value="serviceType">
+          {{ "service.sort.type" | translate }}
+        </option>
+        <option value="price">{{ "service.sort.price" | translate }}</option>
       </select>
     </div>
 
@@ -72,28 +77,40 @@
     </button>
   </div>
 </div>
-
+@if(userRooms.length > 0){
 <div
   class="services-container"
   *ngIf="filteredServices && filteredServices.length > 0; else noServices"
 >
   <div class="service-card" *ngFor="let service of filteredServices">
-    <h3>{{ service.title }}</h3>
-    <p><strong>{{ 'service.details' | translate }}:</strong> {{ service.details }}</p>
-    <p><strong>{{ 'service.price' | translate }}:</strong> ${{ service.price }}</p>
+    <div class="d-flex justify-content-between">
+      <h3>
+        @if(service.serviceType == "Cleaning"){
+        <i class="fa-solid fa-broom" style="color: #ad926b"></i>
+        } @else if (service.serviceType == "Dining") {
+        <i class="fa-solid fa-utensils" style="color: #ad926b"></i>
+        }@else if (service.serviceType == "Maintenance") {
+        <i class="fa-solid fa-toolbox" style="color: #ad926b"></i>
+        }
+        {{ service.title }}
+      </h3>
+
+      <h5>${{ service.price }}</h5>
+    </div>
+    <p>
+      <strong>{{ "service.hotel" | translate }}:</strong>
+      {{ service.employee.hotel }}
+    </p>
+    <p>
+      <strong>{{ "service.details" | translate }}:</strong>
+      {{ service.details }}
+    </p>
     <img
       *ngIf="service.imageUrl"
       [src]="service.imageUrl"
       alt="{{ 'service.image-alt' | translate }}"
       class="service-img mb-2"
     />
-
-    <div class="employee-info">
-      <h4>{{ 'service.provided-by' | translate }}:</h4>
-      <p><strong>{{ 'service.employee.name' | translate }}:</strong> {{ service.employee.name }}</p>
-      <p><strong>{{ 'service.employee.email' | translate }}:</strong> {{ service.employee.email }}</p>
-      <p><strong>{{ 'service.employee.phone' | translate }}:</strong> {{ service.employee.phone }}</p>
-    </div>
 
     <button
       class="btn-primary"
@@ -104,7 +121,9 @@
     </button>
   </div>
 </div>
-
+} @else {
+<h4>{{ "service.book-room-to-access-services" | translate }}</h4>
+}
 <ng-template #noServices>
   <p>{{ "service.no-available-services" | translate }}</p>
 </ng-template>

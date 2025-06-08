@@ -111,8 +111,8 @@
     "book-now": "Book Now",
     "room-already-booked": "Room already booked"
   },
-  "reservation": {   
-     "reservations": "Reservations",
+  "reservation": {
+    "reservations": "Reservations",
     "pending": "Pending",
     "active": " Active",
     "pending-reservations": "Pending Reservations",
@@ -130,7 +130,7 @@
     "cancel": "Cancel reservation",
     "view-services": "View Services",
     "status": {
-      "stat":"status",
+      "stat": "status",
       "pending": "Pending",
       "approved": "Approved",
       "rejected": "rejected"
@@ -140,6 +140,7 @@
   "service": {
     "services": "Services",
     "type": "Type",
+    "hotel": "Hotel",
     "edit-service": "Edit Service",
     "delete-service": "Delete Service",
     "no-available-services": "No available services at the moment.",
@@ -155,23 +156,24 @@
     "service-type-required": "Service Type Required",
     "does-not-have-any-services": "Does not have any services yet",
     "provided-by": "Provided By",
-      "employee":{
-        "name": "Employee Name",
-        "phone": "Phone",
-        "email": "Email"
-      },
-      "image-alt": "Service Image",
-      "price": "Price",
+    "employee": {
+      "name": "Employee Name",
+      "phone": "Phone",
+      "email": "Email"
+    },
+    "image-alt": "Service Image",
+    "price": "Price",
     "details": "Details",
     "sort-by": "Sort By",
-    
-    "sort":{
-"price": "Price",
-"type": "Type",
-"title": "Title"
-},
-"search-placeholder": "Search for services..."
 
+    "sort": {
+      "price": "Price",
+      "type": "Type",
+      "title": "Title"
+    },
+    "search-placeholder": "Search for services...",
+    "booked-room": "Your Booked Room",
+    "book-room-to-access-services": "Book a room to access Services"
   },
   "footer": {
     "english": "English",
@@ -259,7 +261,7 @@
       "hotel-required": "Hotel Name Required",
       "hotel-minlength": "Hotel name should conain at least 2 letters",
       "hotel-maxlength": "Hotel name should not exceed 30 characters",
-      "location-minlength": "Location Discription should conain at least 20 characters"
+      "location-minlength": "Location Discription should conain at least 10 characters"
     },
     "toast": {
       "success": "Success",
@@ -286,14 +288,13 @@
       "booked-waiting-for-admin-approval": "booked! Waiting for admin approval.",
       "booked-but-failed-to-update-status": "Room booked but failed to update status.",
       "error-getting-reservations": "Error getting reservations",
-      "no-room-selected-or-user-found": "No room selected or user not found",
+      "select-a-room-first": "Select a room first",
       "service-request-submitted-successfully": "Service request submitted successfully!",
       "reservation-cancelled": "Reservation cancelled",
       "login-successful": "Login successful!",
       "email-already-exists": "Email already exists!",
-      "registered-successfully":"Registered successfully!",
-         "status-updated-to-booked": " Status updated to booked!"
-
+      "registered-successfully": "Registered successfully!",
+      "status-updated-to-booked": " Status updated to booked!"
     },
     "confirm-dialog": {
       "delete": "Delete",

@@ -80,7 +80,7 @@ export class RoomFormComponent {
           Validators.pattern(/^[a-zA-Z0-9'\-$!& ]+$/),
         ],
       ],
-      location: ['', [Validators.required, Validators.minLength(20)]],
+      location: ['', [Validators.required, Validators.minLength(10)]],
       details: [
         '',
         [
