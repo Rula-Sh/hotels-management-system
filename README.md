@@ -135,6 +135,7 @@ npm i angular-datatables@9.0.2
     ├───assets
     │   ├───i18n
     │   └───images
+    └───styles
 ```
 
 ## 📸 Screenshots
