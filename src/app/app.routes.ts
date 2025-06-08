@@ -7,24 +7,6 @@ import {
 } from '@angular/router';
 import { AuthService } from './core/services/auth.service';
 import { inject } from '@angular/core';
-import { HomeRedirectComponent } from './shared/components/auth/home-redirect/home-redirect.component';
-import { LoginComponent } from './shared/components/auth/login/login.component';
-import { SignUpComponent } from './shared/components/auth/sign-up/sign-up.component';
-import { ProfileComponent } from './shared/components/auth/profile/profile.component';
-import { NotFoundComponent } from './shared/components/auth/not-found/not-found.component';
-import { MyReservationsComponent } from './pages/customer/my-reservations/my-reservations.component';
-import { AvailableServicesComponent } from './pages/customer/available-services/available-services.component';
-import { RequestsComponent } from './pages/employee/requests/requests.component';
-import { DashboardComponent } from './pages/admin/dashboard/dashboard.component';
-import { AddEmployeeComponent } from './pages/admin/add-employee/add-employee.component';
-import { ManageUsersComponent } from './pages/admin/manage-users/manage-users.component';
-import { UserDetailsComponent } from './pages/admin/user-details/user-details.component';
-import { ReservationsComponent } from './pages/admin/reservations/reservations.component';
-import { RoomFormComponent } from './pages/admin/room-form/room-form.component';
-import { ServicesComponent } from './pages/employee/services/services.component';
-import { ServiceFormComponent } from './pages/employee/service-form/service-form.component';
-import { RoomsComponent } from './shared/components/room/rooms/rooms.component';
-import { RoomDetailsComponent } from './shared/components/room/room-details/room-details.component';
 
 export const authGuard: CanActivateFn = (
   route: ActivatedRouteSnapshot,
@@ -53,110 +35,184 @@ export const authGuard: CanActivateFn = (
 };
 
 export const routes: Routes = [
+  {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'home-redirect',
+  }, // shared with all users
   // ------------------------ Customer ------------------------
   {
-    path: 'rooms',
-    component: RoomsComponent,
-  },
-  {
-    path: 'room-details/:id',
-    component: RoomDetailsComponent,
-  },
-  {
-    path: 'my-reservations',
-    component: MyReservationsComponent,
-    canActivate: [authGuard],
-    data: { roles: ['Customer'] },
-  },
-  {
-    path: 'available-services',
-    component: AvailableServicesComponent,
-    canActivate: [authGuard],
-    data: { roles: ['Customer'] },
+    path: '',
+    children: [
+      {
+        path: 'rooms',
+        loadComponent: () =>
+          import('./shared/components/room/rooms/rooms.component').then(
+            (m) => m.RoomsComponent
+          ),
+      }, // shared with guests and admin
+      {
+        path: 'room-details/:id',
+        loadComponent: () =>
+          import(
+            './shared/components/room/room-details/room-details.component'
+          ).then((m) => m.RoomDetailsComponent),
+      }, // shared with guests and admin
+      {
+        path: 'my-reservations',
+        loadComponent: () =>
+          import(
+            './pages/customer/my-reservations/my-reservations.component'
+          ).then((m) => m.MyReservationsComponent),
+        canActivate: [authGuard],
+        data: { roles: ['Customer'] },
+      },
+      {
+        path: 'available-services',
+        loadComponent: () =>
+          import(
+            './pages/customer/available-services/available-services.component'
+          ).then((m) => m.AvailableServicesComponent),
+        canActivate: [authGuard],
+        data: { roles: ['Customer'] },
+      },
+    ],
   },
 
   // ------------------------ Emplyoyee ------------------------
   {
-    path: 'employee/requests',
-    component: RequestsComponent,
+    path: 'employee',
     canActivate: [authGuard],
     data: { roles: ['Employee'] },
-  },
-  {
-    path: 'employee/services',
-    component: ServicesComponent,
-    canActivate: [authGuard],
-    data: { roles: ['Employee'] },
-  },
-  {
-    path: 'employee/add-service',
-    component: ServiceFormComponent,
-    canActivate: [authGuard],
-    data: { roles: ['Employee'] },
-  },
-  {
-    path: 'employee/edit-service/:id',
-    component: ServiceFormComponent,
-    canActivate: [authGuard],
-    data: { roles: ['Employee'] },
+    children: [
+      {
+        path: 'requests',
+        loadComponent: () =>
+          import('./pages/employee/requests/requests.component').then(
+            (m) => m.RequestsComponent
+          ),
+      },
+      {
+        path: 'services',
+        loadComponent: () =>
+          import('./pages/employee/services/services.component').then(
+            (m) => m.ServicesComponent
+          ),
+      },
+      {
+        path: 'add-service',
+        loadComponent: () =>
+          import('./pages/employee/service-form/service-form.component').then(
+            (m) => m.ServiceFormComponent
+          ),
+      },
+      {
+        path: 'edit-service/:id',
+        loadComponent: () =>
+          import('./pages/employee/service-form/service-form.component').then(
+            (m) => m.ServiceFormComponent
+          ),
+      },
+    ],
   },
 
   // ------------------------ Admin ------------------------
   {
-    path: 'admin/dashboard',
-    component: DashboardComponent,
+    path: 'admin',
     canActivate: [authGuard],
     data: { roles: ['Admin'] },
+    children: [
+      {
+        path: 'dashboard',
+        loadComponent: () =>
+          import('./pages/admin/dashboard/dashboard.component').then(
+            (m) => m.DashboardComponent
+          ),
+      },
+      {
+        path: 'add-employee',
+        loadComponent: () =>
+          import('./pages/admin/add-employee/add-employee.component').then(
+            (m) => m.AddEmployeeComponent
+          ),
+      },
+      {
+        path: 'manage-users',
+        loadComponent: () =>
+          import('./pages/admin/manage-users/manage-users.component').then(
+            (m) => m.ManageUsersComponent
+          ),
+      },
+      {
+        path: 'user-details/:id',
+        loadComponent: () =>
+          import('./pages/admin/user-details/user-details.component').then(
+            (m) => m.UserDetailsComponent
+          ),
+      },
+      {
+        path: 'add-room',
+        loadComponent: () =>
+          import('./pages/admin/room-form/room-form.component').then(
+            (m) => m.RoomFormComponent
+          ),
+      },
+      {
+        path: 'edit-room/:id',
+        loadComponent: () =>
+          import('./pages/admin/room-form/room-form.component').then(
+            (m) => m.RoomFormComponent
+          ),
+      },
+      {
+        path: 'reservations',
+        loadComponent: () =>
+          import('./pages/admin/reservations/reservations.component').then(
+            (m) => m.ReservationsComponent
+          ),
+      },
+    ],
   },
-  {
-    path: 'admin/add-employee',
-    component: AddEmployeeComponent,
-    canActivate: [authGuard],
-    data: { roles: ['Admin'] },
-  },
-  {
-    path: 'admin/manage-users',
-    component: ManageUsersComponent,
-    canActivate: [authGuard],
-    data: { roles: ['Admin'] },
-  },
-  {
-    path: 'user/:id',
-    component: UserDetailsComponent,
-    canActivate: [authGuard],
-    data: { roles: ['Admin'] },
-  },
-  {
-    path: 'admin/add-room',
-    component: RoomFormComponent,
-    canActivate: [authGuard],
-    data: { roles: ['Admin'] },
-  },
-  {
-    path: 'admin/edit-room/:id',
-    component: RoomFormComponent,
-    canActivate: [authGuard],
-    data: { roles: ['Admin'] },
-  },
-  {
-    path: 'admin/reservations',
-    component: ReservationsComponent,
-    canActivate: [authGuard],
-    data: { roles: ['Admin'] },
-  },
-  // have a shared route with the customer 'room-details/:id'
+  // have a shared route with the customer 'rooms' and 'room-details/:id'
 
   // -------- All Users --------
 
-  { path: '', component: HomeRedirectComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'signup', component: SignUpComponent },
+  {
+    path: 'home-redirect',
+    loadComponent: () =>
+      import(
+        './shared/components/auth/home-redirect/home-redirect.component'
+      ).then((m) => m.HomeRedirectComponent),
+  },
+  {
+    path: 'login',
+    loadComponent: () =>
+      import('./shared/components/auth/login/login.component').then(
+        (m) => m.LoginComponent
+      ),
+  },
+  {
+    path: 'signup',
+    loadComponent: () =>
+      import('./shared/components/auth/sign-up/sign-up.component').then(
+        (m) => m.SignUpComponent
+      ),
+  },
   {
     path: 'profile/:id',
-    component: ProfileComponent,
+    loadComponent: () =>
+      import('./shared/components/auth/profile/profile.component').then(
+        (m) => m.ProfileComponent
+      ),
     canActivate: [authGuard],
     data: { roles: ['Admin', 'Employee', 'Customer'] },
   },
 
-  { path: '**', component: NotFoundComponent },
+  {
+    path: '**',
+    loadComponent: () =>
+      import('./shared/components/auth/not-found/not-found.component').then(
+        (m) => m.NotFoundComponent
+      ),
+  },
 ];

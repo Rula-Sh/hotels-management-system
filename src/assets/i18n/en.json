@@ -143,7 +143,7 @@
     "hotel": "Hotel",
     "edit-service": "Edit Service",
     "delete-service": "Delete Service",
-    "no-available-services": "No available services at the moment.",
+    "no-available-services": "There are no available services at the moment.",
     "approve-request": "Approve Request",
     "complete-request": "Complete Request",
     "there-are-no-requests": "There Are No Requests At The Moment.",
@@ -312,7 +312,8 @@
     },
     "filter": {
       "search": "Search By Room Title...",
-      "sort-by": "Sort By"
+      "sort-by": "Sort By",
+      "could-not-find-what-you-are-searching-for": "Could not find what you are searching for"
     },
     "actions": "Actions"
   }

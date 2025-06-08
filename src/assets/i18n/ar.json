@@ -311,7 +311,8 @@
     },
     "filter": {
       "search": "البحث باسم الغرفة...",
-      "sort-by": "فرز حسب"
+      "sort-by": "فرز حسب",
+      "could-not-find-what-you-are-searching-for": "تعذر العثور على ما تبحث عنه"
     },
     "key-name": "الإجراءات"
   }

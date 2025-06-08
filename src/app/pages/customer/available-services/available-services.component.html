@@ -77,7 +77,7 @@
     </button>
   </div>
 </div>
-@if(userRooms.length > 0){
+@if(userRooms.length > 0){ @if(allUserRoomsServices.length >0){
 <div
   class="services-container"
   *ngIf="filteredServices && filteredServices.length > 0; else noServices"
@@ -121,11 +121,19 @@
     </button>
   </div>
 </div>
-} @else {
-<h4>{{ "service.book-room-to-access-services" | translate }}</h4>
+} @else{
+<h3 class="no-data">
+  {{ "service.no-available-services" | translate }}
+</h3>
+} } @else {
+<h3 class="no-data">
+  {{ "service.book-room-to-access-services" | translate }}
+</h3>
 }
 <ng-template #noServices>
-  <p>{{ "service.no-available-services" | translate }}</p>
+  <h3 class="no-data">
+    {{ "shared.filter.could-not-find-what-you-are-searching-for" | translate }}
+  </h3>
 </ng-template>
 
 <p-toast></p-toast>

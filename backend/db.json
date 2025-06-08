@@ -15,7 +15,7 @@
         "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749379491/565065265_zthw6e.jpg",
         "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749379492/207079375_rsghii.jpg"
       ],
-      "bookedStatus": "Booked"
+      "AvailableStatus": "Available"
     },
     {
       "id": "r2",
@@ -30,7 +30,7 @@
       "imagesUrl": [
         "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749380759/crystal-grand-banquet-hall-mississauga-366-full_size_vmjsrs.webp"
       ],
-      "bookedStatus": "Available"
+      "AvailableStatus": "Available"
     },
     {
       "id": "r3",
@@ -48,7 +48,7 @@
         "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749379524/694271310_nqpnbs.jpg",
         "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749380851/628723601_ieypbc.jpg"
       ],
-      "bookedStatus": "Available"
+      "AvailableStatus": "Available"
     },
     {
       "id": "r4",
@@ -64,7 +64,7 @@
         "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749379544/654123212_fhfds2.jpg",
         "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749379543/654123196_t3mh1i.jpg"
       ],
-      "bookedStatus": "Available"
+      "AvailableStatus": "Available"
     },
     {
       "id": "r5",
@@ -79,7 +79,7 @@
       "imagesUrl": [
         "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748011951/marina-bay-view-room-king-1_t3jdl4.jpg"
       ],
-      "bookedStatus": "Available"
+      "AvailableStatus": "Available"
     },
     {
       "id": "r6",
@@ -96,7 +96,7 @@
         "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749379683/363394700_yiklrs.jpg",
         "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749379684/363394597_brmydy.jpg"
       ],
-      "bookedStatus": "Booked"
+      "AvailableStatus": "Available"
     }
   ],
   "users": [
