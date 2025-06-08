@@ -121,7 +121,7 @@ export class SignUpComponent {
       const createUserSub = this.userService.createUser(user).subscribe({
         next: (value) => {
           this.authService.login(value);
-          localStorage.setItem('user_id', value.id);
+          localStorage.setItem('id', value.id);
 
           this.messageService.add({
             severity: 'success',

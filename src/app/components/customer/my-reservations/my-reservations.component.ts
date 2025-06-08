@@ -35,7 +35,7 @@ export class MyReservationsComponent implements OnInit {
     const userId = localStorage.getItem('id');
 
     if (!userId) {
-      console.warn('⚠️ No user_id found in localStorage');
+      console.warn('⚠️ No user id found in localStorage');
       return;
     }
 
