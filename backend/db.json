@@ -4,109 +4,220 @@
       "id": "r1",
       "title": "Deluxe Suite",
       "roomType": "Room",
-      "capacity": 1,
+      "capacity": 2,
       "floor": 2,
       "hotel": "Sunrise Inn",
+      "location": "loc r1 12345",
       "details": "A deluxe room with sea view.",
-      "bookedStatus": "Booked",
       "price": 120,
       "imagesUrl": [
-        "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748011951/SuiteNov2022_0008_1920_hhykez.jpg",
-        "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748011951/140127103345-peninsula-shanghai-deluxe-mock-up_oatn0j.jpg",
-        "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748011951/Sofitel-Dubai-Wafi-Luxury-Room-Bedroom-Skyline-View-Image1_WEB_mal8fr.jpg"
-      ]
-    },
-    {
-      "id": "r4",
-      "title": "Conference Hall A",
-      "roomType": "Hall",
-      "capacity": 12,
-      "floor": 1,
-      "hotel": "Sunrise Inn",
-      "details": "Spacious hall for events.",
-      "bookedStatus": "Available",
-      "price": 300,
-      "imagesUrl": [
-        "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748011951/Sofitel-Dubai-Wafi-Luxury-Room-Bedroom-Skyline-View-Image1_WEB_mal8fr.jpg"
-      ]
+        "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749379492/207079479_rwiqgg.jpg",
+        "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749379491/565065265_zthw6e.jpg",
+        "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749379492/207079375_rsghii.jpg"
+      ],
+      "bookedStatus": "Booked"
     },
     {
       "id": "r2",
-      "title": "Conference Hall A",
+      "title": "Conference Hall",
       "roomType": "Hall",
-      "capacity": 4,
-      "floor": 1,
+      "capacity": 25,
+      "floor": 3,
       "hotel": "Sunrise Inn",
+      "location": "loc r2 12345",
       "details": "Spacious hall for events.",
-      "bookedStatus": "Available",
       "price": 300,
       "imagesUrl": [
-        "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748011951/Sofitel-Dubai-Wafi-Luxury-Room-Bedroom-Skyline-View-Image1_WEB_mal8fr.jpg"
-      ]
+        "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749380759/crystal-grand-banquet-hall-mississauga-366-full_size_vmjsrs.webp"
+      ],
+      "bookedStatus": "Available"
     },
     {
-      "id": "84ca",
-      "title": "qwe",
-      "roomType": "Room",
-      "capacity": 6,
-      "floor": 2321,
-      "hotel": "123",
-      "details": "123",
-      "bookedStatus": "Available",
-      "price": 123,
+      "id": "r3",
+      "title": "Family Room",
+      "roomType": "Suite",
+      "capacity": 7,
+      "floor": 3,
+      "hotel": "Mountain View Resort",
+      "location": "loc r2 54321",
+      "details": "Spacious suite with 4 beds and a living room.",
+      "price": 200,
       "imagesUrl": [
-        "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748011951/140127103345-peninsula-shanghai-deluxe-mock-up_oatn0j.jpg"
-      ]
+        "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749380839/694271274_hkuslh.jpg",
+        "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749379523/628723668_mtd3fu.jpg",
+        "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749379524/694271310_nqpnbs.jpg",
+        "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749380851/628723601_ieypbc.jpg"
+      ],
+      "bookedStatus": "Available"
+    },
+    {
+      "id": "r4",
+      "title": "Duo Room",
+      "roomType": "Room",
+      "capacity": 2,
+      "floor": 4,
+      "hotel": "Mountain View Resort",
+      "location": "loc r4 54321",
+      "details": "Spacious suite with 2 beds and balcony.",
+      "price": 100,
+      "imagesUrl": [
+        "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749379544/654123212_fhfds2.jpg",
+        "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749379543/654123196_t3mh1i.jpg"
+      ],
+      "bookedStatus": "Available"
+    },
+    {
+      "id": "r5",
+      "title": "Single Economy",
+      "roomType": "Room",
+      "capacity": 1,
+      "floor": 1,
+      "hotel": "City Lights",
+      "location": "loc r5 67890",
+      "details": "Compact room ideal for solo travelers.",
+      "price": 60,
+      "imagesUrl": [
+        "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748011951/marina-bay-view-room-king-1_t3jdl4.jpg"
+      ],
+      "bookedStatus": "Available"
+    },
+    {
+      "id": "r6",
+      "title": "Executive Suite",
+      "roomType": "Suite",
+      "capacity": 4,
+      "floor": 3,
+      "hotel": "City Lights",
+      "location": "loc r6 67890",
+      "details": "Luxurious suite with office space and lounge.",
+      "price": 100,
+      "imagesUrl": [
+        "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749379685/421113100_juim7n.jpg",
+        "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749379683/363394700_yiklrs.jpg",
+        "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749379684/363394597_brmydy.jpg"
+      ],
+      "bookedStatus": "Booked"
     }
   ],
   "users": [
     {
-      "id": "u1",
-      "name": "Alice Johnson",
-      "email": "alice@example.com",
-      "phone": "1234567890",
-      "password": "MTIzMTIz",
-      "role": "Customer"
-    },
-    {
-      "id": "u2",
-      "name": "Bob Smith",
-      "email": "bob@example.com",
-      "phone": "1234567890",
-      "password": "MTIzMTIz",
-      "role": "Employee"
-    },
-    {
-      "id": "u3",
+      "id": "a",
       "name": "admin",
       "email": "admin@gmail.com",
-      "password": "IVEyM3dld2U=",
+      "password": "MTIzMTIz",
       "role": "Admin",
       "pfp": ""
     },
     {
       "id": "emp1",
-      "name": "Alice Johnson",
-      "email": "alice.johnson@example.com",
-      "phone": "1234567890",
+      "name": "Employee One",
+      "email": "emp1@gmail.com",
+      "phone": "+962 7 9645 6456",
+      "hotel": "Sunrise Inn",
+      "jobCategory": "Housekeeping",
+      "jobTitle": "Room Cleaner",
       "password": "MTIzMTIz",
-      "role": "Employee",
-      "pfp": "",
-      "jobTitle": "Hair Stylist",
-      "services": ["svc1", "svc2"]
+      "role": "Employee"
     },
     {
       "id": "emp2",
-      "name": "Bob Smith",
-      "email": "bob.smith@example.com",
-      "phone": "1234567890",
+      "name": "Employee Two",
+      "email": "emp2@gmail.com",
+      "phone": "+962 7 7855 2114",
+      "hotel": "Sunrise Inn",
+      "jobCategory": "Dining",
+      "jobTitle": "Food & Beverage Server",
       "password": "MTIzMTIz",
-      "role": "Employee",
-      "pfp": "",
-      "jobTitle": "Massage Therapist",
-      "services": ["svc3"]
+      "role": "Employee"
     },
-
+    {
+      "id": "emp3",
+      "name": "Employee Three",
+      "email": "emp3@gmail.com",
+      "phone": "+962 7 8115 8799",
+      "hotel": "Sunrise Inn",
+      "jobCategory": "Maintenance",
+      "jobTitle": "Electrician",
+      "password": "MTIzMTIz",
+      "role": "Employee"
+    },
+    {
+      "id": "emp4",
+      "name": "Employee Four",
+      "email": "emp4@gmail.com",
+      "phone": "+962 7 9645 6456",
+      "hotel": "Mountain View",
+      "jobCategory": "Housekeeping",
+      "jobTitle": "Room Cleaner",
+      "password": "MTIzMTIz",
+      "role": "Employee"
+    },
+    {
+      "id": "emp5",
+      "name": "Employee Five",
+      "email": "emp5@gmail.com",
+      "phone": "+962 7 7855 2114",
+      "hotel": "Mountain View",
+      "jobCategory": "Dining",
+      "jobTitle": "Food & Beverage Server",
+      "password": "MTIzMTIz",
+      "role": "Employee"
+    },
+    {
+      "id": "emp6",
+      "name": "Employee Six",
+      "email": "emp6@gmail.com",
+      "phone": "+962 7 9645 6456",
+      "hotel": "City Lights",
+      "jobCategory": "Housekeeping",
+      "jobTitle": "Room Cleaner",
+      "password": "MTIzMTIz",
+      "role": "Employee"
+    },
+    {
+      "id": "emp7",
+      "name": "Employee Seven",
+      "email": "emp7@gmail.com",
+      "phone": "+962 7 7855 2114",
+      "hotel": "City Lights",
+      "jobCategory": "Dining",
+      "jobTitle": "Food & Beverage Server",
+      "password": "MTIzMTIz",
+      "role": "Employee"
+    },
+    {
+      "id": "emp8",
+      "name": "Employee 8",
+      "email": "emp8@gmail.com",
+      "phone": "+962 7 7345 2434",
+      "hotel": "Sunrise Inn",
+      "jobCategory": "Wellness",
+      "jobTitle": "Message Therapist",
+      "password": "MTIzMTIz",
+      "role": "Employee"
+    },
+    {
+      "id": "c1",
+      "name": "Customer One",
+      "email": "customer1@gmail.com",
+      "phone": "+962 7 7822 1324",
+      "password": "MTIzMTIz",
+      "role": "Customer"
+    },
+    {
+      "id": "c2",
+      "name": "Customer Two",
+      "email": "customer2@gmail.com",
+      "password": "MTIzMTIz",
+      "role": "Customer"
+    },
+    {
+      "id": "c3",
+      "name": "Customer Three",
+      "email": "customer3@gmail.com",
+      "password": "MTIzMTIz",
+      "role": "Customer"
+    },
     {
       "id": "9884",
       "name": "areen",
@@ -115,181 +226,405 @@
       "role": "Customer"
     }
   ],
-  "reservations": [
-    {
-      "id": "res1",
-      "roomId": "r1",
-      "date": "2025-05-26T14:00:00.000Z",
-      "customerId": "u1",
-      "approvalStatus": "Approved",
-      "paymentStatus": "Unpaid",
-      "paymentAmmount": 120,
-      "room": {
-        "id": "r1",
-        "title": "Deluxe Suite",
-        "roomType": "Room",
-        "floor": 2,
-        "hotel": "Sunrise Inn",
-        "details": "A deluxe room with sea view.",
-        "bookedStatus": "Available",
-        "price": 120,
-        "imagesUrl": [
-          "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748011951/SuiteNov2022_0008_1920_hhykez.jpg",
-          "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748011951/140127103345-peninsula-shanghai-deluxe-mock-up_oatn0j.jpg",
-          "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748011951/Sofitel-Dubai-Wafi-Luxury-Room-Bedroom-Skyline-View-Image1_WEB_mal8fr.jpg"
-        ]
-      },
-      "customer": {
-        "id": "u1",
-        "name": "Alice Johnson",
-        "email": "alice@example.com",
-        "phone": "1234567890",
-        "password": "MTIzMTIz",
-        "role": "Customer"
-      }
-    },
-    {
-      "id": "res5",
-      "roomId": "r1",
-      "date": "2025-05-10T09:00:00.000Z",
-      "customerId": "u2",
-      "approvalStatus": "Rejected",
-      "paymentStatus": "Unpaid",
-      "paymentAmmount": 100,
-      "room": {
-        "id": "r1",
-        "title": "Deluxe Suite",
-        "roomType": "Room",
-        "floor": 2,
-        "hotel": "Sunrise Inn",
-        "details": "A deluxe room with sea view.",
-        "bookedStatus": "Available",
-        "price": 120,
-        "imagesUrl": [
-          "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748011951/SuiteNov2022_0008_1920_hhykez.jpg",
-          "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748011951/Sofitel-Dubai-Wafi-Luxury-Room-Bedroom-Skyline-View-Image1_WEB_mal8fr.jpg",
-          "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748011951/Sofitel-Dubai-Wafi-Luxury-Room-Bedroom-Skyline-View-Image1_WEB_mal8fr.jpg"
-        ]
-      },
-      "customer": {
-        "id": "u2",
-        "name": "Bob Smith",
-        "email": "bob@example.com",
-        "phone": "1234567890",
-        "role": "Employee"
-      }
-    },
-
-    {
-      "id": "db37",
-      "customer": {
-        "id": "9884",
-        "name": "areen",
-        "email": "AREEN11823@GMAIL.COM",
-        "password": "QXJlZW4xMSM=",
-        "role": "Customer"
-      },
-      "customerId": "9884",
-      "roomId": "r1",
-      "room": {
-        "id": "r1",
-        "title": "Deluxe Suite",
-        "roomType": "Room",
-        "floor": 2,
-        "hotel": "Sunrise Inn",
-        "details": "A deluxe room with sea view.",
-        "bookedStatus": "Pending",
-        "price": 120,
-        "imagesUrl": [
-          "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748011951/SuiteNov2022_0008_1920_hhykez.jpg",
-          "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748011951/140127103345-peninsula-shanghai-deluxe-mock-up_oatn0j.jpg",
-          "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748011951/Sofitel-Dubai-Wafi-Luxury-Room-Bedroom-Skyline-View-Image1_WEB_mal8fr.jpg"
-        ]
-      },
-      "date": "2025-06-07T13:06:55.706Z",
-      "paymentAmount": 120,
-      "paymentStatus": "Unpaid",
-      "approvalStatus": "Approved"
-    }
-  ],
+  "reservations": [],
   "services": [
     {
-      "id": "svc1",
-      "title": "Fix Furniture",
-      "serviceType": "Maintenance",
-      "details": "Basic maintenance service",
-      "price": 20,
-      "imageUrl": "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748501068/678a64ea8faa75e20768a51b_64b64e9c25f6ad976e8ea6b7_Outsource_20maintenance_kpwafy.jpg",
+      "id": "s1",
+      "title": "Vacuuming",
+      "serviceType": "Cleaning",
+      "details": "Clean floor",
+      "price": 15,
+      "imageUrl": "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748501366/shutterstock_1628546512_o4ismw.jpg",
       "employeeId": "emp1",
       "employee": {
         "id": "emp1",
-        "name": "Alice Johnson",
-        "email": "alice.johnson@example.com",
-        "jobTitle": "Hair Stylist"
+        "name": "Employee One",
+        "email": "emp1@gmail.com",
+        "phone": "+962 7 9645 6456",
+        "role": "Employee",
+        "pfp": "",
+        "hotel": "Sunrise Inn",
+        "jobTitle": "Room Cleaner"
       }
     },
     {
-      "id": "svc2",
+      "id": "s2",
+      "title": "Laundary",
+      "serviceType": "Cleaning",
+      "details": "Fold and clean clothes",
+      "price": 10,
+      "imageUrl": "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748501134/download_gconlk.jpg",
       "employeeId": "emp1",
+      "employee": {
+        "id": "emp1",
+        "name": "Employee One",
+        "email": "emp1@gmail.com",
+        "phone": "+962 7 9645 6456",
+        "role": "Employee",
+        "pfp": "",
+        "hotel": "Sunrise Inn",
+        "jobTitle": "Room Cleaner"
+      }
+    },
+    {
+      "id": "s3",
+      "title": "Tide up room",
+      "serviceType": "Cleaning",
+      "details": "Make room look neat and more clean",
+      "price": 5,
+      "imageUrl": "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749383071/chambermaid-cleaning-hotel-room_23-2148095306_hdkr2s.avif",
+      "employeeId": "emp1",
+      "employee": {
+        "id": "emp1",
+        "name": "Employee One",
+        "email": "emp1@gmail.com",
+        "phone": "+962 7 9645 6456",
+        "role": "Employee",
+        "pfp": "",
+        "hotel": "Sunrise Inn",
+        "jobTitle": "Room Cleaner"
+      }
+    },
+    {
+      "id": "s4",
       "title": "Breakfast",
       "serviceType": "Dining",
-      "details": "Professional hair coloring service.",
-      "price": 60,
-      "imageUrl": "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748501151/download_divobj.jpg",
-      "employee": {
-        "id": "emp1",
-        "name": "Alice Johnson",
-        "email": "alice.johnson@example.com",
-        "jobTitle": "Hair Stylist"
-      }
-    },
-    {
-      "id": "svc3",
+      "details": "Bring breakfast meal",
+      "price": 10,
+      "imageUrl": "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749383456/Untitled-design_xbmumq.jpg",
       "employeeId": "emp2",
-      "serviceType": "Cleaning",
-      "title": "Swedish Massage",
-      "details": "Relaxing full-body Swedish massage.",
-      "price": 80,
-      "imageUrl": "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748501366/shutterstock_1628546512_o4ismw.jpg",
       "employee": {
         "id": "emp2",
-        "name": "Bob Smith",
-        "email": "bob.smith@example.com",
-        "jobTitle": "Massage Therapist"
-      }
-    },
-    {
-      "id": "7a98",
-      "title": "Cleaning",
-      "serviceType": "Cleaning",
-      "details": "Vacuuming",
-      "price": 20,
-      "imageUrl": "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748501366/shutterstock_1628546512_o4ismw.jpg",
-      "employeeId": "emp1",
-      "employee": {
-        "id": "emp1",
-        "name": "Alice Johnson",
-        "email": "alice.johnson@example.com",
+        "name": "Employee Two",
+        "email": "emp2@gmail.com",
+        "phone": "+962 7 7855 2114",
         "role": "Employee",
-        "hotel": "undefined",
-        "jobTitle": "Hair Stylist"
-      }
-    },
-    {
-      "id": "0c5a",
-      "title": "Room cleaning",
-      "serviceType": "Cleaning",
-      "details": "one hour cleaning",
-      "price": 30,
-      "imageUrl": "https://www.google.com/imgres?q=cleaning%20room&imgurl=https%3A%2F%2Fwww.wecasa.co.uk%2Fmag%2Fwp-content%2Fuploads%2F2025%2F02%2Fdeep-cleaning-bedroom-1024.jpg&imgrefurl=https%3A%2F%2Fwww.wecasa.co.uk%2Fmag%2Froom-by-room-guide-to-deep-cleaning%2F&docid=TAeQCSREjol3wM&tbnid=ONmBumnHb_a-UM&vet=12ahUKEwjsnbjs7ciNAxW8RKQEHZ4xC98QM3oECBwQAA..i&w=1024&h=683&hcb=2&ved=2ahUKEwjsnbjs7ciNAxW8RKQEHZ4xC98QM3oECBwQAA",
-      "employeeId": "2389",
-      "employee": {
-        "id": "2389",
-        "name": "AREEN",
-        "email": "AREEN@GMAIL.COM",
-        "role": "Employee",
+        "pfp": "",
         "hotel": "Sunrise Inn",
-        "jobTitle": "CLENER"
+        "jobTitle": "Food & Beverage Server"
+      }
+    },
+    {
+      "id": "s5",
+      "employeeId": "emp2",
+      "title": "Lunch",
+      "serviceType": "Dining",
+      "details": "Cook Lunch meal",
+      "price": 15,
+      "imageUrl": "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749383474/intro-1551812619_cqc3vt.jpg",
+      "employee": {
+        "id": "emp2",
+        "name": "Employee Two",
+        "email": "emp2@gmail.com",
+        "phone": "+962 7 7855 2114",
+        "role": "Employee",
+        "pfp": "",
+        "hotel": "Sunrise Inn",
+        "jobTitle": "Food & Beverage Server"
+      }
+    },
+    {
+      "id": "s6",
+      "employeeId": "emp2",
+      "title": "Dinner",
+      "serviceType": "Dining",
+      "details": "Cook dinner meal",
+      "price": 10,
+      "imageUrl": "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749383459/hotel-room-service_sp4dl1.jpg",
+      "employee": {
+        "id": "emp2",
+        "name": "Employee Two",
+        "email": "emp2@gmail.com",
+        "phone": "+962 7 7855 2114",
+        "role": "Employee",
+        "pfp": "",
+        "hotel": "Sunrise Inn",
+        "jobTitle": "Food & Beverage Server"
+      }
+    },
+    {
+      "id": "s7",
+      "employeeId": "emp3",
+      "serviceType": "Maintenance",
+      "title": "Fix TV",
+      "details": "Fix any tv issue",
+      "price": 10,
+      "imageUrl": "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749380312/istockphoto-1183916652-612x612_tmmmxt.jpg",
+      "employee": {
+        "id": "emp3",
+        "name": "Employee Three",
+        "email": "emp3@gmail.com",
+        "phone": "+962 7 8115 8799",
+        "role": "Employee",
+        "pfp": "",
+        "hotel": "Sunrise Inn",
+        "jobTitle": "Electrician"
+      }
+    },
+    {
+      "id": "s8",
+      "employeeId": "emp3",
+      "serviceType": "Maintenance",
+      "title": "Fix Electrical Ports",
+      "details": "Fix main electrical ports and cables",
+      "price": 5,
+      "imageUrl": "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748501068/678a64ea8faa75e20768a51b_64b64e9c25f6ad976e8ea6b7_Outsource_20maintenance_kpwafy.jpg",
+      "employee": {
+        "id": "emp3",
+        "name": "Employee Three",
+        "email": "emp3@gmail.com",
+        "phone": "+962 7 8115 8799",
+        "role": "Employee",
+        "pfp": "",
+        "hotel": "Sunrise Inn",
+        "jobTitle": "Electrician"
+      }
+    },
+    {
+      "id": "s9",
+      "title": "Vacuuming",
+      "serviceType": "Cleaning",
+      "details": "Clean floor",
+      "price": 8,
+      "imageUrl": "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748501366/shutterstock_1628546512_o4ismw.jpg",
+      "employeeId": "emp4",
+      "employee": {
+        "id": "emp4",
+        "name": "Employee Four",
+        "email": "emp4@gmail.com",
+        "phone": "+962 7 9645 6456",
+        "role": "Employee",
+        "pfp": "",
+        "hotel": "Mountain View",
+        "jobTitle": "Room Cleaner"
+      }
+    },
+    {
+      "id": "s10",
+      "title": "Laundary",
+      "serviceType": "Cleaning",
+      "details": "Fold and clean clothes",
+      "price": 12,
+      "imageUrl": "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748501134/download_gconlk.jpg",
+      "employeeId": "emp4",
+      "employee": {
+        "id": "emp4",
+        "name": "Employee Four",
+        "email": "emp4@gmail.com",
+        "phone": "+962 7 9645 6456",
+        "role": "Employee",
+        "pfp": "",
+        "hotel": "Mountain View",
+        "jobTitle": "Room Cleaner"
+      }
+    },
+    {
+      "id": "s11",
+      "title": "Tide up room",
+      "serviceType": "Cleaning",
+      "details": "Make room look neat and more clean",
+      "price": 7,
+      "imageUrl": "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749383071/chambermaid-cleaning-hotel-room_23-2148095306_hdkr2s.avif",
+      "employeeId": "emp4",
+      "employee": {
+        "id": "emp4",
+        "name": "Employee Four",
+        "email": "emp4@gmail.com",
+        "phone": "+962 7 9645 6456",
+        "role": "Employee",
+        "pfp": "",
+        "hotel": "Mountain View",
+        "jobTitle": "Room Cleaner"
+      }
+    },
+    {
+      "id": "s12",
+      "title": "Breakfast",
+      "serviceType": "Dining",
+      "details": "Bring breakfast meal",
+      "price": 12,
+      "imageUrl": "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749383456/Untitled-design_xbmumq.jpg",
+      "employeeId": "emp5",
+      "employee": {
+        "id": "emp5",
+        "name": "Employee Five",
+        "email": "emp5@gmail.com",
+        "phone": "+962 7 7855 2114",
+        "role": "Employee",
+        "pfp": "",
+        "hotel": "Mountain View",
+        "jobTitle": "Food & Beverage Server"
+      }
+    },
+    {
+      "id": "s13",
+      "employeeId": "emp5",
+      "title": "Lunch",
+      "serviceType": "Dining",
+      "details": "Cook Lunch meal",
+      "price": 5,
+      "imageUrl": "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749383474/intro-1551812619_cqc3vt.jpg",
+      "employee": {
+        "id": "emp5",
+        "name": "Employee Five",
+        "email": "emp5@gmail.com",
+        "phone": "+962 7 7855 2114",
+        "role": "Employee",
+        "pfp": "",
+        "hotel": "Mountain View",
+        "jobTitle": "Food & Beverage Server"
+      }
+    },
+    {
+      "id": "s14",
+      "employeeId": "emp5",
+      "title": "Dinner",
+      "serviceType": "Dining",
+      "details": "Cook dinner meal",
+      "price": 12,
+      "imageUrl": "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749383459/hotel-room-service_sp4dl1.jpg",
+      "employee": {
+        "id": "emp5",
+        "name": "Employee Five",
+        "email": "emp5@gmail.com",
+        "phone": "+962 7 7855 2114",
+        "role": "Employee",
+        "pfp": "",
+        "hotel": "Mountain View",
+        "jobTitle": "Food & Beverage Server"
+      }
+    },
+    {
+      "id": "s15",
+      "title": "Vacuuming",
+      "serviceType": "Cleaning",
+      "details": "Clean floor",
+      "price": "10",
+      "imageUrl": "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748501366/shutterstock_1628546512_o4ismw.jpg",
+      "employeeId": "emp6",
+      "employee": {
+        "id": "emp6",
+        "name": "Employee Six",
+        "email": "emp6@gmail.com",
+        "phone": "+962 7 9645 6456",
+        "role": "Employee",
+        "pfp": "",
+        "hotel": "City Lights",
+        "jobTitle": "Room Cleaner"
+      }
+    },
+    {
+      "id": "s16",
+      "title": "Laundary",
+      "serviceType": "Cleaning",
+      "details": "Fold and clean clothes",
+      "price": 7,
+      "imageUrl": "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748501134/download_gconlk.jpg",
+      "employeeId": "emp6",
+      "employee": {
+        "id": "emp6",
+        "name": "Employee Six",
+        "email": "emp6@gmail.com",
+        "phone": "+962 7 9645 6456",
+        "role": "Employee",
+        "pfp": "",
+        "hotel": "City Lights",
+        "jobTitle": "Room Cleaner"
+      }
+    },
+    {
+      "id": "s17",
+      "title": "Tide up room",
+      "serviceType": "Cleaning",
+      "details": "Make room look neat and more clean",
+      "price": 4,
+      "imageUrl": "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749383071/chambermaid-cleaning-hotel-room_23-2148095306_hdkr2s.avif",
+      "employeeId": "emp6",
+      "employee": {
+        "id": "emp6",
+        "name": "Employee Six",
+        "email": "emp6@gmail.com",
+        "phone": "+962 7 9645 6456",
+        "role": "Employee",
+        "pfp": "",
+        "hotel": "City Lights",
+        "jobTitle": "Room Cleaner"
+      }
+    },
+    {
+      "id": "s18",
+      "title": "Breakfast",
+      "serviceType": "Dining",
+      "details": "Bring breakfast meal",
+      "price": 6,
+      "imageUrl": "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749383456/Untitled-design_xbmumq.jpg",
+      "employeeId": "emp7",
+      "employee": {
+        "id": "emp7",
+        "name": "Employee Seven",
+        "email": "emp7@gmail.com",
+        "phone": "+962 7 7855 2114",
+        "role": "Employee",
+        "pfp": "",
+        "hotel": "City Lights",
+        "jobTitle": "Food & Beverage Server"
+      }
+    },
+    {
+      "id": "s19",
+      "employeeId": "emp7",
+      "title": "Lunch",
+      "serviceType": "Dining",
+      "details": "Cook Lunch meal",
+      "price": 5,
+      "imageUrl": "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749383474/intro-1551812619_cqc3vt.jpg",
+      "employee": {
+        "id": "emp7",
+        "name": "Employee Seven",
+        "email": "emp7@gmail.com",
+        "phone": "+962 7 7855 2114",
+        "role": "Employee",
+        "pfp": "",
+        "hotel": "City Lights",
+        "jobTitle": "Food & Beverage Server"
+      }
+    },
+    {
+      "id": "s20",
+      "employeeId": "emp7",
+      "title": "Dinner",
+      "serviceType": "Dining",
+      "details": "Cook dinner meal",
+      "price": 9,
+      "imageUrl": "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749383459/hotel-room-service_sp4dl1.jpg",
+      "employee": {
+        "id": "emp7",
+        "name": "Employee Seven",
+        "email": "emp7@gmail.com",
+        "phone": "+962 7 7855 2114",
+        "role": "Employee",
+        "pfp": "",
+        "hotel": "City Lights",
+        "jobTitle": "Food & Beverage Server"
+      }
+    },
+    {
+      "id": "s21",
+      "employeeId": "emp8",
+      "title": "Personal Trainer",
+      "serviceType": "Wellness",
+      "details": "Gives you healthy and ",
+      "price": 18,
+      "imageUrl": "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749385068/Personal-Trainer-Training-Partner-GettyImages-654427364_xton9b.webp",
+      "employee": {
+        "id": "emp8",
+        "name": "Employee 8",
+        "email": "emp8@gmail.com",
+        "phone": "+962 7 8554 6645",
+        "role": "Employee",
+        "pfp": "",
+        "hotel": "Sunrise Inn",
+        "jobTitle": "Message Therapist"
       }
     }
   ],
