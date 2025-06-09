@@ -11,4 +11,5 @@ export interface Reservation {
   paymentAmount: number;
   room: Room;
   customer: User;
+  isCheckedOut: boolean;
 }

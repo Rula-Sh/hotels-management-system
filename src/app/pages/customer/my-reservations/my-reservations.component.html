@@ -3,7 +3,7 @@
 
   <div *ngIf="reservations.length > 0; else noReservations">
     <div class="card mb-3" *ngFor="let reservation of reservations">
-      <div class="row g-0">
+      <div class="row g-0" [class.is-checked-out]="reservation.isCheckedOut">
         <div class="col-md-4">
           <img
             [src]="reservation.room.imagesUrl[0]"
@@ -19,13 +19,19 @@
               {{ reservation.room.roomType }}<br />
               <strong>{{ "reservation.hotel" | translate }}:</strong>
               {{ reservation.room.hotel }}<br />
-              <strong>{{ "reservation.date" | translate }}:</strong>
+              @if(reservation.approvalStatus == "Pending"){
+              <strong>{{ "reservation.date-requested" | translate }}:</strong>
+              } @else if(reservation.approvalStatus == "Approved"){
+              @if(reservation.isCheckedOut){
+              <strong>{{ "reservation.date-checked-out" | translate }}:</strong>
+              } @else {
+              <strong>{{ "reservation.date-booked" | translate }}:</strong>} }
               {{ reservation.date | date : "mediumDate" }}<br />
-              <strong>{{ "reservation.payment" | translate }}:</strong>
+              <strong>{{ "reservation.price" | translate }}:</strong>
               {{ reservation.paymentAmount | currency : "USD" }}
               ({{ reservation.paymentStatus }})<br />
+              @if(!reservation.isCheckedOut){
               <strong>{{ "reservation.status.stat" | translate }}:</strong>
-
               <span
                 [ngClass]="{
                   'text-warning': reservation.approvalStatus === 'Pending',
@@ -38,38 +44,49 @@
                     reservation.approvalStatus.toLowerCase() | translate
                 }}
               </span>
+
+              }
             </p>
+            <div class="d-flex justify-content-between">
+              <!-- رابط الانتقال إلى صفحة تفاصيل الغرفة -->
+              <a
+                [routerLink]="['/room-details', reservation.room.id]"
+                class="room-details-link"
+                [attr.lang]="lang"
+              >
+                🔗 {{ "reservation.details" | translate }}
+              </a>
+              <!-- زر الإلغاء -->
+              <button
+                class="btn btn-danger btn-sm"
+                (click)="cancelReservation(reservation.id)"
+                *ngIf="reservation.approvalStatus !== 'Approved'"
+              >
+                {{ "reservation.cancel" | translate }}
+              </button>
 
-            <!-- زر الإلغاء -->
-            <button
-              class="btn btn-danger btn-sm"
-              (click)="cancelReservation(reservation.id)"
-              *ngIf="reservation.approvalStatus !== 'Approved'"
-            >
-              {{ "reservation.cancel" | translate }}
-            </button>
+              <a
+                *ngIf="reservation.isCheckedOut"
+                class="btn btn-primary btn-sm ms-2"
+                (click)="bookRoom(reservation.room)"
+              >
+                <span class="exclude-disabled">
+                  {{ "reservation.book-again" | translate }}</span
+                >
+              </a>
 
-            <!-- زر الخدمات -->
-            <a
-              class="btn btn-primary btn-sm ms-2"
-              *ngIf="reservation.approvalStatus === 'Approved'"
-              [routerLink]="['/available-services']"
-              [queryParams]="{ hotel: reservation.room.hotel }"
-            >
-              {{ "reservation.view-services" | translate }}
-            </a>
-                   
-
-            <!-- رابط الانتقال إلى صفحة تفاصيل الغرفة -->
-            <a
-              [routerLink]="['/room-details', reservation.room.id]"
-              class="room-details-link"
-              [attr.lang]="lang"
-            >
-              🔗 {{ "reservation.view-room-details" | translate }}
-            </a>
-
-            <button (click)="goToCheckout(reservation.room.id)" pButton>Checkout</button>
+              <a
+                *ngIf="
+                  !reservation.isCheckedOut &&
+                  reservation.approvalStatus == 'Approved'
+                "
+                class="btn btn-primary btn-sm ms-2"
+                [routerLink]="['/checkout', reservation.room.id]"
+                pButton
+              >
+                {{ "reservation.check-out" | translate }}
+              </a>
+            </div>
           </div>
         </div>
       </div>

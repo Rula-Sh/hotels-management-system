@@ -1,0 +1,68 @@
+@import "../../../../../src/styles/variables.scss";
+
+h2 {
+  color: $color-dark-brown;
+  font-weight: bold;
+}
+
+.container {
+  background-color: white;
+  padding: 20px;
+  border-radius: 20px;
+  width: 50%;
+}
+
+.room-img {
+  width: 40%;
+}
+
+.room-info {
+  width: 40%;
+}
+.service-price-container {
+  width: 35%;
+}
+
+@media (max-width: 1500px) {
+  .container {
+    width: 60%;
+  }
+}
+
+@media (max-width: 1400px) {
+  .container {
+    width: 70%;
+  }
+}
+
+@media (max-width: 1400px) {
+  .container {
+    width: 80%;
+  }
+}
+
+@media (max-width: 800px) {
+  .room-img {
+    display: none;
+  }
+  .room-info {
+    width: 100%;
+  }
+  .room-price {
+    text-align: end;
+  }
+  .services-container {
+    flex-direction: column;
+  }
+  .service-price-container {
+    width: 100%;
+  }
+  .service-price {
+    width: 100%;
+    text-align: end;
+  }
+  .checkout-footer {
+    flex-direction: column-reverse;
+    justify-content: center;
+  }
+}

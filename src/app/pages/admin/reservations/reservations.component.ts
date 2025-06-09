@@ -69,6 +69,7 @@ export class ReservationsComponent {
 
   approveReservationRequest(reservation: Reservation) {
     reservation.approvalStatus = 'Approved';
+    reservation.room.bookedStatus = 'Booked';
     reservation.date = new Date();
     const approveReservationRequestSub =
       this.ReservationService.approveReservationRequest(
@@ -77,10 +78,7 @@ export class ReservationsComponent {
       ).subscribe({
         next: (value) => {
           // ✅ بعد الموافقة على الحجز، حدّث الغرفة إلى 'Booked'
-          const updatedRoom = {
-            ...reservation.room,
-            bookedStatus: 'Booked' as 'Booked',
-          };
+          const updatedRoom = reservation.room;
 
           this.roomService
             .updateRoom(reservation.room.id, updatedRoom)

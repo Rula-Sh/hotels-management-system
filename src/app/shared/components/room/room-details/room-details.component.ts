@@ -31,6 +31,7 @@ import { Subscription } from 'rxjs';
 })
 export class RoomDetailsComponent {
   room: Room | undefined;
+  approvedReservation: Reservation | undefined;
   images: string[] = []; // Should be populated appropriately
   currentIndex: number = 0;
   fadeOut = false;
@@ -69,32 +70,13 @@ export class RoomDetailsComponent {
       const sub = this.reservationService
         .getReservationsByCustomerId(this.userId)
         .subscribe((reservations) => {
-          const approvedReservation = reservations.find(
+          this.approvedReservation = reservations.find(
             (res) =>
               res.roomId === this.roomId && res.approvalStatus === 'Approved'
           );
           // هنا نحدث حالة الحجز عند المستخدم
-          this.isRoomBookedByUser = !!approvedReservation;
+          this.isRoomBookedByUser = !!this.approvedReservation;
 
-          if (approvedReservation && this.room) {
-            // ✅ تحديث حالة الغرفة إلى "Booked"
-            const updatedRoom: Room = { ...this.room, bookedStatus: 'Booked' };
-
-            this.roomService.updateRoom(this.room.id!, updatedRoom).subscribe({
-              next: () => {
-                this.room!.bookedStatus = 'Booked';
-                this.messageService.add({
-                  severity: 'info',
-                  summary: `${this.i18n.t('room.room')} ${
-                    this.room!.title
-                  } ${this.i18n.t('shared.toast.status-updated-to-booked')}`,
-                });
-              },
-              error: () => {
-                console.error('Failed to update room status to Booked');
-              },
-            });
-          }
         });
 
       this.subscriptions.push(sub);
@@ -218,37 +200,21 @@ export class RoomDetailsComponent {
             paymentAmount: room.price,
             paymentStatus: 'Unpaid',
             approvalStatus: 'Pending',
+            isCheckedOut: false,
           };
 
           const createReservationSub = this.reservationService
             .createReservation(reservation)
             .subscribe({
               next: () => {
-                const updatedRoom: Room = { ...room, bookedStatus: 'Pending' };
-                const updateRoomSub = this.roomService
-                  .updateRoom(room.id, updatedRoom)
-                  .subscribe({
-                    next: () => {
-                      room.bookedStatus = 'Pending';
-                      this.messageService.add({
-                        severity: 'success',
-                        summary: `${this.i18nService.t('room.room')} "${
-                          room.title
-                        }" ${this.i18nService.t(
-                          'shared.toast.booked-waiting-for-admin-approval'
-                        )}`,
-                      });
-                    },
-                    error: () => {
-                      this.messageService.add({
-                        severity: 'error',
-                        summary: `${this.i18nService.t(
-                          'shared.toast.booked-but-failed-to-update-status'
-                        )}`,
-                      });
-                    },
-                  });
-                this.subscriptions.push(updateRoomSub);
+                this.messageService.add({
+                  severity: 'success',
+                  summary: `${this.i18nService.t('room.room')} "${
+                    room.title
+                  }" ${this.i18nService.t(
+                    'shared.toast.booked-waiting-for-admin-approval'
+                  )}`,
+                });
               },
               error: () => {
                 this.messageService.add({
