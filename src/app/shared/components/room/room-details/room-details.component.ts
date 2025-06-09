@@ -218,6 +218,7 @@ export class RoomDetailsComponent {
             paymentAmount: room.price,
             paymentStatus: 'Unpaid',
             approvalStatus: 'Pending',
+            isCheckedOut: false,
           };
 
           const createReservationSub = this.reservationService
