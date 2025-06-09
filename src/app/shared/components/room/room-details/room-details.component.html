@@ -111,7 +111,9 @@
     <div
       class="mt-5"
       *ngIf="
-        role !== 'Admin' && isRoomBookedByUser && approvedServices.length > 0
+        role !== 'Admin' &&
+        isRoomBookedByUser &&
+        requestedUserServices.length > 0
       "
     >
       <h4 class="mb-3">
@@ -121,48 +123,21 @@
 
       <ul class="list-group">
         <li
-          *ngFor="let service of approvedServices"
+          *ngFor="let service of requestedUserServices"
           class="list-group-item d-flex justify-content-between align-items-start flex-column flex-md-row gap-2"
         >
           <div>
             <i class="fa-solid fa-circle-check text-success me-2"></i>
             <strong>{{ service.title }}</strong>
-            <span class="badge bg-info text-dark ms-2">{{
-              service.requestStatus
-            }}</span>
-          </div>
-          <small class="text-muted align-self-end">
-            <i class="fa-regular fa-calendar-days me-1"></i>
-            {{ service.date | date : "fullDate" }} -
-            {{ service.date | date : "shortTime" }}
-          </small>
-        </li>
-      </ul>
-    </div>
-
-    <!-- قسم الخدمات الموافق عليها يظهر فقط للمستخدم الذي حجز الغرفة وليس للـ Admin -->
-    <div
-      class="mt-5"
-      *ngIf="
-        role !== 'Admin' && isRoomBookedByUser && approvedServices.length > 0
-      "
-    >
-      <h4 class="mb-3">
-        <i class="fa-solid fa-concierge-bell me-2"></i>
-        {{ "room.approved-services" | translate }}
-      </h4>
-
-      <ul class="list-group">
-        <li
-          *ngFor="let service of approvedServices"
-          class="list-group-item d-flex justify-content-between align-items-start flex-column flex-md-row gap-2"
-        >
-          <div>
-            <i class="fa-solid fa-circle-check text-success me-2"></i>
-            <strong>{{ service.title }}</strong>
-            <span class="badge bg-info text-dark ms-2">{{
-              service.requestStatus
-            }}</span>
+            <span
+              class="badge bg-info text-dark ms-2"
+              [ngClass]="{
+                'bg-info': service.requestStatus === 'Pending',
+                'bg-warning': service.requestStatus === 'In Progress',
+                'bg-success': service.requestStatus === 'Completed'
+              }"
+              >{{ service.requestStatus }}</span
+            >
           </div>
           <small class="text-muted align-self-end">
             <i class="fa-regular fa-calendar-days me-1"></i>
@@ -176,7 +151,9 @@
     <!-- رسالة تظهر لو ما فيه خدمات أو المستخدم ما حجز الغرفة -->
     <div
       *ngIf="
-        role !== 'Admin' && isRoomBookedByUser && approvedServices.length === 0
+        role !== 'Admin' &&
+        isRoomBookedByUser &&
+        requestedUserServices.length === 0
       "
     >
       <p class="text-muted mt-3">
