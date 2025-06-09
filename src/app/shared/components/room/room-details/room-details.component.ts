@@ -226,31 +226,14 @@ export class RoomDetailsComponent {
             .createReservation(reservation)
             .subscribe({
               next: () => {
-                const updatedRoom: Room = { ...room, bookedStatus: 'Pending' };
-                const updateRoomSub = this.roomService
-                  .updateRoom(room.id, updatedRoom)
-                  .subscribe({
-                    next: () => {
-                      room.bookedStatus = 'Pending';
-                      this.messageService.add({
-                        severity: 'success',
-                        summary: `${this.i18nService.t('room.room')} "${
-                          room.title
-                        }" ${this.i18nService.t(
-                          'shared.toast.booked-waiting-for-admin-approval'
-                        )}`,
-                      });
-                    },
-                    error: () => {
-                      this.messageService.add({
-                        severity: 'error',
-                        summary: `${this.i18nService.t(
-                          'shared.toast.booked-but-failed-to-update-status'
-                        )}`,
-                      });
-                    },
-                  });
-                this.subscriptions.push(updateRoomSub);
+                this.messageService.add({
+                  severity: 'success',
+                  summary: `${this.i18nService.t('room.room')} "${
+                    room.title
+                  }" ${this.i18nService.t(
+                    'shared.toast.booked-waiting-for-admin-approval'
+                  )}`,
+                });
               },
               error: () => {
                 this.messageService.add({
