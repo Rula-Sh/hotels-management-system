@@ -1,22 +1,36 @@
-<h2 class="w-100 text-center p-3 mt-5 mb-3">Checkout Summary</h2>
+<h2 class="w-100 text-center p-3 mt-5 mb-3">
+  {{ "checkout.checkout-summary" | translate }}
+</h2>
 <div class="container d-flex flex-column">
-  <h3 class="ms-5 mb-3">Room</h3>
+  <h3 class="ms-5 mb-3">{{ "room.room" | translate }}</h3>
   <div class="d-flex justify-content-around ms-5 me-5">
     <img
       [src]="reservation?.room?.imagesUrl[0]"
       class="room-img align-self-center rounded-4 mt-2 mb-2"
     />
     <div class="d-flex flex-column justify-content-center room-info">
-      <p><strong>Name:</strong> {{ reservation?.room?.title }}</p>
-      <p><strong>Price per night:</strong> ${{ reservation?.room?.price }}</p>
-      <p><strong>Nights Stayed:</strong> {{ nightsStayed }}</p>
+      <p>
+        <strong>{{ "checkout.name" | translate }}</strong>
+        {{ reservation?.room?.title }}
+      </p>
+      <p>
+        <strong>{{ "checkout.price-per-night" | translate }}:</strong> ${{
+          reservation?.room?.price
+        }}
+      </p>
+      <p>
+        <strong>{{ "checkout.nights-stayed" | translate }}:</strong>
+        {{ nightsStayed }}
+      </p>
       <p class="room-price mb-0">
-        <strong>Total Room Cost:</strong> ${{ roomCost }}
+        <strong>{{ "checkout.total-room-cost" | translate }}:</strong> ${{
+          roomCost
+        }}
       </p>
     </div>
   </div>
   <hr />
-  <h3 class="ms-5 mb-3">Services Requested</h3>
+  <h3 class="ms-5 mb-3">{{ "checkout.services-requested" | translate }}</h3>
   <div class="d-flex justify-content-around ms-5 me-5 services-container">
     <ul *ngIf="services.length > 0" class="m-0 service-info">
       <li *ngFor="let service of services">
@@ -29,24 +43,28 @@
         }{{ service.title }} - ${{ service.price }}
       </li>
     </ul>
-    <p *ngIf="services.length === 0">None</p>
+    <p *ngIf="services.length === 0">{{ "checkout.none" | translate }}</p>
     <div class="d-flex align-items-center service-price-container">
       <p class="align-middle mb-0 service-price">
-        <strong>Total Services Cost:</strong> ${{ servicesTotal }}
+        <strong>{{ "checkout.total-services-cost" | translate }}:</strong> ${{
+          servicesTotal
+        }}
       </p>
     </div>
   </div>
-  <hr />
+  <hr class="mt-4" />
   <div
     class="d-flex justify-content-between w-100 checkout-footer align-items-center"
   >
     <div class="ms-5 me-5"></div>
 
     <button class="btn btn-primary p-2 ps-4 pe-4 m-0" (click)="payNow()">
-      Checkout
+      <strong>{{ "checkout.checkout" | translate }}</strong>
     </button>
 
-    <h3 class="text-center m-0 mb-3">Total: ${{ totalCost }}</h3>
+    <h3 class="text-center m-0 mb-3">
+      {{ "checkout.total" | translate }}: ${{ totalCost }}
+    </h3>
   </div>
 </div>
 <p-toast></p-toast>

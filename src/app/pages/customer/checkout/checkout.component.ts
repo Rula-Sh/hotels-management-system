@@ -6,13 +6,14 @@ import { AuthService } from '../../../core/services/auth.service';
 import { Service } from '../../../shared/models/Service.model';
 import { CommonModule } from '@angular/common';
 import { ToastModule } from 'primeng/toast';
+import { I18nPipe } from '../../../shared/pipes/i18n.pipe';
 
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.scss'],
   providers: [MessageService],
-  imports: [CommonModule, ToastModule],
+  imports: [CommonModule, ToastModule, I18nPipe],
   standalone: true,
 })
 export class CheckoutComponent implements OnInit {
