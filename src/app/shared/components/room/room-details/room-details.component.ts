@@ -14,6 +14,7 @@ import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ButtonModule } from 'primeng/button';
 import { Subscription } from 'rxjs';
+import { ServiceService } from '../../../../core/services/service.service';
 
 @Component({
   selector: 'app-room',
@@ -35,7 +36,7 @@ export class RoomDetailsComponent {
   images: string[] = []; // Should be populated appropriately
   currentIndex: number = 0;
   fadeOut = false;
-  approvedServices: ServiceRequest[] = [];
+  requestedUserServices: ServiceRequest[] = [];
   userId: string | null = null;
   roomId: string | null = null;
   requestedServicesStatus: { [serviceTitle: string]: string } = {};
@@ -56,7 +57,8 @@ export class RoomDetailsComponent {
     private route: ActivatedRoute,
     private confirmationService: ConfirmationService,
     private messageService: MessageService,
-    private i18n: I18nService
+    private i18n: I18nService,
+    private serviceService: ServiceService
   ) {}
 
   role: string | null = null;
@@ -76,7 +78,9 @@ export class RoomDetailsComponent {
           );
           // هنا نحدث حالة الحجز عند المستخدم
           this.isRoomBookedByUser = !!this.approvedReservation;
-
+          if (this.isRoomBookedByUser) {
+            this.getServices();
+          }
         });
 
       this.subscriptions.push(sub);
@@ -101,6 +105,19 @@ export class RoomDetailsComponent {
     } else {
       console.log('Room ID is null');
     }
+  }
+
+  getServices() {
+    this.serviceService.getServicesByCustomerId(this.userId!).subscribe({
+      next: (value) => {
+        this.requestedUserServices = value.filter((servReq) => {
+          return servReq.roomId == this.roomId;
+        });
+      },
+      error: (err) => {
+        console.log('Error getting services', err);
+      },
+    });
   }
 
   get currentImageUrl(): string {
