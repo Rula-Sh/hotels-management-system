@@ -1,0 +1,25 @@
+<h2>Checkout Summary</h2>
+
+<p><strong>Room:</strong> {{ reservation?.room?.title }}</p>
+<p><strong>Price per Night:</strong> {{ reservation?.room?.price }} JOD</p>
+<p><strong>Nights Stayed:</strong> {{ nightsStayed }}</p>
+<p><strong>Room Cost:</strong> {{ roomCost }} JOD</p>
+
+<hr>
+
+<h3>Approved Services</h3>
+<ul *ngIf="services.length > 0">
+  <li *ngFor="let s of services">
+    {{ s.title }} - {{ s.price }} JOD
+  </li>
+</ul>
+<p *ngIf="services.length === 0">No approved services.</p>
+<p><strong>Services Cost:</strong> {{ servicesTotal }} JOD</p>
+
+<hr>
+
+<h2>Total Amount: {{ totalCost }} JOD</h2>
+
+<button *ngIf="!isPaid" (click)="payNow()">Checkout</button>
+<p *ngIf="isPaid" class="text-green-500 font-semibold">Payment has been completed.</p>
+

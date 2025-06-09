@@ -4,7 +4,7 @@ import { Reservation } from '../../../shared/models/Reservation.model';
 import { CommonModule } from '@angular/common';
 import { RoomService } from '../../../core/services/room.service';
 import { Room } from '../../../shared/models/Room.model';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
@@ -20,6 +20,8 @@ import { I18nPipe } from '../../../shared/pipes/i18n.pipe';
 })
 export class MyReservationsComponent implements OnInit {
   constructor(
+
+    private router: Router,
     private reservationService: ReservationService,
     private roomService: RoomService,
     private messageService: MessageService,
@@ -120,4 +122,8 @@ export class MyReservationsComponent implements OnInit {
     // لو عندك خدمة i18nService مع خاصية getLanguage()
     return this.i18nService.getLanguage();
   }
+  
+goToCheckout(roomId: string) {
+  this.router.navigate(['/checkout', roomId]);
+}
 }
