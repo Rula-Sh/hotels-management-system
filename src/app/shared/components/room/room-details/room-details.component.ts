@@ -77,25 +77,6 @@ export class RoomDetailsComponent {
           // هنا نحدث حالة الحجز عند المستخدم
           this.isRoomBookedByUser = !!this.approvedReservation;
 
-          if (this.approvedReservation && this.room) {
-            // ✅ تحديث حالة الغرفة إلى "Booked"
-            const updatedRoom: Room = { ...this.room, bookedStatus: 'Booked' };
-
-            this.roomService.updateRoom(this.room.id!, updatedRoom).subscribe({
-              next: () => {
-                this.room!.bookedStatus = 'Booked';
-                this.messageService.add({
-                  severity: 'info',
-                  summary: `${this.i18n.t('room.room')} ${
-                    this.room!.title
-                  } ${this.i18n.t('shared.toast.status-updated-to-booked')}`,
-                });
-              },
-              error: () => {
-                console.error('Failed to update room status to Booked');
-              },
-            });
-          }
         });
 
       this.subscriptions.push(sub);
