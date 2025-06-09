@@ -31,6 +31,7 @@ import { Subscription } from 'rxjs';
 })
 export class RoomDetailsComponent {
   room: Room | undefined;
+  approvedReservation: Reservation | undefined;
   images: string[] = []; // Should be populated appropriately
   currentIndex: number = 0;
   fadeOut = false;
@@ -69,14 +70,14 @@ export class RoomDetailsComponent {
       const sub = this.reservationService
         .getReservationsByCustomerId(this.userId)
         .subscribe((reservations) => {
-          const approvedReservation = reservations.find(
+          this.approvedReservation = reservations.find(
             (res) =>
               res.roomId === this.roomId && res.approvalStatus === 'Approved'
           );
           // هنا نحدث حالة الحجز عند المستخدم
-          this.isRoomBookedByUser = !!approvedReservation;
+          this.isRoomBookedByUser = !!this.approvedReservation;
 
-          if (approvedReservation && this.room) {
+          if (this.approvedReservation && this.room) {
             // ✅ تحديث حالة الغرفة إلى "Booked"
             const updatedRoom: Room = { ...this.room, bookedStatus: 'Booked' };
 

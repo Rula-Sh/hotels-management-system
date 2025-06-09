@@ -184,6 +184,15 @@
       </p>
     </div>
 
+    <!-- زر الخدمات -->
+    <a
+      class="book-btn btn-primary"
+      *ngIf="role !== 'Admin' && approvedReservation"
+      [routerLink]="['/available-services']"
+      [queryParams]="{ id: approvedReservation?.room?.id }"
+    >
+      {{ "reservation.view-services" | translate }}
+    </a>
     <!-- زر الحجز للعميل فقط -->
     @if(room?.bookedStatus == 'Available'){
     <button
