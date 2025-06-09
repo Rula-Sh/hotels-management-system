@@ -62,7 +62,9 @@ export class AvailableServicesComponent implements OnInit {
         .subscribe({
           next: (reservations) => {
             this.userRooms = reservations
-              .filter((res) => res.approvalStatus === 'Approved' && !res.isCheckedOut)
+              .filter(
+                (res) => res.approvalStatus === 'Approved' && !res.isCheckedOut
+              )
               .map((res) => res.room);
 
             //load all services for all the booked rooms
@@ -278,6 +280,11 @@ export class AvailableServicesComponent implements OnInit {
   toggleSortDirection(): void {
     this.sortDirection =
       this.sortDirection === 'Ascending' ? 'Descending' : 'Ascending';
+    this.filterServices();
+  }
+
+  clearSearchInput() {
+    this.serviceSearchTerm = '';
     this.filterServices();
   }
 

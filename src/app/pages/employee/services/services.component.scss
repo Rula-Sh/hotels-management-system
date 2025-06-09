@@ -90,6 +90,10 @@
 
 // ------------------------ Search Bar and Sort By Styling ------------------------
 
+.form-control {
+  position: relative;
+  z-index: 1 !important;
+}
 .input-group-text {
   margin: 10px 5px;
   padding: 11px;
@@ -97,6 +101,15 @@
   width: 100%;
   border: 2px $color-dark-brown solid;
   border-right: none;
+}
+
+.input-right {
+  margin: 10px 0px;
+  border: 2px $color-dark-brown solid;
+  border-left: none;
+  border-radius: 0 5px 5px 0;
+  position: relative;
+  z-index: 2;
 }
 
 input,
@@ -108,6 +121,11 @@ select {
   border-radius: 5px;
   width: 100%;
   border-left: none;
+}
+
+input {
+  margin: 10px 0px;
+  border-right: none;
 }
 
 .search-container {
@@ -128,11 +146,22 @@ select {
   border-left: none;
 }
 
+.form-control:focus {
+  border-right: none;
+}
+
 .input-group:has(.form-control:focus) .input-group-text,
 .input-group:has(.form-select:focus) .input-group-text {
   box-shadow: 3px 3px 5px $color-caramel !important;
   border: 3px $color-dark-brown solid;
 }
+
+.input-group:has(.form-control:focus) .input-right {
+  box-shadow: 3px 3px 5px $color-caramel !important;
+  border: 3px $color-dark-brown solid;
+  border-left: none;
+}
+
 /* RTL-specific overrides */
 :dir(rtl) {
   .input-group {
@@ -145,11 +174,22 @@ select {
     border-radius: 0 5px 5px 0;
   }
 
+  .input-right {
+    margin: 10px 0px;
+    border: 2px $color-dark-brown solid;
+    border-right: none;
+    border-radius: 5px 0 0 5px;
+  }
+
   input,
   select {
     border-left: 2px $color-dark-brown solid;
     border-right: none;
     border-radius: 5px 0 0 5px;
+  }
+
+  input {
+    border-left: none;
   }
 
   .form-control:focus,
@@ -159,11 +199,21 @@ select {
     border-right: none !important;
   }
 
+  .form-control:focus {
+    border-left: none;
+  }
+
   .input-group:has(.form-control:focus) .input-group-text,
   .input-group:has(.form-select:focus) .input-group-text {
     box-shadow: -3px 3px 5px $color-caramel !important;
     border: 3px $color-dark-brown solid;
     border-left: none;
+  }
+
+  .input-group:has(.form-control:focus) .input-right {
+    box-shadow: -3px 3px 5px $color-caramel !important;
+    border: 3px $color-dark-brown solid;
+    border-right: none;
   }
 
   // move select arrow to the left
