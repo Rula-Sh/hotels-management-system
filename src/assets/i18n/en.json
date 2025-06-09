@@ -109,7 +109,8 @@
     "approved-services": "Approved Services",
     "no-approved-or-active-services-in-this-room": "No approved or active services in this room.",
     "book-now": "Book Now",
-    "room-already-booked": "Room already booked"
+    "room-already-booked": "Room already booked",
+    "all": "All Rooms"
   },
   "reservation": {
     "reservations": "Reservations",

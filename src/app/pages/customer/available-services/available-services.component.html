@@ -33,6 +33,9 @@
           {{ "room.room" | translate }}: {{ room.title }} -
           {{ "room.hotel" | translate }}: {{ room.hotel }}
         </option>
+        <option value="">
+          {{ "room.all" | translate }}
+        </option>
       </select>
     </div>
 
@@ -131,9 +134,15 @@
 </h3>
 }
 <ng-template #noServices>
+  @if(serviceSearchTerm){
   <h3 class="no-data">
     {{ "shared.filter.could-not-find-what-you-are-searching-for" | translate }}
   </h3>
+  } @else {
+  <h3 class="no-data">
+    {{ "service.no-available-services" | translate }}
+  </h3>
+  }
 </ng-template>
 
 <p-toast></p-toast>

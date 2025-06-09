@@ -109,7 +109,8 @@
     "approved-services": "الخدمات الموافق عليها",
     "no-approved-or-active-services-in-this-room": "لا توجد خدمات معتمدة أو نشطة في هذه الغرفة",
     "book-now": "احجز الآن",
-    "room-already-booked": "لقد تمت الموافقة على هذا الحجز مسبقًا. لا يمكن عرض تفاصيل الغرفة."
+    "room-already-booked": "لقد تمت الموافقة على هذا الحجز مسبقًا. لا يمكن عرض تفاصيل الغرفة.",
+    "all": "جميع الغرف"
   },
   "reservation": {
     "reservations": "الحجوزات",
