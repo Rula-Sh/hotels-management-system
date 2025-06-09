@@ -125,17 +125,22 @@
     "room-image": "Room Image",
     "type": "Type",
     "hotel": "Hotel",
-    "date": "Date of reservation",
-    "payment": "payment",
+    "date": "Date",
+    "date-requested": "Date requested",
+    "date-booked": "Date booked",
+    "date-checked-out": "Date checked out",
+    "price": "Price",
     "cancel": "Cancel reservation",
     "view-services": "View Services",
     "status": {
-      "stat": "status",
+      "stat": "Status",
       "pending": "Pending",
       "approved": "Approved",
       "rejected": "rejected"
     },
-    "view-room-details": "View Room Details"
+    "details": "Details",
+    "check-out": "Check Out",
+    "book-again": "Book Again"
   },
   "service": {
     "services": "Services",

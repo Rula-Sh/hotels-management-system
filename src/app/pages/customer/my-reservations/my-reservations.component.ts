@@ -10,6 +10,7 @@ import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { I18nService } from '../../../core/services/i18n.service';
 import { I18nPipe } from '../../../shared/pipes/i18n.pipe';
+import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
   selector: 'app-my-reservations',
@@ -20,12 +21,12 @@ import { I18nPipe } from '../../../shared/pipes/i18n.pipe';
 })
 export class MyReservationsComponent implements OnInit {
   constructor(
-
     private router: Router,
     private reservationService: ReservationService,
     private roomService: RoomService,
     private messageService: MessageService,
-    private i18nService: I18nService
+    private i18nService: I18nService,
+    private authService: AuthService
   ) {}
 
   reservations: Reservation[] = [];
@@ -45,7 +46,18 @@ export class MyReservationsComponent implements OnInit {
       .subscribe({
         next: (res) => {
           console.log('✅ Reservations fetched:', res);
-          this.reservations = res;
+          // Sort reservations by status then checkout
+          this.reservations = res.sort((a, b) => {
+            const getPriority = (r: any) => {
+              if (r.approvalStatus === 'Pending' && !r.isCheckedOut) return 0;
+              if (r.approvalStatus === 'Approved' && !r.isCheckedOut) return 1;
+              if (r.approvalStatus === 'Approved' && r.isCheckedOut) return 2;
+              if (r.approvalStatus === 'Rejected') return 3;
+              return 5; // fallback for unexpected cases
+            };
+
+            return getPriority(a) - getPriority(b);
+          });
         },
         error: (err) => {
           console.error('❌ Error fetching reservations', err);
@@ -115,6 +127,103 @@ export class MyReservationsComponent implements OnInit {
     this.subscriptions.push(updateRoomSub);
   }
 
+  bookRoom(room: Room) {
+    const user = this.authService.getCurrentUser();
+
+    if (!user) {
+      this.messageService.add({
+        severity: 'warn',
+        summary: `${this.i18nService.t('shared.toast.login-first')}`,
+      });
+      return;
+    }
+
+    // 👇 التحقق من وجود حجز سابق
+    const getReservationsByCustomerIdSub = this.reservationService
+      .getReservationsByCustomerId(user.id)
+      .subscribe({
+        next: (reservations) => {
+          const alreadyBooked = reservations.some(
+            (res) => res.roomId === room.id && !res.isCheckedOut
+          );
+
+          if (alreadyBooked) {
+            this.messageService.add({
+              severity: 'info',
+              summary: `${this.i18nService.t(
+                'shared.toast.already-sent-a-booking-request'
+              )} "${room.title}".`,
+            });
+            return;
+          }
+
+          // 🟢 إذا لم يكن هناك حجز مسبق، إنشاء الحجز
+          const reservation: Omit<Reservation, 'id'> = {
+            customer: user,
+            customerId: user.id,
+            roomId: room.id,
+            room: room,
+            date: new Date(),
+            paymentAmount: room.price,
+            paymentStatus: 'Unpaid',
+            approvalStatus: 'Pending',
+            isCheckedOut: false,
+          };
+
+          const createReservationSub = this.reservationService
+            .createReservation(reservation)
+            .subscribe({
+              next: () => {
+                const updatedRoom: Room = { ...room, bookedStatus: 'Pending' };
+                const updateRoomSub = this.roomService
+                  .updateRoom(room.id, updatedRoom)
+                  .subscribe({
+                    next: () => {
+                      this.messageService.add({
+                        severity: 'success',
+                        summary: `${this.i18nService.t('room.room')} "${
+                          room.title
+                        }" ${this.i18nService.t(
+                          'shared.toast.booked-waiting-for-admin-approval'
+                        )}`,
+                      });
+
+                      room.bookedStatus = 'Pending';
+                    },
+                    error: () => {
+                      this.messageService.add({
+                        severity: 'error',
+                        summary: `${this.i18nService.t(
+                          'shared.toast.booked-but-failed-to-update-status'
+                        )}`,
+                      });
+                    },
+                  });
+                this.subscriptions.push(updateRoomSub);
+              },
+              error: () => {
+                this.messageService.add({
+                  severity: 'error',
+                  summary: `${this.i18nService.t(
+                    'shared.toast.something-went-wrong'
+                  )}`,
+                });
+              },
+            });
+          this.subscriptions.push(createReservationSub);
+        },
+        error: () => {
+          this.messageService.add({
+            severity: 'error',
+            summary: `${this.i18nService.t(
+              'shared.toast.error-getting-reservations'
+            )}`,
+          });
+        },
+      });
+    this.subscriptions.push(getReservationsByCustomerIdSub);
+  }
+
   ngOnDestroy() {
     this.subscriptions.forEach((sub) => sub.unsubscribe());
   }
@@ -122,8 +231,4 @@ export class MyReservationsComponent implements OnInit {
     // لو عندك خدمة i18nService مع خاصية getLanguage()
     return this.i18nService.getLanguage();
   }
-  
-goToCheckout(roomId: string) {
-  this.router.navigate(['/checkout', roomId]);
-}
 }

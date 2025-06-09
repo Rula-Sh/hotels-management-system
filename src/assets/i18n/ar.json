@@ -126,7 +126,7 @@
     "type": "النوع",
     "hotel": "الفندق",
     "date": "التاريخ",
-    "payment": "الدفع",
+    "price": "السعر",
     "cancel": "إلغاء الحجز",
     "view-services": "عرض الخدمات",
     "status": {
@@ -135,7 +135,9 @@
       "approved": "مقبول",
       "rejected": "مرفوض"
     },
-    "view-room-details": "عرض تفاصيل الغرفة"
+    "details": "التفاصيل",
+    "check-out": "الدفع",
+    "book-again": "احجز مرة اخرى"
   },
   "service": {
     "services": "الخدمات",
