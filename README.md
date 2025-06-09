@@ -9,38 +9,45 @@
 
 Hotels Hub is a web app that simplifies hotel bookings and service management. Customers can search for rooms, book them, and track service requests (e.g., dining, healthcare), while staff manage requests efficiently. Admins oversee users, bookings, and platform activity—ensuring a seamless experience for all.
 
-## 🌟 Main Features  
+## 🌟 Main Features
 
-### 🔒 **Security & Access**  
-- **Role-based access control** (Admin, Employee, Customer)  
-- **Route Guards** – Protect sensitive routes from unauthorized users  
+### 🔒 **Security & Access**
 
-### 🌍 **Internationalization (i18n)**  
-- **Multi-language support** (English + Arabic)  
-- **RTL/LTR dynamic switching** – Full layout direction adjustment  
-- **JSON-based translations** – Easy to extend for new languages  
+- **Role-based access control** (Admin, Employee, Customer)
+- **Route Guards** – Protect sensitive routes from unauthorized users
 
-### 🖼️ **Media & Uploads**  
+### 🌍 **Internationalization (i18n)**
+
+- **Multi-language support** (English + Arabic)
+- **RTL/LTR dynamic switching** – Full layout direction adjustment
+- **JSON-based translations** – Easy to extend for new languages
+
+### 🖼️ **Media & Uploads**
+
 - **Cloudinary Integration** – Image upload and perview
-- **Multi-image uploads** – For rooms, services, and profiles  
+- **Multi-image uploads** – For rooms, services, and profiles
 
-### 📱 **Responsive UI/UX**  
-- **Mobile-first design** – Optimized for all screen sizes  
-- **Bootstrap 5 + SCSS** – Customizable themes and variables  
-- **PrimeNG + Font Awesome** – Rich UI components and icons  
+### 📱 **Responsive UI/UX**
 
-### ⚡ **Performance & Scalability**  
-- **Lazy-loaded modules** – Faster initial page loads  
-- **Modular architecture** – Standalone components/services  
+- **Mobile-first design** – Optimized for all screen sizes
+- **Bootstrap 5 + SCSS** – Customizable themes and variables
+- **PrimeNG + Font Awesome** – Rich UI components and icons
 
-### 🔄 **State & Data Management**  
-- **Reactive Forms** – Real-time validation with error feedback  
-- **DataTables & Pagination** – Sort, filter, and browse datasets  
+### ⚡ **Performance & Scalability**
 
-### 🛠️ **Developer-Friendly**  
-- **Mock Backend (JSON Server)** – Test APIs without a live server  
-- **Custom Services** – Auth, i18n, Uploads, etc.  
-- **Clean Code Practices** – Unsubscriptions, typed models, and solid principles  
+- **Lazy-loaded modules** – Faster initial page loads
+- **Modular architecture** – Standalone components/services
+
+### 🔄 **State & Data Management**
+
+- **Reactive Forms** – Real-time validation with error feedback
+- **DataTables & Pagination** – Sort, filter, and browse datasets
+
+### 🛠️ **Developer-Friendly**
+
+- **Mock Backend (JSON Server)** – Test APIs without a live server
+- **Custom Services** – Auth, i18n, Uploads, etc.
+- **Clean Code Practices** – Unsubscriptions, typed models, and solid principles
 
 ## 🌐 Technologies Used
 
@@ -140,11 +147,47 @@ npm i angular-datatables@9.0.2
 
 ## 📸 Screenshots
 
-Include at least 3:
+### 🏠 Home Page
 
-- Login Page
-- Role Dashboard
-- Responsive View (mobile/tablet)
+![Home Page image](src/assets/images/screenshots/home-page.PNG)
+
+### 🛎️ Available Services
+
+![Available Services image](src/assets/images/screenshots/available-services.PNG)
+
+### 🛏️ Booked Room Details
+
+![Booked Room Details 1 image](src/assets/images/screenshots/booked-room-details-1.PNG)
+
+![Booked Room Details 2 image](src/assets/images/screenshots/booked-room-details-2.PNG)
+
+### 📅 My Reservations
+
+![My Reservations image](src/assets/images/screenshots/available-services.PNG)
+
+### 👨‍💼 Employee Services
+
+![Employee Services image](src/assets/images/screenshots/employee-services.PNG)
+
+### 📊 Dashboard
+
+![Dashboard image](src/assets/images/screenshots/dashboard-1.PNG)
+
+![Dashboard image](src/assets/images/screenshots/dashboard-2.PNG)
+
+![Dashboard image](src/assets/images/screenshots/dashboard-3.PNG)
+
+---
+
+### 🌍 Support I18n Arabic
+
+![Support I18n Arabic image](src/assets/images/screenshots/add-room-rlt.PNG)
+
+---
+
+### 📱 Support Responsive Design
+
+![Support Responsive Design image](src/assets/images/screenshots/rooms-responsive.PNG) ![Support Responsive Design image](src/assets/images/screenshots/reservations-responsive.PNG)
 
 ## 🔐 Role-Based Access
 
@@ -286,7 +329,9 @@ Include at least 3:
 ## 🧪 Testing Guide
 
 ### 🔐 Authentication & Authorization
+
 #### Role-Based Access Testing
+
 1. **Admin Login**
    - Credentials: `admin@gmail.com` / `123123`
    - Expected: Redirect to Dashboard Home Page
@@ -298,6 +343,7 @@ Include at least 3:
    - Expected: Redirect to Rooms Home Page
 
 ### 👨‍💼 Admin Functionality
+
 1. **Dashboard**
    - Verify system overview metrics and charts
 2. **User Management**
@@ -308,11 +354,12 @@ Include at least 3:
    - Test room form validation
    - Verify image upload functionality
 4. **Reservations**
-   - Approve/Reject  bookings
+   - Approve/Reject bookings
 
 ### 👷 Employee Workflows
+
 1. **Service Requests**
-   - Approve pending requests 
+   - Approve pending requests
    - Mark active requests as completed
    - View request history
 2. **Service Catalog**
@@ -321,6 +368,7 @@ Include at least 3:
    - Verify image upload functionality
 
 ### 👤 Customer Experience
+
 1. **Room Booking**
    - Browse available rooms
    - View detailed room information
@@ -334,6 +382,7 @@ Include at least 3:
    - View request status updates
 
 ### 🌐 Internationalization
+
 1. **Language Switching**
    - Toggle between EN/AR in footer
    - Verify all UI elements translate
@@ -346,6 +395,7 @@ Include at least 3:
      - Tables and cards content
 
 ### ✔️ Validation & UX
+
 1. **Form Validation**
    - Submit invalid forms (empty/malformed)
    - Verify helpful error messages
@@ -360,6 +410,7 @@ Include at least 3:
      - System messages
 
 ### 🛡️ Security & Edge Cases
+
 1. **Route Protection**
    - Attempt unauthorized access to:
      - `/admin` as customer

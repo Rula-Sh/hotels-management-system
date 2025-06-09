@@ -127,6 +127,11 @@ export class RoomsComponent {
     this.applyFilters();
   }
 
+  clearSearchInput() {
+    this.searchInput = '';
+    this.applyFilters();
+  }
+
   deleteRoom(id: string) {
     this.confirmationService.confirm({
       message: `${this.i18nService.t(

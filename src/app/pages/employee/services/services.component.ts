@@ -115,6 +115,11 @@ export class ServicesComponent {
       this.sortDirection === 'Ascending' ? 'Descending' : 'Ascending';
     this.applyFilters();
   }
+  
+  clearSearchInput() {
+    this.searchInput = '';
+    this.applyFilters();
+  }
 
   deleteService(id: string) {
     this.confirmationService.confirm({
