@@ -106,8 +106,8 @@
     "submit": "Submit",
     "no-available-rooms": "No available rooms at the moment.",
     "couldnt-find-a-room": "Couldnt find a room with this name",
-    "approved-services": "Approved Services",
-    "no-approved-or-active-services-in-this-room": "No approved or active services in this room.",
+    "room-services": "Room Services",
+    "no-services-in-this-room": "No reqested services in this room.",
     "book-now": "Book Now",
     "room-already-booked": "Room already booked",
     "all": "All Rooms"
@@ -236,7 +236,8 @@
       "cancel": "Cancel",
       "go-back": "Go Back",
       "edit-phone-number": "Edit Phone Number",
-      "save": "Save"
+      "save": "Save",
+      "change-pass": "Change Password"
     },
     "form": {
       "input-invalid": "Invalid input",
@@ -324,8 +325,8 @@
       "payment-error": "An error occurred while processing payment.",
       "invalid-phone-number": "Invalid phone number. It should be 10 digits long and start with 07.",
       "phone-number-updated": "Phone number updated successfully!",
-      "failed-to-update-phone": "Failed to update phone number."
-      
+      "failed-to-update-phone": "Failed to update phone number.",
+      "no-new-data-to-update": "No new data to update"
     },
     "confirm-dialog": {
       "delete": "Delete",

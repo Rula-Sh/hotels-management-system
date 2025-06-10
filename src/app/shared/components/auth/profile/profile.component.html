@@ -118,7 +118,7 @@
             (click)="cancel()"
           ></i>
         </div>
-        <form [formGroup]="profileForm" (ngSubmit)="updateProfile()">
+        <form [formGroup]="profileForm">
           <div class="input-container">
             <label for="name"> {{ "shared.form.name" | translate }}:</label>
             <div class="input-error">
@@ -184,6 +184,7 @@
                   required
                 />
               </div>
+
               <div class="error" *ngIf="profileForm.get('email')?.touched">
                 <div *ngIf="profileForm.get('email')?.errors?.['required']">
                   {{ "shared.form.email-required" | translate }}
@@ -191,6 +192,67 @@
                 <div *ngIf="profileForm.get('email')?.errors?.['pattern']">
                   {{ "shared.form.email-invalid" | translate }}
                 </div>
+            </div>
+          </div>
+        </div>
+        <div class="input-container">
+          <label for="phone">{{ "profile.phone" | translate }}:</label>
+          <div class="input-error">
+            <div
+              class="input-group"
+              [ngClass]="{ 'right-input': lang == 'ar' }"
+            >
+              <div class="align-self-center">
+                <span
+                  class="input-group-text input-group-icon align-self-center bg-white"
+                >
+                  <i class="fa-solid fa-phone"></i>
+                </span>
+              </div>
+              <ngx-intl-tel-input
+                class="phone-input"
+                [enableAutoCountrySelect]="true"
+                [enablePlaceholder]="true"
+                [searchCountryFlag]="true"
+                [searchCountryField]="[
+                  SearchCountryField.Iso2,
+                  SearchCountryField.Name
+                ]"
+                [selectFirstCountry]="true"
+                [preferredCountries]="preferredCountries"
+                [phoneValidation]="true"
+                [separateDialCode]="true"
+                formControlName="phone"
+                [maxLength]="10"
+                name="phone"
+              ></ngx-intl-tel-input>
+            </div>
+            <div
+              class="error"
+              *ngIf="
+                profileForm.get('phone')?.invalid &&
+                profileForm.get('phone')?.touched
+              "
+            >
+              {{ "shared.form.phone-required" | translate }}
+            </div>
+          </div>
+        </div>
+        @if(isChangingPass){
+        <div class="input-container">
+          <label for="newPassword"
+            >{{ "shared.form.new-password" | translate }}:</label
+          >
+          <div class="input-error">
+            <div
+              class="input-group"
+              [ngClass]="{ 'right-input': lang == 'ar' }"
+            >
+              <div class="align-self-center">
+                <span class="input-group-text align-self-center bg-white">
+                  <i class="fa-solid fa-lock"></i>
+                </span>
+
               </div>
             </div>
           </div>
@@ -321,20 +383,34 @@
               </div>
             </div>
           </div>
-          <div class="mt-4 d-flex align-items-center justify-content-center">
-            <button class="m-1 btn-submit">
-              {{ "shared.button.submit" | translate }}
-            </button>
-            <button
-              class="m-1 btn-outline-primary rounded-2"
-              (click)="cancel()"
-            >
-              {{ "shared.button.cancel" | translate }}
-            </button>
-          </div>
-        </form>
-      </div>
-    
+        } @else {
+        <div class="d-flex justify-content-end me-5">
+          <button
+            (click)="isChangingPass = !isChangingPass"
+            class="m-1 me-4 btn btn-change-pass rounded-2 text-sm-center border-0 text-decoration-underline"
+          >
+            <small>{{ "shared.button.change-pass" | translate }}</small>
+          </button>
+        </div>
+
+        }
+        <div class="mt-4 d-flex align-items-center justify-content-center">
+          <button
+            class="m-1 btn-submit"
+            (click)="updateProfile()"
+            [disabled]="profileForm.invalid"
+          >
+            {{ "shared.button.submit" | translate }}
+          </button>
+          <button
+            class="m-1 btn-outline-primary rounded-2"
+            (click)="cancel()"
+            (click)="isChangingPass = !isChangingPass"
+          >
+            {{ "shared.button.cancel" | translate }}
+          </button>
+        </div>
+      </form>
     </div>
   
   

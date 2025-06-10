@@ -106,8 +106,8 @@
     "submit": "إضافة",
     "no-available-rooms": "لا يوجد غرف متاحة حاليا.",
     "couldnt-find-a-room": "تعذر العثور على غرفة بهذا الاسم",
-    "approved-services": "الخدمات الموافق عليها",
-    "no-approved-or-active-services-in-this-room": "لا توجد خدمات معتمدة أو نشطة في هذه الغرفة",
+    "room-services": "خدمات الغرفة",
+    "no-services-in-this-room": "لا توجد خدمات طلبت في هذه الغرفة",
     "book-now": "احجز الآن",
     "room-already-booked": "لقد تمت الموافقة على هذا الحجز مسبقًا. لا يمكن عرض تفاصيل الغرفة.",
     "all": "جميع الغرف"
@@ -230,9 +230,10 @@
       "update": "تحديث",
       "submit": "إرسال",
       "cancel": "إلغاء",
-      "go-back": "العودة",
+      "go-back": "
       "edit-phone-number": "تعديل رقم الهاتف",
-      "save": "حفظ"
+      "save": "حفظ",
+      "change-pass": "تغيير كلمة المرور"
     },
     "form": {
       "input-invalid": "المعطى غير صالح",
@@ -320,7 +321,8 @@
       "payment-error": "حدث خطأ أثناء معالجة الدفع.",
       "invalid-phone-number": "رقم الهاتف غير صالح. يجب أن يتكون من 10 أرقام ويبدأ بـ 07.",
       "phone-number-updated": "تم تحديث رقم الهاتف بنجاح!",
-      "failed-to-update-phone": "فشل تحديث رقم الهاتف."
+      "failed-to-update-phone": "فشل تحديث رقم الهاتف.",
+      "no-new-data-to-update": "لا يوجد معلومات جديدة لتحديثها"
     },
     "confirm-dialog": {
       "delete": "حذف",

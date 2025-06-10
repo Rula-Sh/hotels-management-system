@@ -180,6 +180,10 @@ button {
   padding: 7px 10px;
 }
 
+.btn-change-pass:hover {
+  font-weight: bold;
+}
+
 .btn-submit {
   border: none;
   background-color: $color-dark-brown;
@@ -196,6 +200,7 @@ i {
   outline: none !important;
   padding: 0;
 }
+
 .phone-view-container {
   display: flex;
   align-items: center;
@@ -249,3 +254,9 @@ button {
   .btn-save {
     background-color: $color-dark-brown;
   }
+
+:disabled {
+  color: gray;
+  opacity: 0.5;
+  filter: grayscale(100%);
+}
