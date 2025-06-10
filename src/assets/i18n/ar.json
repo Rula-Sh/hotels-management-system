@@ -230,7 +230,9 @@
       "update": "تحديث",
       "submit": "إرسال",
       "cancel": "إلغاء",
-      "go-back": "العودة"
+      "go-back": "العودة",
+      "edit-phone-number": "تعديل رقم الهاتف",
+      "save": "حفظ"
     },
     "form": {
       "input-invalid": "المعطى غير صالح",
@@ -282,7 +284,7 @@
       "warning": "تحذير",
       "error": "خطأ",
       "something-went-wrong": "لقد حدث خطأ ما !!!",
-      "profile-updated-successfuly": "تم تحديث الملف الشخصي بنجاح!",
+      "profile-updated-successfully": "تم تحديث الملف الشخصي بنجاح!",
       "failed-to-upload-image": "فشل تحميل الصورة!",
       "at-least-one-image-is-required": "مطلوب صورة واحدة على الأقل!",
       "room-added-successfuly": "تمت إضافة الغرفة بنجاح!",
@@ -315,7 +317,10 @@
       "payment-success-detail": "لقد دفعت {{amount}} دينار أردني",
       "payment-failed-title": "فشل الدفع",
       "payment-missing-info": "بيانات الحجز أو المستخدم غير مكتملة.",
-      "payment-error": "حدث خطأ أثناء معالجة الدفع."
+      "payment-error": "حدث خطأ أثناء معالجة الدفع.",
+      "invalid-phone-number": "رقم الهاتف غير صالح. يجب أن يتكون من 10 أرقام ويبدأ بـ 07.",
+      "phone-number-updated": "تم تحديث رقم الهاتف بنجاح!",
+      "failed-to-update-phone": "فشل تحديث رقم الهاتف."
     },
     "confirm-dialog": {
       "delete": "حذف",
