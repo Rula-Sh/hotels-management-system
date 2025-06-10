@@ -1,21 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Route, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { BookingService } from '../../../core/services/booking.service';
 import { AuthService } from '../../../core/services/auth.service';
 import { Service } from '../../../shared/models/Service.model';
-import { CommonModule, } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { ToastModule } from 'primeng/toast';
 import { I18nPipe } from '../../../shared/pipes/i18n.pipe';
-import { I18nService } from '../../../core/services/i18n.service';
 
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.scss'],
   providers: [MessageService],
+  imports: [CommonModule, ToastModule, I18nPipe],
   standalone: true,
-  imports: [CommonModule, ToastModule, I18nPipe]
 })
 export class CheckoutComponent implements OnInit {
   services: any[] = [];
@@ -32,24 +31,20 @@ export class CheckoutComponent implements OnInit {
     private router: Router,
     private bookingService: BookingService,
     private messageService: MessageService,
-    private authService: AuthService,
-     private i18nService: I18nService
+    private authService: AuthService
   ) {}
 
-ngOnInit() {
-  
-  const user = this.authService.getCurrentUser();
-  const userId = user?.id;
- const roomId = this.activatedRoute.snapshot.paramMap.get('roomId');
+  ngOnInit() {
+    const user = this.authService.getCurrentUser();
+    const userId = user?.id;
+    const roomId = this.activatedRoute.snapshot.paramMap.get('roomId');
 
-
-  if (userId && roomId) {
-  this.bookingService.getBookingByUserAndRoom(userId, roomId).subscribe({
-    next: (reservation: any) => {
-      console.log('📦 Booking fetched:', reservation);
-      if (reservation) {
-        this.reservation = reservation;
-this.isPaid = reservation.paymentStatus === 'Paid';
+    if (userId && roomId) {
+      this.bookingService
+        .getBookingByUserAndRoom(userId, roomId)
+        .subscribe((reservation: any) => {
+          if (reservation) {
+            this.reservation = reservation;
 
             const bookDate = new Date(reservation.date);
             const checkOutDate = new Date();
@@ -64,74 +59,75 @@ this.isPaid = reservation.paymentStatus === 'Paid';
             const pricePerNight = reservation.room?.price || 0;
             this.roomCost = this.nightsStayed * pricePerNight;
 
-        this.bookingService.getApprovedServicesByCustomerAndRoom(userId, roomId).subscribe(services => {
-          console.log('📦 Services fetched:', services);
-          this.services = services;
-          this.servicesTotal = services.reduce((sum: number, s: Service) => sum + (s.price || 0), 0);
-          this.totalCost = this.roomCost + this.servicesTotal;
+            // 🔽 حساب الخدمات الموافق عليها
+            this.bookingService
+              .getApprovedServicesByCustomerAndRoom(userId, roomId)
+              .subscribe((services) => {
+                this.services = services;
+                this.servicesTotal = services.reduce(
+                  (sum: number, s: Service) => sum + (s.price || 0),
+                  0
+                );
+
+                // ✅ المجموع الكلي: غرفة + خدمات
+                this.totalCost = this.roomCost + this.servicesTotal;
+              });
+          }
         });
-      } else {
-        console.warn('⚠️ No reservation found');
-      }
-    },
-    error: err => {
-      console.error('❌ Failed to load booking', err);
     }
-  });
-}
-
-}
-
-payNow() {
-  const user = this.authService.getCurrentUser();
-  const userId = user?.id;
-  const roomId = this.activatedRoute.snapshot.paramMap.get('roomId'); // هنا نفس الطريقة المستخدمة في ngOnInit
-
-  if (!this.reservation || !userId || !roomId) {
-    this.messageService.add({
-      severity: 'error',
-      summary: this.i18nService.t('shared.toast.payment-failed-title'),
-      detail: this.i18nService.t('shared.toast.payment-missing-info')
-    });
-    return;
   }
 
-  // تحضير التحديث مع حالة الدفع والمبلغ
-  const updatedReservation = {
-    ...this.reservation,
-    paymentStatus: 'Paid',
-    paymentAmount: this.totalCost
-  };
+  payNow() {
+    if (!this.reservation) return;
 
-  // نستخدم updateReservation لتحديث الحجز بالكامل
-    this.bookingService.updateReservationAndRoom(
-    this.reservation.id,
-    roomId,
-    updatedReservation,
-    { status: 'Booked' } // تحديث حالة الغرفة بعد الدفع
-  ).subscribe({
-    next: ([updatedRes, updatedRoom]) => {
-      this.reservation = updatedRes;
-      this.isPaid = true;
+    const updatedReservation = {
+      paymentAmount: this.totalCost,
+      paymentStatus: 'Paid',
+      isCheckedOut: true,
+      date: new Date(),
+    };
 
-      this.messageService.add({
-        severity: 'success',
-        summary: this.i18nService.t('shared.toast.payment-success-title'),
-        detail: this.i18nService.t('shared.toast.payment-success-detail', {
-          amount: this.totalCost
-        })
-      });
-    },
-    error: (err) => {
-      console.error('Payment update error:', err);
+    const updatedRoom = {
+      bookedStatus: 'Available',
+    };
+
+    const user = this.authService.getCurrentUser();
+    const userId = user?.id;
+    const roomId = this.activatedRoute.snapshot.paramMap.get('roomId');
+    const reservationId = this.reservation.id;
+
+    if (userId && roomId && reservationId) {
+      this.bookingService
+        .updateReservationAndRoom(
+          reservationId,
+          roomId,
+          updatedReservation,
+          updatedRoom
+        )
+        .subscribe({
+          next: () => {
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Payment Successful',
+            });
+            setTimeout(() => {
+              this.router.navigate(['/']);
+            }, 1500);
+          },
+          error: (err) => {
+            console.error('Update failed', err);
+            this.messageService.add({
+              severity: 'error',
+              summary: 'Payment update failed',
+              detail: err.message || 'Unknown error',
+            });
+          },
+        });
+    } else {
       this.messageService.add({
         severity: 'error',
-        summary: this.i18nService.t('shared.toast.payment-failed-title'),
-        detail: this.i18nService.t('shared.toast.payment-error')
+        summary: 'Something went wrong',
       });
     }
-  });
-}
-
-
+  }
 }

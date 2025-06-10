@@ -1,64 +1,68 @@
 @import "../../../../../src/styles/variables.scss";
 
-.container {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 2rem;
+h2 {
+  color: $color-dark-brown;
+  font-weight: bold;
+}
 
-  h2, h3 {
-    color: $color-dark-brown;
-    font-weight: bold;
-    margin-bottom: 1.5rem;
-    text-align: center;
+.container {
+  background-color: white;
+  padding: 20px;
+  border-radius: 20px;
+  width: 50%;
+}
+
+.room-img {
+  width: 40%;
+}
+
+.room-info {
+  width: 40%;
+}
+.service-price-container {
+  width: 35%;
+}
+
+@media (max-width: 1500px) {
+  .container {
+    width: 60%;
   }
 }
 
-.card {
-  border: none;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  border-radius: 12px;
-  padding: 2rem;
-  background-color: #fff;
-
-  p, li {
-    font-size: 1rem;
-    line-height: 1.6;
-    color: #444;
-
-    strong {
-      color: #222;
-    }
+@media (max-width: 1400px) {
+  .container {
+    width: 70%;
   }
+}
 
-  ul {
-    list-style: none;
-    padding-left: 1rem;
-
-    li::before {
-      content: "🔹";
-      margin-right: 0.5rem;
-      color: $color-dark-brown;
-    }
+@media (max-width: 1400px) {
+  .container {
+    width: 80%;
   }
+}
 
-  hr {
-    border: none;
-    border-top: 1px solid #ddd;
-    margin: 2rem 0;
+@media (max-width: 800px) {
+  .room-img {
+    display: none;
   }
-
-  .total {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: $color-dark-brown;
+  .room-info {
+    width: 100%;
   }
-
-  .btn {
-    margin-top: 1rem;
-    font-weight: 600;
+  .room-price {
+    text-align: end;
   }
-
-  .text-green-500 {
-    color: green;
+  .services-container {
+    flex-direction: column;
+  }
+  .service-price-container {
+    width: 100%;
+  }
+  .service-price {
+    width: 100%;
+    text-align: end;
+  }
+  .checkout-footer {
+    flex-direction: column-reverse;
+    justify-content: center;
   }
 }

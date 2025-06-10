@@ -25,9 +25,11 @@ export class BookingService {
       );
   }
 
- 
-
-  updateBookingStatus(userId: string, roomId: string, status: string): Observable<any> {
+  updateBookingStatus(
+    userId: string,
+    roomId: string,
+    status: string
+  ): Observable<any> {
     return this.getBookingByUserAndRoom(userId, roomId).pipe(
       map((reservation) => {
         if (!reservation) throw new Error('Reservation not found');
@@ -58,16 +60,12 @@ export class BookingService {
 
     return forkJoin([updateReservation$, updateRoom$]);
   }
- getApprovedServicesByCustomerAndRoom(
+
+  getApprovedServicesByCustomerAndRoom(
     customerId: string,
     roomId: string
   ): Observable<any[]> {
     const url = `${this.apiUrl}/serviceRequests?customerId=${customerId}&roomId=${roomId}&requestStatus=Completed`;
     return this.http.get<any[]>(url);
-  }}
- 
- 
-
-
-
-
+  }
+}
