@@ -106,8 +106,8 @@
     "submit": "Submit",
     "no-available-rooms": "No available rooms at the moment.",
     "couldnt-find-a-room": "Couldnt find a room with this name",
-    "approved-services": "Approved Services",
-    "no-approved-or-active-services-in-this-room": "No approved or active services in this room.",
+    "room-services": "Room Services",
+    "no-services-in-this-room": "No reqested services in this room.",
     "book-now": "Book Now",
     "room-already-booked": "Room already booked",
     "all": "All Rooms"
@@ -234,7 +234,9 @@
       "update": "Update",
       "submit": "Submit",
       "cancel": "Cancel",
-      "go-back": "Go Back"
+      "go-back": "Go Back",
+      "change-pass": "Change Password"
+
     },
     "form": {
       "input-invalid": "Invalid input",
@@ -319,7 +321,8 @@
       "payment-success-detail": "You paid {{amount}} JOD",
       "payment-failed-title": "Payment Failed",
       "payment-missing-info": "Missing reservation or user information.",
-      "payment-error": "An error occurred while processing payment."
+      "payment-error": "An error occurred while processing payment.",
+      "no-new-data-to-update": "No new data to update"
     },
     "confirm-dialog": {
       "delete": "Delete",

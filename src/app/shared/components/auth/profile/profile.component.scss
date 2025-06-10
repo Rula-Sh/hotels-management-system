@@ -180,6 +180,10 @@ button {
   padding: 7px 10px;
 }
 
+.btn-change-pass:hover {
+  font-weight: bold;
+}
+
 .btn-submit {
   border: none;
   background-color: $color-dark-brown;
@@ -195,4 +199,10 @@ i {
   box-shadow: none !important;
   outline: none !important;
   padding: 0;
+}
+
+:disabled {
+  color: gray;
+  opacity: 0.5;
+  filter: grayscale(100%);
 }
