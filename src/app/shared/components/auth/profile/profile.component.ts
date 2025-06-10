@@ -215,7 +215,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
           this.authService.login(updatedUser);
           this.messageService.add({
             severity: 'success',
-            summary: this.i18nService.t('shared.toast.profile-udpated-successfuly'),
+            summary: this.i18nService.t('shared.toast.profile-updated-successfully'),
           });
 
           setTimeout(() => {
@@ -243,8 +243,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
     if (this.phoneForm.invalid) {
       this.messageService.add({
         severity: 'error',
-        summary: 'Error',
-        detail: 'Invalid phone number',
+        summary: this.i18nService.t('shared.toast.error'),
+        detail: this.i18nService.t('shared.toast.invalid-phone-number'),
       });
       return;
     }
@@ -257,8 +257,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
       next: () => {
         this.messageService.add({
           severity: 'success',
-          summary: 'Success',
-          detail: 'Phone updated successfully',
+          summary: this.i18nService.t('shared.toast.success'),
+          detail: this.i18nService.t('shared.toast.phone-number-updated'),
         });
         if (this.user) this.user.phone = newPhone;
         this.isEditingPhone = false;
@@ -267,8 +267,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
       error: () => {
         this.messageService.add({
           severity: 'error',
-          summary: 'Error',
-          detail: 'Failed to update phone',
+          summary: this.i18nService.t('shared.toast.error'),
+          detail: this.i18nService.t('shared.toast.failed-to-update-phone'),
         });
       },
     });
