@@ -7,7 +7,7 @@ import { Reservation } from '../../shared/models/Reservation.model';
   providedIn: 'root'
 })
 export class BookingService {
-  private apiUrl = 'http://localhost:3000'; // حسب الـ json-server عندك
+  private apiUrl = 'http://localhost:3000'; 
 
   constructor(private http: HttpClient) {}
 
