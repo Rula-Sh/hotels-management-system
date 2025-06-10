@@ -10,7 +10,6 @@ export class BookingService {
   private reservationsUrl = 'http://localhost:3000/reservations'; // حسب الـ json-server عندك
   private roomsUrl = 'http://localhost:3000/rooms';
   private apiUrl = 'http://localhost:3000';
-  private apiUrl = 'http://localhost:3000'; 
 
   constructor(private http: HttpClient) {}
 
@@ -26,18 +25,7 @@ export class BookingService {
       );
   }
 
-  updateBookingStatus(
-    userId: string,
-    roomId: string,
-    status: string
-  ): Observable<any> {
-getBookingByUserAndRoom(customerId: string, roomId: string): Observable<any> {
-  return this.http.get<any[]>(`${this.apiUrl}/reservations?customerId=${customerId}&roomId=${roomId}`).pipe(
-    map(bookings => bookings[0]) // لأن json-server يرجع array
-  );
-}
-
-
+ 
 
   updateBookingStatus(userId: string, roomId: string, status: string): Observable<any> {
     return this.getBookingByUserAndRoom(userId, roomId).pipe(
@@ -49,7 +37,6 @@ getBookingByUserAndRoom(customerId: string, roomId: string): Observable<any> {
         this.http.patch(`${this.reservationsUrl}/${reservation.id}`, {
           paymentStatus: status,
         })
-        this.http.patch(`${this.apiUrl}/reservations/${reservation.id}`, { status })
       )
     );
   }
@@ -71,21 +58,16 @@ getBookingByUserAndRoom(customerId: string, roomId: string): Observable<any> {
 
     return forkJoin([updateReservation$, updateRoom$]);
   }
-
-  getApprovedServicesByCustomerAndRoom(
+ getApprovedServicesByCustomerAndRoom(
     customerId: string,
     roomId: string
   ): Observable<any[]> {
     const url = `${this.apiUrl}/serviceRequests?customerId=${customerId}&roomId=${roomId}&requestStatus=Completed`;
     return this.http.get<any[]>(url);
-  }
-  getApprovedServicesByCustomerAndRoom(customerId: string, roomId: string): Observable<any[]> {
-  const url = `${this.apiUrl}/serviceRequests?customerId=${customerId}&roomId=${roomId}&requestStatus=Approved`;
-  return this.http.get<any[]>(url);
-}
-updateReservation(reservationId: number, updatedData: any): Observable<any> {
-  return this.http.put(`${this.apiUrl}/reservations/${reservationId}`, updatedData);
-}
+  }}
+ 
+ 
 
 
-}
+
+
