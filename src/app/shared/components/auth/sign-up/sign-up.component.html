@@ -5,7 +5,7 @@
     <input
       formControlName="name"
       type="text"
-      pattern="^[\u0600-\u06FFa-zA-Z'\s]+$"
+      pattern="^[a-zA-Z0-9\u0600-\u06FF'\s]+$"
     />
     <div *ngIf="f['name'].invalid && f['name'].touched">
       <small *ngIf="f['name'].errors?.['required']">{{

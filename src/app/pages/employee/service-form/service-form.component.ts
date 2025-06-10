@@ -97,7 +97,7 @@ export class ServiceFormComponent {
           Validators.required,
           Validators.minLength(4),
           Validators.maxLength(30),
-          Validators.pattern(/^[a-zA-Z0-9'\-$!& ]+$/),
+          Validators.pattern(/^[a-zA-Z0-9\u0600-\u06FF'\-$!& ]+$/),
         ],
       ],
       serviceType: ['', Validators.required],
@@ -107,7 +107,7 @@ export class ServiceFormComponent {
           Validators.required,
           Validators.minLength(10),
           Validators.maxLength(70),
-          Validators.pattern(/^[a-zA-Z0-9.,!?'"()\-:;$!& ]*$/),
+          Validators.pattern(/^[a-zA-Z0-9\u0600-\u06FF.,!?'"()\-:;$!& ]*$/),
         ],
       ],
       price: [

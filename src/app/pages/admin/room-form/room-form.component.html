@@ -19,7 +19,7 @@
           aria-label="Title"
           [placeholder]="'shared.form.title' | translate"
           formControlName="title"
-          pattern="^[a-zA-Z0-9'\-$!& ]+$"
+          pattern="^[a-zA-Z0-9\u0600-\u06FF'\-$!& ]+$"
           required
         />
         <div
@@ -99,7 +99,8 @@
         <div
           class="error"
           *ngIf="
-            roomForm.get('capacity')?.invalid && roomForm.get('capacity')?.touched
+            roomForm.get('capacity')?.invalid &&
+            roomForm.get('capacity')?.touched
           "
         >
           <div *ngIf="roomForm.get('capacity')?.errors?.['required']">
@@ -160,7 +161,7 @@
           aria-label="Hotel"
           [placeholder]="'shared.form.hotel' | translate"
           formControlName="hotel"
-          pattern="^[a-zA-Z0-9'\-$!& ]+$"
+          pattern="^[a-zA-Z0-9\u0600-\u06FF'\-$!& ]+$"
           required
         />
 
@@ -227,7 +228,7 @@
           aria-label="Details"
           [placeholder]="'shared.form.details' | translate"
           formControlName="details"
-          pattern="[a-zA-Z0-9À-ž.,!?'\&quot;()\-:;$!& ]*"
+          pattern="^[a-zA-Z0-9\u0600-\u06FF.,!?'\&quot;()\-:;$!& ]*$"
           required
         />
         <div
