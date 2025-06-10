@@ -186,8 +186,9 @@ export class ProfileComponent {
         next: (res: any) => {
           this.imageUrl = res.url;
           this.profileForm.get('imageUrl')?.setValue(this.imageUrl);
-
-          this.updateProfile(); // تحديث الملف الشخصي مباشرة بعد رفع الصورة
+          if (!this.isEditing) {
+            this.updateProfile(); // تحديث الملف الشخصي مباشرة بعد رفع الصورة
+          }
         },
         error: (err) => {
           console.error('Error uploading image:', err);
@@ -225,9 +226,10 @@ export class ProfileComponent {
           this.profileForm.value.phone = this.profileForm.value.phone ?? '';
 
           if (
+            this.isEditing &&
             this.profileForm.value.name == this.profileData.name &&
             this.profileForm.value.email == this.profileData.email &&
-            this.profileForm.value.phone ==
+            this.profileForm.value.phone.number ==
               this.profileData.phone.substring(4).trim()
           ) {
             this.messageService.add({
@@ -244,7 +246,10 @@ export class ProfileComponent {
             id: fullEmployee.id,
             name: this.profileForm.value.name,
             email: this.profileForm.value.email,
-            phone: this.profileForm.value.phone?.internationalNumber ?? '',
+            phone:
+              this.profileForm.value.phone?.internationalNumber ??
+              this.profileData.phone ??
+              '',
             password: password,
             pfp: this.imageUrl ?? '',
             role: fullEmployee.role,
@@ -265,7 +270,10 @@ export class ProfileComponent {
             id: this.user!.id,
             name: this.profileForm.value.name,
             email: this.profileForm.value.email,
-            phone: this.profileForm.value.phone?.internationalNumber ?? '',
+            phone:
+              this.profileForm.value.phone?.internationalNumber ??
+              this.profileData.phone ??
+              '',
             password: password,
             pfp: this.imageUrl ?? '',
             role: this.user!.role,
@@ -283,6 +291,7 @@ export class ProfileComponent {
 
     this.subscriptions.push(getUserByIdSub);
   }
+
   private handleSuccess(updatedUser: User | Employee) {
     console.log('Form Submitted');
     this.authService.login(updatedUser);

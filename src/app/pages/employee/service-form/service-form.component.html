@@ -19,7 +19,7 @@
           aria-label="Title"
           [placeholder]="'shared.form.title' | translate"
           formControlName="title"
-          pattern="^[a-zA-Z0-9'\-$!& ]+$"
+          pattern="^[a-zA-Z0-9\u0600-\u06FF'\-$!& ]+$"
           required
         />
 
@@ -94,7 +94,7 @@
           [placeholder]="'shared.form.details' | translate"
           formControlName="details"
           required
-          pattern="[a-zA-Z0-9À-ž.,!?'\&quot;()\-:;$!& ]*"
+          pattern="^[a-zA-Z0-9\u0600-\u06FF.,!?'\&quot;()\-:;$!& ]*$"
         />
         <div
           class="error"

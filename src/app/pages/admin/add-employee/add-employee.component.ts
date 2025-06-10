@@ -87,7 +87,7 @@ export class AddEmployeeComponent {
           Validators.required,
           Validators.minLength(2),
           Validators.maxLength(30),
-          Validators.pattern(/^[a-zA-Z0-9'\-$!& ]+$/),
+          Validators.pattern(/^[a-zA-Z0-9\u0600-\u06FF'\-$!& ]+$/),
         ],
       ],
       newPassword: [

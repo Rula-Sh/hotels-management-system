@@ -180,7 +180,7 @@
           aria-label="Hotel"
           [placeholder]="'shared.form.hotel' | translate"
           formControlName="hotel"
-          pattern="^[a-zA-Z0-9'\-$!& ]+$"
+          pattern="^[a-zA-Z0-9\u0600-\u06FF'\-$!& ]+$"
           required
         />
         <div
