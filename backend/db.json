@@ -31,7 +31,8 @@
       "imagesUrl": [
         "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749380759/crystal-grand-banquet-hall-mississauga-366-full_size_vmjsrs.webp"
       ],
-      "AvailableStatus": "Available"
+      "AvailableStatus": "Available",
+      "bookedStatus": "Pending"
     },
     {
       "id": "r3",
@@ -259,8 +260,41 @@
       },
       "date": "2025-06-08T22:05:58.187Z",
       "paymentAmount": 120,
+      "paymentStatus": "Paid",
+      "approvalStatus": "Approved",
+      "status": "Paid"
+    },
+    {
+      "id": "230d",
+      "customer": {
+        "id": "9884",
+        "name": "areen",
+        "email": "AREEN11823@GMAIL.COM",
+        "phone": "",
+        "role": "Customer",
+        "pfp": ""
+      },
+      "customerId": "9884",
+      "roomId": "r2",
+      "room": {
+        "id": "r2",
+        "title": "Conference Hall",
+        "roomType": "Hall",
+        "capacity": 25,
+        "floor": 3,
+        "hotel": "Sunrise Inn",
+        "location": "loc r2 12345",
+        "details": "Spacious hall for events.",
+        "price": 300,
+        "imagesUrl": [
+          "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749380759/crystal-grand-banquet-hall-mississauga-366-full_size_vmjsrs.webp"
+        ],
+        "AvailableStatus": "Available"
+      },
+      "date": "2025-06-09T23:56:17.934Z",
+      "paymentAmount": 300,
       "paymentStatus": "Unpaid",
-      "approvalStatus": "Approved"
+      "approvalStatus": "Pending"
     }
   ],
   "services": [
