@@ -127,6 +127,11 @@ export class RoomsComponent {
     this.applyFilters();
   }
 
+  clearSearchInput() {
+    this.searchInput = '';
+    this.applyFilters();
+  }
+
   deleteRoom(id: string) {
     this.confirmationService.confirm({
       message: `${this.i18nService.t(
@@ -193,38 +198,21 @@ export class RoomsComponent {
             paymentAmount: room.price,
             paymentStatus: 'Unpaid',
             approvalStatus: 'Pending',
+            isCheckedOut: false,
           };
 
           const createReservationSub = this.reservationService
             .createReservation(reservation)
             .subscribe({
               next: () => {
-                const updatedRoom: Room = { ...room, bookedStatus: 'Pending' };
-                const updateRoomSub = this.roomService
-                  .updateRoom(room.id, updatedRoom)
-                  .subscribe({
-                    next: () => {
-                      this.messageService.add({
-                        severity: 'success',
-                        summary: `${this.i18nService.t('room.room')} "${
-                          room.title
-                        }" ${this.i18nService.t(
-                          'shared.toast.booked-waiting-for-admin-approval'
-                        )}`,
-                      });
-
-                      room.bookedStatus = 'Pending';
-                    },
-                    error: () => {
-                      this.messageService.add({
-                        severity: 'error',
-                        summary: `${this.i18nService.t(
-                          'shared.toast.booked-but-failed-to-update-status'
-                        )}`,
-                      });
-                    },
-                  });
-                this.subscriptions.push(updateRoomSub);
+                this.messageService.add({
+                  severity: 'success',
+                  summary: `${this.i18nService.t('room.room')} "${
+                    room.title
+                  }" ${this.i18nService.t(
+                    'shared.toast.booked-waiting-for-admin-approval'
+                  )}`,
+                });
               },
               error: () => {
                 this.messageService.add({

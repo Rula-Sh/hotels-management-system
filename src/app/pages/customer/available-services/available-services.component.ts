@@ -13,6 +13,7 @@ import { ToastModule } from 'primeng/toast';
 import { I18nService } from '../../../core/services/i18n.service';
 import { FormsModule } from '@angular/forms';
 import { User } from '../../../shared/models/User.model';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-available-services',
@@ -43,7 +44,8 @@ export class AvailableServicesComponent implements OnInit {
     private authService: AuthService,
     private reservationService: ReservationService,
     private messageService: MessageService,
-    private i18nService: I18nService
+    private i18nService: I18nService,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -60,7 +62,9 @@ export class AvailableServicesComponent implements OnInit {
         .subscribe({
           next: (reservations) => {
             this.userRooms = reservations
-              .filter((res) => res.approvalStatus === 'Approved')
+              .filter(
+                (res) => res.approvalStatus === 'Approved' && !res.isCheckedOut
+              )
               .map((res) => res.room);
 
             //load all services for all the booked rooms
@@ -68,6 +72,12 @@ export class AvailableServicesComponent implements OnInit {
               ...new Set(this.userRooms.map((room) => room.hotel)),
             ];
             console.log('hotelNames', this.hotelNames);
+
+            this.route.queryParams.subscribe((params) => {
+              const roomId = params['id'];
+              this.selectedRoomId = roomId ?? '';
+              this.onRoomSelectionChange(); // will not affect the UI because  loadUserReservationServices() overides it
+            });
 
             this.loadUserReservationServices(this.hotelNames);
           },
@@ -108,6 +118,11 @@ export class AvailableServicesComponent implements OnInit {
           return hotelNames.includes(hotelName);
         });
         this.allUserRoomsServices = this.filteredServices;
+
+        if (this.selectedRoomId) {
+          // used if the user accessed the availabe services through reservation details
+          this.onRoomSelectionChange();
+        }
 
         console.log('✅ Filtered services with status:', this.filteredServices);
       },
@@ -188,6 +203,12 @@ export class AvailableServicesComponent implements OnInit {
 
   onRoomSelectionChange(): void {
     console.log('Selected Room ID:', this.selectedRoomId);
+
+    if (!this.selectedRoomId) {
+      this.filterServices();
+      return;
+    }
+
     const selectedRoom = this.userRooms.find(
       (room) => room.id === String(this.selectedRoomId)
     );
@@ -199,6 +220,7 @@ export class AvailableServicesComponent implements OnInit {
       this.filteredServices = this.allUserRoomsServices.filter(
         (service) => service.employee?.hotel === hotelName
       );
+
       // يمكنكِ طباعة النتائج للتأكد
       console.log('🔍 خدمات الفندق:', hotelName, this.filteredServices);
     } else {
@@ -208,6 +230,10 @@ export class AvailableServicesComponent implements OnInit {
 
   filterServices(): void {
     let services = [...this.allUserRoomsServices];
+    if (this.selectedRoomId) {
+      this.onRoomSelectionChange();
+      services = [...this.filteredServices];
+    }
 
     // Filter by search
     const term = this.serviceSearchTerm.toLowerCase().trim();
@@ -254,6 +280,11 @@ export class AvailableServicesComponent implements OnInit {
   toggleSortDirection(): void {
     this.sortDirection =
       this.sortDirection === 'Ascending' ? 'Descending' : 'Ascending';
+    this.filterServices();
+  }
+
+  clearSearchInput() {
+    this.serviceSearchTerm = '';
     this.filterServices();
   }
 

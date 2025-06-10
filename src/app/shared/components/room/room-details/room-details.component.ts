@@ -14,6 +14,7 @@ import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ButtonModule } from 'primeng/button';
 import { Subscription } from 'rxjs';
+import { ServiceService } from '../../../../core/services/service.service';
 
 @Component({
   selector: 'app-room',
@@ -31,10 +32,11 @@ import { Subscription } from 'rxjs';
 })
 export class RoomDetailsComponent {
   room: Room | undefined;
+  approvedReservation: Reservation | undefined;
   images: string[] = []; // Should be populated appropriately
   currentIndex: number = 0;
   fadeOut = false;
-  approvedServices: ServiceRequest[] = [];
+  requestedUserServices: ServiceRequest[] = [];
   userId: string | null = null;
   roomId: string | null = null;
   requestedServicesStatus: { [serviceTitle: string]: string } = {};
@@ -55,7 +57,8 @@ export class RoomDetailsComponent {
     private route: ActivatedRoute,
     private confirmationService: ConfirmationService,
     private messageService: MessageService,
-    private i18n: I18nService
+    private i18n: I18nService,
+    private serviceService: ServiceService
   ) {}
 
   role: string | null = null;
@@ -69,31 +72,14 @@ export class RoomDetailsComponent {
       const sub = this.reservationService
         .getReservationsByCustomerId(this.userId)
         .subscribe((reservations) => {
-          const approvedReservation = reservations.find(
+          this.approvedReservation = reservations.find(
             (res) =>
               res.roomId === this.roomId && res.approvalStatus === 'Approved'
           );
           // هنا نحدث حالة الحجز عند المستخدم
-          this.isRoomBookedByUser = !!approvedReservation;
-
-          if (approvedReservation && this.room) {
-            // ✅ تحديث حالة الغرفة إلى "Booked"
-            const updatedRoom: Room = { ...this.room, bookedStatus: 'Booked' };
-
-            this.roomService.updateRoom(this.room.id!, updatedRoom).subscribe({
-              next: () => {
-                this.room!.bookedStatus = 'Booked';
-                this.messageService.add({
-                  severity: 'info',
-                  summary: `${this.i18n.t('room.room')} ${
-                    this.room!.title
-                  } ${this.i18n.t('shared.toast.status-updated-to-booked')}`,
-                });
-              },
-              error: () => {
-                console.error('Failed to update room status to Booked');
-              },
-            });
+          this.isRoomBookedByUser = !!this.approvedReservation;
+          if (this.isRoomBookedByUser) {
+            this.getServices();
           }
         });
 
@@ -119,6 +105,19 @@ export class RoomDetailsComponent {
     } else {
       console.log('Room ID is null');
     }
+  }
+
+  getServices() {
+    this.serviceService.getServicesByCustomerId(this.userId!).subscribe({
+      next: (value) => {
+        this.requestedUserServices = value.filter((servReq) => {
+          return servReq.roomId == this.roomId;
+        });
+      },
+      error: (err) => {
+        console.log('Error getting services', err);
+      },
+    });
   }
 
   get currentImageUrl(): string {
@@ -218,37 +217,21 @@ export class RoomDetailsComponent {
             paymentAmount: room.price,
             paymentStatus: 'Unpaid',
             approvalStatus: 'Pending',
+            isCheckedOut: false,
           };
 
           const createReservationSub = this.reservationService
             .createReservation(reservation)
             .subscribe({
               next: () => {
-                const updatedRoom: Room = { ...room, bookedStatus: 'Pending' };
-                const updateRoomSub = this.roomService
-                  .updateRoom(room.id, updatedRoom)
-                  .subscribe({
-                    next: () => {
-                      room.bookedStatus = 'Pending';
-                      this.messageService.add({
-                        severity: 'success',
-                        summary: `${this.i18nService.t('room.room')} "${
-                          room.title
-                        }" ${this.i18nService.t(
-                          'shared.toast.booked-waiting-for-admin-approval'
-                        )}`,
-                      });
-                    },
-                    error: () => {
-                      this.messageService.add({
-                        severity: 'error',
-                        summary: `${this.i18nService.t(
-                          'shared.toast.booked-but-failed-to-update-status'
-                        )}`,
-                      });
-                    },
-                  });
-                this.subscriptions.push(updateRoomSub);
+                this.messageService.add({
+                  severity: 'success',
+                  summary: `${this.i18nService.t('room.room')} "${
+                    room.title
+                  }" ${this.i18nService.t(
+                    'shared.toast.booked-waiting-for-admin-approval'
+                  )}`,
+                });
               },
               error: () => {
                 this.messageService.add({

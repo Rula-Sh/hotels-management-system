@@ -109,7 +109,8 @@
     "approved-services": "الخدمات الموافق عليها",
     "no-approved-or-active-services-in-this-room": "لا توجد خدمات معتمدة أو نشطة في هذه الغرفة",
     "book-now": "احجز الآن",
-    "room-already-booked": "لقد تمت الموافقة على هذا الحجز مسبقًا. لا يمكن عرض تفاصيل الغرفة."
+    "room-already-booked": "لقد تمت الموافقة على هذا الحجز مسبقًا. لا يمكن عرض تفاصيل الغرفة.",
+    "all": "جميع الغرف"
   },
   "reservation": {
     "reservations": "الحجوزات",
@@ -126,7 +127,7 @@
     "type": "النوع",
     "hotel": "الفندق",
     "date": "التاريخ",
-    "payment": "الدفع",
+    "price": "السعر",
     "cancel": "إلغاء الحجز",
     "view-services": "عرض الخدمات",
     "status": {
@@ -213,6 +214,18 @@
     "reservations-status": "حالة الحجوزات",
     "requests-status": "حالة الطلبات",
     "requests": "الطلبات الخدمات"
+  },
+  "checkout": {
+    "checkout-summary": "ملخص الدفع",
+    "name": "الاسم",
+    "price-per-night": "سعر الليلة الواحدة",
+    "nights-stayed": "ليالي المبيت",
+    "total-room-cost": "إجمالي تكلفة الغرفة",
+    "services-requested": "الخدمات التي تم طلبها",
+    "none": "لا يوجد",
+    "total-services-cost": "إجمالي تكلفة الخدمات",
+    "checkout": "دفع",
+    "total":"المجموع الكلي"
   },
   "shared": {
     "entity": {

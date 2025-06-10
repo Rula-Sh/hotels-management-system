@@ -6,7 +6,7 @@ export interface Room {
   floor: number;
   hotel: string;
   details: string;
-  bookedStatus: 'Available' | 'Booked' | 'Pending';
+  bookedStatus: 'Available' | 'Booked';
   price: number;
   imagesUrl: string[];
   location: string;

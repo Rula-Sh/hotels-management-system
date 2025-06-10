@@ -109,7 +109,8 @@
     "approved-services": "Approved Services",
     "no-approved-or-active-services-in-this-room": "No approved or active services in this room.",
     "book-now": "Book Now",
-    "room-already-booked": "Room already booked"
+    "room-already-booked": "Room already booked",
+    "all": "All Rooms"
   },
   "reservation": {
     "reservations": "Reservations",
@@ -125,12 +126,15 @@
     "room-image": "Room Image",
     "type": "Type",
     "hotel": "Hotel",
-    "date": "Date of reservation",
-    "payment": "payment",
+    "date": "Date",
+    "date-requested": "Date requested",
+    "date-booked": "Date booked",
+    "date-checked-out": "Date checked out",
+    "price": "Price",
     "cancel": "Cancel reservation",
     "view-services": "View Services",
     "status": {
-      "stat": "status",
+      "stat": "Status",
       "pending": "Pending",
       "approved": "Approved",
       "rejected": "rejected"
@@ -214,6 +218,18 @@
     "reservations-status": "Reservations Status",
     "requests-status": "Requests Status",
     "requests": "Services Requests"
+  },
+  "checkout": {
+    "checkout-summary": "Checkout Summary",
+    "name": "Name",
+    "price-per-night": "Price per night",
+    "nights-stayed": "Nights Stayed",
+    "total-room-cost": "Total Room Cost",
+    "services-requested": "Services Requested",
+    "none": "None",
+    "total-services-cost": "Total Services Cost",
+    "checkout": "Checkout",
+    "total":"Total"
   },
   "shared": {
     "entity": {

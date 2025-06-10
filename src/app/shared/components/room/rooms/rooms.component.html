@@ -17,6 +17,15 @@
         [(ngModel)]="searchInput"
         (input)="onSearchChange()"
       />
+      <div class="align-self-center">
+        <span class="input-group-text input-right align-self-center bg-white">
+          <i
+            role="button"
+            (click)="clearSearchInput()"
+            class="fa-solid fa-xmark"
+          ></i>
+        </span>
+      </div>
     </div>
     <div
       class="input-group sort-by-container"

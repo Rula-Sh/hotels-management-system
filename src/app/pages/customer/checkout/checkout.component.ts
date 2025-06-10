@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { BookingService } from '../../../core/services/booking.service';
 import { AuthService } from '../../../core/services/auth.service';
@@ -18,17 +18,18 @@ import { I18nService } from '../../../core/services/i18n.service';
   standalone: true,
 })
 export class CheckoutComponent implements OnInit {
-services: any[] = [];
-servicesTotal: number = 0;
-roomCost: number = 0;
-totalCost: number = 0;
-nightsStayed: number = 1;
+  services: any[] = [];
+  servicesTotal: number = 0;
+  roomCost: number = 0;
+  totalCost: number = 0;
+  nightsStayed: number = 1;
 
   reservation: any;
   isPaid = false;
 
   constructor(
-    private route: ActivatedRoute,
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
     private bookingService: BookingService,
     private messageService: MessageService,
     private authService: AuthService,
@@ -50,13 +51,18 @@ ngOnInit() {
         this.reservation = reservation;
 this.isPaid = reservation.paymentStatus === 'Paid';
 
-        const bookDate = new Date(reservation.date);
-        const checkOutDate = new Date();
-        const diffTime = Math.abs(checkOutDate.getTime() - bookDate.getTime());
-        this.nightsStayed = Math.max(1, Math.floor(diffTime / (1000 * 60 * 60 * 24)));
+            const bookDate = new Date(reservation.date);
+            const checkOutDate = new Date();
+            const diffTime = Math.abs(
+              checkOutDate.getTime() - bookDate.getTime()
+            );
+            this.nightsStayed = Math.max(
+              1,
+              Math.floor(diffTime / (1000 * 60 * 60 * 24))
+            );
 
-        const pricePerNight = reservation.room?.price || 0;
-        this.roomCost = this.nightsStayed * pricePerNight;
+            const pricePerNight = reservation.room?.price || 0;
+            this.roomCost = this.nightsStayed * pricePerNight;
 
         this.bookingService.getApprovedServicesByCustomerAndRoom(userId, roomId).subscribe(services => {
           console.log('📦 Services fetched:', services);
