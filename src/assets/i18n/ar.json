@@ -136,9 +136,22 @@
       "approved": "مقبول",
       "rejected": "مرفوض"
     },
-    "details": "التفاصيل",
-    "check-out": "الدفع",
-    "book-again": "احجز مرة اخرى"
+    "view-room-details": "عرض تفاصيل الغرفة",
+    "checkout": "الدفع"
+  },
+  "checkout": {
+    "title": "ملخص الدفع",
+    "room": "الغرفة",
+    "price-per-night": "السعر لليلة",
+    "nights-stayed": "عدد الليالي",
+    "room-cost": "تكلفة الغرفة",
+    "approved-services": "الخدمات الموافق عليها",
+    "no-approved-services": "لا توجد خدمات موافق عليها.",
+    "services-cost": "تكلفة الخدمات",
+    "total-amount": "المبلغ الإجمالي",
+    "pay-now": "ادفع الآن",
+    "paid": "تم الدفع",
+    "payment-completed": " تم إكمال الدفع بنجاح"
   },
   "service": {
     "services": "الخدمات",
@@ -202,18 +215,7 @@
     "requests-status": "حالة الطلبات",
     "requests": "الطلبات الخدمات"
   },
-  "checkout": {
-    "checkout-summary": "ملخص الدفع",
-    "name": "الاسم",
-    "price-per-night": "سعر الليلة الواحدة",
-    "nights-stayed": "ليالي المبيت",
-    "total-room-cost": "إجمالي تكلفة الغرفة",
-    "services-requested": "الخدمات التي تم طلبها",
-    "none": "لا يوجد",
-    "total-services-cost": "إجمالي تكلفة الخدمات",
-    "checkout": "دفع",
-    "total":"المجموع الكلي"
-  },
+
   "shared": {
     "entity": {
       "id": "الرقم التعريفي"
@@ -308,7 +310,14 @@
       "login-successful": "تم تسجيل الدخول بنجاح!",
       "email-already-exists": "البريد الإلكتروني موجود بالفعل!",
       "registered-successfully": "تم التسجيل بنجاح!",
-      "status-updated-to-booked": "تم تحديث حالة الغرفة إلى 'Booked'."
+      "status-updated-to-booked": "تم تحديث حالة الغرفة إلى 'Booked'.",
+      "no-booked-room-title": "لا توجد غرفة محجوزة",
+      "no-booked-room-message": "يجب أن تكون لديك غرفة محجوزة للوصول إلى الخدمات المتاحة.",
+      "payment-success-title": "تم الدفع بنجاح",
+      "payment-success-detail": "لقد دفعت {{amount}} دينار أردني",
+      "payment-failed-title": "فشل الدفع",
+      "payment-missing-info": "بيانات الحجز أو المستخدم غير مكتملة.",
+      "payment-error": "حدث خطأ أثناء معالجة الدفع."
     },
     "confirm-dialog": {
       "delete": "حذف",

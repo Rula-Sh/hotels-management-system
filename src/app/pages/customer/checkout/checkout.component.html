@@ -1,70 +1,32 @@
-<h2 class="w-100 text-center p-3 mt-5 mb-3">
-  {{ "checkout.checkout-summary" | translate }}
-</h2>
-<div class="container d-flex flex-column">
-  <h3 class="ms-5 mb-3">{{ "room.room" | translate }}</h3>
-  <div class="d-flex justify-content-around ms-5 me-5">
-    <img
-      [src]="reservation?.room?.imagesUrl[0]"
-      class="room-img align-self-center rounded-4 mt-2 mb-2"
-    />
-    <div class="d-flex flex-column justify-content-center room-info">
-      <p>
-        <strong>{{ "checkout.name" | translate }}</strong>
-        {{ reservation?.room?.title }}
-      </p>
-      <p>
-        <strong>{{ "checkout.price-per-night" | translate }}:</strong> ${{
-          reservation?.room?.price
-        }}
-      </p>
-      <p>
-        <strong>{{ "checkout.nights-stayed" | translate }}:</strong>
-        {{ nightsStayed }}
-      </p>
-      <p class="room-price mb-0">
-        <strong>{{ "checkout.total-room-cost" | translate }}:</strong> ${{
-          roomCost
-        }}
-      </p>
-    </div>
-  </div>
-  <hr />
-  <h3 class="ms-5 mb-3">{{ "checkout.services-requested" | translate }}</h3>
-  <div class="d-flex justify-content-around ms-5 me-5 services-container">
-    <ul *ngIf="services.length > 0" class="m-0 service-info">
-      <li *ngFor="let service of services">
-        @if(service.serviceType == "Cleaning"){
-        <i class="fa-solid fa-broom me-2" style="color: #ad926b"></i>
-        } @else if (service.serviceType == "Dining") {
-        <i class="fa-solid fa-utensils me-2" style="color: #ad926b"></i>
-        }@else if (service.serviceType == "Maintenance") {
-        <i class="fa-solid fa-toolbox me-2" style="color: #ad926b"></i>
-        }{{ service.title }} - ${{ service.price }}
-      </li>
-    </ul>
-    <p *ngIf="services.length === 0">{{ "checkout.none" | translate }}</p>
-    <div class="d-flex align-items-center service-price-container">
-      <p class="align-middle mb-0 service-price">
-        <strong>{{ "checkout.total-services-cost" | translate }}:</strong> ${{
-          servicesTotal
-        }}
-      </p>
-    </div>
-  </div>
-  <hr class="mt-4" />
-  <div
-    class="d-flex justify-content-between w-100 checkout-footer align-items-center"
-  >
-    <div class="ms-5 me-5"></div>
+<p-toast></p-toast>
+<div class="container">
+  <div class="card">
+    <h2>{{ "checkout.title" | translate }}</h2>
 
-    <button class="btn btn-primary p-2 ps-4 pe-4 m-0" (click)="payNow()">
-      <strong>{{ "checkout.checkout" | translate }}</strong>
+    <p><strong>{{ "checkout.room" | translate }}:</strong> {{ reservation?.room?.title }}</p>
+    <p><strong>{{ "checkout.price-per-night" | translate }}:</strong> {{ reservation?.room?.price }} JOD</p>
+    <p><strong>{{ "checkout.nights-stayed" | translate }}:</strong> {{ nightsStayed }}</p>
+    <p><strong>{{ "checkout.room-cost" | translate }}:</strong> {{ roomCost }} JOD</p>
+
+    <hr />
+
+    <h3>{{ "checkout.approved-services" | translate }}</h3>
+    <ul *ngIf="services.length > 0">
+      <li *ngFor="let s of services">{{ s.title }} - {{ s.price }} JOD</li>
+    </ul>
+    <p *ngIf="services.length === 0">{{ "checkout.no-approved-services" | translate }}</p>
+    <p><strong>{{ "checkout.services-cost" | translate }}:</strong> {{ servicesTotal }} JOD</p>
+
+    <hr />
+
+    <p class="total">{{ "checkout.total-amount" | translate }}: {{ totalCost }} JOD</p>
+
+    <button (click)="payNow()" class="btn btn-success mt-3" [disabled]="isPaid">
+      {{ isPaid ? ("checkout.paid" | translate) : ("checkout.pay-now" | translate) }}
     </button>
 
-    <h3 class="text-center m-0 mb-3">
-      {{ "checkout.total" | translate }}: ${{ totalCost }}
-    </h3>
+    <p *ngIf="isPaid" class="text-success fw-bold mt-2">
+      ✅ {{ "checkout.payment-completed" | translate }}
+    </p>
   </div>
 </div>
-<p-toast></p-toast>

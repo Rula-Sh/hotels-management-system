@@ -221,8 +221,10 @@
     {
       "id": "9884",
       "name": "areen",
-      "email": "AREEN11823@GMAIL.COM",
+      "email": "null",
+      "phone": "+962 11823",
       "password": "QXJlZW4xMSM=",
+      "pfp": "",
       "role": "Customer"
     }
   ],

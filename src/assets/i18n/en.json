@@ -139,9 +139,22 @@
       "approved": "Approved",
       "rejected": "rejected"
     },
-    "details": "Details",
-    "check-out": "Check Out",
-    "book-again": "Book Again"
+    "view-room-details": "View Room Details",
+    "checkout": "Checkout"
+  },
+  "checkout": {
+    "title": "Checkout Summary",
+    "room": "Room",
+    "price-per-night": "Price per Night",
+    "nights-stayed": "Nights Stayed",
+    "room-cost": "Room Cost",
+    "approved-services": "Approved Services",
+    "no-approved-services": "No approved services.",
+    "services-cost": "Services Cost",
+    "total-amount": "Total Amount",
+    "pay-now": "Pay Now",
+    "paid": "Paid",
+    "payment-completed": "Payment has been completed."
   },
   "service": {
     "services": "Services",
@@ -206,18 +219,7 @@
     "requests-status": "Requests Status",
     "requests": "Services Requests"
   },
-  "checkout": {
-    "checkout-summary": "Checkout Summary",
-    "name": "Name",
-    "price-per-night": "Price per night",
-    "nights-stayed": "Nights Stayed",
-    "total-room-cost": "Total Room Cost",
-    "services-requested": "Services Requested",
-    "none": "None",
-    "total-services-cost": "Total Services Cost",
-    "checkout": "Checkout",
-    "total":"Total"
-  },
+
   "shared": {
     "entity": {
       "id": "ID"
@@ -312,7 +314,14 @@
       "login-successful": "Login successful!",
       "email-already-exists": "Email already exists!",
       "registered-successfully": "Registered successfully!",
-      "status-updated-to-booked": " Status updated to booked!"
+      "status-updated-to-booked": " Status updated to booked!",
+      "no-booked-room-title": "No Booked Room",
+      "no-booked-room-message": "You must have a booked room to access available services.",
+      "payment-success-title": "Payment Successful",
+      "payment-success-detail": "You paid {{amount}} JOD",
+      "payment-failed-title": "Payment Failed",
+      "payment-missing-info": "Missing reservation or user information.",
+      "payment-error": "An error occurred while processing payment."
     },
     "confirm-dialog": {
       "delete": "Delete",
