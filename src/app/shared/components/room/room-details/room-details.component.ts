@@ -111,7 +111,10 @@ export class RoomDetailsComponent {
     this.serviceService.getServicesByCustomerId(this.userId!).subscribe({
       next: (value) => {
         this.requestedUserServices = value.filter((servReq) => {
-          return servReq.roomId == this.roomId;
+          return (
+            servReq.roomId == this.roomId &&
+            this.room?.bookedStatus == 'Booked'
+          );
         });
       },
       error: (err) => {
