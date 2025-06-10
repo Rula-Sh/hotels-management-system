@@ -32,7 +32,7 @@ import { ServiceService } from '../../../../core/services/service.service';
 })
 export class RoomDetailsComponent {
   room: Room | undefined;
-  approvedReservation: Reservation | undefined;
+  reservation: Reservation | undefined;
   images: string[] = []; // Should be populated appropriately
   currentIndex: number = 0;
   fadeOut = false;
@@ -72,12 +72,11 @@ export class RoomDetailsComponent {
       const sub = this.reservationService
         .getReservationsByCustomerId(this.userId)
         .subscribe((reservations) => {
-          this.approvedReservation = reservations.find(
-            (res) =>
-              res.roomId === this.roomId && res.approvalStatus === 'Approved'
+          this.reservation = reservations.find(
+            (res) => res.roomId === this.roomId
           );
           // هنا نحدث حالة الحجز عند المستخدم
-          this.isRoomBookedByUser = !!this.approvedReservation;
+          this.isRoomBookedByUser = !!this.reservation;
           if (this.isRoomBookedByUser) {
             this.getServices();
           }
@@ -112,8 +111,7 @@ export class RoomDetailsComponent {
       next: (value) => {
         this.requestedUserServices = value.filter((servReq) => {
           return (
-            servReq.roomId == this.roomId &&
-            this.room?.bookedStatus == 'Booked'
+            servReq.roomId == this.roomId && this.room?.bookedStatus == 'Booked'
           );
         });
       },

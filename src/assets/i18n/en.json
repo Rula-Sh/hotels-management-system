@@ -107,7 +107,7 @@
     "no-available-rooms": "No available rooms at the moment.",
     "couldnt-find-a-room": "Couldnt find a room with this name",
     "room-services": "Room Services",
-    "no-approved-or-active-services-in-this-room": "No approved or active services in this room.",
+    "no-services-in-this-room": "No reqested services in this room.",
     "book-now": "Book Now",
     "room-already-booked": "Room already booked",
     "all": "All Rooms"
