@@ -27,19 +27,24 @@ export class I18nService {
     }
   }
 
-  t(key: string): string {
-    if (!this.translations) return key;
-    const keys = key.split('.');
-    let value: unknown = this.translations;
-    for (const k of keys) {
-      if (typeof value === 'object' && value !== null && k in value) {
-        value = (value as Record<string, string>)[k];
-      } else {
-        return key;
-      }
+t(key: string, params?: Record<string, any>): string {
+  if (!this.translations) return key;
+  const keys = key.split('.');
+  let value: unknown = this.translations;
+  for (const k of keys) {
+    if (typeof value === 'object' && value !== null && k in value) {
+      value = (value as Record<string, unknown>)[k];
+    } else {
+      return key;
     }
-    return typeof value === 'string' ? value : key;
   }
+
+  if (typeof value === 'string' && params) {
+    return value.replace(/\{\{(.*?)\}\}/g, (_, p) => params[p.trim()] ?? '');
+  }
+
+  return typeof value === 'string' ? value : key;
+}
 
   getLanguage(): 'en' | 'ar' {
     return this.currentLanguage;
