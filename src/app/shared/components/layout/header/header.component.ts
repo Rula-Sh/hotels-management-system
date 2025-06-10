@@ -9,6 +9,7 @@ import { I18nService } from '../../../../core/services/i18n.service';
 import { Reservation } from '../../../models/Reservation.model';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
+import { ReservationService } from '../../../../core/services/reservation.service';
 
 @Component({
   selector: 'app-header',
@@ -41,7 +42,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private router: Router,
     private i18nService: I18nService,
     private cdr: ChangeDetectorRef,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private reservationService: ReservationService
   ) {}
 
   get lang(): 'en' | 'ar' {
@@ -69,20 +71,33 @@ export class HeaderComponent implements OnInit, OnDestroy {
   goToAvailableServices(event: Event) {
     event.preventDefault(); // يمنع الانتقال التلقائي بالرابط
 
-    // تحققي من وجود حجز Approved
-    const hasBookedRoom = this.reservations.some(
-      (res) => res.approvalStatus === 'Approved'
-    );
+    this.reservationService
+      .getReservationsByCustomerId(this.userId!)
+      .subscribe({
+        next: (value) => {
+          this.reservations = value;
+          // تحققي من وجود حجز Approved
+          const hasBookedRoom = this.reservations.some(
+            (res) => res.approvalStatus === 'Approved' && !res.isCheckedOut
+          );
 
-    if (hasBookedRoom) {
-      this.router.navigate(['/available-services']);
-    } else {
-      this.messageService.add({
-        severity: 'warn',
-        summary: this.i18nService.t('shared.toast.no-booked-room-title'),
-        detail: this.i18nService.t('shared.toast.no-booked-room-message'),
+          if (hasBookedRoom) {
+            this.router.navigate(['/available-services']);
+          } else {
+            this.messageService.add({
+              severity: 'warn',
+              summary: this.i18nService.t('shared.toast.no-booked-room-title'),
+              detail: this.i18nService.t('shared.toast.no-booked-room-message'),
+            });
+          }
+        },
+        error: () => {
+          this.messageService.add({
+            severity: 'error',
+            summary: this.i18nService.t('shared.toast.something-went-wrong'),
+          });
+        },
       });
-    }
   }
 
   logout() {
