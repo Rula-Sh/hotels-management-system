@@ -7,15 +7,16 @@ import { Reservation } from '../../shared/models/Reservation.model';
   providedIn: 'root'
 })
 export class BookingService {
-  private apiUrl = 'http://localhost:3000/reservations'; // حسب الـ json-server عندك
+  private apiUrl = 'http://localhost:3000'; // حسب الـ json-server عندك
 
   constructor(private http: HttpClient) {}
 
- getBookingByUserAndRoom(userId: string, roomId: string): Observable<any> {
-  return this.http.get<any[]>(`${this.apiUrl}?customerId=${userId}&roomId=${roomId}`).pipe(
-    map(reservations => reservations.length > 0 ? reservations[0] : null)
+getBookingByUserAndRoom(customerId: string, roomId: string): Observable<any> {
+  return this.http.get<any[]>(`${this.apiUrl}/reservations?customerId=${customerId}&roomId=${roomId}`).pipe(
+    map(bookings => bookings[0]) // لأن json-server يرجع array
   );
 }
+
 
 
   updateBookingStatus(userId: string, roomId: string, status: string): Observable<any> {
@@ -25,7 +26,7 @@ export class BookingService {
         return reservation;
       }),
       switchMap((reservation: Reservation) =>
-        this.http.patch(`${this.apiUrl}/${reservation.id}`, { status })
+        this.http.patch(`${this.apiUrl}/reservations/${reservation.id}`, { status })
       )
     );
   }
@@ -33,5 +34,9 @@ export class BookingService {
   const url = `${this.apiUrl}/serviceRequests?customerId=${customerId}&roomId=${roomId}&requestStatus=Approved`;
   return this.http.get<any[]>(url);
 }
+updateReservation(reservationId: number, updatedData: any): Observable<any> {
+  return this.http.put(`${this.apiUrl}/reservations/${reservationId}`, updatedData);
+}
+
 
 }
