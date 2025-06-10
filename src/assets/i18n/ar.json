@@ -212,7 +212,7 @@
     "none": "لا يوجد",
     "total-services-cost": "إجمالي تكلفة الخدمات",
     "checkout": "دفع",
-    "total":"المجموع الكلي"
+    "total": "المجموع الكلي"
   },
   "shared": {
     "entity": {
@@ -308,7 +308,14 @@
       "login-successful": "تم تسجيل الدخول بنجاح!",
       "email-already-exists": "البريد الإلكتروني موجود بالفعل!",
       "registered-successfully": "تم التسجيل بنجاح!",
-      "status-updated-to-booked": "تم تحديث حالة الغرفة إلى 'Booked'."
+      "status-updated-to-booked": "تم تحديث حالة الغرفة إلى 'Booked'.",
+      "no-booked-room-title": "لا توجد غرفة محجوزة",
+      "no-booked-room-message": "يجب أن تكون لديك غرفة محجوزة للوصول إلى الخدمات المتاحة.",
+      "payment-success-title": "تم الدفع بنجاح",
+      "payment-success-detail": "لقد دفعت {{amount}} دينار أردني",
+      "payment-failed-title": "فشل الدفع",
+      "payment-missing-info": "بيانات الحجز أو المستخدم غير مكتملة.",
+      "payment-error": "حدث خطأ أثناء معالجة الدفع."
     },
     "confirm-dialog": {
       "delete": "حذف",
