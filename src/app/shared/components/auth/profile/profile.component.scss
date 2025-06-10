@@ -29,6 +29,7 @@
   width: 15%;
   font-weight: bold;
   font-size: 20px;
+  min-width: 99px;
 }
 
 .data {
@@ -204,6 +205,7 @@ i {
 .phone-view-container {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 15px;
   margin-top: 10px;
   margin-bottom: 20px;
@@ -217,26 +219,11 @@ i {
   text-decoration: underline;
   cursor: pointer;
   margin-left: auto;
-  
 }
 
-.phone-edit-form {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 10px;
-  margin-bottom: 20px;
-
-  ngx-intl-tel-input {
-    width: 45%;
-      border: 2px $color-dark-brown solid;
-    
-  }
-}
-
-.btn-group {
-  display: flex;
-  gap: 10px;
+.phone-data {
+  min-width: 160px;
+  width: 40%;
 }
 
 button {
@@ -245,18 +232,42 @@ button {
   border-radius: 6px;
 }
 
-  .btn-cancel {
-    background-color: #eee;
-    color: $color-dark-brown;
-    border: 1px solid $color-dark-brown;
-  }
+.btn-cancel {
+  background-color: #eee;
+  color: $color-dark-brown;
+  border: 1px solid $color-dark-brown;
+}
 
-  .btn-save {
-    background-color: $color-dark-brown;
-  }
+.btn-save {
+  background-color: $color-dark-brown;
+}
 
 :disabled {
   color: gray;
   opacity: 0.5;
   filter: grayscale(100%);
+}
+
+.phone-input-error {
+  width: 100%;
+}
+.edit-phone-icon {
+  display: none;
+}
+
+@media (max-width: 777px) {
+  .edit-phone-icon {
+    display: block;
+  }
+  .edit-phone-btn {
+    display: none;
+  }
+  .phone-data {
+    width: 10%;
+    background-color: red;
+  }
+  .phone-input-container {
+    flex-direction: column;
+    justify-content: center;
+  }
 }

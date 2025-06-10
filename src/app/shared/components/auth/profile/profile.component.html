@@ -44,154 +44,194 @@
       </div>
       <!-- تعديل رقم الهاتف بشكل منفصل -->
       <div *ngIf="!isEditingPhone && !isEditing" class="phone-view-container">
-       
-        <p class=" me-3 data-title">
+        <p class="me-3 data-title">
           <i class="fa-solid fa-phone me-2"></i>
-          {{ "shared.form.phone" | translate }}:</p>
-      <p class="data">{{ user?.phone || "—" }}
+          {{ "shared.form.phone" | translate }}:
         </p>
-        
-        <button class="edit-phone-btn" (click)="isEditingPhone = true">
+        <p
+          class="data phone-data"
+          [ngStyle]="
+            !user?.phone ? { color: 'gray', 'font-style': 'italic' } : {}
+          "
+        >
+          {{ user?.phone || ("user.not-provided" | translate) }}
+        </p>
+
+        <button class="edit-phone-btn me-0 p-0" (click)="isEditingPhone = true">
           <i class="fa-solid fa-pen"></i>
           {{ "shared.button.edit-phone-number" | translate }}
         </button>
+        <i class="edit-phone-icon fa-solid fa-pen"></i>
       </div>
-
       <div
+        class="input-container justify-content-start"
         *ngIf="isEditingPhone"
-        class="phone-edit-form"
         [formGroup]="phoneForm"
       >
-        <ngx-intl-tel-input
-          [cssClass]="'form-control'"
-          [preferredCountries]="['jo', 'sa']"
-          [enableAutoCountrySelect]="false"
-          [enablePlaceholder]="true"
-          [searchCountryFlag]="true"
-          [searchCountryField]="[SearchCountryField.All]"
-          [selectFirstCountry]="false"
-          [selectedCountryISO]="CountryISO.Jordan"
-          [numberFormat]="PhoneNumberFormat.International"
-          name="phone"
-          formControlName="phone"
-        ></ngx-intl-tel-input>
-
-        <div class="btn-group">
-          <button class="btn-save" (click)="updatePhoneOnly()">
-            {{ "shared.button.save" | translate }}
-          </button>
-          <button class="btn-cancel" (click)="isEditingPhone = false">
-            {{ "shared.button.cancel" | translate }}
-          </button>
+        <p class="me-3 data-title">
+          <i class="fa-solid fa-phone me-2"></i>
+          {{ "shared.form.phone" | translate }}:
+        </p>
+        <div class="d-flex phone-input-container">
+          <div class="input-error phone-input-error">
+            <div
+              class="input-group"
+              [ngClass]="{ 'right-input': lang == 'ar' }"
+            >
+              <div class="align-self-center">
+                <span
+                  class="input-group-text input-group-icon align-self-center bg-white"
+                >
+                  <i class="fa-solid fa-phone"></i>
+                </span>
+              </div>
+              <ngx-intl-tel-input
+                class="phone-input"
+                [enableAutoCountrySelect]="true"
+                [enablePlaceholder]="true"
+                [searchCountryFlag]="true"
+                [searchCountryField]="[
+                  SearchCountryField.Iso2,
+                  SearchCountryField.Name
+                ]"
+                [selectFirstCountry]="true"
+                [preferredCountries]="preferredCountries"
+                [phoneValidation]="true"
+                [separateDialCode]="true"
+                formControlName="phone"
+                [maxLength]="10"
+                name="phone"
+              ></ngx-intl-tel-input>
+            </div>
+            <div
+              class="error"
+              *ngIf="
+                profileForm.get('phone')?.invalid &&
+                profileForm.get('phone')?.touched
+              "
+            >
+              {{ "shared.form.phone-required" | translate }}
+            </div>
+          </div>
+          <div class="d-flex justify-content-center edit-phone-actions">
+            <button class="btn-primary ms-2 me-2" (click)="updatePhoneOnly()">
+              {{ "shared.button.save" | translate }}
+            </button>
+            <button
+              class="btn-outline-primary ms-2 me-2"
+              (click)="isEditingPhone = false"
+            >
+              {{ "shared.button.cancel" | translate }}
+            </button>
+          </div>
         </div>
       </div>
     </div>
-    
   </div>
-    <div *ngIf="isEditing" class="center-wrapper edit-profile">
-      <div class="container p-4 ps-5 pe-5">
-        <div class="pfp-container">
-          <div class="pfp-parent">
-            <img
-              class="pfp"
-              [src]="
-                user?.pfp
-                  ? user?.pfp
-                  : '../../../../../assets/images/profile-default-image.png'
-              "
-            />
+  <div *ngIf="isEditing" class="center-wrapper edit-profile">
+    <div class="container p-4 ps-5 pe-5">
+      <div class="pfp-container">
+        <div class="pfp-parent">
+          <img
+            class="pfp"
+            [src]="
+              user?.pfp
+                ? user?.pfp
+                : '../../../../../assets/images/profile-default-image.png'
+            "
+          />
 
-            <input
-              id="fileInput"
-              type="file"
-              accept="image/png, image/jpeg, image/gif"
-              (change)="onFileSelected($event)"
-              hidden
-            />
-            <label for="fileInput">
-              <i class="bi bi-camera-fill"></i>
-            </label>
-          </div>
-
-          <i
-            class="bi bi-x h1 ms-4 me-4 profile-header-btn"
-            (click)="cancel()"
-          ></i>
+          <input
+            id="fileInput"
+            type="file"
+            accept="image/png, image/jpeg, image/gif"
+            (change)="onFileSelected($event)"
+            hidden
+          />
+          <label for="fileInput">
+            <i class="bi bi-camera-fill"></i>
+          </label>
         </div>
-        <form [formGroup]="profileForm">
-          <div class="input-container">
-            <label for="name"> {{ "shared.form.name" | translate }}:</label>
-            <div class="input-error">
-              <div
-                class="input-group"
-                [ngClass]="{ 'right-input': lang == 'ar' }"
-              >
-                <div class="align-self-center">
-                  <span class="input-group-text align-self-center bg-white"
-                    ><i class="fa-solid fa-user"></i>
-                  </span>
-                </div>
-                <input
-                  type="text"
-                  class="form-control"
-                  aria-label="Name"
-                  [placeholder]="'shared.form.name' | translate"
-                  formControlName="name"
-                  pattern="^[\u0600-\u06FFa-zA-Z'\s]+$"
-                  required
-                />
+
+        <i
+          class="bi bi-x h1 ms-4 me-4 profile-header-btn"
+          (click)="cancel()"
+        ></i>
+      </div>
+      <form [formGroup]="profileForm">
+        <div class="input-container">
+          <label for="name"> {{ "shared.form.name" | translate }}:</label>
+          <div class="input-error">
+            <div
+              class="input-group"
+              [ngClass]="{ 'right-input': lang == 'ar' }"
+            >
+              <div class="align-self-center">
+                <span class="input-group-text align-self-center bg-white"
+                  ><i class="fa-solid fa-user"></i>
+                </span>
               </div>
-              <div
-                class="error"
-                *ngIf="
-                  profileForm.get('name')?.touched ||
-                  profileForm.get('name')?.dirty
-                "
-              >
-                <div *ngIf="profileForm.get('name')?.errors?.['required']">
-                  {{ "shared.form.name-required" | translate }}
-                </div>
-                <div *ngIf="profileForm.get('name')?.errors?.['maxlength']">
-                  {{ "shared.form.name-maxlength" | translate }}
-                </div>
-                <div *ngIf="profileForm.get('name')?.errors?.['minlength']">
-                  {{ "shared.form.name-minlength" | translate }}
-                </div>
-                <div *ngIf="profileForm.get('name')?.errors?.['pattern']">
-                  {{ "shared.form.name-invalid" | translate }}
-                </div>
+              <input
+                type="text"
+                class="form-control"
+                aria-label="Name"
+                [placeholder]="'shared.form.name' | translate"
+                formControlName="name"
+                pattern="^[\u0600-\u06FFa-zA-Z'\s]+$"
+                required
+              />
+            </div>
+            <div
+              class="error"
+              *ngIf="
+                profileForm.get('name')?.touched ||
+                profileForm.get('name')?.dirty
+              "
+            >
+              <div *ngIf="profileForm.get('name')?.errors?.['required']">
+                {{ "shared.form.name-required" | translate }}
+              </div>
+              <div *ngIf="profileForm.get('name')?.errors?.['maxlength']">
+                {{ "shared.form.name-maxlength" | translate }}
+              </div>
+              <div *ngIf="profileForm.get('name')?.errors?.['minlength']">
+                {{ "shared.form.name-minlength" | translate }}
+              </div>
+              <div *ngIf="profileForm.get('name')?.errors?.['pattern']">
+                {{ "shared.form.name-invalid" | translate }}
               </div>
             </div>
           </div>
-          <div class="input-container">
-            <label for="email">{{ "shared.form.email" | translate }}:</label>
-            <div class="input-error">
-              <div
-                class="input-group"
-                [ngClass]="{ 'right-input': lang == 'ar' }"
-              >
-                <div class="align-self-center">
-                  <span class="input-group-text align-self-center bg-white"
-                    ><i class="fa-solid fa-envelope"></i>
-                  </span>
-                </div>
-                <input
-                  type="email"
-                  class="form-control"
-                  aria-label="Email"
-                  [placeholder]="'shared.form.email' | translate"
-                  formControlName="email"
-                  required
-                />
+        </div>
+        <div class="input-container">
+          <label for="email">{{ "shared.form.email" | translate }}:</label>
+          <div class="input-error">
+            <div
+              class="input-group"
+              [ngClass]="{ 'right-input': lang == 'ar' }"
+            >
+              <div class="align-self-center">
+                <span class="input-group-text align-self-center bg-white"
+                  ><i class="fa-solid fa-envelope"></i>
+                </span>
               </div>
+              <input
+                type="email"
+                class="form-control"
+                aria-label="Email"
+                [placeholder]="'shared.form.email' | translate"
+                formControlName="email"
+                required
+              />
+            </div>
 
-              <div class="error" *ngIf="profileForm.get('email')?.touched">
-                <div *ngIf="profileForm.get('email')?.errors?.['required']">
-                  {{ "shared.form.email-required" | translate }}
-                </div>
-                <div *ngIf="profileForm.get('email')?.errors?.['pattern']">
-                  {{ "shared.form.email-invalid" | translate }}
-                </div>
+            <div class="error" *ngIf="profileForm.get('email')?.touched">
+              <div *ngIf="profileForm.get('email')?.errors?.['required']">
+                {{ "shared.form.email-required" | translate }}
+              </div>
+              <div *ngIf="profileForm.get('email')?.errors?.['pattern']">
+                {{ "shared.form.email-invalid" | translate }}
+              </div>
             </div>
           </div>
         </div>
@@ -252,144 +292,84 @@
                 <span class="input-group-text align-self-center bg-white">
                   <i class="fa-solid fa-lock"></i>
                 </span>
-
               </div>
+              <input
+                type="password"
+                class="form-control"
+                [placeholder]="'shared.form.new-password' | translate"
+                aria-label="Password"
+                formControlName="newPassword"
+                required
+                autocomplete="on"
+              />
             </div>
-          </div>
-          <div class="input-container">
-            <label for="phone">{{ "profile.phone" | translate }}:</label>
-            <div class="input-error">
-              <div
-                class="input-group"
-                [ngClass]="{ 'right-input': lang == 'ar' }"
-              >
-                <div class="align-self-center">
-                  <span
-                    class="input-group-text input-group-icon align-self-center bg-white"
-                  >
-                    <i class="fa-solid fa-phone"></i>
-                  </span>
-                </div>
-                <ngx-intl-tel-input
-                  class="phone-input"
-                  [enableAutoCountrySelect]="true"
-                  [enablePlaceholder]="true"
-                  [searchCountryFlag]="true"
-                  [searchCountryField]="[
-                    SearchCountryField.Iso2,
-                    SearchCountryField.Name
-                  ]"
-                  [selectFirstCountry]="true"
-                  [preferredCountries]="preferredCountries"
-                  [phoneValidation]="true"
-                  [separateDialCode]="true"
-                  formControlName="phone"
-                  [maxLength]="10"
-                  name="phone"
-                ></ngx-intl-tel-input>
-              </div>
-              <div
-                class="error"
-                *ngIf="
-                  profileForm.get('phone')?.invalid &&
-                  profileForm.get('phone')?.touched
-                "
-              >
-                {{ "shared.form.phone-required" | translate }}
-              </div>
-            </div>
-          </div>
-          <div class="input-container">
-            <label for="newPassword"
-              >{{ "shared.form.new-password" | translate }}:</label
+            <div
+              class="error"
+              *ngIf="
+                profileForm.get('newPassword')?.touched &&
+                profileForm.get('newPassword')?.errors as errors
+              "
             >
-            <div class="input-error">
-              <div
-                class="input-group"
-                [ngClass]="{ 'right-input': lang == 'ar' }"
-              >
-                <div class="align-self-center">
-                  <span class="input-group-text align-self-center bg-white">
-                    <i class="fa-solid fa-lock"></i>
-                  </span>
-                </div>
-                <input
-                  type="password"
-                  class="form-control"
-                  [placeholder]="'shared.form.new-password' | translate"
-                  aria-label="Password"
-                  formControlName="newPassword"
-                  required
-                  autocomplete="on"
-                />
+              <div *ngIf="errors['pattern']">
+                {{ "shared.form.password-pattern" | translate }}
               </div>
-              <div
-                class="error"
-                *ngIf="
-                  profileForm.get('newPassword')?.touched &&
-                  profileForm.get('newPassword')?.errors as errors
-                "
-              >
-                <div *ngIf="errors['pattern']">
-                  {{ "shared.form.password-pattern" | translate }}
-                </div>
-                <div *ngIf="errors['required']">
-                  {{ "shared.form.password-required" | translate }}
-                </div>
+              <div *ngIf="errors['required']">
+                {{ "shared.form.password-required" | translate }}
               </div>
             </div>
           </div>
-          <div class="input-container">
-            <label for="confirmPassword"
-              >{{ "shared.form.confirm-password" | translate }}:</label
+        </div>
+        <div class="input-container">
+          <label for="confirmPassword"
+            >{{ "shared.form.confirm-password" | translate }}:</label
+          >
+          <div class="input-error">
+            <div
+              class="input-group"
+              [ngClass]="{ 'right-input': lang == 'ar' }"
             >
-            <div class="input-error">
-              <div
-                class="input-group"
-                [ngClass]="{ 'right-input': lang == 'ar' }"
-              >
-                <div class="align-self-center">
-                  <span class="input-group-text align-self-center bg-white">
-                    <i class="fa-solid fa-check-double"></i>
-                  </span>
-                </div>
-                <input
-                  type="password"
-                  class="form-control"
-                  aria-label="Password"
-                  [placeholder]="'shared.form.confirm-password' | translate"
-                  formControlName="confirmPassword"
-                  required
-                  minlength="6"
-                  autocomplete="on"
-                />
+              <div class="align-self-center">
+                <span class="input-group-text align-self-center bg-white">
+                  <i class="fa-solid fa-check-double"></i>
+                </span>
               </div>
-              <div class="error">
-                <div
-                  *ngIf="
+              <input
+                type="password"
+                class="form-control"
+                aria-label="Password"
+                [placeholder]="'shared.form.confirm-password' | translate"
+                formControlName="confirmPassword"
+                required
+                minlength="6"
+                autocomplete="on"
+              />
+            </div>
+            <div class="error">
+              <div
+                *ngIf="
                 profileForm.get('confirmPassword')?.touched && profileForm.get('confirmPassword')?.errors?.['required']"
-                >
-                  {{ "shared.form.confirmation-required" | translate }}.
-                </div>
-                <div
-                  *ngIf="
-                    profileForm.get('confirmPassword')?.valueChanges &&
-                    profileForm.get('confirmPassword')?.value !=
-                      profileForm.get('newPassword')?.value
-                  "
-                >
-                  {{ "shared.form.password-match" | translate }}
-                </div>
+              >
+                {{ "shared.form.confirmation-required" | translate }}.
+              </div>
+              <div
+                *ngIf="
+                  profileForm.get('confirmPassword')?.valueChanges &&
+                  profileForm.get('confirmPassword')?.value !=
+                    profileForm.get('newPassword')?.value
+                "
+              >
+                {{ "shared.form.password-match" | translate }}
               </div>
             </div>
           </div>
+        </div>
         } @else {
         <div class="d-flex justify-content-end me-5">
           <button
             (click)="isChangingPass = !isChangingPass"
             class="m-1 me-4 btn btn-change-pass rounded-2 text-sm-center border-0 text-decoration-underline"
           >
-            <small>{{ "shared.button.change-pass" | translate }}</small>
+            {{ "shared.button.change-pass" | translate }}
           </button>
         </div>
 
@@ -412,6 +392,5 @@
         </div>
       </form>
     </div>
-  
-  
+  </div>
 </div>
