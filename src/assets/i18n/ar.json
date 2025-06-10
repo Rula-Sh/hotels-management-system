@@ -106,7 +106,7 @@
     "submit": "إضافة",
     "no-available-rooms": "لا يوجد غرف متاحة حاليا.",
     "couldnt-find-a-room": "تعذر العثور على غرفة بهذا الاسم",
-    "approved-services": "الخدمات الموافق عليها",
+    "room-services": "خدمات الغرفة",
     "no-approved-or-active-services-in-this-room": "لا توجد خدمات معتمدة أو نشطة في هذه الغرفة",
     "book-now": "احجز الآن",
     "room-already-booked": "لقد تمت الموافقة على هذا الحجز مسبقًا. لا يمكن عرض تفاصيل الغرفة.",

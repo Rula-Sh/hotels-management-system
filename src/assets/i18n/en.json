@@ -106,7 +106,7 @@
     "submit": "Submit",
     "no-available-rooms": "No available rooms at the moment.",
     "couldnt-find-a-room": "Couldnt find a room with this name",
-    "approved-services": "Approved Services",
+    "room-services": "Room Services",
     "no-approved-or-active-services-in-this-room": "No approved or active services in this room.",
     "book-now": "Book Now",
     "room-already-booked": "Room already booked",
