@@ -235,8 +235,9 @@
       "submit": "Submit",
       "cancel": "Cancel",
       "go-back": "Go Back",
+      "edit-phone-number": "Edit Phone Number",
+      "save": "Save",
       "change-pass": "Change Password"
-
     },
     "form": {
       "input-invalid": "Invalid input",
@@ -288,7 +289,7 @@
       "warning": "Warning",
       "error": "Error",
       "something-went-wrong": "Something went wrong!!",
-      "profile-udpated-successfuly": "Profile udpated successfully!",
+      "profile-updated-successfully": "Profile updated successfully!",
       "failed-to-upload-image": "Failed to upload image!",
       "at-least-one-image-is-required": "At least one image is required!",
       "room-added-successfuly": "Room added successfully!",
@@ -322,6 +323,9 @@
       "payment-failed-title": "Payment Failed",
       "payment-missing-info": "Missing reservation or user information.",
       "payment-error": "An error occurred while processing payment.",
+      "invalid-phone-number": "Invalid phone number. It should be 10 digits long and start with 07.",
+      "phone-number-updated": "Phone number updated successfully!",
+      "failed-to-update-phone": "Failed to update phone number.",
       "no-new-data-to-update": "No new data to update"
     },
     "confirm-dialog": {

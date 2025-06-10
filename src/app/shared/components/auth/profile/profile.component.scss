@@ -201,6 +201,60 @@ i {
   padding: 0;
 }
 
+.phone-view-container {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.edit-phone-btn {
+  border: none;
+  background-color: transparent;
+  color: $color-dark-brown;
+  font-size: 16px;
+  text-decoration: underline;
+  cursor: pointer;
+  margin-left: auto;
+  
+}
+
+.phone-edit-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 20px;
+
+  ngx-intl-tel-input {
+    width: 45%;
+      border: 2px $color-dark-brown solid;
+    
+  }
+}
+
+.btn-group {
+  display: flex;
+  gap: 10px;
+}
+
+button {
+  font-size: 15px;
+  padding: 6px 14px;
+  border-radius: 6px;
+}
+
+  .btn-cancel {
+    background-color: #eee;
+    color: $color-dark-brown;
+    border: 1px solid $color-dark-brown;
+  }
+
+  .btn-save {
+    background-color: $color-dark-brown;
+  }
+
 :disabled {
   color: gray;
   opacity: 0.5;

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -6,25 +6,30 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { I18nPipe } from '../../../pipes/i18n.pipe';
+import { Subscription } from 'rxjs';
+
 import { User } from '../../../models/User.model';
 import { AuthService } from '../../../../core/services/auth.service';
 import { UserService } from '../../../../core/services/user.service';
 import { I18nService } from '../../../../core/services/i18n.service';
 import { MessageService } from 'primeng/api';
-import { ToastModule } from 'primeng/toast';
-
-import { SearchCountryField, CountryISO } from 'ngx-intl-tel-input';
-import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { UploadService } from '../../../../core/services/upload.service';
-import { Subscription } from 'rxjs';
+
+import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
+import { SearchCountryField, CountryISO, PhoneNumberFormat } from 'ngx-intl-tel-input';
+import { CommonModule } from '@angular/common';
+import { I18nPipe } from '../../../pipes/i18n.pipe';
+import { ToastModule } from 'primeng/toast';
 import { Employee } from '../../../models/Employee.model';
+
 
 @Component({
   selector: 'app-profile',
-  imports: [
+  templateUrl: './profile.component.html',
+  styleUrls: ['./profile.component.scss'],
+  providers: [MessageService],
+ imports: [
     FormsModule,
     ReactiveFormsModule,
     CommonModule,
@@ -32,13 +37,13 @@ import { Employee } from '../../../models/Employee.model';
     ToastModule,
     NgxIntlTelInputModule,
   ],
-  providers: [MessageService],
-  templateUrl: './profile.component.html',
-  styleUrl: './profile.component.scss',
+
 })
 export class ProfileComponent {
   user: User | Employee | null = null;
   profileForm!: FormGroup;
+  phoneForm!: FormGroup;
+  isEditingPhone = false;
   isEditing = false;
   profileData: any;
   isChangingPass = false;
@@ -49,6 +54,7 @@ export class ProfileComponent {
 
   SearchCountryField = SearchCountryField;
   CountryISO = CountryISO;
+  PhoneNumberFormat = PhoneNumberFormat;
   preferredCountries: CountryISO[] = [CountryISO.Jordan];
 
   subscriptions: Subscription[] = [];
@@ -74,6 +80,7 @@ export class ProfileComponent {
       this.user = this.authService.getCurrentEmployee();
     }
     this.imageUrl = localStorage.getItem('pfp');
+
     this.profileForm = this.fb.group({
       name: [
         '',
@@ -89,9 +96,7 @@ export class ProfileComponent {
         [
           Validators.required,
           Validators.email,
-          Validators.pattern(
-            /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
-          ),
+          Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/),
         ],
       ],
       phone: [undefined],
@@ -106,6 +111,11 @@ export class ProfileComponent {
       ],
       confirmPassword: ['', Validators.minLength(6)],
     });
+
+    this.phoneForm = this.fb.group({
+      phone: [undefined, Validators.required],
+    });
+
     this.loadProfile();
   }
 
@@ -116,9 +126,15 @@ export class ProfileComponent {
       phone: this.user?.phone,
     };
 
-    this.profileForm.patchValue(this.profileData);
     this.profileForm.patchValue({
-      phone: this.profileData.phone.substring(4),
+      name: this.profileData.name,
+      email: this.profileData.email,
+      phone: this.profileData.phone,
+      imageUrl: this.imageUrl ?? '',
+    });
+    
+    this.phoneForm.patchValue({
+      phone: this.profileData.phone,
     });
     // i can use mark all as touched to validate the data once it is loaded
   }
@@ -148,7 +164,6 @@ export class ProfileComponent {
       return;
     }
 
-    // Clear all errors and update value safely
     control?.setErrors(null);
     control?.markAsTouched();
 
@@ -159,26 +174,25 @@ export class ProfileComponent {
     reader.readAsDataURL(file);
 
     this.selectedFile = file;
-    if (this.selectedFile) {
-      const uploadImageSub = this.uploadService
-        .uploadImage(this.selectedFile, this.uploadPreset)
-        .subscribe({
-          next: (res: any) => {
-            this.imageUrl = res.url;
-            this.profileForm.get('imageUrl')?.setValue(this.imageUrl);
+    if (!this.selectedFile) return;
 
-            this.updateProfile();
-          },
-          error: (err) => {
-            console.error('Error uploading image:', err);
-            this.messageService.add({
-              severity: 'error',
-              summary: `${this.i18n.t('shared.toast.failed-to-upload-image')}`,
-            });
-          },
+    const uploadImageSub = this.uploadService.uploadImage(this.selectedFile, this.uploadPreset).subscribe({
+      next: (res: any) => {
+        this.imageUrl = res.url;
+        this.profileForm.get('imageUrl')?.setValue(this.imageUrl);
+
+        this.updateProfile(); // تحديث الملف الشخصي مباشرة بعد رفع الصورة
+      },
+      error: (err) => {
+        console.error('Error uploading image:', err);
+        this.messageService.add({
+          severity: 'error',
+          summary: this.i18nService.t('shared.toast.failed-to-upload-image'),
         });
-      this.subscriptions.push(uploadImageSub);
-    }
+      },
+    });
+
+    this.subscriptions.push(uploadImageSub);
   }
 
   updateProfile() {
@@ -225,7 +239,7 @@ export class ProfileComponent {
             id: fullEmployee.id,
             name: this.profileForm.value.name,
             email: this.profileForm.value.email,
-            phone: this.profileForm.value.phone?.internationalNumber ?? '',
+            phone: this.profileForm.value.phone?.internationalNumber ?? this.profileForm.value.phone,
             password: password,
             pfp: this.imageUrl ?? '',
             role: fullEmployee.role,
@@ -246,7 +260,7 @@ export class ProfileComponent {
             id: this.user!.id,
             name: this.profileForm.value.name,
             email: this.profileForm.value.email,
-            phone: this.profileForm.value.phone?.internationalNumber ?? '',
+            phone: this.profileForm.value.phone?.internationalNumber ?? this.profileForm.value.phone,
             password: password,
             pfp: this.imageUrl ?? '',
             role: this.user!.role,
@@ -261,6 +275,10 @@ export class ProfileComponent {
           this.subscriptions.push(updateUserDetailsSub);
         }
       });
+
+      this.subscriptions.push(updateUserDetailsSub);
+    });
+
     this.subscriptions.push(getUserByIdSub);
   }
   private handleSuccess(updatedUser: User | Employee) {
@@ -290,15 +308,53 @@ export class ProfileComponent {
     });
   }
 
+  updatePhoneOnly() {
+    if (this.phoneForm.invalid) {
+      this.messageService.add({
+        severity: 'error',
+        summary: this.i18nService.t('shared.toast.error'),
+        detail: this.i18nService.t('shared.toast.invalid-phone-number'),
+      });
+      return;
+    }
+
+    const newPhone = this.phoneForm.value.phone.internationalNumber ?? this.phoneForm.value.phone;
+
+    if (!this.user) return;
+
+    const updatePhoneSub = this.userService.updatePhone(this.user.id, newPhone).subscribe({
+      next: () => {
+        this.messageService.add({
+          severity: 'success',
+          summary: this.i18nService.t('shared.toast.success'),
+          detail: this.i18nService.t('shared.toast.phone-number-updated'),
+        });
+        if (this.user) this.user.phone = newPhone;
+        this.isEditingPhone = false;
+        this.loadProfile();
+      },
+      error: () => {
+        this.messageService.add({
+          severity: 'error',
+          summary: this.i18nService.t('shared.toast.error'),
+          detail: this.i18nService.t('shared.toast.failed-to-update-phone'),
+        });
+      },
+    });
+
+    this.subscriptions.push(updatePhoneSub);
+  }
+
   edit() {
     this.isEditing = true;
   }
 
   cancel() {
     this.isEditing = false;
+    this.loadProfile();
   }
 
   ngOnDestroy() {
-    this.subscriptions.forEach((sub) => sub.unsubscribe());
+    this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 }
