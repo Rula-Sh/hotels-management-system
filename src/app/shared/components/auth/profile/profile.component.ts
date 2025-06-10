@@ -229,7 +229,7 @@ export class ProfileComponent {
             this.isEditing &&
             this.profileForm.value.name == this.profileData.name &&
             this.profileForm.value.email == this.profileData.email &&
-            this.profileForm.value.phone ==
+            this.profileForm.value.phone.number ==
               this.profileData.phone.substring(4).trim()
           ) {
             this.messageService.add({
@@ -291,7 +291,7 @@ export class ProfileComponent {
 
     this.subscriptions.push(getUserByIdSub);
   }
-  
+
   private handleSuccess(updatedUser: User | Employee) {
     console.log('Form Submitted');
     this.authService.login(updatedUser);
