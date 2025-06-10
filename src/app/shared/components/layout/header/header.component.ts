@@ -6,6 +6,9 @@ import { RouterLink, RouterLinkActive, RouterModule } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { I18nPipe } from '../../../pipes/i18n.pipe';
 import { I18nService } from '../../../../core/services/i18n.service';
+import { Reservation } from '../../../models/Reservation.model';
+import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
 
 @Component({
   selector: 'app-header',
@@ -16,10 +19,12 @@ import { I18nService } from '../../../../core/services/i18n.service';
     CommonModule,
     I18nPipe,
     CommonModule,
+    ToastModule
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
   standalone: true,
+  providers: [MessageService],
 })
 export class HeaderComponent implements OnInit, OnDestroy {
   isLoggedIn = false;
@@ -30,11 +35,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
   pfp: string | null = null;
   isMenuOpen = false;
 
+  reservations: Reservation[] = [];
+
   constructor(
     private authService: AuthService,
     private router: Router,
     private i18nService: I18nService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private messageService: MessageService
   ) {}
 
   get lang(): 'en' | 'ar' {
@@ -66,5 +74,23 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
+  }
+  goToAvailableServices(event: Event) {
+    event.preventDefault(); // يمنع الانتقال التلقائي بالرابط
+
+    // تحققي من وجود حجز Approved
+    const hasBookedRoom = this.reservations.some(
+      (res) => res.approvalStatus === 'Approved'
+    );
+
+    if (hasBookedRoom) {
+      this.router.navigate(['/available-services']);
+    } else {
+      this.messageService.add({
+        severity: 'warn',
+        summary: this.i18nService.t('shared.toast.no-booked-room-title'),
+        detail: this.i18nService.t('shared.toast.no-booked-room-message'),
+      });
+    }
   }
 }
