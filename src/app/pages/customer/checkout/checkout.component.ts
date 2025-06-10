@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { BookingService } from '../../../core/services/booking.service';
 import { AuthService } from '../../../core/services/auth.service';
@@ -14,8 +14,8 @@ import { I18nService } from '../../../core/services/i18n.service';
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.scss'],
   providers: [MessageService],
-  imports: [CommonModule,ToastModule,I18nPipe],
   standalone: true,
+  imports: [CommonModule, ToastModule, I18nPipe]
 })
 export class CheckoutComponent implements OnInit {
   services: any[] = [];
@@ -40,7 +40,7 @@ ngOnInit() {
   
   const user = this.authService.getCurrentUser();
   const userId = user?.id;
- const roomId = this.route.snapshot.paramMap.get('roomId');
+ const roomId = this.activatedRoute.snapshot.paramMap.get('roomId');
 
 
   if (userId && roomId) {
@@ -85,7 +85,7 @@ this.isPaid = reservation.paymentStatus === 'Paid';
 payNow() {
   const user = this.authService.getCurrentUser();
   const userId = user?.id;
-  const roomId = this.route.snapshot.paramMap.get('roomId'); // هنا نفس الطريقة المستخدمة في ngOnInit
+  const roomId = this.activatedRoute.snapshot.paramMap.get('roomId'); // هنا نفس الطريقة المستخدمة في ngOnInit
 
   if (!this.reservation || !userId || !roomId) {
     this.messageService.add({
@@ -104,10 +104,15 @@ payNow() {
   };
 
   // نستخدم updateReservation لتحديث الحجز بالكامل
-  this.bookingService.updateReservation(this.reservation.id, updatedReservation).subscribe({
-    next: (updatedRes) => {
-      this.reservation = updatedRes;  // تحديث المتغير المحلي
-      this.isPaid = true;             // تعطيل زر الدفع
+    this.bookingService.updateReservationAndRoom(
+    this.reservation.id,
+    roomId,
+    updatedReservation,
+    { status: 'Booked' } // تحديث حالة الغرفة بعد الدفع
+  ).subscribe({
+    next: ([updatedRes, updatedRoom]) => {
+      this.reservation = updatedRes;
+      this.isPaid = true;
 
       this.messageService.add({
         severity: 'success',
@@ -127,8 +132,6 @@ payNow() {
     }
   });
 }
-
-
 
 
 }
