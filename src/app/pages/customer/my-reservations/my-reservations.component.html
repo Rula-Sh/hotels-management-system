@@ -48,7 +48,7 @@
               }
             </p>
             <div class="d-flex justify-content-between">
-              <!-- رابط الانتقال إلى صفحة تفاصيل الغرفة -->
+              <!-- رابط تفاصيل الغرفة -->
               <a
                 [routerLink]="['/room-details', reservation.room.id]"
                 class="room-details-link"
@@ -74,7 +74,7 @@
                   {{ "reservation.book-again" | translate }}</span
                 >
               </a>
-
+              <!-- زر الدفع -->
               <a
                 *ngIf="
                   !reservation.isCheckedOut &&
