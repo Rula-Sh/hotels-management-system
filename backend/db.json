@@ -32,7 +32,7 @@
         "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749380759/crystal-grand-banquet-hall-mississauga-366-full_size_vmjsrs.webp"
       ],
       "AvailableStatus": "Available",
-      "bookedStatus": "Pending"
+      "bookedStatus": "Booked"
     },
     {
       "id": "r3",
@@ -223,8 +223,10 @@
     {
       "id": "9884",
       "name": "areen",
-      "email": "AREEN11823@GMAIL.COM",
+      "email": "null",
+      "phone": "+962 11823",
       "password": "QXJlZW4xMSM=",
+      "pfp": "",
       "role": "Customer"
     }
   ],
@@ -270,9 +272,8 @@
         "id": "9884",
         "name": "areen",
         "email": "AREEN11823@GMAIL.COM",
-        "phone": "",
-        "role": "Customer",
-        "pfp": ""
+        "password": "QXJlZW4xMSM=",
+        "role": "Customer"
       },
       "customerId": "9884",
       "roomId": "r2",
@@ -289,12 +290,13 @@
         "imagesUrl": [
           "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749380759/crystal-grand-banquet-hall-mississauga-366-full_size_vmjsrs.webp"
         ],
-        "AvailableStatus": "Available"
+        "AvailableStatus": "Available",
+        "bookedStatus": "Pending"
       },
-      "date": "2025-06-09T23:56:17.934Z",
+      "date": "2025-06-10T00:11:57.993Z",
       "paymentAmount": 300,
-      "paymentStatus": "Unpaid",
-      "approvalStatus": "Pending"
+      "paymentStatus": "Paid",
+      "approvalStatus": "Approved"
     }
   ],
   "services": [
@@ -738,6 +740,56 @@
       "details": "Make room look neat and more clean",
       "price": 5,
       "imageUrl": "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749383071/chambermaid-cleaning-hotel-room_23-2148095306_hdkr2s.avif",
+      "employee": {
+        "id": "emp1",
+        "name": "Employee One",
+        "email": "emp1@gmail.com",
+        "phone": "+962 7 9645 6456",
+        "role": "Employee",
+        "pfp": "",
+        "hotel": "Sunrise Inn",
+        "jobTitle": "Room Cleaner"
+      }
+    },
+    {
+      "id": "0a05",
+      "customerId": "9884",
+      "roomId": "r1",
+      "date": "2025-06-10T00:06:16.593Z",
+      "requestStatus": "Pending",
+      "notes": "",
+      "customer": {
+        "id": "9884",
+        "name": "areen",
+        "email": "AREEN11823@GMAIL.COM",
+        "phone": "",
+        "role": "Customer",
+        "pfp": ""
+      },
+      "room": {
+        "id": "r1",
+        "title": "Deluxe Suite",
+        "roomType": "Room",
+        "capacity": 2,
+        "floor": 2,
+        "hotel": "Sunrise Inn",
+        "location": "loc r1 12345",
+        "details": "A deluxe room with sea view.",
+        "price": 120,
+        "imagesUrl": [
+          "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749379492/207079479_rwiqgg.jpg",
+          "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749379491/565065265_zthw6e.jpg",
+          "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749379492/207079375_rsghii.jpg"
+        ],
+        "AvailableStatus": "Available",
+        "bookedStatus": "Pending"
+      },
+      "employeeId": "emp1",
+      "title": "Vacuuming",
+      "serviceType": "Cleaning",
+      "details": "Clean floor",
+      "price": 15,
+      "imageUrl": "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748501366/shutterstock_1628546512_o4ismw.jpg",
       "employee": {
         "id": "emp1",
         "name": "Employee One",
