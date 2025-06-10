@@ -33,4 +33,8 @@ export class UserService {
   updateUserDetails(user: User): Observable<User> {
     return this.api.put<User>(`${this.url}/${user.id}`, user);
   }
+
+  updateEmployee(user: Employee): Observable<Employee> {
+    return this.api.put<Employee>(`${this.url}/${user.id}`, user);
+  }
 }

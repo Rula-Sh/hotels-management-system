@@ -20,6 +20,7 @@ import { SearchCountryField, CountryISO } from 'ngx-intl-tel-input';
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { UploadService } from '../../../../core/services/upload.service';
 import { Subscription } from 'rxjs';
+import { Employee } from '../../../models/Employee.model';
 
 @Component({
   selector: 'app-profile',
@@ -36,7 +37,7 @@ import { Subscription } from 'rxjs';
   styleUrl: './profile.component.scss',
 })
 export class ProfileComponent {
-  user: User | null = null;
+  user: User | Employee | null = null;
   profileForm!: FormGroup;
   isEditing = false;
   profileData: any;
@@ -69,6 +70,9 @@ export class ProfileComponent {
 
   ngOnInit() {
     this.user = this.authService.getCurrentUser();
+    if (this.user?.role == 'Employee') {
+      this.user = this.authService.getCurrentEmployee();
+    }
     this.imageUrl = localStorage.getItem('pfp');
     this.profileForm = this.fb.group({
       name: [
@@ -196,15 +200,16 @@ export class ProfileComponent {
             this.profileForm.value.confirmPassword &&
           this.profileForm.value.newPassword.trim() !== ''
         ) {
+
           password = btoa(this.profileForm.value.newPassword);
         } else {
-          if (this.profileForm.value.phone == null) {
-            this.profileForm.value.phone = '';
-          }
+          this.profileForm.value.phone = this.profileForm.value.phone ?? '';
+
           if (
             this.profileForm.value.name == this.profileData.name &&
             this.profileForm.value.email == this.profileData.email &&
-            this.profileForm.value.phone == this.profileData.phone.substring(4)
+            this.profileForm.value.phone.number ==
+              this.profileData.phone.substring(4).trim()
           ) {
             this.messageService.add({
               severity: 'warn',
@@ -214,50 +219,75 @@ export class ProfileComponent {
           }
         }
 
-        const updatedUser: User = {
-          id: this.user!.id,
-          name: this.profileForm.value.name,
-          email: this.profileForm.value.email,
-          phone: this.profileForm.value.phone?.internationalNumber ?? '',
-          password: password,
-          pfp: this.imageUrl ?? '',
-          role: this.user!.role,
-        };
+        if (this.user?.role == 'Employee') {
+          const fullEmployee = fullUser as Employee;
+          const updatedEmployee: Employee = {
+            id: fullEmployee.id,
+            name: this.profileForm.value.name,
+            email: this.profileForm.value.email,
+            phone: this.profileForm.value.phone?.internationalNumber ?? '',
+            password: password,
+            pfp: this.imageUrl ?? '',
+            role: fullEmployee.role,
+            hotel: fullEmployee.hotel,
+            jobCategory: fullEmployee.jobCategory,
+            jobTitle: fullEmployee.jobTitle,
+          };
 
-        const updateUserDetailsSub = this.userService
-          .updateUserDetails(updatedUser)
-          .subscribe({
-            next: () => {
-              console.log('Form Submitted');
-              this.authService.login(updatedUser);
-              this.messageService.add({
-                severity: 'success',
-                summary: `${this.i18n.t(
-                  'shared.toast.profile-udpated-successfuly'
-                )}`,
-              });
+          const updateEmployeeSub = this.userService
+            .updateEmployee(updatedEmployee)
+            .subscribe({
+              next: () => this.handleSuccess(updatedEmployee),
+              error: (err) => this.handleError(err),
+            });
+          this.subscriptions.push(updateEmployeeSub);
+        } else {
+          var updatedUser: User = {
+            id: this.user!.id,
+            name: this.profileForm.value.name,
+            email: this.profileForm.value.email,
+            phone: this.profileForm.value.phone?.internationalNumber ?? '',
+            password: password,
+            pfp: this.imageUrl ?? '',
+            role: this.user!.role,
+          };
 
-              setTimeout(() => {
-                this.router.navigate(['/profile/' + this.user?.id]);
-                this.isEditing = false;
-                this.isChangingPass = false;
-                this.user = this.authService.getCurrentUser();
-                this.loadProfile();
-                this.profileForm.get('password')?.setValue('');
-                this.profileForm.get('newPassword')?.setValue('');
-              }, 1500);
-            },
-            error: (err) => {
-              console.log('Error on Update', err);
-              this.messageService.add({
-                severity: 'error',
-                summary: `${this.i18n.t('shared.toast.something-went-wrong')}`,
-              });
-            },
-          });
-        this.subscriptions.push(updateUserDetailsSub);
+          const updateUserDetailsSub = this.userService
+            .updateUserDetails(updatedUser)
+            .subscribe({
+              next: () => this.handleSuccess(updatedUser),
+              error: (err) => this.handleError(err),
+            });
+          this.subscriptions.push(updateUserDetailsSub);
+        }
       });
     this.subscriptions.push(getUserByIdSub);
+  }
+  private handleSuccess(updatedUser: User | Employee) {
+    console.log('Form Submitted');
+    this.authService.login(updatedUser);
+    this.messageService.add({
+      severity: 'success',
+      summary: `${this.i18n.t('shared.toast.profile-udpated-successfuly')}`,
+    });
+
+    setTimeout(() => {
+      this.router.navigate(['/profile/' + this.user?.id]);
+      this.isEditing = false;
+      this.isChangingPass = false;
+      this.user = this.authService.getCurrentUser();
+      this.loadProfile();
+      this.profileForm.get('password')?.setValue('');
+      this.profileForm.get('newPassword')?.setValue('');
+    }, 1500);
+  }
+
+  private handleError(err: any) {
+    console.log('Error on Update', err);
+    this.messageService.add({
+      severity: 'error',
+      summary: `${this.i18n.t('shared.toast.something-went-wrong')}`,
+    });
   }
 
   edit() {

@@ -32,6 +32,7 @@ export class AuthService {
       const employee = user as Employee;
       localStorage.setItem('hotel', employee.hotel);
       localStorage.setItem('jobTitle', employee.jobTitle);
+      localStorage.setItem('jobCategory', employee.jobCategory);
     }
     this.loggedInSubject.next(true);
   }
@@ -44,6 +45,12 @@ export class AuthService {
     localStorage.removeItem('user_role');
     localStorage.removeItem('phone');
     localStorage.removeItem('pfp');
+
+
+    localStorage.removeItem('hotel');
+    localStorage.removeItem('jobTitle');
+    localStorage.removeItem('jobCategory');
+    
     this.loggedInSubject.next(false);
   }
 
@@ -69,12 +76,14 @@ export class AuthService {
     const user = this.getCurrentUser();
     const hotel = localStorage.getItem('hotel');
     const jobTitle = localStorage.getItem('jobTitle');
+    const jobCategory = localStorage.getItem('jobCategory');
 
     if (user && hotel && jobTitle) {
       return {
         ...user,
         hotel,
         jobTitle,
+        jobCategory,
       } as Employee;
     }
 
