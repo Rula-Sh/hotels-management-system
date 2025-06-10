@@ -127,6 +127,9 @@
     "type": "النوع",
     "hotel": "الفندق",
     "date": "التاريخ",
+    "date-requested": "تاريخ الطلب",
+    "date-booked": "تاريخ الحجز",
+    "date-checked-out": "تاريخ الدفع",
     "price": "السعر",
     "cancel": "إلغاء الحجز",
     "view-services": "عرض الخدمات",
@@ -230,7 +233,7 @@
       "update": "تحديث",
       "submit": "إرسال",
       "cancel": "إلغاء",
-      "go-back": "
+      "go-back": "الرجوع",
       "edit-phone-number": "تعديل رقم الهاتف",
       "save": "حفظ",
       "change-pass": "تغيير كلمة المرور"
@@ -329,9 +332,9 @@
       "reject": "رفض",
       "fire": "طرد",
       "cancel": "إلغاء",
-      "reject-reservation": "رفض الحجز",
-      "confirm-reject-reservation-question": "هل أنت متأكد من رغبتك في رفض هذا الحجز؟",
       "remove-service": "إزالة الخدمة",
+      "confirm-reject-reservation-question": "هل أنت متأكد من رغبتك في رفض هذا الحجز؟",
+      "reject-reservation": "رفض الحجز",
       "confirm-remove-service-question": "هل أنت متأكد من رغبتك في إزالة هذه الخدمة؟",
       "remove-room": "إزالة الغرفة",
       "confirm-remove-room-question": "هل أنت متأكد من رغبتك في إزالة هذه الغرفة؟",
@@ -343,6 +346,6 @@
       "sort-by": "فرز حسب",
       "could-not-find-what-you-are-searching-for": "تعذر العثور على ما تبحث عنه"
     },
-    "key-name": "الإجراءات"
+    "action": "الإجراءات"
   }
 }
