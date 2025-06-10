@@ -48,17 +48,27 @@
             >
               {{ "reservation.cancel" | translate }}
             </button>
-
-            <!-- زر الخدمات -->
+            <!-- زر عرض الخدمات -->
             <a
               class="btn btn-primary btn-sm ms-2"
               *ngIf="reservation.approvalStatus === 'Approved'"
               [routerLink]="['/available-services']"
               [queryParams]="{ hotel: reservation.room.hotel }"
+              [class.disabled]="reservation.paymentStatus === 'Paid'"
+              [attr.aria-disabled]="reservation.paymentStatus === 'Paid'"
+              tabindex="{{ reservation.paymentStatus === 'Paid' ? -1 : 0 }}"
             >
               {{ "reservation.view-services" | translate }}
             </a>
-                   
+            <!-- زر الدفع -->
+            <button
+              class="btn btn-primary btn-sm ms-md-4"
+               *ngIf="reservation.approvalStatus === 'Approved'"
+              (click)="goToCheckout(reservation.room.id)"
+              pButton
+            >
+              Checkout
+            </button>
 
             <!-- رابط الانتقال إلى صفحة تفاصيل الغرفة -->
             <a
@@ -68,8 +78,6 @@
             >
               🔗 {{ "reservation.view-room-details" | translate }}
             </a>
-
-            <button (click)="goToCheckout(reservation.room.id)" pButton>Checkout</button>
           </div>
         </div>
       </div>
