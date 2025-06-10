@@ -96,7 +96,7 @@
           (click)="cancel()"
         ></i>
       </div>
-      <form [formGroup]="profileForm" (ngSubmit)="updateProfile()">
+      <form [formGroup]="profileForm">
         <div class="input-container">
           <label for="name"> {{ "shared.form.name" | translate }}:</label>
           <div class="input-error">
@@ -215,6 +215,7 @@
             </div>
           </div>
         </div>
+        @if(isChangingPass){
         <div class="input-container">
           <label for="newPassword"
             >{{ "shared.form.new-password" | translate }}:</label
@@ -299,11 +300,30 @@
             </div>
           </div>
         </div>
+        } @else {
+        <div class="d-flex justify-content-end me-5">
+          <button
+            (click)="isChangingPass = !isChangingPass"
+            class="m-1 me-4 btn btn-change-pass rounded-2 text-sm-center border-0 text-decoration-underline"
+          >
+            <small>{{ "shared.button.change-pass" | translate }}</small>
+          </button>
+        </div>
+
+        }
         <div class="mt-4 d-flex align-items-center justify-content-center">
-          <button class="m-1 btn-submit">
+          <button
+            class="m-1 btn-submit"
+            (click)="updateProfile()"
+            [disabled]="profileForm.invalid"
+          >
             {{ "shared.button.submit" | translate }}
           </button>
-          <button class="m-1 btn-outline-primary rounded-2" (click)="cancel()">
+          <button
+            class="m-1 btn-outline-primary rounded-2"
+            (click)="cancel()"
+            (click)="isChangingPass = !isChangingPass"
+          >
             {{ "shared.button.cancel" | translate }}
           </button>
         </div>

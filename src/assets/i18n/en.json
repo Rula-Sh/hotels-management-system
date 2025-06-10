@@ -234,7 +234,9 @@
       "update": "Update",
       "submit": "Submit",
       "cancel": "Cancel",
-      "go-back": "Go Back"
+      "go-back": "Go Back",
+      "change-pass": "Change Password"
+
     },
     "form": {
       "input-invalid": "Invalid input",
@@ -319,7 +321,8 @@
       "payment-success-detail": "You paid {{amount}} JOD",
       "payment-failed-title": "Payment Failed",
       "payment-missing-info": "Missing reservation or user information.",
-      "payment-error": "An error occurred while processing payment."
+      "payment-error": "An error occurred while processing payment.",
+      "no-new-data-to-update": "No new data to update"
     },
     "confirm-dialog": {
       "delete": "Delete",

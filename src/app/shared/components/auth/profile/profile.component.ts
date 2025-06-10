@@ -40,6 +40,7 @@ export class ProfileComponent {
   profileForm!: FormGroup;
   isEditing = false;
   profileData: any;
+  isChangingPass = false;
 
   selectedFile: File | null = null;
   uploadPreset = 'HMS - IIH Project';
@@ -90,7 +91,7 @@ export class ProfileComponent {
         ],
       ],
       phone: [undefined],
-      password: ['', Validators.required],
+      password: [''],
       imageUrl: [''],
       newPassword: [
         '',
@@ -115,7 +116,6 @@ export class ProfileComponent {
     this.profileForm.patchValue({
       phone: this.profileData.phone.substring(4),
     });
-
     // i can use mark all as touched to validate the data once it is loaded
   }
 
@@ -180,17 +180,38 @@ export class ProfileComponent {
   updateProfile() {
     if (!this.user) return;
 
+    if (this.profileForm.invalid) {
+      this.profileForm.markAllAsTouched();
+      return;
+    }
+
     const getUserByIdSub = this.userService
       .getUserById(this.user.id)
       .subscribe((fullUser) => {
         let password = fullUser.password;
 
         if (
+          this.isChangingPass &&
           this.profileForm.value.newPassword ===
             this.profileForm.value.confirmPassword &&
           this.profileForm.value.newPassword.trim() !== ''
         ) {
           password = btoa(this.profileForm.value.newPassword);
+        } else {
+          if (this.profileForm.value.phone == null) {
+            this.profileForm.value.phone = '';
+          }
+          if (
+            this.profileForm.value.name == this.profileData.name &&
+            this.profileForm.value.email == this.profileData.email &&
+            this.profileForm.value.phone == this.profileData.phone.substring(4)
+          ) {
+            this.messageService.add({
+              severity: 'warn',
+              summary: `${this.i18n.t('shared.toast.no-new-data-to-update')}`,
+            });
+            return;
+          }
         }
 
         const updatedUser: User = {
@@ -219,9 +240,11 @@ export class ProfileComponent {
               setTimeout(() => {
                 this.router.navigate(['/profile/' + this.user?.id]);
                 this.isEditing = false;
+                this.isChangingPass = false;
                 this.user = this.authService.getCurrentUser();
                 this.loadProfile();
-                this.profileForm.reset();
+                this.profileForm.get('password')?.setValue('');
+                this.profileForm.get('newPassword')?.setValue('');
               }, 1500);
             },
             error: (err) => {

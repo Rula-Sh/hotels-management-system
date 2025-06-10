@@ -230,7 +230,8 @@
       "update": "تحديث",
       "submit": "إرسال",
       "cancel": "إلغاء",
-      "go-back": "العودة"
+      "go-back": "العودة",
+      "change-pass": "تغيير كلمة المرور"
     },
     "form": {
       "input-invalid": "المعطى غير صالح",
@@ -315,7 +316,8 @@
       "payment-success-detail": "لقد دفعت {{amount}} دينار أردني",
       "payment-failed-title": "فشل الدفع",
       "payment-missing-info": "بيانات الحجز أو المستخدم غير مكتملة.",
-      "payment-error": "حدث خطأ أثناء معالجة الدفع."
+      "payment-error": "حدث خطأ أثناء معالجة الدفع.",
+      "no-new-data-to-update": "لا يوجد معلومات جديدة لتحديثها"
     },
     "confirm-dialog": {
       "delete": "حذف",
