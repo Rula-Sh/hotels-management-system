@@ -43,47 +43,55 @@
                   "reservation.status." +
                     reservation.approvalStatus.toLowerCase() | translate
                 }}
-              </span>
+              </span>}
             </p>
 
-            <!-- زر الإلغاء -->
-            <button
-              class="btn btn-danger btn-sm"
-              (click)="cancelReservation(reservation.id)"
-              *ngIf="reservation.approvalStatus !== 'Approved'"
-            >
-              {{ "reservation.cancel" | translate }}
-            </button>
-            <!-- زر عرض الخدمات -->
-            <a
-              class="btn btn-primary btn-sm ms-2"
-              *ngIf="reservation.approvalStatus === 'Approved'"
-              [routerLink]="['/available-services']"
-              [queryParams]="{ hotel: reservation.room.hotel }"
-              [class.disabled]="reservation.paymentStatus === 'Paid'"
-              [attr.aria-disabled]="reservation.paymentStatus === 'Paid'"
-              tabindex="{{ reservation.paymentStatus === 'Paid' ? -1 : 0 }}"
-            >
-              {{ "reservation.view-services" | translate }}
-            </a>
-            <!-- زر الدفع -->
-            <button
-              class="btn btn-primary btn-sm ms-md-4"
-               *ngIf="reservation.approvalStatus === 'Approved'"
-              (click)="goToCheckout(reservation.room.id)"
-              pButton
-            >
-             {{ "reservation.checkout" | translate }}
-            </button>
+            <div class="d-flex flex-wrap align-items-center mt-2 gap-2">
+              <!-- زر الإلغاء -->
+              <button
+                class="btn btn-danger btn-sm"
+                (click)="cancelReservation(reservation.id)"
+                *ngIf="reservation.approvalStatus !== 'Approved'"
+              >
+                {{ "reservation.cancel" | translate }}
+              </button>
 
-            <!-- رابط الانتقال إلى صفحة تفاصيل الغرفة -->
-            <a
-              [routerLink]="['/room-details', reservation.room.id]"
-              class="room-details-link"
-              [attr.lang]="lang"
-            >
-              🔗 {{ "reservation.view-room-details" | translate }}
-            </a>
+              <!-- زر عرض الخدمات -->
+              <a
+                *ngIf="
+                  reservation.approvalStatus === 'Approved' &&
+                  reservation.paymentStatus !== 'Paid'
+                "
+                class="btn btn-primary btn-sm"
+                [routerLink]="['/available-services']"
+                [queryParams]="{ hotel: reservation.room.hotel }"
+              >
+                {{ "reservation.view-services" | translate }}
+              </a>
+
+              <!-- زر الدفع -->
+              <button
+                class="btn btn-primary btn-sm"
+                *ngIf="
+                  reservation.approvalStatus === 'Approved' &&
+                  reservation.paymentStatus !== 'Paid'
+                "
+                (click)="goToCheckout(reservation.room.id)"
+                pButton
+              >
+                {{ "reservation.checkout" | translate }}
+              </button>
+
+              <!-- رابط تفاصيل الغرفة -->
+              <a
+                *ngIf="!reservation.isCheckedOut"
+                [routerLink]="['/room-details', reservation.room.id]"
+                class="room-details-link"
+                [attr.lang]="lang"
+              >
+                🔗 {{ "reservation.view-room-details" | translate }}
+              </a>
+            </div>
           </div>
         </div>
       </div>
