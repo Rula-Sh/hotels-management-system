@@ -215,18 +215,7 @@
     "requests-status": "حالة الطلبات",
     "requests": "الطلبات الخدمات"
   },
-  "checkout": {
-    "checkout-summary": "ملخص الدفع",
-    "name": "الاسم",
-    "price-per-night": "سعر الليلة الواحدة",
-    "nights-stayed": "ليالي المبيت",
-    "total-room-cost": "إجمالي تكلفة الغرفة",
-    "services-requested": "الخدمات التي تم طلبها",
-    "none": "لا يوجد",
-    "total-services-cost": "إجمالي تكلفة الخدمات",
-    "checkout": "دفع",
-    "total":"المجموع الكلي"
-  },
+
   "shared": {
     "entity": {
       "id": "الرقم التعريفي"
