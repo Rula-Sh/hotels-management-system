@@ -51,8 +51,8 @@
         </a>
         } @if(role == 'Customer'){
         <a
-          [routerLink]="'/available-services'"
-          routerLinkActive="active-link"
+          href="#"
+          (click)="goToAvailableServices($event)"
           [title]="'header.customer.available-services' | translate"
         >
           {{ "header.customer.available-services" | translate }}
@@ -111,3 +111,4 @@
     </nav>
   </div>
 </header>
+<p-toast></p-toast>
