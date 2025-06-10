@@ -216,7 +216,7 @@
     "none": "None",
     "total-services-cost": "Total Services Cost",
     "checkout": "Checkout",
-    "total":"Total"
+    "total": "Total"
   },
   "shared": {
     "entity": {
@@ -312,7 +312,14 @@
       "login-successful": "Login successful!",
       "email-already-exists": "Email already exists!",
       "registered-successfully": "Registered successfully!",
-      "status-updated-to-booked": " Status updated to booked!"
+      "status-updated-to-booked": " Status updated to booked!",
+      "no-booked-room-title": "No Booked Room",
+      "no-booked-room-message": "You must have a booked room to access available services.",
+      "payment-success-title": "Payment Successful",
+      "payment-success-detail": "You paid {{amount}} JOD",
+      "payment-failed-title": "Payment Failed",
+      "payment-missing-info": "Missing reservation or user information.",
+      "payment-error": "An error occurred while processing payment."
     },
     "confirm-dialog": {
       "delete": "Delete",

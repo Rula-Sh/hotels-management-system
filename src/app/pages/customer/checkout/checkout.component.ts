@@ -7,6 +7,7 @@ import { Service } from '../../../shared/models/Service.model';
 import { CommonModule } from '@angular/common';
 import { ToastModule } from 'primeng/toast';
 import { I18nPipe } from '../../../shared/pipes/i18n.pipe';
+import { I18nService } from '../../../core/services/i18n.service';
 
 @Component({
   selector: 'app-checkout',
@@ -24,14 +25,14 @@ export class CheckoutComponent implements OnInit {
   nightsStayed: number = 1;
 
   reservation: any;
-  isPaid = false;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private bookingService: BookingService,
     private messageService: MessageService,
-    private authService: AuthService
+    private authService: AuthService,
+    private i18nService: I18nService
   ) {}
 
   ngOnInit() {
@@ -40,9 +41,9 @@ export class CheckoutComponent implements OnInit {
     const roomId = this.activatedRoute.snapshot.paramMap.get('roomId');
 
     if (userId && roomId) {
-      this.bookingService
-        .getBookingByUserAndRoom(userId, roomId)
-        .subscribe((reservation: any) => {
+      this.bookingService.getBookingByUserAndRoom(userId, roomId).subscribe({
+        next: (reservation: any) => {
+          console.log('📦 Booking fetched:', reservation);
           if (reservation) {
             this.reservation = reservation;
 
@@ -63,6 +64,7 @@ export class CheckoutComponent implements OnInit {
             this.bookingService
               .getApprovedServicesByCustomerAndRoom(userId, roomId)
               .subscribe((services) => {
+                console.log('📦 Services fetched:', services);
                 this.services = services;
                 this.servicesTotal = services.reduce(
                   (sum: number, s: Service) => sum + (s.price || 0),
@@ -72,17 +74,36 @@ export class CheckoutComponent implements OnInit {
                 // ✅ المجموع الكلي: غرفة + خدمات
                 this.totalCost = this.roomCost + this.servicesTotal;
               });
+          } else {
+            console.warn('⚠️ No reservation found');
           }
-        });
+        },
+        error: (err) => {
+          console.error('❌ Failed to load booking', err);
+        },
+      });
     }
   }
 
   payNow() {
-    if (!this.reservation) return;
+    const user = this.authService.getCurrentUser();
+    const userId = user?.id;
+    const roomId = this.activatedRoute.snapshot.paramMap.get('roomId');
+    const reservationId = this.reservation?.id;
+
+    if (!this.reservation || !userId || !roomId || !reservationId) {
+      this.messageService.add({
+        severity: 'error',
+        summary: this.i18nService.t('shared.toast.payment-failed-title'),
+        detail: this.i18nService.t('shared.toast.payment-missing-info'),
+      });
+      return;
+    }
 
     const updatedReservation = {
-      paymentAmount: this.totalCost,
+      ...this.reservation,
       paymentStatus: 'Paid',
+      paymentAmount: this.totalCost,
       isCheckedOut: true,
       date: new Date(),
     };
@@ -91,43 +112,36 @@ export class CheckoutComponent implements OnInit {
       bookedStatus: 'Available',
     };
 
-    const user = this.authService.getCurrentUser();
-    const userId = user?.id;
-    const roomId = this.activatedRoute.snapshot.paramMap.get('roomId');
-    const reservationId = this.reservation.id;
+    this.bookingService
+      .updateReservationAndRoom(
+        reservationId,
+        roomId,
+        updatedReservation,
+        updatedRoom
+      )
+      .subscribe({
+        next: () => {
+          this.messageService.add({
+            severity: 'success',
+            summary: this.i18nService.t('shared.toast.payment-success-title'),
+            detail: this.i18nService.t('shared.toast.payment-success-detail', {
+              amount: this.totalCost,
+            }),
+          });
 
-    if (userId && roomId && reservationId) {
-      this.bookingService
-        .updateReservationAndRoom(
-          reservationId,
-          roomId,
-          updatedReservation,
-          updatedRoom
-        )
-        .subscribe({
-          next: () => {
-            this.messageService.add({
-              severity: 'success',
-              summary: 'Payment Successful',
-            });
-            setTimeout(() => {
-              this.router.navigate(['/']);
-            }, 1500);
-          },
-          error: (err) => {
-            console.error('Update failed', err);
-            this.messageService.add({
-              severity: 'error',
-              summary: 'Payment update failed',
-              detail: err.message || 'Unknown error',
-            });
-          },
-        });
-    } else {
-      this.messageService.add({
-        severity: 'error',
-        summary: 'Something went wrong',
+          setTimeout(() => {
+            this.router.navigate(['/']);
+          }, 1500);
+        },
+        error: (err) => {
+          console.error('Payment update error:', err);
+          this.messageService.add({
+            severity: 'error',
+            summary: this.i18nService.t('shared.toast.payment-failed-title'),
+            detail:
+              err.message || this.i18nService.t('shared.toast.payment-error'),
+          });
+        },
       });
-    }
   }
 }
