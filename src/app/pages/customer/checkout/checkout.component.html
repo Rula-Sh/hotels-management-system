@@ -1,31 +1,32 @@
 <p-toast></p-toast>
 <div class="container">
   <div class="card">
-    <h2>Checkout Summary</h2>
+    <h2>{{ "checkout.title" | translate }}</h2>
 
-    <p><strong>Room:</strong> {{ reservation?.room?.title }}</p>
-    <p><strong>Price per Night:</strong> {{ reservation?.room?.price }} JOD</p>
-    <p><strong>Nights Stayed:</strong> {{ nightsStayed }}</p>
-    <p><strong>Room Cost:</strong> {{ roomCost }} JOD</p>
+    <p><strong>{{ "checkout.room" | translate }}:</strong> {{ reservation?.room?.title }}</p>
+    <p><strong>{{ "checkout.price-per-night" | translate }}:</strong> {{ reservation?.room?.price }} JOD</p>
+    <p><strong>{{ "checkout.nights-stayed" | translate }}:</strong> {{ nightsStayed }}</p>
+    <p><strong>{{ "checkout.room-cost" | translate }}:</strong> {{ roomCost }} JOD</p>
 
     <hr />
 
-    <h3>Approved Services</h3>
+    <h3>{{ "checkout.approved-services" | translate }}</h3>
     <ul *ngIf="services.length > 0">
       <li *ngFor="let s of services">{{ s.title }} - {{ s.price }} JOD</li>
     </ul>
-    <p *ngIf="services.length === 0">No approved services.</p>
-    <p><strong>Services Cost:</strong> {{ servicesTotal }} JOD</p>
+    <p *ngIf="services.length === 0">{{ "checkout.no-approved-services" | translate }}</p>
+    <p><strong>{{ "checkout.services-cost" | translate }}:</strong> {{ servicesTotal }} JOD</p>
 
     <hr />
 
-    <p class="total">Total Amount: {{ totalCost }} JOD</p>
+    <p class="total">{{ "checkout.total-amount" | translate }}: {{ totalCost }} JOD</p>
 
     <button (click)="payNow()" class="btn btn-success mt-3" [disabled]="isPaid">
-      {{ isPaid ? "Paid" : "Pay Now" }}
+      {{ isPaid ? ("checkout.paid" | translate) : ("checkout.pay-now" | translate) }}
     </button>
+
     <p *ngIf="isPaid" class="text-success fw-bold mt-2">
-      ✅ Payment has been completed.
+      ✅ {{ "checkout.payment-completed" | translate }}
     </p>
   </div>
 </div>

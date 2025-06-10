@@ -6,13 +6,15 @@ import { AuthService } from '../../../core/services/auth.service';
 import { Service } from '../../../shared/models/Service.model';
 import { CommonModule, } from '@angular/common';
 import { ToastModule } from 'primeng/toast';
+import { I18nPipe } from '../../../shared/pipes/i18n.pipe';
+import { I18nService } from '../../../core/services/i18n.service';
 
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.scss'],
   providers: [MessageService],
-  imports: [CommonModule,ToastModule],
+  imports: [CommonModule,ToastModule,I18nPipe],
   standalone: true,
 })
 export class CheckoutComponent implements OnInit {
@@ -29,10 +31,12 @@ nightsStayed: number = 1;
     private route: ActivatedRoute,
     private bookingService: BookingService,
     private messageService: MessageService,
-    private authService: AuthService
+    private authService: AuthService,
+     private i18nService: I18nService
   ) {}
 
 ngOnInit() {
+  
   const user = this.authService.getCurrentUser();
   const userId = user?.id;
  const roomId = this.route.snapshot.paramMap.get('roomId');
@@ -80,8 +84,8 @@ payNow() {
   if (!this.reservation || !userId || !roomId) {
     this.messageService.add({
       severity: 'error',
-      summary: 'Payment Failed',
-      detail: 'Missing reservation or user information.'
+      summary: this.i18nService.t('shared.toast.payment-failed-title'),
+      detail: this.i18nService.t('shared.toast.payment-missing-info')
     });
     return;
   }
@@ -101,16 +105,18 @@ payNow() {
 
       this.messageService.add({
         severity: 'success',
-        summary: 'Payment Successful',
-        detail: `You paid ${this.totalCost} JOD`
+        summary: this.i18nService.t('shared.toast.payment-success-title'),
+        detail: this.i18nService.t('shared.toast.payment-success-detail', {
+          amount: this.totalCost
+        })
       });
     },
     error: (err) => {
       console.error('Payment update error:', err);
       this.messageService.add({
         severity: 'error',
-        summary: 'Payment Failed',
-        detail: 'An error occurred while processing payment.'
+        summary: this.i18nService.t('shared.toast.payment-failed-title'),
+        detail: this.i18nService.t('shared.toast.payment-error')
       });
     }
   });
