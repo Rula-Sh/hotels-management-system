@@ -213,7 +213,4 @@ export class MyReservationsComponent implements OnInit {
     // لو عندك خدمة i18nService مع خاصية getLanguage()
     return this.i18nService.getLanguage();
   }
-  goToCheckout(roomId: string) {
-    this.router.navigate(['/checkout', roomId]);
-  }
 }
