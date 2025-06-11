@@ -402,7 +402,7 @@
         ],
         "bookedStatus": "Booked"
       },
-      "date": "2025-06-8T05:26:27.339Z",
+      "date": "2025-06-08T05:26:27.339Z",
       "paymentAmount": 100,
       "paymentStatus": "Unpaid",
       "approvalStatus": "Approved",
@@ -438,7 +438,7 @@
         ],
         "bookedStatus": "Available"
       },
-      "date": "2025-06-9T05:28:56.220Z",
+      "date": "2025-06-09T05:28:56.220Z",
       "paymentAmount": 200,
       "paymentStatus": "Unpaid",
       "approvalStatus": "Pending",
