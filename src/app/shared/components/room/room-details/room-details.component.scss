@@ -153,8 +153,12 @@ i {
   text-shadow: 2px 2px 20px black;
 }
 
+.green-bg {
+  background-color: $color-green;
+}
+
 @media screen and (max-width: 575px) {
-  .container {        
+  .container {
     margin: 40px;
   }
 }
