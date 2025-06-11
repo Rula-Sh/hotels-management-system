@@ -28,9 +28,13 @@ export class AvailableServicesComponent implements OnInit {
   selectedRoomId: string = '';
   allUserRoomsServices: Service[] = [];
   filteredServices: Service[] = [];
+  serviceIdToRequestIdMap: { [serviceId: string]: string } = {};
   userRooms: Room[] = [];
-  requestedServiceIds: string[] = [];
-  requestedServicesStatus: { [id: string]: string } = {};
+  requestedServiceIdsByRoom: { [roomId: string]: string[] } = {};
+  requestedServiceStatusByRoom: {
+    [roomId: string]: { [serviceTitle: string]: string };
+  } = {};
+
   hotelNames: string[] = [];
 
   subscriptions: Subscription[] = [];
@@ -106,10 +110,20 @@ export class AvailableServicesComponent implements OnInit {
     }).subscribe({
       next: ({ allServices, requested }) => {
         // Build status map from requested services
-        this.requestedServicesStatus = {};
-        this.requestedServiceIds = requested.map((r) => {
-          this.requestedServicesStatus[r.title] = r.requestStatus;
-          return r.title;
+        requested.forEach((r) => {
+          const roomId = r.room?.id;
+          const serviceTitle = r.title; // This identifies the service uniquely within a room
+          const status = r.requestStatus;
+
+          if (!roomId) return;
+
+          if (!this.requestedServiceIdsByRoom[roomId]) {
+            this.requestedServiceIdsByRoom[roomId] = [];
+            this.requestedServiceStatusByRoom[roomId] = {};
+          }
+
+          this.requestedServiceIdsByRoom[roomId].push(serviceTitle);
+          this.requestedServiceStatusByRoom[roomId][serviceTitle] = status;
         });
 
         // Filter services by hotel
@@ -189,15 +203,21 @@ export class AvailableServicesComponent implements OnInit {
     this.subscriptions.push(createServiceRequestSub);
   }
 
-  getServiceButtonLabel(serviceId: string): string {
-    const status = this.requestedServicesStatus[serviceId];
+  getServiceButtonLabel(service: Service): string {
+    const roomId = this.selectedRoomId;
+    const title = service.title;
+
+    const status = this.requestedServiceStatusByRoom[roomId]?.[title];
     if (status === 'In Progress') return 'Approved';
     if (status === 'Pending') return 'Requested';
     return 'Request Service';
   }
 
-  isRequestButtonDisabled(serviceId: string): boolean {
-    const status = this.requestedServicesStatus[serviceId];
+  isRequestButtonDisabled(service: Service): boolean {
+    const roomId = this.selectedRoomId;
+    const title = service.title;
+
+    const status = this.requestedServiceStatusByRoom[roomId]?.[title];
     return status === 'Pending' || status === 'In Progress';
   }
 

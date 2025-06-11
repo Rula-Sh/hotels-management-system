@@ -126,10 +126,10 @@
 
     <button
       class="btn-primary"
-      [disabled]="isRequestButtonDisabled(service.title)"
+      [disabled]="isRequestButtonDisabled(service)"
       (click)="requestService(service)"
     >
-      {{ getServiceButtonLabel(service.title) }}
+      {{ getServiceButtonLabel(service) }}
     </button>
   </div>
 </div>
