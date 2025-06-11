@@ -400,7 +400,7 @@ export class DashboardComponent {
         case 'Pending':
           statusCounts.pending++;
           break;
-        case 'inProgress':
+        case 'In Progress':
           statusCounts.inProgress++;
           break;
         case 'Completed':
@@ -415,7 +415,7 @@ export class DashboardComponent {
     new Chart('requestsStatusChart', {
       type: 'doughnut',
       data: {
-        labels: ['Pending', 'inProgress', 'Completed', 'Canceled'],
+        labels: ['Pending', 'In Progress', 'Completed', 'Canceled'],
         datasets: [
           {
             data: [

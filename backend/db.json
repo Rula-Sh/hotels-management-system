@@ -15,7 +15,7 @@
         "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749379491/565065265_zthw6e.jpg",
         "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749379492/207079375_rsghii.jpg"
       ],
-      "bookedStatus": "Booked"
+      "bookedStatus": "Available"
     },
     {
       "id": "r2",
@@ -29,6 +29,53 @@
       "price": 300,
       "imagesUrl": [
         "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749380759/crystal-grand-banquet-hall-mississauga-366-full_size_vmjsrs.webp"
+      ],
+      "bookedStatus": "Available"
+    },
+    {
+      "id": "r5",
+      "title": "Single Economy",
+      "roomType": "Room",
+      "capacity": 1,
+      "floor": 1,
+      "hotel": "City Lights",
+      "location": "loc r5 67890",
+      "details": "Compact room ideal for solo travelers.",
+      "price": 60,
+      "imagesUrl": [
+        "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748011951/marina-bay-view-room-king-1_t3jdl4.jpg"
+      ],
+      "bookedStatus": "Available"
+    },
+    {
+      "id": "r6",
+      "title": "Executive Suite",
+      "roomType": "Suite",
+      "capacity": 4,
+      "floor": 3,
+      "hotel": "City Lights",
+      "location": "loc r6 67890",
+      "details": "Luxurious suite with office space and lounge.",
+      "price": 100,
+      "imagesUrl": [
+        "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749379685/421113100_juim7n.jpg",
+        "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749379683/363394700_yiklrs.jpg",
+        "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749379684/363394597_brmydy.jpg"
+      ],
+      "bookedStatus": "Booked"
+    },
+    {
+      "id": "r7",
+      "title": "Deluxe King Room",
+      "roomType": "Deluxe",
+      "capacity": 2,
+      "floor": 2,
+      "hotel": "Sunset Retreat",
+      "location": "loc r7 12345",
+      "details": "Spacious room with a king-size bed and garden view.",
+      "price": 75,
+      "imagesUrl": [
+        "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748011951/ammwi-w-suite-livingroom-8998-hor-clsc_aybpwx.webp"
       ],
       "bookedStatus": "Available"
     },
@@ -64,39 +111,127 @@
         "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749379544/654123212_fhfds2.jpg",
         "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749379543/654123196_t3mh1i.jpg"
       ],
-      "bookedStatus": "Available"
+      "bookedStatus": "Booked"
     },
     {
-      "id": "r5",
-      "title": "Single Economy",
-      "roomType": "Room",
-      "capacity": 1,
+      "id": "r9",
+      "title": "Standard Twin Room",
+      "roomType": "Standard",
+      "capacity": 2,
       "floor": 1,
-      "hotel": "City Lights",
-      "location": "loc r5 67890",
-      "details": "Compact room ideal for solo travelers.",
-      "price": 60,
+      "hotel": "Ocean Breeze Inn",
+      "location": "loc r2 23456",
+      "details": "Comfortable room with twin beds and free Wi-Fi.",
+      "price": 50,
       "imagesUrl": [
-        "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748011951/marina-bay-view-room-king-1_t3jdl4.jpg"
+        "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748011951/Blog-6-scaled_iq79tm.webp"
       ],
       "bookedStatus": "Available"
     },
     {
-      "id": "r6",
-      "title": "Executive Suite",
+      "id": "r9",
+      "title": "Presidential Suite",
       "roomType": "Suite",
-      "capacity": 4,
-      "floor": 3,
-      "hotel": "City Lights",
-      "location": "loc r6 67890",
-      "details": "Luxurious suite with office space and lounge.",
-      "price": 100,
+      "capacity": 5,
+      "floor": 5,
+      "hotel": "Skyline Grand",
+      "location": "loc r3 34567",
+      "details": "Top-floor suite with private balcony and personal butler.",
+      "price": 250,
       "imagesUrl": [
-        "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749379685/421113100_juim7n.jpg",
-        "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749379683/363394700_yiklrs.jpg",
+        "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748011951/140127103345-peninsula-shanghai-deluxe-mock-up_oatn0j.jpg"
+      ],
+      "bookedStatus": "Available"
+    },
+    {
+      "id": "r10",
+      "title": "Economy Single Room",
+      "roomType": "Economy",
+      "capacity": 1,
+      "floor": 1,
+      "hotel": "Budget Stay",
+      "location": "loc r4 45678",
+      "details": "Cozy single room ideal for short stays.",
+      "price": 30,
+      "imagesUrl": [
+        "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749379569/113557123_dlke8s.jpg"
+      ],
+      "bookedStatus": "Available"
+    },
+    {
+      "id": "r11",
+      "title": "Deluxe King Suite",
+      "roomType": "Deluxe",
+      "capacity": 2,
+      "floor": 3,
+      "hotel": "Grand Vista",
+      "location": "loc r1 12345",
+      "details": "Spacious suite with king bed and city view.",
+      "price": 120,
+      "imagesUrl": [
+        "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749620315/forty-two-hotel-brooklyn-rooms_0002.1619x0_gpfsvm.jpg"
+      ],
+      "bookedStatus": "Booked"
+    },
+    {
+      "id": "r12",
+      "title": "Standard Double Room",
+      "roomType": "Standard",
+      "capacity": 2,
+      "floor": 2,
+      "hotel": "Comfort Inn",
+      "location": "loc r12 23456",
+      "details": "Comfortable room with two single beds and workspace.",
+      "price": 60,
+      "imagesUrl": [
+        "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749379523/628723668_mtd3fu.jpg"
+      ],
+      "bookedStatus": "Available"
+    },
+    {
+      "id": "r13",
+      "title": "Luxury Penthouse Suite",
+      "roomType": "Luxury",
+      "capacity": 4,
+      "floor": 10,
+      "hotel": "Skyline Hotel",
+      "location": "loc r13 34567",
+      "details": "Top-floor suite with panoramic view and private terrace.",
+      "price": 300,
+      "imagesUrl": [
         "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749379684/363394597_brmydy.jpg"
       ],
       "bookedStatus": "Available"
+    },
+    {
+      "id": "r14",
+      "title": "Family Suite",
+      "roomType": "Family",
+      "capacity": 5,
+      "floor": 4,
+      "hotel": "Holiday Haven",
+      "location": "loc r14 56789",
+      "details": "Perfect for families with two bedrooms and a play area.",
+      "price": 150,
+      "imagesUrl": [
+        "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749620288/67372a109671c9cd16a05a73_Rooms_Header_1_lfuwyt.png"
+      ],
+      "bookedStatus": "Available"
+    },
+    {
+      "id": "r15",
+      "title": "Business Executive Room",
+      "roomType": "Executive",
+      "capacity": 1,
+      "floor": 5,
+      "hotel": "Metro Business Hotel",
+      "location": "loc r15 67890",
+      "details": "Designed for business travelers with fast Wi-Fi and desk.",
+      "price": 95,
+      "imagesUrl": [
+        "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749620308/Large-room-scaled_dxyjzm.jpg"
+      ],
+      "bookedStatus": "Booked"
     }
   ],
   "users": [
@@ -197,6 +332,17 @@
       "role": "Employee"
     },
     {
+      "id": "emp9",
+      "name": "Employee 9",
+      "email": "emp9@gmail.com",
+      "phone": "+962 7 7345 2434",
+      "hotel": "Grand Vista",
+      "jobCategory": "Housekeeping",
+      "jobTitle": "Room Cleaner",
+      "password": "MTIzMTIz",
+      "role": "Employee"
+    },
+    {
       "id": "c1",
       "name": "Customer One",
       "email": "customer1@gmail.com",
@@ -228,37 +374,172 @@
   ],
   "reservations": [
     {
-      "id": "0c74",
+      "id": "6007",
       "customer": {
-        "id": "9884",
-        "name": "areen",
-        "email": "AREEN11823@GMAIL.COM",
-        "password": "QXJlZW4xMSM=",
+        "id": "c1",
+        "name": "Customer One",
+        "email": "customer1@gmail.com",
+        "phone": "+962 7 7822 1324",
+        "password": "MTIzMTIz",
         "role": "Customer"
       },
-      "customerId": "9884",
-      "roomId": "r1",
+      "customerId": "c1",
+      "roomId": "r6",
       "room": {
-        "id": "r1",
-        "title": "Deluxe Suite",
-        "roomType": "Room",
-        "capacity": 2,
-        "floor": 2,
-        "hotel": "Sunrise Inn",
-        "location": "loc r1 12345",
-        "details": "A deluxe room with sea view.",
-        "price": 120,
+        "id": "r6",
+        "title": "Executive Suite",
+        "roomType": "Suite",
+        "capacity": 4,
+        "floor": 3,
+        "hotel": "City Lights",
+        "location": "loc r6 67890",
+        "details": "Luxurious suite with office space and lounge.",
+        "price": 100,
         "imagesUrl": [
-          "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749379492/207079479_rwiqgg.jpg",
-          "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749379491/565065265_zthw6e.jpg",
-          "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749379492/207079375_rsghii.jpg"
+          "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749379685/421113100_juim7n.jpg",
+          "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749379683/363394700_yiklrs.jpg",
+          "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749379684/363394597_brmydy.jpg"
         ],
         "bookedStatus": "Booked"
       },
-      "date": "2025-06-08T22:05:58.187Z",
+      "date": "2025-06-8T05:26:27.339Z",
+      "paymentAmount": 100,
+      "paymentStatus": "Unpaid",
+      "approvalStatus": "Approved",
+      "isCheckedOut": false
+    },
+    {
+      "id": "1f4f",
+      "customer": {
+        "id": "c1",
+        "name": "Customer One",
+        "email": "customer1@gmail.com",
+        "phone": "+962 7 7822 1324",
+        "role": "Customer",
+        "pfp": ""
+      },
+      "customerId": "c1",
+      "roomId": "r3",
+      "room": {
+        "id": "r3",
+        "title": "Family Room",
+        "roomType": "Suite",
+        "capacity": 7,
+        "floor": 3,
+        "hotel": "Mountain View Resort",
+        "location": "loc r2 54321",
+        "details": "Spacious suite with 4 beds and a living room.",
+        "price": 200,
+        "imagesUrl": [
+          "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749380839/694271274_hkuslh.jpg",
+          "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749379523/628723668_mtd3fu.jpg",
+          "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749379524/694271310_nqpnbs.jpg",
+          "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749380851/628723601_ieypbc.jpg"
+        ],
+        "bookedStatus": "Available"
+      },
+      "date": "2025-06-9T05:28:56.220Z",
+      "paymentAmount": 200,
+      "paymentStatus": "Unpaid",
+      "approvalStatus": "Pending",
+      "isCheckedOut": false
+    },
+    {
+      "id": "094d",
+      "customer": {
+        "id": "c3",
+        "name": "Customer Three",
+        "email": "customer3@gmail.com",
+        "phone": "",
+        "role": "Customer",
+        "pfp": ""
+      },
+      "customerId": "c3",
+      "roomId": "r12",
+      "room": {
+        "id": "r12",
+        "title": "Standard Double Room",
+        "roomType": "Standard",
+        "capacity": 2,
+        "floor": 2,
+        "hotel": "Comfort Inn",
+        "location": "loc r12 23456",
+        "details": "Comfortable room with two single beds and workspace.",
+        "price": 60,
+        "imagesUrl": [
+          "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749379523/628723668_mtd3fu.jpg"
+        ],
+        "bookedStatus": "Available"
+      },
+      "date": "2025-06-10T05:45:00.021Z",
+      "paymentAmount": 60,
+      "paymentStatus": "Unpaid",
+      "approvalStatus": "Pending",
+      "isCheckedOut": false
+    },
+    {
+      "id": "cf50",
+      "customer": {
+        "id": "c3",
+        "name": "Customer Three",
+        "email": "customer3@gmail.com",
+        "password": "MTIzMTIz",
+        "role": "Customer"
+      },
+      "customerId": "c3",
+      "roomId": "r11",
+      "room": {
+        "id": "r11",
+        "title": "Deluxe King Suite",
+        "roomType": "Deluxe",
+        "capacity": 2,
+        "floor": 3,
+        "hotel": "Grand Vista",
+        "location": "loc r1 12345",
+        "details": "Spacious suite with king bed and city view.",
+        "price": 120,
+        "imagesUrl": [
+          "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749620315/forty-two-hotel-brooklyn-rooms_0002.1619x0_gpfsvm.jpg"
+        ],
+        "bookedStatus": "Booked"
+      },
+      "date": "2025-06-11T05:45:11.057Z",
       "paymentAmount": 120,
       "paymentStatus": "Unpaid",
-      "approvalStatus": "Approved"
+      "approvalStatus": "Approved",
+      "isCheckedOut": false
+    },
+    {
+      "id": "663a",
+      "customer": {
+        "id": "c3",
+        "name": "Customer Three",
+        "email": "customer3@gmail.com",
+        "password": "MTIzMTIz",
+        "role": "Customer"
+      },
+      "customerId": "c3",
+      "roomId": "r15",
+      "room": {
+        "id": "r15",
+        "title": "Business Executive Room",
+        "roomType": "Executive",
+        "capacity": 1,
+        "floor": 5,
+        "hotel": "Metro Business Hotel",
+        "location": "loc r15 67890",
+        "details": "Designed for business travelers with fast Wi-Fi and desk.",
+        "price": 95,
+        "imagesUrl": [
+          "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749620308/Large-room-scaled_dxyjzm.jpg"
+        ],
+        "bookedStatus": "Booked"
+      },
+      "date": "2025-06-11T05:45:07.939Z",
+      "paymentAmount": 95,
+      "paymentStatus": "Unpaid",
+      "approvalStatus": "Approved",
+      "isCheckedOut": false
     }
   ],
   "services": [
@@ -660,55 +941,300 @@
         "hotel": "Sunrise Inn",
         "jobTitle": "Message Therapist"
       }
+    },
+    {
+      "id": "s22",
+      "title": "Vacuuming",
+      "serviceType": "Cleaning",
+      "details": "Clean floor",
+      "price": 15,
+      "imageUrl": "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748501366/shutterstock_1628546512_o4ismw.jpg",
+      "employeeId": "emp9",
+      "employee": {
+        "id": "emp9",
+        "name": "Employee 9",
+        "email": "emp9@gmail.com",
+        "phone": "+962 7 7345 2434",
+        "role": "Employee",
+        "pfp": "",
+        "hotel": "Grand Vista",
+        "jobTitle": "Room Cleaner"
+      }
+    },
+    {
+      "id": "s23",
+      "title": "Laundary",
+      "serviceType": "Cleaning",
+      "details": "Fold and clean clothes",
+      "price": 10,
+      "imageUrl": "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748501134/download_gconlk.jpg",
+      "employeeId": "emp9",
+      "employee": {
+        "id": "emp9",
+        "name": "Employee 9",
+        "email": "emp9@gmail.com",
+        "phone": "+962 7 7345 2434",
+        "role": "Employee",
+        "pfp": "",
+        "hotel": "Grand Vista",
+        "jobTitle": "Room Cleaner"
+      }
+    },
+    {
+      "id": "s24",
+      "title": "Tide up room",
+      "serviceType": "Cleaning",
+      "details": "Make room look neat and more clean",
+      "price": 5,
+      "imageUrl": "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749383071/chambermaid-cleaning-hotel-room_23-2148095306_hdkr2s.avif",
+      "employeeId": "emp9",
+      "employee": {
+        "id": "emp9",
+        "name": "Employee 9",
+        "email": "emp9@gmail.com",
+        "phone": "+962 7 7345 2434",
+        "role": "Employee",
+        "pfp": "",
+        "hotel": "Grand Vista",
+        "jobTitle": "Room Cleaner"
+      }
     }
   ],
   "serviceRequests": [
     {
-      "id": "6768",
-      "customerId": "9884",
-      "roomId": "r1",
-      "date": "2025-06-08T22:06:36.955Z",
+      "id": "903a",
+      "customerId": "c1",
+      "roomId": "r6",
+      "date": "2025-06-08T05:26:50.696Z",
       "requestStatus": "Pending",
       "notes": "",
       "customer": {
-        "id": "9884",
-        "name": "areen",
-        "email": "AREEN11823@GMAIL.COM",
+        "id": "c1",
+        "name": "Customer One",
+        "email": "customer1@gmail.com",
+        "phone": "+962 7 7822 1324",
+        "role": "Customer",
+        "pfp": ""
+      },
+      "room": {
+        "id": "r6",
+        "title": "Executive Suite",
+        "roomType": "Suite",
+        "capacity": 4,
+        "floor": 3,
+        "hotel": "City Lights",
+        "location": "loc r6 67890",
+        "details": "Luxurious suite with office space and lounge.",
+        "price": 100,
+        "imagesUrl": [
+          "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749379685/421113100_juim7n.jpg",
+          "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749379683/363394700_yiklrs.jpg",
+          "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749379684/363394597_brmydy.jpg"
+        ],
+        "bookedStatus": "Booked"
+      },
+      "employeeId": "emp7",
+      "title": "Dinner",
+      "serviceType": "Dining",
+      "details": "Cook dinner meal",
+      "price": 9,
+      "imageUrl": "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749383459/hotel-room-service_sp4dl1.jpg",
+      "employee": {
+        "id": "emp7",
+        "name": "Employee Seven",
+        "email": "emp7@gmail.com",
+        "phone": "+962 7 7855 2114",
+        "role": "Employee",
+        "pfp": "",
+        "hotel": "City Lights",
+        "jobTitle": "Food & Beverage Server"
+      }
+    },
+    {
+      "id": "3bd8",
+      "customerId": "c3",
+      "roomId": "r11",
+      "date": "2025-06-09T05:54:40.032Z",
+      "requestStatus": "In Progress",
+      "notes": "",
+      "customer": {
+        "id": "c3",
+        "name": "Customer Three",
+        "email": "customer3@gmail.com",
         "phone": "",
         "role": "Customer",
         "pfp": ""
       },
       "room": {
-        "id": "r1",
-        "title": "Deluxe Suite",
-        "roomType": "Room",
+        "id": "r11",
+        "title": "Deluxe King Suite",
+        "roomType": "Deluxe",
         "capacity": 2,
-        "floor": 2,
-        "hotel": "Sunrise Inn",
+        "floor": 3,
+        "hotel": "Grand Vista",
         "location": "loc r1 12345",
-        "details": "A deluxe room with sea view.",
+        "details": "Spacious suite with king bed and city view.",
         "price": 120,
         "imagesUrl": [
-          "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749379492/207079479_rwiqgg.jpg",
-          "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749379491/565065265_zthw6e.jpg",
-          "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749379492/207079375_rsghii.jpg"
+          "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749620315/forty-two-hotel-brooklyn-rooms_0002.1619x0_gpfsvm.jpg"
         ],
         "bookedStatus": "Booked"
       },
-      "employeeId": "emp1",
+      "employeeId": "emp9",
+      "title": "Laundary",
+      "serviceType": "Cleaning",
+      "details": "Fold and clean clothes",
+      "price": 10,
+      "imageUrl": "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748501134/download_gconlk.jpg",
+      "employee": {
+        "id": "emp9",
+        "name": "Employee 9",
+        "email": "emp9@gmail.com",
+        "phone": "+962 7 7345 2434",
+        "role": "Employee",
+        "pfp": "",
+        "hotel": "Grand Vista",
+        "jobTitle": "Room Cleaner"
+      }
+    },
+    {
+      "id": "3d86",
+      "customerId": "c3",
+      "roomId": "r11",
+      "date": "2025-06-11T05:54:40.490Z",
+      "requestStatus": "Completed",
+      "notes": "",
+      "customer": {
+        "id": "c3",
+        "name": "Customer Three",
+        "email": "customer3@gmail.com",
+        "phone": "",
+        "role": "Customer",
+        "pfp": ""
+      },
+      "room": {
+        "id": "r11",
+        "title": "Deluxe King Suite",
+        "roomType": "Deluxe",
+        "capacity": 2,
+        "floor": 3,
+        "hotel": "Grand Vista",
+        "location": "loc r1 12345",
+        "details": "Spacious suite with king bed and city view.",
+        "price": 120,
+        "imagesUrl": [
+          "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749620315/forty-two-hotel-brooklyn-rooms_0002.1619x0_gpfsvm.jpg"
+        ],
+        "bookedStatus": "Booked"
+      },
+      "employeeId": "emp9",
+      "title": "Vacuuming",
+      "serviceType": "Cleaning",
+      "details": "Clean floor",
+      "price": 15,
+      "imageUrl": "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748501366/shutterstock_1628546512_o4ismw.jpg",
+      "employee": {
+        "id": "emp9",
+        "name": "Employee 9",
+        "email": "emp9@gmail.com",
+        "phone": "+962 7 7345 2434",
+        "role": "Employee",
+        "pfp": "",
+        "hotel": "Grand Vista",
+        "jobTitle": "Room Cleaner"
+      }
+    },
+    {
+      "id": "efd9",
+      "customerId": "c3",
+      "roomId": "r11",
+      "date": "2025-06-05T05:56:46.634Z",
+      "requestStatus": "In Progress",
+      "notes": "",
+      "customer": {
+        "id": "c3",
+        "name": "Customer Three",
+        "email": "customer3@gmail.com",
+        "phone": "",
+        "role": "Customer",
+        "pfp": ""
+      },
+      "room": {
+        "id": "r11",
+        "title": "Deluxe King Suite",
+        "roomType": "Deluxe",
+        "capacity": 2,
+        "floor": 3,
+        "hotel": "Grand Vista",
+        "location": "loc r1 12345",
+        "details": "Spacious suite with king bed and city view.",
+        "price": 120,
+        "imagesUrl": [
+          "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749620315/forty-two-hotel-brooklyn-rooms_0002.1619x0_gpfsvm.jpg"
+        ],
+        "bookedStatus": "Booked"
+      },
+      "employeeId": "emp9",
       "title": "Tide up room",
       "serviceType": "Cleaning",
       "details": "Make room look neat and more clean",
       "price": 5,
       "imageUrl": "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749383071/chambermaid-cleaning-hotel-room_23-2148095306_hdkr2s.avif",
       "employee": {
-        "id": "emp1",
-        "name": "Employee One",
-        "email": "emp1@gmail.com",
-        "phone": "+962 7 9645 6456",
+        "id": "emp9",
+        "name": "Employee 9",
+        "email": "emp9@gmail.com",
+        "phone": "+962 7 7345 2434",
         "role": "Employee",
         "pfp": "",
-        "hotel": "Sunrise Inn",
+        "hotel": "Grand Vista",
+        "jobTitle": "Room Cleaner"
+      }
+    },
+    {
+      "id": "0aa1",
+      "customerId": "c3",
+      "roomId": "r11",
+      "date": "2025-06-11T05:56:51.238Z",
+      "requestStatus": "Completed",
+      "notes": "",
+      "customer": {
+        "id": "c3",
+        "name": "Customer Three",
+        "email": "customer3@gmail.com",
+        "phone": "",
+        "role": "Customer",
+        "pfp": ""
+      },
+      "room": {
+        "id": "r11",
+        "title": "Deluxe King Suite",
+        "roomType": "Deluxe",
+        "capacity": 2,
+        "floor": 3,
+        "hotel": "Grand Vista",
+        "location": "loc r1 12345",
+        "details": "Spacious suite with king bed and city view.",
+        "price": 120,
+        "imagesUrl": [
+          "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749620315/forty-two-hotel-brooklyn-rooms_0002.1619x0_gpfsvm.jpg"
+        ],
+        "bookedStatus": "Booked"
+      },
+      "employeeId": "emp9",
+      "title": "Vacuuming",
+      "serviceType": "Cleaning",
+      "details": "Clean floor",
+      "price": 15,
+      "imageUrl": "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748501366/shutterstock_1628546512_o4ismw.jpg",
+      "employee": {
+        "id": "emp9",
+        "name": "Employee 9",
+        "email": "emp9@gmail.com",
+        "phone": "+962 7 7345 2434",
+        "role": "Employee",
+        "pfp": "",
+        "hotel": "Grand Vista",
         "jobTitle": "Room Cleaner"
       }
     }
