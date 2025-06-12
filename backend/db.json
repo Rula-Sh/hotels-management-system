@@ -3,11 +3,11 @@
     {
       "id": "r1",
       "title": "Deluxe Suite",
-      "roomType": "Room",
+      "roomType": "Double",
       "capacity": 2,
       "floor": 2,
       "hotel": "Sunrise Inn",
-      "location": "loc r1 12345",
+      "location": "Jabal Amman, 1st Circle, Amman, Jordan",
       "details": "A deluxe room with sea view.",
       "price": 120,
       "imagesUrl": [
@@ -24,7 +24,7 @@
       "capacity": 25,
       "floor": 3,
       "hotel": "Sunrise Inn",
-      "location": "loc r2 12345",
+      "location": "Zamalek, Mohamed Mazhar Street, Cairo, Egypt",
       "details": "Spacious hall for events.",
       "price": 300,
       "imagesUrl": [
@@ -33,17 +33,48 @@
       "bookedStatus": "Available"
     },
     {
-      "id": "r5",
+      "id": "r3",
+      "title": "Duo Room",
+      "roomType": "Double",
+      "capacity": 2,
+      "floor": 4,
+      "hotel": "Mountain View Resort",
+      "location": "Hamra Street, Ras Beirut, Beirut, Lebanon",
+      "details": "Spacious suite with 2 beds and balcony.",
+      "price": 100,
+      "imagesUrl": [
+        "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749379544/654123212_fhfds2.jpg",
+        "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749379543/654123196_t3mh1i.jpg"
+      ],
+      "bookedStatus": "Booked"
+    },
+    {
+      "id": "r4",
       "title": "Single Economy",
-      "roomType": "Room",
+      "roomType": "Single",
       "capacity": 1,
       "floor": 1,
       "hotel": "City Lights",
-      "location": "loc r5 67890",
+      "location": "Diplomatic Area, Government Avenue, Bahrain",
       "details": "Compact room ideal for solo travelers.",
       "price": 60,
       "imagesUrl": [
         "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748011951/marina-bay-view-room-king-1_t3jdl4.jpg"
+      ],
+      "bookedStatus": "Available"
+    },
+    {
+      "id": "r5",
+      "title": "Luxury Penthouse Suite",
+      "roomType": "Suite",
+      "capacity": 4,
+      "floor": 10,
+      "hotel": "Skyline Hotel",
+      "location": "Al-Rasheed Street, Downtown, Irbid, Jordan",
+      "details": "Top-floor suite with panoramic view and private terrace.",
+      "price": 300,
+      "imagesUrl": [
+        "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749379684/363394597_brmydy.jpg"
       ],
       "bookedStatus": "Available"
     },
@@ -54,7 +85,7 @@
       "capacity": 4,
       "floor": 3,
       "hotel": "City Lights",
-      "location": "loc r6 67890",
+      "location": "Wadi Musa, Near Petra Center, Ma'an, Jordan",
       "details": "Luxurious suite with office space and lounge.",
       "price": 100,
       "imagesUrl": [
@@ -71,7 +102,7 @@
       "capacity": 2,
       "floor": 2,
       "hotel": "Sunset Retreat",
-      "location": "loc r7 12345",
+      "location": "South Beach Road, Near Tala Bay, Aqaba, Jordan",
       "details": "Spacious room with a king-size bed and garden view.",
       "price": 75,
       "imagesUrl": [
@@ -80,47 +111,13 @@
       "bookedStatus": "Available"
     },
     {
-      "id": "r3",
-      "title": "Family Room",
-      "roomType": "Suite",
-      "capacity": 7,
-      "floor": 3,
-      "hotel": "Mountain View Resort",
-      "location": "loc r2 54321",
-      "details": "Spacious suite with 4 beds and a living room.",
-      "price": 200,
-      "imagesUrl": [
-        "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749380839/694271274_hkuslh.jpg",
-        "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749379523/628723668_mtd3fu.jpg",
-        "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749379524/694271310_nqpnbs.jpg",
-        "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749380851/628723601_ieypbc.jpg"
-      ],
-      "bookedStatus": "Available"
-    },
-    {
-      "id": "r4",
-      "title": "Duo Room",
-      "roomType": "Room",
-      "capacity": 2,
-      "floor": 4,
-      "hotel": "Mountain View Resort",
-      "location": "loc r4 54321",
-      "details": "Spacious suite with 2 beds and balcony.",
-      "price": 100,
-      "imagesUrl": [
-        "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749379544/654123212_fhfds2.jpg",
-        "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749379543/654123196_t3mh1i.jpg"
-      ],
-      "bookedStatus": "Booked"
-    },
-    {
-      "id": "r9",
+      "id": "r8",
       "title": "Standard Twin Room",
-      "roomType": "Standard",
+      "roomType": "Double",
       "capacity": 2,
       "floor": 1,
       "hotel": "Ocean Breeze Inn",
-      "location": "loc r2 23456",
+      "location": "Al-Hussein Bin Ali Street, Abdoun, Amman, Jordan",
       "details": "Comfortable room with twin beds and free Wi-Fi.",
       "price": 50,
       "imagesUrl": [
@@ -135,7 +132,7 @@
       "capacity": 5,
       "floor": 5,
       "hotel": "Skyline Grand",
-      "location": "loc r3 34567",
+      "location": "Al-Balad Historic Area, Jeddah, Saudi Arabia",
       "details": "Top-floor suite with private balcony and personal butler.",
       "price": 250,
       "imagesUrl": [
@@ -146,11 +143,11 @@
     {
       "id": "r10",
       "title": "Economy Single Room",
-      "roomType": "Economy",
+      "roomType": "Single",
       "capacity": 1,
       "floor": 1,
       "hotel": "Budget Stay",
-      "location": "loc r4 45678",
+      "location": "Downtown Dubai, near Burj Khalifa, Dubai, UAE",
       "details": "Cozy single room ideal for short stays.",
       "price": 30,
       "imagesUrl": [
@@ -160,12 +157,30 @@
     },
     {
       "id": "r11",
+      "title": "Family Room",
+      "roomType": "Family",
+      "capacity": 7,
+      "floor": 3,
+      "hotel": "Mountain View Resort",
+      "location": "Al-Madina Al-Munawara Street, Amman, Jordan",
+      "details": "Spacious suite with 4 beds and a living room.",
+      "price": 200,
+      "imagesUrl": [
+        "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749380839/694271274_hkuslh.jpg",
+        "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749379523/628723668_mtd3fu.jpg",
+        "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749379524/694271310_nqpnbs.jpg",
+        "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749380851/628723601_ieypbc.jpg"
+      ],
+      "bookedStatus": "Available"
+    },
+    {
+      "id": "r12",
       "title": "Deluxe King Suite",
       "roomType": "Deluxe",
       "capacity": 2,
       "floor": 3,
       "hotel": "Grand Vista",
-      "location": "loc r1 12345",
+      "location": "Near Aqaba Fort, Al-Hafayer Beach, Aqaba, Jordan",
       "details": "Spacious suite with king bed and city view.",
       "price": 120,
       "imagesUrl": [
@@ -174,32 +189,17 @@
       "bookedStatus": "Booked"
     },
     {
-      "id": "r12",
+      "id": "r13",
       "title": "Standard Double Room",
-      "roomType": "Standard",
+      "roomType": "Single",
       "capacity": 2,
       "floor": 2,
       "hotel": "Comfort Inn",
-      "location": "loc r12 23456",
+      "location": "Al-Quds Street, Ma'an, Jordan",
       "details": "Comfortable room with two single beds and workspace.",
       "price": 60,
       "imagesUrl": [
-        "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749379523/628723668_mtd3fu.jpg"
-      ],
-      "bookedStatus": "Available"
-    },
-    {
-      "id": "r13",
-      "title": "Luxury Penthouse Suite",
-      "roomType": "Luxury",
-      "capacity": 4,
-      "floor": 10,
-      "hotel": "Skyline Hotel",
-      "location": "loc r13 34567",
-      "details": "Top-floor suite with panoramic view and private terrace.",
-      "price": 300,
-      "imagesUrl": [
-        "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749379684/363394597_brmydy.jpg"
+        "http://res.cloudinary.com/dnoxelx9f/image/upload/v1749729469/lvg1tymr5zssenrnoohh.jpg"
       ],
       "bookedStatus": "Available"
     },
@@ -210,7 +210,7 @@
       "capacity": 5,
       "floor": 4,
       "hotel": "Holiday Haven",
-      "location": "loc r14 56789",
+      "location": "Wadi Musa Street, near Mövenpick, Petra, Jordan",
       "details": "Perfect for families with two bedrooms and a play area.",
       "price": 150,
       "imagesUrl": [
@@ -220,18 +220,18 @@
     },
     {
       "id": "r15",
-      "title": "Business Executive Room",
-      "roomType": "Executive",
+      "title": "Business Suite",
+      "roomType": "Suite",
       "capacity": 1,
       "floor": 5,
       "hotel": "Metro Business Hotel",
-      "location": "loc r15 67890",
+      "location": "Dead Sea Road, near Amman Beach, Jordan",
       "details": "Designed for business travelers with fast Wi-Fi and desk.",
       "price": 95,
       "imagesUrl": [
         "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749620308/Large-room-scaled_dxyjzm.jpg"
       ],
-      "bookedStatus": "Booked"
+      "bookedStatus": "Available"
     }
   ],
   "users": [
@@ -363,13 +363,6 @@
       "email": "customer3@gmail.com",
       "password": "MTIzMTIz",
       "role": "Customer"
-    },
-    {
-      "id": "9884",
-      "name": "areen",
-      "email": "AREEN11823@GMAIL.COM",
-      "password": "QXJlZW4xMSM=",
-      "role": "Customer"
     }
   ],
   "reservations": [
@@ -392,7 +385,7 @@
         "capacity": 4,
         "floor": 3,
         "hotel": "City Lights",
-        "location": "loc r6 67890",
+        "location": "Wadi Musa, Near Petra Center, Ma'an, Jordan",
         "details": "Luxurious suite with office space and lounge.",
         "price": 100,
         "imagesUrl": [
@@ -419,15 +412,15 @@
         "pfp": ""
       },
       "customerId": "c1",
-      "roomId": "r3",
+      "roomId": "r11",
       "room": {
-        "id": "r3",
+        "id": "r11",
         "title": "Family Room",
-        "roomType": "Suite",
+        "roomType": "Family",
         "capacity": 7,
         "floor": 3,
         "hotel": "Mountain View Resort",
-        "location": "loc r2 54321",
+        "location": "Downtown Dubai, near Burj Khalifa, Dubai, UAE",
         "details": "Spacious suite with 4 beds and a living room.",
         "price": 200,
         "imagesUrl": [
@@ -455,15 +448,15 @@
         "pfp": ""
       },
       "customerId": "c3",
-      "roomId": "r12",
+      "roomId": "r13",
       "room": {
-        "id": "r12",
+        "id": "r13",
         "title": "Standard Double Room",
-        "roomType": "Standard",
+        "roomType": "Double",
         "capacity": 2,
         "floor": 2,
         "hotel": "Comfort Inn",
-        "location": "loc r12 23456",
+        "location": "Al-Quds Street, Ma'an, Jordan",
         "details": "Comfortable room with two single beds and workspace.",
         "price": 60,
         "imagesUrl": [
@@ -487,15 +480,15 @@
         "role": "Customer"
       },
       "customerId": "c3",
-      "roomId": "r11",
+      "roomId": "r12",
       "room": {
-        "id": "r11",
+        "id": "r12",
         "title": "Deluxe King Suite",
         "roomType": "Deluxe",
         "capacity": 2,
         "floor": 3,
         "hotel": "Grand Vista",
-        "location": "loc r1 12345",
+        "location": "Near Aqaba Fort, Al-Hafayer Beach, Aqaba, Jordan",
         "details": "Spacious suite with king bed and city view.",
         "price": 120,
         "imagesUrl": [
@@ -522,12 +515,12 @@
       "roomId": "r15",
       "room": {
         "id": "r15",
-        "title": "Business Executive Room",
-        "roomType": "Executive",
+        "title": "Business Suite",
+        "roomType": "Suite",
         "capacity": 1,
         "floor": 5,
         "hotel": "Metro Business Hotel",
-        "location": "loc r15 67890",
+        "location": "Dead Sea Road, near Amman Beach, Jordan",
         "details": "Designed for business travelers with fast Wi-Fi and desk.",
         "price": 95,
         "imagesUrl": [
@@ -1006,7 +999,7 @@
       "customerId": "c1",
       "roomId": "r6",
       "date": "2025-06-08T05:26:50.696Z",
-      "requestStatus": "Pending",
+      "requestStatus": "Completed",
       "notes": "",
       "customer": {
         "id": "c1",
@@ -1023,7 +1016,7 @@
         "capacity": 4,
         "floor": 3,
         "hotel": "City Lights",
-        "location": "loc r6 67890",
+        "location": "Wadi Musa, Near Petra Visitor Center, Ma'an, Jordan",
         "details": "Luxurious suite with office space and lounge.",
         "price": 100,
         "imagesUrl": [
@@ -1034,9 +1027,9 @@
         "bookedStatus": "Booked"
       },
       "employeeId": "emp7",
-      "title": "Dinner",
+      "title": "Breakfast",
       "serviceType": "Dining",
-      "details": "Cook dinner meal",
+      "details": "Bring breakfast meal",
       "price": 9,
       "imageUrl": "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749383459/hotel-room-service_sp4dl1.jpg",
       "employee": {
@@ -1053,7 +1046,7 @@
     {
       "id": "3bd8",
       "customerId": "c3",
-      "roomId": "r11",
+      "roomId": "r12",
       "date": "2025-06-09T05:54:40.032Z",
       "requestStatus": "In Progress",
       "notes": "",
@@ -1066,13 +1059,13 @@
         "pfp": ""
       },
       "room": {
-        "id": "r11",
+        "id": "r12",
         "title": "Deluxe King Suite",
         "roomType": "Deluxe",
         "capacity": 2,
         "floor": 3,
         "hotel": "Grand Vista",
-        "location": "loc r1 12345",
+        "location": "Near Aqaba Fort, Al-Hafayer Beach, Aqaba, Jordan",
         "details": "Spacious suite with king bed and city view.",
         "price": 120,
         "imagesUrl": [
@@ -1100,7 +1093,7 @@
     {
       "id": "3d86",
       "customerId": "c3",
-      "roomId": "r11",
+      "roomId": "r12",
       "date": "2025-06-11T05:54:40.490Z",
       "requestStatus": "Completed",
       "notes": "",
@@ -1113,13 +1106,13 @@
         "pfp": ""
       },
       "room": {
-        "id": "r11",
+        "id": "r12",
         "title": "Deluxe King Suite",
         "roomType": "Deluxe",
         "capacity": 2,
         "floor": 3,
         "hotel": "Grand Vista",
-        "location": "loc r1 12345",
+        "location": "Near Aqaba Fort, Al-Hafayer Beach, Aqaba, Jordan",
         "details": "Spacious suite with king bed and city view.",
         "price": 120,
         "imagesUrl": [
@@ -1147,7 +1140,7 @@
     {
       "id": "efd9",
       "customerId": "c3",
-      "roomId": "r11",
+      "roomId": "r12",
       "date": "2025-06-05T05:56:46.634Z",
       "requestStatus": "In Progress",
       "notes": "",
@@ -1160,13 +1153,13 @@
         "pfp": ""
       },
       "room": {
-        "id": "r11",
+        "id": "r12",
         "title": "Deluxe King Suite",
         "roomType": "Deluxe",
         "capacity": 2,
         "floor": 3,
         "hotel": "Grand Vista",
-        "location": "loc r1 12345",
+        "location": "Near Aqaba Fort, Al-Hafayer Beach, Aqaba, Jordan",
         "details": "Spacious suite with king bed and city view.",
         "price": 120,
         "imagesUrl": [
@@ -1194,7 +1187,7 @@
     {
       "id": "0aa1",
       "customerId": "c3",
-      "roomId": "r11",
+      "roomId": "r12",
       "date": "2025-06-11T05:56:51.238Z",
       "requestStatus": "Completed",
       "notes": "",
@@ -1207,13 +1200,13 @@
         "pfp": ""
       },
       "room": {
-        "id": "r11",
+        "id": "r12",
         "title": "Deluxe King Suite",
         "roomType": "Deluxe",
         "capacity": 2,
         "floor": 3,
         "hotel": "Grand Vista",
-        "location": "loc r1 12345",
+        "location": "Near Aqaba Fort, Al-Hafayer Beach, Aqaba, Jordan",
         "details": "Spacious suite with king bed and city view.",
         "price": 120,
         "imagesUrl": [
@@ -1235,6 +1228,153 @@
         "role": "Employee",
         "pfp": "",
         "hotel": "Grand Vista",
+        "jobTitle": "Room Cleaner"
+      }
+    },
+    {
+      "id": "fea8",
+      "customerId": "c1",
+      "roomId": "r6",
+      "date": "2025-06-12T12:51:31.935Z",
+      "requestStatus": "Completed",
+      "notes": "",
+      "customer": {
+        "id": "c1",
+        "name": "Customer One",
+        "email": "customer1@gmail.com",
+        "phone": "+962 7 7822 1324",
+        "role": "Customer",
+        "pfp": ""
+      },
+      "room": {
+        "id": "r6",
+        "title": "Executive Suite",
+        "roomType": "Suite",
+        "capacity": 4,
+        "floor": 3,
+        "hotel": "City Lights",
+        "location": "Wadi Musa, Near Petra Center, Ma'an, Jordan",
+        "details": "Luxurious suite with office space and lounge.",
+        "price": 100,
+        "imagesUrl": [
+          "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749379685/421113100_juim7n.jpg",
+          "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749379683/363394700_yiklrs.jpg",
+          "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749379684/363394597_brmydy.jpg"
+        ],
+        "bookedStatus": "Booked"
+      },
+      "employeeId": "emp6",
+      "title": "Laundary",
+      "serviceType": "Cleaning",
+      "details": "Fold and clean clothes",
+      "price": 7,
+      "imageUrl": "https://res.cloudinary.com/dnoxelx9f/image/upload/v1748501134/download_gconlk.jpg",
+      "employee": {
+        "id": "emp6",
+        "name": "Employee Six",
+        "email": "emp6@gmail.com",
+        "phone": "+962 7 9645 6456",
+        "role": "Employee",
+        "pfp": "",
+        "hotel": "City Lights",
+        "jobTitle": "Room Cleaner"
+      }
+    },
+    {
+      "id": "a8a6",
+      "customerId": "c1",
+      "roomId": "r6",
+      "date": "2025-06-12T12:51:26.835Z",
+      "requestStatus": "Completed",
+      "notes": "",
+      "customer": {
+        "id": "c1",
+        "name": "Customer One",
+        "email": "customer1@gmail.com",
+        "phone": "+962 7 7822 1324",
+        "role": "Customer",
+        "pfp": ""
+      },
+      "room": {
+        "id": "r6",
+        "title": "Executive Suite",
+        "roomType": "Suite",
+        "capacity": 4,
+        "floor": 3,
+        "hotel": "City Lights",
+        "location": "Wadi Musa, Near Petra Center, Ma'an, Jordan",
+        "details": "Luxurious suite with office space and lounge.",
+        "price": 100,
+        "imagesUrl": [
+          "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749379685/421113100_juim7n.jpg",
+          "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749379683/363394700_yiklrs.jpg",
+          "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749379684/363394597_brmydy.jpg"
+        ],
+        "bookedStatus": "Booked"
+      },
+      "employeeId": "emp7",
+      "title": "Dinner",
+      "serviceType": "Dining",
+      "details": "Cook dinner meal",
+      "price": 6,
+      "imageUrl": "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749383456/Untitled-design_xbmumq.jpg",
+      "employee": {
+        "id": "emp7",
+        "name": "Employee Seven",
+        "email": "emp7@gmail.com",
+        "phone": "+962 7 7855 2114",
+        "role": "Employee",
+        "pfp": "",
+        "hotel": "City Lights",
+        "jobTitle": "Food & Beverage Server"
+      }
+    },
+    {
+      "id": "d3db",
+      "customerId": "c1",
+      "roomId": "r6",
+      "date": "2025-06-12T12:53:53.786Z",
+      "requestStatus": "In Progress",
+      "notes": "",
+      "customer": {
+        "id": "c1",
+        "name": "Customer One",
+        "email": "customer1@gmail.com",
+        "phone": "+962 7 7822 1324",
+        "role": "Customer",
+        "pfp": ""
+      },
+      "room": {
+        "id": "r6",
+        "title": "Executive Suite",
+        "roomType": "Suite",
+        "capacity": 4,
+        "floor": 3,
+        "hotel": "City Lights",
+        "location": "Wadi Musa, Near Petra Center, Ma'an, Jordan",
+        "details": "Luxurious suite with office space and lounge.",
+        "price": 100,
+        "imagesUrl": [
+          "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749379685/421113100_juim7n.jpg",
+          "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749379683/363394700_yiklrs.jpg",
+          "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749379684/363394597_brmydy.jpg"
+        ],
+        "bookedStatus": "Booked"
+      },
+      "employeeId": "emp6",
+      "title": "Tide up room",
+      "serviceType": "Cleaning",
+      "details": "Make room look neat and more clean",
+      "price": 4,
+      "imageUrl": "https://res.cloudinary.com/dnoxelx9f/image/upload/v1749383071/chambermaid-cleaning-hotel-room_23-2148095306_hdkr2s.avif",
+      "employee": {
+        "id": "emp6",
+        "name": "Employee Six",
+        "email": "emp6@gmail.com",
+        "phone": "+962 7 9645 6456",
+        "role": "Employee",
+        "pfp": "",
+        "hotel": "City Lights",
         "jobTitle": "Room Cleaner"
       }
     }

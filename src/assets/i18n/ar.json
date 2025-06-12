@@ -18,7 +18,7 @@
       "welcome": "أهلا بك",
       "login": "تسجيل الدخول",
       "logout": "تسجيل الخروج",
-      "register": "تسجيل"
+      "register": "الاشترك"
     },
     "admin": {
       "reservations": "الحجوزات",
@@ -83,7 +83,12 @@
     "rooms": "الغرف",
     "type": "النوع",
     "room": "غرفة",
+    "single": "مفرد",
+    "double": "مزدوج",
+    "family": "عائلي",
     "hall": "قاعة",
+    "suite": "جناح",
+    "deluxe": "فاخر",
     "capacity": "السعة",
     "floor": "الطابق",
     "hotel": "الفندق",
@@ -291,6 +296,7 @@
       "profile-updated-successfully": "تم تحديث الملف الشخصي بنجاح!",
       "failed-to-upload-image": "فشل تحميل الصورة!",
       "at-least-one-image-is-required": "مطلوب صورة واحدة على الأقل!",
+      "employee-added-successfuly": "تمت إضافة موظف بنجاح!",
       "room-added-successfuly": "تمت إضافة الغرفة بنجاح!",
       "room-updated-successfuly": "تم تحديث الغرفة بنجاح!",
       "room-removed": "تمت إزالة الغرفة!",
@@ -346,6 +352,6 @@
       "sort-by": "فرز حسب",
       "could-not-find-what-you-are-searching-for": "تعذر العثور على ما تبحث عنه"
     },
-    "action": "الإجراءات"
+    "actions": "الإجراءات"
   }
 }

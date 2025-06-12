@@ -35,6 +35,7 @@ export class RoomFormComponent {
   roomForm!: FormGroup;
   isAddingARoom = true;
   room!: any;
+  roomTypes = ['Single', 'Double', 'Family', 'Hall', 'Suite', 'Deluxe'];
 
   images: string[] = []; // Replace FormArray with simple array
   selectedFile: File | null = null;

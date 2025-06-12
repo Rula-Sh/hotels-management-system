@@ -1,7 +1,7 @@
 export interface Room {
   id: string;
   title: string;
-  roomType: 'Room' | 'Hall';
+  roomType: 'Single' | 'Double' | 'Family' | 'Hall' | 'Suite' | 'Deluxe';
   capacity: number;
   floor: number;
   hotel: string;

@@ -62,7 +62,7 @@ export class CheckoutComponent implements OnInit {
 
             // 🔽 حساب الخدمات الموافق عليها
             this.bookingService
-              .getApprovedServicesByCustomerAndRoom(userId, roomId)
+              .getApprovedAndInProgressServicesByCustomerAndRoom(userId, roomId)
               .subscribe((services) => {
                 console.log('📦 Services fetched:', services);
                 this.services = services;
