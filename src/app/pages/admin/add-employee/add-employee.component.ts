@@ -20,6 +20,8 @@ import {
 import { SearchCountryField, CountryISO } from 'ngx-intl-tel-input';
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { Subscription } from 'rxjs';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-add-employee',
@@ -30,7 +32,9 @@ import { Subscription } from 'rxjs';
     I18nPipe,
     RouterLink,
     NgxIntlTelInputModule,
+    ToastModule,
   ],
+  providers: [MessageService],
   templateUrl: './add-employee.component.html',
   styleUrl: './add-employee.component.scss',
 })
@@ -54,7 +58,8 @@ export class AddEmployeeComponent {
     private userService: UserService,
     private router: Router,
     private fb: FormBuilder,
-    private i18nService: I18nService
+    private i18nService: I18nService,
+    private messageService: MessageService
   ) {}
 
   ngOnInit() {
@@ -156,10 +161,24 @@ export class AddEmployeeComponent {
     const addEmployeeSub = this.userService.createUser(newEmployee).subscribe({
       next: () => {
         console.log('Employee added successfully');
-        this.router.navigate(['/']);
-        this.profileForm.reset();
+        this.messageService.add({
+          severity: 'success',
+          summary: `${this.i18nService.t(
+            'shared.toast.employee-added-successfuly'
+          )}`,
+        });
+        setTimeout(() => {
+          this.router.navigate(['/admin/manage-users']);
+          this.profileForm.reset();
+        }, 1500);
       },
       error: (err) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: `${this.i18nService.t(
+            'shared.toast.something-went-wrong'
+          )}`,
+        });
         console.log('Error on Adding an Employee', err);
       },
     });
