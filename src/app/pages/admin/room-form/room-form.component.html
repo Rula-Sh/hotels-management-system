@@ -42,33 +42,64 @@
           </div>
         </div>
       </div>
+
       <div class="input-group" [ngClass]="{ 'right-input': lang == 'ar' }">
         <div class="align-self-center">
           <span
             class="input-group-text input-group-icon align-self-center bg-white"
-            ><i class="fa-solid fa-door-closed"></i>
+          >
+            @if(roomForm.get('roomType')?.value  == "Single"){
+            <i class="fa-solid fa-bed" style="color: #725529"></i>
+            }@else if(roomForm.get('roomType')?.value  == 'Double'){
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="#725529"
+              width="16px"
+              height="16px"
+            >
+              <title>bunk-bed</title>
+              <path
+                d="M1 2V23H3V21H21V23H23V7C23 4.79 21.21 3 19 3H10V8H3V2M6.5 2A2.5 2.5 0 0 0 4 4.5A2.5 2.5 0 0 0 6.5 7A2.5 2.5 0 0 0 9 4.5A2.5 2.5 0 0 0 6.5 2M3 11H21V13.56C20.41 13.21 19.73 13 19 13H10V18H3M6.5 12A2.5 2.5 0 0 0 4 14.5A2.5 2.5 0 0 0 6.5 17A2.5 2.5 0 0 0 9 14.5A2.5 2.5 0 0 0 6.5 12Z"
+              />
+            </svg>
+            } @else if(roomForm.get('roomType')?.value == 'Family'){
+            <i class="fa-solid fa-people-roof"></i>
+            } @else if(roomForm.get('roomType')?.value  == 'Hall'){
+            <img
+              class="icon-img"
+              src="../../../../assets/images/hall-brown-filled-icon.png"
+            />
+            } @else if(roomForm.get('roomType')?.value  == 'Suite'){
+            <img
+              class="icon-img"
+              src="../../../../assets/images/bed-brown-filled-icon.png"
+            />
+            } @else if(roomForm.get('roomType')?.value  == 'Deluxe'){
+            <i class="fa-solid fa-crown"></i>
+            } @else {
+            <i class="fa-solid fa-door-closed"></i>
+            }
           </span>
         </div>
-        <div class="form-control radio-container d-flex justify-content-around">
-          <div class="radio-label">
-            <input
-              class="radio-input"
-              type="radio"
-              value="Room"
-              formControlName="roomType"
-            />
-            <label>{{ "room.room" | translate }}</label>
-          </div>
-          <div class="radio-label">
-            <input
-              class="radio-input"
-              type="radio"
-              value="Hall"
-              formControlName="roomType"
-            />
-            <label>{{ "room.hall" | translate }}</label>
-          </div>
-        </div>
+        <select
+          class="type-input"
+          aria-label="Room Type"
+          formControlName="roomType"
+          required
+          [ngStyle]="{
+            color: roomForm.get('roomType')?.value ? 'black' : '#495057'
+          }"
+        >
+          <option value="" disabled selected hidden>
+            {{ "room.type" | translate }}
+          </option>
+
+          @for(roomType of roomTypes; let i= $index; track i){
+
+          <option [value]="roomType">{{ roomType }}</option>
+          }
+        </select>
         <div
           class="error"
           *ngIf="

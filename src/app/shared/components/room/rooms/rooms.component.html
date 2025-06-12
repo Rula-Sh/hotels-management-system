@@ -125,12 +125,35 @@
         <div class="info-row">
           <div class="label">{{ "room.type" | translate }}:</div>
           <div class="value">
-            @if(room.roomType == 'Hall'){
+            @if(room.roomType == 'Double'){
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="#ad926b"
+              width="18px"
+              height="18px"
+            >
+              <title>bunk-bed</title>
+              <path
+                d="M1 2V23H3V21H21V23H23V7C23 4.79 21.21 3 19 3H10V8H3V2M6.5 2A2.5 2.5 0 0 0 4 4.5A2.5 2.5 0 0 0 6.5 7A2.5 2.5 0 0 0 9 4.5A2.5 2.5 0 0 0 6.5 2M3 11H21V13.56C20.41 13.21 19.73 13 19 13H10V18H3M6.5 12A2.5 2.5 0 0 0 4 14.5A2.5 2.5 0 0 0 6.5 17A2.5 2.5 0 0 0 9 14.5A2.5 2.5 0 0 0 6.5 12Z"
+              />
+            </svg>
+            } @else if(room.roomType == 'Family'){
+            <i class="fa-solid fa-people-roof" style="color: #ad926b"></i>
+            } @else if(room.roomType == 'Hall'){
             <img
               class="icon-img mb-1"
               src="../../../../assets/images/hall-filled-icon.png"
             />
+            } @else if(room.roomType == 'Suite'){
+            <img
+              class="icon-img mb-1"
+              src="../../../../assets/images/bed-filled-icon.png"
+            />
+            } @else if(room.roomType == 'Deluxe'){
+            <i class="fa-solid fa-crown" style="color: #ad926b"></i>
             } @else {
+
             <i class="fa-solid fa-bed" style="color: #ad926b"></i>
             }
             {{ room.roomType }}

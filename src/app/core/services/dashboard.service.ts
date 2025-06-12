@@ -173,7 +173,9 @@ export class DashboardService {
       );
   }
 
-  getMostBookedRoomType(): Observable<'Room' | 'Hall' | null> {
+  getMostBookedRoomType(): Observable<
+    'Single' | 'Double' | 'Family' | 'Hall' | 'Suite' | 'Deluxe' | null
+  > {
     return this.http.get<Reservation[]>(`${this.baseUrl}/reservations`).pipe(
       map((reservations) => {
         // Filter only approved reservations (optional, depends on your need)
@@ -184,7 +186,10 @@ export class DashboardService {
         if (approvedReservations.length === 0) return null;
 
         // Count by roomType
-        const counts = new Map<'Room' | 'Hall', number>();
+        const counts = new Map<
+          'Single' | 'Double' | 'Family' | 'Hall' | 'Suite' | 'Deluxe',
+          number
+        >();
 
         approvedReservations.forEach((r) => {
           const roomType = r.room.roomType;
@@ -193,7 +198,14 @@ export class DashboardService {
 
         // Determine most booked room type
         let maxCount = 0;
-        let mostBooked: 'Room' | 'Hall' | null = null;
+        let mostBooked:
+          | 'Single'
+          | 'Double'
+          | 'Family'
+          | 'Hall'
+          | 'Suite'
+          | 'Deluxe'
+          | null = null;
 
         counts.forEach((count, roomType) => {
           if (count > maxCount) {
