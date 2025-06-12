@@ -61,11 +61,11 @@ export class BookingService {
     return forkJoin([updateReservation$, updateRoom$]);
   }
 
-  getApprovedServicesByCustomerAndRoom(
+  getApprovedAndInProgressServicesByCustomerAndRoom(
     customerId: string,
     roomId: string
   ): Observable<any[]> {
-    const url = `${this.apiUrl}/serviceRequests?customerId=${customerId}&roomId=${roomId}&requestStatus=Completed`;
+    const url = `${this.apiUrl}/serviceRequests?customerId=${customerId}&roomId=${roomId}&requestStatus=Completed&requestStatus=In%20Progress`;
     return this.http.get<any[]>(url);
   }
 }
