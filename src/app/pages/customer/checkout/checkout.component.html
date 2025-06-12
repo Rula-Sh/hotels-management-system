@@ -29,6 +29,7 @@
       </p>
     </div>
   </div>
+  @if(services.length > 0){
   <hr />
   <h3 class="ms-5 mb-3">{{ "checkout.services-requested" | translate }}</h3>
   <div class="d-flex justify-content-around ms-5 me-5 services-container">
@@ -52,6 +53,7 @@
       </p>
     </div>
   </div>
+  }
   <hr class="mt-4" />
   <div
     class="d-flex justify-content-between w-100 checkout-footer align-items-center"
