@@ -182,20 +182,21 @@
     </button>
     }
   </div>
+  <div class="d-flex go-back-container w-100 justify-content-start">
+    <button
+      class="mt-4 ms-4 me-4 p-2 btn-outline-primary rounded-2"
+      [routerLink]="['/rooms/']"
+      routerLinkActive="router-link-active"
+      [title]="'shared.button.go-back' | translate"
+    >
+      <i
+        class="fa-solid"
+        [ngClass]="lang === 'ar' ? 'fa-arrow-right' : 'fa-arrow-left'"
+      ></i>
+      {{ "shared.button.go-back" | translate }}
+    </button>
+  </div>
 </div>
-<button
-  class="mt-4 ms-4 me-4 p-2 btn-outline-primary rounded-2"
-  [routerLink]="['/rooms/']"
-  routerLinkActive="router-link-active"
-  [title]="'shared.button.go-back' | translate"
->
-  <i
-    class="fa-solid"
-    [ngClass]="lang === 'ar' ? 'fa-arrow-right' : 'fa-arrow-left'"
-  ></i>
-  {{ "shared.button.go-back" | translate }}
-</button>
-
 <p-toast></p-toast>
 <p-confirmdialog #cd>
   <ng-template pTemplate="footer">
