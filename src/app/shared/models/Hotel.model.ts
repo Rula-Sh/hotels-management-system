@@ -12,6 +12,12 @@ export interface Hotel {
   phone: string;
   email: string;
 
+  starRating: 1 | 2 | 3 | 4 | 5;
+  averageRating: number;
+
+  createdAt: Date;
+  updatedAt: Date;
+
   rooms?: Room[];
   employees?: Employee[];
   services?: Service[];
