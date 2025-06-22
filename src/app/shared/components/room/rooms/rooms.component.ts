@@ -9,8 +9,6 @@ import { Room } from '../../../models/Room.model';
 import { RoomService } from '../../../../core/services/room.service';
 import { RouterLink } from '@angular/router';
 import { AuthService } from '../../../../core/services/auth.service';
-import { ReservationService } from '../../../../core/services/reservation.service';
-import { Reservation } from '../../../models/Reservation.model';
 import { User } from '../../../models/User.model';
 import { I18nService } from '../../../../core/services/i18n.service';
 import { Subscription } from 'rxjs';
@@ -50,7 +48,6 @@ export class RoomsComponent {
     private roomService: RoomService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
-    private reservationService: ReservationService,
     private authService: AuthService,
     private i18nService: I18nService
   ) {}
@@ -156,85 +153,6 @@ export class RoomsComponent {
       },
       reject: () => {},
     });
-  }
-
-  bookRoom(room: Room) {
-    const user = this.authService.getCurrentUser();
-
-    if (!user) {
-      this.messageService.add({
-        severity: 'warn',
-        summary: `${this.i18nService.t('shared.toast.login-first')}`,
-      });
-      return;
-    }
-
-    // 👇 التحقق من وجود حجز سابق
-    const getReservationsByCustomerIdSub = this.reservationService
-      .getReservationsByCustomerId(user.id)
-      .subscribe({
-        next: (reservations) => {
-          const alreadyBooked = reservations.some(
-            (res) => res.roomId === room.id
-          );
-
-          if (alreadyBooked) {
-            this.messageService.add({
-              severity: 'info',
-              summary: `${this.i18nService.t(
-                'shared.toast.already-sent-a-booking-request'
-              )} "${room.title}".`,
-            });
-            return;
-          }
-
-          // 🟢 إذا لم يكن هناك حجز مسبق، إنشاء الحجز
-          const reservation: Omit<Reservation, 'id'> = {
-            customer: user,
-            customerId: user.id,
-            roomId: room.id,
-            room: room,
-            date: new Date(),
-            paymentAmount: room.price,
-            paymentStatus: 'Unpaid',
-            approvalStatus: 'Pending',
-            isCheckedOut: false,
-          };
-
-          const createReservationSub = this.reservationService
-            .createReservation(reservation)
-            .subscribe({
-              next: () => {
-                this.messageService.add({
-                  severity: 'success',
-                  summary: `${this.i18nService.t('room.room')} "${
-                    room.title
-                  }" ${this.i18nService.t(
-                    'shared.toast.booked-waiting-for-admin-approval'
-                  )}`,
-                });
-              },
-              error: () => {
-                this.messageService.add({
-                  severity: 'error',
-                  summary: `${this.i18nService.t(
-                    'shared.toast.something-went-wrong'
-                  )}`,
-                });
-              },
-            });
-          this.subscriptions.push(createReservationSub);
-        },
-        error: () => {
-          this.messageService.add({
-            severity: 'error',
-            summary: `${this.i18nService.t(
-              'shared.toast.error-getting-reservations'
-            )}`,
-          });
-        },
-      });
-    this.subscriptions.push(getReservationsByCustomerIdSub);
   }
 
   ngOnDestroy() {
