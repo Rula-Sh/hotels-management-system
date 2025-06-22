@@ -173,7 +173,6 @@ export class DashboardComponent {
     const year = now.getFullYear();
     const month = now.getMonth();
 
-    const daysInMonth = new Date(year, month + 1, 0).getDate();
     const weekStarts = [1, 8, 15, 22, 29];
     const weeklyCounts = new Array(weekStarts.length).fill(0);
 
@@ -333,7 +332,6 @@ export class DashboardComponent {
     const year = now.getFullYear();
     const month = now.getMonth();
 
-    const daysInMonth = new Date(year, month + 1, 0).getDate();
     const weekStarts = [1, 8, 15, 22, 29];
     const weeklyCounts = new Array(weekStarts.length).fill(0);
 

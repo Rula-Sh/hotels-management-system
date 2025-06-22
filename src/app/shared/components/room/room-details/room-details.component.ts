@@ -159,7 +159,7 @@ export class RoomDetailsComponent {
       header: `${this.i18n.t('shared.confirm-dialog.remove-room')}`,
       accept: () => {
         const removeRoomSub = this.roomService.removeRoom(id!).subscribe({
-          next: (value) => {
+          next: () => {
             console.log('Room deleted');
             this.router.navigate(['/rooms']);
           },

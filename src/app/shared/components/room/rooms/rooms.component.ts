@@ -140,7 +140,7 @@ export class RoomsComponent {
       header: `${this.i18nService.t('shared.confirm-dialog.remove-room')}`,
       accept: () => {
         const removeRoomSub = this.roomService.removeRoom(id).subscribe({
-          next: (value) => {
+          next: () => {
             console.log('Room deleted');
             this.getRooms();
           },

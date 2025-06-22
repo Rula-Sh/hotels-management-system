@@ -21,7 +21,6 @@ export class AppComponent {
     this.titleService.setTitle(this.i18nService.t('app.title'));
   }
 
-  test: any = false;
   async getLang() {
     this.lang = (localStorage.getItem('lang') as 'en' | 'ar') || 'en';
     await this.i18nService.loadTranslations(this.lang);

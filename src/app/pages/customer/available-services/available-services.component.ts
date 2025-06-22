@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Service } from '../../../shared/models/Service.model';
 import { ServiceService } from '../../../core/services/service.service';
 import { AuthService } from '../../../core/services/auth.service';

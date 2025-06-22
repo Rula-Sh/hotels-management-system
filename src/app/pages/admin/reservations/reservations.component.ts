@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { Reservation as Reservation } from '../../../shared/models/Reservation.model';
 import { RouterLink } from '@angular/router';
 import { ConfirmationService, MessageService, PrimeIcons } from 'primeng/api';
@@ -10,7 +10,7 @@ import { I18nPipe } from '../../../shared/pipes/i18n.pipe';
 import { ReservationService } from '../../../core/services/reservation.service';
 import { I18nService } from '../../../core/services/i18n.service';
 import { RoomService } from '../../../core/services/room.service';
-import { Subject, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-reservations',
@@ -76,7 +76,7 @@ export class ReservationsComponent {
         reservation.id,
         reservation
       ).subscribe({
-        next: (value) => {
+        next: () => {
           // ✅ بعد الموافقة على الحجز، حدّث الغرفة إلى 'Booked'
           const updatedRoom = reservation.room;
 
@@ -121,7 +121,7 @@ export class ReservationsComponent {
             reservation.id,
             reservation
           ).subscribe({
-            next: (value) => {
+            next: () => {
               // ✅ إعادة حالة الغرفة إلى 'Available'
               const updatedRoom = {
                 ...reservation.room,
