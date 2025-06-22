@@ -131,7 +131,7 @@ export class ServicesComponent {
         const deleteServiceSub = this.serviceService
           .deleteService(id)
           .subscribe({
-            next: (value) => {
+            next: () => {
               console.log('Service deleted');
               this.getServices();
             },

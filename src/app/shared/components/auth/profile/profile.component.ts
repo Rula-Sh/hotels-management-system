@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -266,7 +266,7 @@ export class ProfileComponent {
             });
           this.subscriptions.push(updateEmployeeSub);
         } else {
-          var updatedUser: User = {
+          const updatedUser: User = {
             id: this.user!.id,
             name: this.profileForm.value.name,
             email: this.profileForm.value.email,

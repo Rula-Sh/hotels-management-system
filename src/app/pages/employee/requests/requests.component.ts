@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { ConfirmationService, MessageService, PrimeIcons } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
@@ -8,7 +8,7 @@ import { I18nPipe } from '../../../shared/pipes/i18n.pipe';
 import { ServiceService } from '../../../core/services/service.service';
 import { ServiceRequest } from '../../../shared/models/ServiceRequest.model';
 import { I18nService } from '../../../core/services/i18n.service';
-import { Subject, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-requests',
@@ -92,7 +92,7 @@ export class RequestsComponent {
     const approveServiceRequestSub = this.serviceService
       .approveOrCompleteServiceRequest(request.id, request)
       .subscribe({
-        next: (value) => {
+        next: () => {
           console.log('reservation approved');
           this.getServices();
           this.messageService.add({
@@ -116,7 +116,7 @@ export class RequestsComponent {
     const completeServiceRequestSub = this.serviceService
       .approveOrCompleteServiceRequest(request.id, request)
       .subscribe({
-        next: (value) => {
+        next: () => {
           console.log('reservation completed');
           this.getServices();
           this.messageService.add({

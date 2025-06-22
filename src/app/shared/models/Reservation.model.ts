@@ -12,4 +12,6 @@ export interface Reservation {
   room: Room;
   customer: User;
   isCheckedOut: boolean;
+  checkInDate: Date;
+  checkOutDate: Date;
 }

@@ -86,7 +86,7 @@ export class UserDetailsComponent {
             console.log('Loaded Services');
           },
           error: (err) => {
-            console.log('Error Loading Services');
+            console.log('Error Loading Services', err);
           },
         });
 
@@ -100,7 +100,7 @@ export class UserDetailsComponent {
             console.log('Loaded Reservations');
           },
           error: (err) => {
-            console.log('Error Loading Reservations');
+            console.log('Error Loading Reservations',err);
           },
         });
       this.subscriptions.push(getReservationsByCustomerIdSub);
