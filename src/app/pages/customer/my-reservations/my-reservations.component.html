@@ -68,7 +68,7 @@
               <a
                 *ngIf="reservation.isCheckedOut"
                 class="btn btn-primary btn-sm ms-2"
-                (click)="bookRoom(reservation.room)"
+                (click)="showDateDialog(reservation.room)"
               >
                 <span class="exclude-disabled">
                   {{ "reservation.book-again" | translate }}</span
@@ -101,3 +101,29 @@
 </div>
 
 <p-toast></p-toast>
+
+<p-dialog
+  [header]="'shared.form.reservation-duration' | translate"
+  [modal]="true"
+  [(visible)]="dateDialogVisible"
+  [style]="{ width: '25rem' }"
+>
+  <div class="d-flex flex-column justify-content-center w-100">
+    <p-datepicker
+      [(ngModel)]="rangeDates"
+      selectionMode="range"
+      [readonlyInput]="true"
+      [inline]="true"
+      class="align-self-center mb-3"
+    />
+    <div class="align-self-center">
+      <p-button
+        class="m-1"
+        label="Cancel"
+        severity="secondary"
+        (click)="dateDialogVisible = false"
+      />
+      <p-button class="m-1" label="Save" (click)="bookRoom(roomToRebook)" />
+    </div>
+  </div>
+</p-dialog>

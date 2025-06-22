@@ -286,7 +286,8 @@
       "hotel-required": "اسم الفندق مطلوب",
       "hotel-minlength": "يجب أن يحتوي اسم الفندق على حرفين على الأقل",
       "hotel-maxlength": "يجب ألا يزيد اسم الفندق عن 30 حرفاً",
-      "location-minlength": "يجب أن يحتوي وصف الموقع على 10 على الأقل"
+      "location-minlength": "يجب أن يحتوي وصف الموقع على 10 على الأقل",
+      "reservation-duration": "مدة الحجز"
     },
     "toast": {
       "success": "نجاح",
@@ -331,7 +332,8 @@
       "invalid-phone-number": "رقم الهاتف غير صالح. يجب أن يتكون من 10 أرقام ويبدأ بـ 07.",
       "phone-number-updated": "تم تحديث رقم الهاتف بنجاح!",
       "failed-to-update-phone": "فشل تحديث رقم الهاتف.",
-      "no-new-data-to-update": "لا يوجد معلومات جديدة لتحديثها"
+      "no-new-data-to-update": "لا يوجد معلومات جديدة لتحديثها",
+      "select-date": "الرجاء اخيار تاريخ واحد على الأقل"
     },
     "confirm-dialog": {
       "delete": "حذف",

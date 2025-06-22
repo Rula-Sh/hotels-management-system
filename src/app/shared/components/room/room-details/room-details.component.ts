@@ -15,6 +15,10 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ButtonModule } from 'primeng/button';
 import { Subscription } from 'rxjs';
 import { ServiceService } from '../../../../core/services/service.service';
+import { Dialog } from 'primeng/dialog';
+import { InputTextModule } from 'primeng/inputtext';
+import { FormsModule } from '@angular/forms';
+import { DatePicker } from 'primeng/datepicker';
 
 @Component({
   selector: 'app-room',
@@ -25,6 +29,11 @@ import { ServiceService } from '../../../../core/services/service.service';
     ToastModule,
     ConfirmDialogModule,
     ButtonModule,
+    Dialog,
+    ButtonModule,
+    InputTextModule,
+    FormsModule,
+    DatePicker,
   ],
   providers: [MessageService, ConfirmationService, MessageService],
   templateUrl: './room-details.component.html',
@@ -42,6 +51,9 @@ export class RoomDetailsComponent {
   requestedServicesStatus: { [serviceTitle: string]: string } = {};
   isRoomBookedByUser: boolean = false;
   subscriptions: Subscription[] = [];
+
+  dateDialogVisible: boolean = false;
+  rangeDates: Date[] | undefined;
 
   get lang(): 'en' | 'ar' {
     return this.i18nService.getLanguage();
@@ -179,6 +191,23 @@ export class RoomDetailsComponent {
   }
 
   bookRoom(room: Room) {
+    if (this.rangeDates == null) {
+      this.messageService.add({
+        severity: 'warn',
+        summary: `${this.i18nService.t('shared.toast.select-date')}`,
+      });
+      return;
+    }
+
+    // if the customer selected one date, add the next day as checkOutDate
+    if (this.rangeDates[1] == null) {
+      let nextDay = new Date();
+      nextDay.setDate(this.rangeDates[0].getDate() + 1);
+      this.rangeDates[1] = nextDay;
+    }
+    // temporarily fixed the checkInDate being in the prev day... i dont know why it changes to the prev day when i save it in the db.json //TODO fix the main issue
+    this.rangeDates[0].setDate(this.rangeDates[0].getDate() + 1);
+
     const user = this.authService.getCurrentUser();
 
     if (!user) {
@@ -219,6 +248,8 @@ export class RoomDetailsComponent {
             paymentStatus: 'Unpaid',
             approvalStatus: 'Pending',
             isCheckedOut: false,
+            checkInDate: this.rangeDates![0],
+            checkOutDate: this.rangeDates![1],
           };
 
           const createReservationSub = this.reservationService
@@ -233,6 +264,10 @@ export class RoomDetailsComponent {
                     'shared.toast.booked-waiting-for-admin-approval'
                   )}`,
                 });
+
+                setTimeout(() => {
+                  this.router.navigate(['/rooms']);
+                }, 1500);
               },
               error: () => {
                 this.messageService.add({
@@ -254,7 +289,12 @@ export class RoomDetailsComponent {
           });
         },
       });
+    this.dateDialogVisible = false;
     this.subscriptions.push(getReservationsByCustomerIdSub);
+  }
+
+  showDateDialog() {
+    this.dateDialogVisible = true;
   }
 
   ngOnDestroy() {
