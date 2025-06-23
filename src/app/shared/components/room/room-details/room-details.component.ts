@@ -54,6 +54,8 @@ export class RoomDetailsComponent {
 
   dateDialogVisible: boolean = false;
   rangeDates: Date[] | undefined;
+  todayDate = new Date();
+  disabledDates: Date[] = [];
 
   get lang(): 'en' | 'ar' {
     return this.i18nService.getLanguage();
@@ -294,6 +296,32 @@ export class RoomDetailsComponent {
   }
 
   showDateDialog() {
+    this.reservationService.getReservationsDates().subscribe({
+      next: (dates) => {
+        var reservationDuration = [new Date()];
+        for (let i = 0; i < dates.length; i++) {
+          var dateRange = dates[i];
+          var currentDate: Date = new Date(dateRange[0]);
+          while (new Date(currentDate) < new Date(dateRange[1])) {
+            reservationDuration.push(new Date(currentDate));
+            currentDate.setDate(currentDate.getDate() + 1);
+          }
+        }
+
+        // this.disabledDates = dates.flat().map((d) => new Date(d));
+        this.disabledDates = reservationDuration.map((d) => new Date(d));
+        console.table(this.disabledDates);
+      },
+      error: (err) => {
+        console.log('Error getting reservaed dates:', err);
+        this.messageService.add({
+          severity: 'error',
+          summary: `${this.i18nService.t(
+            'shared.toast.error-getting-reserved-dates'
+          )}`,
+        });
+      },
+    });
     this.dateDialogVisible = true;
   }
 

@@ -30,10 +30,6 @@ export class ReservationService {
     );
   }
 
-  getReservationById(id: string): Observable<Reservation> {
-    return this.api.get<Reservation>(`${this.url}/reservations/${id}`);
-  }
-
   getReservationsByCustomerId(customerId: string): Observable<Reservation[]> {
     return this.api.get<Reservation[]>(
       `${this.url}/reservations/?customerId=${customerId}`
@@ -68,5 +64,16 @@ export class ReservationService {
     reservation: Omit<Reservation, 'id'>
   ): Observable<Reservation> {
     return this.api.post<Reservation>(`${this.url}/reservations`, reservation);
+  }
+
+  getReservationsDates(): Observable<Date[][]> {
+    let reservations = this.getAllReservations();
+    return reservations.pipe(
+      map((reservation) => {
+        return reservation
+          .filter((res) => res.approvalStatus === 'Approved')
+          .map((res) => [res.checkInDate, res.checkOutDate]);
+      })
+    );
   }
 }

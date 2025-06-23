@@ -212,7 +212,9 @@
       selectionMode="range"
       [readonlyInput]="true"
       [inline]="true"
-      class="align-self-center mb-3" 
+      [disabledDates]="disabledDates"
+      class="align-self-center mb-3"
+      [minDate]="todayDate"
     />
     <div class="align-self-center">
       <p-button

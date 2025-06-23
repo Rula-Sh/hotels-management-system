@@ -25,24 +25,6 @@ export class BookingService {
       );
   }
 
-  updateBookingStatus(
-    userId: string,
-    roomId: string,
-    status: string
-  ): Observable<any> {
-    return this.getBookingByUserAndRoom(userId, roomId).pipe(
-      map((reservation) => {
-        if (!reservation) throw new Error('Reservation not found');
-        return reservation;
-      }),
-      switchMap((reservation: Reservation) =>
-        this.http.patch(`${this.reservationsUrl}/${reservation.id}`, {
-          paymentStatus: status,
-        })
-      )
-    );
-  }
-
   updateReservationAndRoom(
     reservationId: string,
     roomId: string,
