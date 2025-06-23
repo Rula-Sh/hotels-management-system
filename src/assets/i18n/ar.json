@@ -333,7 +333,8 @@
       "phone-number-updated": "تم تحديث رقم الهاتف بنجاح!",
       "failed-to-update-phone": "فشل تحديث رقم الهاتف.",
       "no-new-data-to-update": "لا يوجد معلومات جديدة لتحديثها",
-      "select-date": "الرجاء اخيار تاريخ واحد على الأقل"
+      "select-date": "الرجاء اخيار تاريخ واحد على الأقل",
+      "error-getting-reserved-dates":"حدث خطأ أثناء الحصول على التواريخ المحجوزة"
     },
     "confirm-dialog": {
       "delete": "حذف",

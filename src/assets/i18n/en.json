@@ -333,7 +333,8 @@
       "phone-number-updated": "Phone number updated successfully!",
       "failed-to-update-phone": "Failed to update phone number.",
       "no-new-data-to-update": "No new data to update",
-      "select-date": "Please Select One Date at Least"
+      "select-date": "Please Select One Date at Least",
+      "error-getting-reserved-dates": "Error getting reservaed dates"
     },
     "confirm-dialog": {
       "delete": "Delete",
