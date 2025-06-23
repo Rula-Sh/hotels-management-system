@@ -94,10 +94,6 @@ export class AuthService {
     this.redirectUrl = url;
   }
 
-  getRedirectURL(): string | null {
-    return this.redirectUrl;
-  }
-
   getUserRole(): string | null {
     return localStorage.getItem('user_role');
   }

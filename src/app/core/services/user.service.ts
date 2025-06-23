@@ -11,8 +11,6 @@ export class UserService {
   constructor() {}
   api = inject(HttpClient);
   url = 'http://localhost:3000/users';
-  roomsUrl = 'http://localhost:3000/rooms';
-  servicesUrl = 'http://localhost:3000/services';
 
   getAllUsers(): Observable<User[]> {
     return this.api.get<User[]>(this.url);
