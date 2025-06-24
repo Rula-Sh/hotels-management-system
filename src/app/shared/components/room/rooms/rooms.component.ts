@@ -69,12 +69,12 @@ export class RoomsComponent {
   getRooms() {
     const getRoomsSub = this.roomService.getAllRooms().subscribe({
       next: (rooms) => {
-        const approvedRoomIds = rooms
-          .filter((r) => r.bookedStatus === 'Booked')
-          .map((r) => r.id);
-
-        // ✅ تصفية الغرف بناءً على الحجز الموافق عليه
-        this.rooms = rooms.filter((room) => !approvedRoomIds.includes(room.id));
+        // const approvedRoomIds = rooms
+        //   .filter((r) => r.bookedStatus === 'Booked')
+        //   .map((r) => r.id);
+        // // ✅ تصفية الغرف بناءً على الحجز الموافق عليه
+        // this.rooms = rooms.filter((room) => !approvedRoomIds.includes(room.id));
+        this.rooms = rooms;
         this.applyFilters();
       },
       error: (err) => {
