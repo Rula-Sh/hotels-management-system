@@ -296,13 +296,18 @@ export class RoomDetailsComponent {
   }
 
   showDateDialog() {
-    this.reservationService.getReservationsDates().subscribe({
+    this.reservationService.getRoomReservationsDates(this.roomId!).subscribe({
       next: (dates) => {
-        var reservationDuration = [new Date()];
+        var reservationDuration = [];
         for (let i = 0; i < dates.length; i++) {
           var dateRange = dates[i];
-          var currentDate: Date = new Date(dateRange[0]);
-          while (new Date(currentDate) < new Date(dateRange[1])) {
+          const dateRange0 = new Date(dateRange[0]).setDate(
+            new Date(dateRange[0]).getDate() - 1
+          );
+          var currentDate: Date = new Date(dateRange0);
+          while (
+            new Date(currentDate).getDate() < new Date(dateRange[1]).getDate()
+          ) {
             reservationDuration.push(new Date(currentDate));
             currentDate.setDate(currentDate.getDate() + 1);
           }
