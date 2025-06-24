@@ -41,10 +41,8 @@ export class ReservationsComponent {
     private roomService: RoomService
   ) {}
 
-  role: string | null = null;
   ngOnInit() {
     this.getreservations();
-    this.role = localStorage.getItem('user_role');
   }
 
   getreservations() {
