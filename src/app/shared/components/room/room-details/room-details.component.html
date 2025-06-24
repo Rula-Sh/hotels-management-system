@@ -165,22 +165,20 @@
     <!-- زر الخدمات -->
     <a
       class="book-btn btn-primary"
-      *ngIf="role !== 'Admin' && room?.bookedStatus == 'Booked'"
+      *ngIf="role !== 'Admin' && room?.bookedStatus == 'Booked' && isRoomBookedByUser"
       [routerLink]="['/available-services']"
       [queryParams]="{ id: reservation?.room?.id }"
     >
       {{ "reservation.view-services" | translate }}
     </a>
     <!-- زر الحجز للعميل فقط -->
-    @if(room?.bookedStatus == 'Available' && !reservation){
     <button
-      *ngIf="role !== 'Admin'"
+      *ngIf="role !== 'Admin' && !isRoomBookedByUser"
       class="book-btn btn-primary"
       (click)="showDateDialog()"
     >
       {{ "room.book-now" | translate }}
     </button>
-    }
   </div>
   <div class="d-flex go-back-container w-100 justify-content-start">
     <button
