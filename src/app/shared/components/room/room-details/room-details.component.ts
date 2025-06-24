@@ -125,7 +125,9 @@ export class RoomDetailsComponent {
       next: (value) => {
         this.requestedUserServices = value.filter((servReq) => {
           return (
-            servReq.roomId == this.roomId && this.room?.bookedStatus == 'Booked'
+            servReq.roomId == this.roomId &&
+            this.room?.bookedStatus == 'Booked' &&
+            this.isRoomBookedByUser
           );
         });
       },
