@@ -56,6 +56,8 @@ export class RoomDetailsComponent {
   rangeDates: Date[] | undefined;
   todayDate = new Date();
   disabledDates: Date[] = [];
+  calendarMaxDate: Date = new Date(8640000000000000); // A very large date used as the default maximum date (means "no limit")
+  maxDate: Date = this.calendarMaxDate;
 
   get lang(): 'en' | 'ar' {
     return this.i18nService.getLanguage();
@@ -330,6 +332,42 @@ export class RoomDetailsComponent {
       },
     });
     this.dateDialogVisible = true;
+  }
+
+  // disable all the dates after the booked dates... so that the customer cannot set the checkOutDate after a previously booked date
+  startDateChanged(e: any) {
+    // if the event is missing or the user hasn't picked a start date yet, reset maxDate
+    if (!e || !this.rangeDates || this.rangeDates.length < 1) {
+      this.maxDate = this.calendarMaxDate;
+      return;
+    }
+
+    // Get the selected checkInDate and remove its time... to compare only the date
+    const checkInDate = new Date(this.rangeDates[0]);
+    checkInDate.setHours(0, 0, 0, 0);
+
+    // remove time and sort the disabled dates from earliest to latest
+    const disabledDatesSorted = this.disabledDates
+      .map((d) => {
+        const cleanDate = new Date(d);
+        cleanDate.setHours(0, 0, 0, 0); // setHours(0, 0, 0, 0) removes the time part (so i only compare the day).
+        return cleanDate;
+      })
+      .sort((a, b) => a.getTime() - b.getTime()); // Sort by date
+
+    // Find the first disabled date after the selected checkInDate
+    for (const disabledDate of disabledDatesSorted) {
+      if (disabledDate > checkInDate) {
+        // Set maxDate to the day before the disabled date
+        const newMaxDate = new Date(disabledDate);
+        newMaxDate.setDate(newMaxDate.getDate() - 1);
+        this.maxDate = newMaxDate;
+        return;
+      }
+    }
+
+    // If no disabled dates after the selected date, allow selecting any end date
+    this.maxDate = this.calendarMaxDate;
   }
 
   ngOnDestroy() {
