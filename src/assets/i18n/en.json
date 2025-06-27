@@ -32,6 +32,9 @@
     "customer": {
       "my-reservations": "My Reservations",
       "available-services": "Available Services"
+    },
+    "public": {
+      "about-us": "About Us"
     }
   },
   "profile": {

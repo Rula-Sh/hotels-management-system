@@ -208,6 +208,13 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'about-us',
+    loadComponent: () =>
+      import('./pages/public/about-us/about-us.component').then(
+        (m) => m.AboutUsComponent
+      ),
+  },
+  {
     path: 'profile/:id',
     loadComponent: () =>
       import('./shared/components/auth/profile/profile.component').then(
