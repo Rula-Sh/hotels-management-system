@@ -32,6 +32,9 @@
     "customer": {
       "my-reservations": "حجوزاتي",
       "available-services": "الخدمات المتاحة"
+    },
+    "public": {
+      "about-us": "عن هوتيل هب"
     }
   },
   "profile": {
@@ -334,7 +337,7 @@
       "failed-to-update-phone": "فشل تحديث رقم الهاتف.",
       "no-new-data-to-update": "لا يوجد معلومات جديدة لتحديثها",
       "select-date": "الرجاء اخيار تاريخ واحد على الأقل",
-      "error-getting-reserved-dates":"حدث خطأ أثناء الحصول على التواريخ المحجوزة"
+      "error-getting-reserved-dates": "حدث خطأ أثناء الحصول على التواريخ المحجوزة"
     },
     "confirm-dialog": {
       "delete": "حذف",
