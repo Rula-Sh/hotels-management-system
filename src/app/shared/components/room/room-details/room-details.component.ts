@@ -146,6 +146,7 @@ export class RoomDetailsComponent {
     );
   }
 
+  // for image slider 
   nextImage() {
     if (this.images.length === 0) return;
     this.fadeOut = true;

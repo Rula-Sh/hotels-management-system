@@ -81,6 +81,7 @@ export class ServicesComponent {
     this.subscriptions.push(getServicesByEmployeeIdSub);
   }
 
+  // for services filering and sorting
   applyFilters() {
     this.filteredServices = this.services
       .filter((service) =>
@@ -115,7 +116,7 @@ export class ServicesComponent {
       this.sortDirection === 'Ascending' ? 'Descending' : 'Ascending';
     this.applyFilters();
   }
-  
+
   clearSearchInput() {
     this.searchInput = '';
     this.applyFilters();

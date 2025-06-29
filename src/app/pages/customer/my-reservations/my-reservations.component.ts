@@ -255,6 +255,7 @@ export class MyReservationsComponent implements OnInit {
     this.subscriptions.push(getReservationsByCustomerIdSub);
   }
 
+  // for reservation date selection
   showDateDialog(room: Room) {
     this.reservationService.getRoomReservationsDates(room.id).subscribe({
       next: (dates) => {
