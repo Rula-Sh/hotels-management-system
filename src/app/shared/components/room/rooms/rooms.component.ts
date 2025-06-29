@@ -85,6 +85,7 @@ export class RoomsComponent {
     this.subscriptions.push(getRoomsSub);
   }
 
+// for rooms filering and sorting
   applyFilters() {
     this.filteredRooms = this.rooms
       .filter((room) =>

@@ -168,6 +168,7 @@ export class RoomFormComponent {
     this.subscriptions.push(uploadImageSub);
   }
 
+  // for image slider
   removeImage(index: number) {
     this.images.splice(index, 1);
     if (this.currentIndex >= this.images.length) {
