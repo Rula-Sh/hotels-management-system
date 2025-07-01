@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { I18nPipe } from '../../../pipes/i18n.pipe';
+import { I18nPipe } from '../../../../shared/pipes/i18n.pipe';
 import { RoomService } from '../../../../core/services/room.service';
 import { I18nService } from '../../../../core/services/i18n.service';
-import { Room } from '../../../models/Room.model';
-import { Reservation } from '../../../models/Reservation.model';
+import { Room } from '../../../../shared/models/Room.model';
+import { Reservation } from '../../../../shared/models/Reservation.model';
 import { ReservationService } from '../../../../core/services/reservation.service';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { AuthService } from '../../../../core/services/auth.service';
-import { ServiceRequest } from '../../../models/ServiceRequest.model';
+import { ServiceRequest } from '../../../../shared/models/ServiceRequest.model';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ButtonModule } from 'primeng/button';
@@ -146,7 +146,7 @@ export class RoomDetailsComponent {
     );
   }
 
-  // for image slider 
+  // for image slider
   nextImage() {
     if (this.images.length === 0) return;
     this.fadeOut = true;

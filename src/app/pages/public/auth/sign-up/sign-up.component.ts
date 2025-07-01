@@ -10,10 +10,10 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
-import { User } from '../../../models/User.model';
+import { User } from '../../../../shared/models/User.model';
 import { AuthService } from '../../../../core/services/auth.service';
 import { UserService } from '../../../../core/services/user.service';
-import { I18nPipe } from '../../../pipes/i18n.pipe';
+import { I18nPipe } from '../../../../shared/pipes/i18n.pipe';
 import { Subscription } from 'rxjs';
 import { MessageService } from 'primeng/api';
 import { I18nService } from '../../../../core/services/i18n.service';

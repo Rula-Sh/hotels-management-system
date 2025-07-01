@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
-import { I18nPipe } from '../../../pipes/i18n.pipe';
+import { I18nPipe } from '../../../../shared/pipes/i18n.pipe';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { ConfirmationService, MessageService, PrimeIcons } from 'primeng/api';
-import { Room } from '../../../models/Room.model';
+import { Room } from '../../../../shared/models/Room.model';
 import { RoomService } from '../../../../core/services/room.service';
 import { RouterLink } from '@angular/router';
 import { AuthService } from '../../../../core/services/auth.service';
-import { User } from '../../../models/User.model';
+import { User } from '../../../../shared/models/User.model';
 import { I18nService } from '../../../../core/services/i18n.service';
 import { Subscription } from 'rxjs';
 import { FormsModule } from '@angular/forms';
@@ -85,7 +85,7 @@ export class RoomsComponent {
     this.subscriptions.push(getRoomsSub);
   }
 
-// for rooms filering and sorting
+  // for rooms filering and sorting
   applyFilters() {
     this.filteredRooms = this.rooms
       .filter((room) =>
