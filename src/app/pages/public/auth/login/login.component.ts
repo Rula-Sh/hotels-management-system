@@ -10,7 +10,7 @@ import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { UserService } from '../../../../core/services/user.service';
 import { AuthService } from '../../../../core/services/auth.service';
-import { I18nPipe } from '../../../pipes/i18n.pipe';
+import { I18nPipe } from '../../../../shared/pipes/i18n.pipe';
 import { Subscription } from 'rxjs';
 import { MessageService } from 'primeng/api';
 import { I18nService } from '../../../../core/services/i18n.service';
