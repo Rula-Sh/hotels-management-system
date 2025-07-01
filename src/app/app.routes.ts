@@ -47,7 +47,7 @@ export const routes: Routes = [
       {
         path: 'rooms',
         loadComponent: () =>
-          import('./shared/components/room/rooms/rooms.component').then(
+          import('./pages/public/room/rooms/rooms.component').then(
             (m) => m.RoomsComponent
           ),
       }, // shared with guests and admin
@@ -55,7 +55,7 @@ export const routes: Routes = [
         path: 'room-details/:id',
         loadComponent: () =>
           import(
-            './shared/components/room/room-details/room-details.component'
+            './pages/public/room/room-details/room-details.component'
           ).then((m) => m.RoomDetailsComponent),
       }, // shared with guests and admin
       {
@@ -196,14 +196,14 @@ export const routes: Routes = [
   {
     path: 'login',
     loadComponent: () =>
-      import('./shared/components/auth/login/login.component').then(
+      import('./pages/public/auth/login/login.component').then(
         (m) => m.LoginComponent
       ),
   },
   {
     path: 'signup',
     loadComponent: () =>
-      import('./shared/components/auth/sign-up/sign-up.component').then(
+      import('./pages/public/auth/sign-up/sign-up.component').then(
         (m) => m.SignUpComponent
       ),
   },
@@ -227,7 +227,7 @@ export const routes: Routes = [
   {
     path: '**',
     loadComponent: () =>
-      import('./shared/components/auth/not-found/not-found.component').then(
+      import('./pages/public/auth/not-found/not-found.component').then(
         (m) => m.NotFoundComponent
       ),
   },
