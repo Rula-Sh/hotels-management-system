@@ -217,7 +217,7 @@ export const routes: Routes = [
   {
     path: 'profile/:id',
     loadComponent: () =>
-      import('./shared/components/auth/profile/profile.component').then(
+      import('./pages/public/auth/profile/profile.component').then(
         (m) => m.ProfileComponent
       ),
     canActivate: [authGuard],

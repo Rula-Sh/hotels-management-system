@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+import { Component } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -9,7 +9,7 @@ import {
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
-import { User } from '../../../models/User.model';
+import { User } from '../../../../shared/models/User.model';
 import { AuthService } from '../../../../core/services/auth.service';
 import { UserService } from '../../../../core/services/user.service';
 import { I18nService } from '../../../../core/services/i18n.service';
@@ -23,9 +23,9 @@ import {
   PhoneNumberFormat,
 } from 'ngx-intl-tel-input';
 import { CommonModule } from '@angular/common';
-import { I18nPipe } from '../../../pipes/i18n.pipe';
+import { I18nPipe } from '../../../../shared/pipes/i18n.pipe';
 import { ToastModule } from 'primeng/toast';
-import { Employee } from '../../../models/Employee.model';
+import { Employee } from '../../../../shared/models/Employee.model';
 
 @Component({
   selector: 'app-profile',
